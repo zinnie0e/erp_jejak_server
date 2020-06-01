@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guru.erpserver.mapper.BooksMapper">
+
+	<select id="selBooksList" resultType="booksVO">
+		SELECT SBBOOK, SBNAME, uid
+		FROM KSCBOOK0
+		ORDER BY uid DESC
+	</select>
+	
+	<select id="selBooksListCodeCheck" resultType="booksVO">
+		SELECT SBBOOK, SBNAME, uid
+		FROM KSCBOOK0
+		WHERE SBBOOK LIKE CONCAT('%', #{sbbook}, '%')
+		ORDER BY SBBOOK ASC
+	</select>
+	
+	<select id="selBooksListNameCheck" resultType="booksVO">
+		SELECT SBBOOK, SBNAME, uid
+		FROM KSCBOOK0
+		WHERE REPLACE(SBNAME,' ', '') LIKE CONCAT('%', #{sbname}, '%')
+		ORDER BY SBBOOK ASC
+	</select>
+	
+	<select id="selBooksDetail" resultType="booksVO">
+		SELECT *
+		FROM KSCBOOK0
+		WHERE uid = #{uid}
+	</select>
+	
+	<insert id="inBooks" parameterType="booksVO">
+		INSERT INTO KSCBOOK0 (
+			SBINSE, SBBIGO, SBJLSU, SBBOOK, SBNAME,
+			SBNAME2, SBUPRC, SBPANH, SBJANH, SBPAGE,
+			SBSBPH1, SBSBJH1, SBSBPG1, SBSBPH2, SBSBJH2,
+			SBSBPG2, SBSBPH3, SBSBJH3, SBSBPG3, SBSBPH4,
+			SBSBJH4, SBSBPG4, SBINJI, SBJNJI, SBSTIC,
+			SBCD, SBCOTI, SBCASE2, SBCOTI2, SBWING2,
+			SBMYUN, SBBYUL, SBHWBO
+		) VALUES (
+			#{sbinse}, #{sbbigo}, #{sbjlsu}, #{sbbook}, #{sbname},
+			#{sbname2}, #{sbuprc}, #{sbpanh}, #{sbjanh}, #{sbpage},
+			#{sbsbph1}, #{sbsbjh1}, #{sbsbpg1}, #{sbsbph2}, #{sbsbjh2},
+			#{sbsbpg2}, #{sbsbph3}, #{sbsbjh3}, #{sbsbpg3}, #{sbsbph4},
+			#{sbsbjh4}, #{sbsbpg4}, #{sbinji}, #{sbjnji}, #{sbstic},
+			#{sbcd}, #{sbcoti}, #{sbcase2}, #{sbcoti2}, #{sbwing2},
+			#{sbmyun}, #{sbbyul}, #{sbhwbo}
+		)
+	</insert>
+	
+	<update id="upBooks" parameterType="booksVO">
+		UPDATE KSCBOOK0 SET
+			SBBOOK=#{sbbook}, SBNAME=#{sbname}, SBUPRC=#{sbuprc}, SBKC=#{sbkc}, SBJEGO=#{sbjego},
+			SBGUME=#{sbgume}, SBAPDT=#{sbapdt}, SBDUNG=#{sbdung}, SBLOCA=#{sbloca}, SBGUBN=#{sbgubn},
+			SBPEGI=#{sbpegi}, SBPEGA=#{sbpega}, SBCPBH=#{sbcpbh}, SBCPSR=#{sbcpsr}, SBCPDN=#{sbcpdn},
+			SBCJBH=#{sbcjbh}, SBCJPN=#{sbcjpn}, SBBUSE=#{sbbuse}, SBJUJA=#{sbjuja}, SBYKJA=#{sbykja},
+			SBPNJA=#{sbpnja}, SBPJFR=#{sbpjfr}, SBPJTO=#{sbpjto}, SBSOG1=#{sbsog1}, SBSOG2=#{sbsog2},
+			SBIPIL=#{sbipil}, SBCOST=#{sbcost}, SBWEIT=#{sbweit}, SBGEO1=#{sbgeo1}, SBAMT1=#{sbamt1},
+			SBREM1=#{sbrem1}, SBGEO2=#{sbgeo2}, SBAMT2=#{sbamt2}, SBREM2=#{sbrem2}, SBGEO3=#{sbgeo3},
+			SBAMT3=#{sbamt3}, SBREM3=#{sbrem3}, SBPNKN=#{sbpnkn}, SBWONS=#{sbwons}, SBWNNA=#{sbwnna},
+			SBKOMC=#{sbkomc}, SBISBN=#{sbisbn}, SBPANH=#{sbpanh}, SBSBPH1=#{sbsbph1}, SBJANH=#{sbjanh},
+			SBSBJH1=#{sbsbjh1}, SBPAGE=#{sbpage}, SBSBPG1=#{sbsbpg1}, SBTIGI=#{sbtigi}, SBDSPG=#{sbdspg},
+			SBJLSU=#{sbjlsu}, SBINSE=#{sbinse}, SBHJ04=#{sbhj04}, SBBIGO=#{sbbigo}, SBSBPH2=#{sbsbph2},
+			SBSBJH2=#{sbsbjh2}, SBSBPH3=#{sbsbph3}, SBSBJH3=#{sbsbjh3}, SBSBPH4=#{sbsbph4}, SBSBJH4=#{sbsbjh4},
+			SBSBPG2=#{sbsbpg2}, SBSBPG3=#{sbsbpg3}, SBSBPG4=#{sbsbpg4}, SBJNJI=#{sbjnji}, SBINJI=#{sbinji},
+			SBSTIC=#{sbstic}, SBCD=#{sbcd}, SBCOTI=#{sbcoti}, SBCASE2=#{sbcase2}, SBCOTI2=#{sbcoti2},
+			SBWING2=#{sbwing2}, SBMYUN=#{sbmyun}, SBBYUL=#{sbbyul}, SBHWBO=#{sbhwbo}, SBPANH2=#{sbpanh2},
+			SBPAGE2=#{sbpage2}, SBBINB=#{sbbinb}, SBHJGB=#{sbhjgb}, SBIPGO=#{sbipgo}, SBSACH=#{sbsach},
+			SBTPAGE=#{sbtpage}, SBMPAGE=#{sbmpage}, SBSONGN=#{sbsongn}, SBSONGI=#{sbsongi}, SBSONGO=#{sbsongo},
+			SBBOOKP=#{sbbookp}, SBCDP=#{sbcdp}, SBJABJI=#{sbjabji}, MEMO_JB=#{memo_jb}, MEMO_CD=#{memo_cd},
+			MEMO_CS=#{memo_cs}, MEMO_ST=#{memo_st}
+		WHERE uid = #{uid}
+	</update>
+	
+	<delete id="delBooks" parameterType="booksVO">
+		DELETE FROM KSCBOOK0
+		WHERE uid = #{uid}
+	</delete>
+</mapper>

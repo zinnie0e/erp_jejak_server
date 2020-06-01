@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guru.erpserver.mapper.JpJejakMapper">
+
+	<!-- 공통 -->
+	<select id="selJpDay" resultType="jpJejakVO">
+		SELECT bdate 
+		FROM TMPLIST2 
+		WHERE (date_format(from_unixtime(bdate), '%Y%m') = #{bdate}) 
+		GROUP BY date_format(from_unixtime(bdate), '%Y%m%d') 
+		ORDER BY bdate ASC, uid ASC
+	</select>
+	
+	<!-- 발주예정제품리스트 -->
+	
+	<select id="selBjlistDateList" resultType="jpJejakVO">
+		SELECT signdate
+		FROM tmplist
+		WHERE (SUBSTRING(signdate,1,4) = #{date1})
+			AND (SUBSTRING(signdate,5,2) = #{date2})
+		GROUP BY signdate
+		ORDER BY signdate ASC
+	</select>
+	
+	<select id="selBjlistPageCount" resultType="jpJejakVO">
+		SELECT COUNT(uid)
+		FROM tmplist
+		WHERE signdate = #{signdate}
+	</select>
+	
+	<select id="selBjlistList" resultType="jpJejakVO">
+		SELECT *
+		FROM tmplist
+		WHERE signdate = #{signdate}
+		ORDER BY bcheck ASC, uid ASC
+	</select>
+	
+	<delete id="delBjlistItem" parameterType="jpJejakVO">
+		DELETE FROM tmplist
+		WHERE uid = #{uid}
+	</delete>
+	
+	<select id="selBjlistItem" resultType="jpJejakVO">
+		SELECT *
+		FROM tmplist
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selBjlistBalju1" resultType="jpJejakVO">
+		SELECT SBBOOK
+		FROM kscbook0
+		WHERE SBBOOK LIKE CONCAT(#{bcode}, '%')
+		ORDER BY SBBOOK DESC LIMIT 1
+	</select>
+	
+	<select id="selBjlistBalju2" resultType="jpJejakVO">
+		SELECT SBBOOK
+		FROM kscbook0
+		WHERE SBBOOK = #{bcode}
+	</select>
+	
+	<select id="selBjlistBalju3" resultType="jpJejakVO">
+		SELECT *
+		FROM kscbook0
+		WHERE SBBOOK = #{bcode}
+	</select>
+	
+	<select id="selBjlistBalju4" resultType="jpJejakVO">
+		SELECT *
+		FROM kswyonj0
+		WHERE WYBOOK = #{bcode}
+		ORDER BY WYBOO9 ASC, WYSUNS ASC, WYGUBN ASC
+	</select>
+	
+	<select id="selBjlistBalju41" resultType="jpJejakVO">
+		SELECT *
+		FROM kswjijl0
+		WHERE wjcode = #{wyjijl}
+	</select>
+	
+	<select id="selBjlistBalju411" resultType="jpJejakVO">
+		SELECT *
+		FROM yeo
+		WHERE ty = 1
+			AND bu <![CDATA[ <= ]]> #{bnum}
+		ORDER BY bu DESC LIMIT 1
+	</select>
+	
+	<select id="selBjlistBalju412" resultType="jpJejakVO">
+		SELECT *
+		FROM yeo
+		WHERE bu <![CDATA[ <= ]]> #{bnum}
+			AND ty = 0
+			AND do = #{wycolo}
+		ORDER BY bu DESC
+	</select>
+	
+	<select id="selBjlistBalju413" resultType="jpJejakVO">
+		SELECT COUNT(uid)
+		FROM kswdesu0
+		WHERE WDBOOK = #{bcode}
+			AND WDBOO9 = #{wyboo9}
+	</select>
+	
+	<select id="selBjlistBalju4131" resultType="jpJejakVO">
+		SELECT *
+		FROM KSWDESU0
+		WHERE WDBOOK = #{bcode}
+			AND WDBOO9 = #{wyboo9}
+		ORDER BY WDDESU ASC
+	</select>
+	
+	<!-- 제작계획표 -->
+	<select id="selJpjejakplan1" resultType="jpJejakVO">
+		SELECT a.uid, a.listid, a.bdate, a.bucode, a.m1, a.m2, a.m3, a.crnum, b.bname, b.bcode, b.bmyun, b.bnum, b.bprice, b.btype, c.sbpanh, c.sbjanh, c.sbbigo, c.sbinse, c.sbhj04, c.sbcoti, c.sbsbph1, c.sbsbjh1, c.sbsbpg1,
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = m1) AS wcname1,
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = m2) AS wcname2,
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = m3) AS wcname3 
+		FROM  TMPLIST2 AS a, TMPLIST AS b, KSCBOOK0 AS c 
+		WHERE a.bdate <![CDATA[ >= ]]> #{date1}
+			AND a.bdate  <![CDATA[ < ]]> #{date2}
+			AND a.listid = b.uid 
+			AND b.bcode = c.SBBOOK 
+		ORDER BY crnum ASC, uid DESC 
+	</select>
+	
+	<select id="selJpjejakplan2" resultType="jpJejakVO">
+		SELECT listid, jm, yb, gubn, jcode, jname, colo 
+		FROM TMPLIST3 
+		WHERE listid = #{uid} 
+			and (jm != 0 or yb != 0) 
+		ORDER BY uid ASC
+	</select>
+	
+	<select id="selJpjejakplan3" resultType="jpJejakVO">
+		SELECT uid, signdate, bnum 
+		FROM TMPLIST 
+		WHERE bcode LIKE #{bcode} 
+			AND uid <![CDATA[ < ]]> #{listid} 
+		ORDER BY signdate DESC
+	</select>
+	
+	<select id="selJpjejakplan4" resultType="jpJejakVO">
+		SELECT uid, listid 
+		FROM TMPLIST2 
+		WHERE listid = #{uid}
+	</select>
+	
+	<!-- 발주서 -->
+	<select id="selJpBal1" resultType="jpJejakVO">
+		SELECT wccode, wcname, wcjob 
+		FROM KSWCUST0 
+		WHERE wccode <![CDATA[ > ]]> '1001' 
+			AND wccode <![CDATA[ < ]]> '6000'
+		ORDER BY wccode asc
+	</select>
+	
+	<select id="selJpBal2" resultType="jpJejakVO">
+		SELECT * 
+		FROM TMPLIST2 
+		WHERE bdate <![CDATA[ >= ]]> #{bdate1}
+			AND bdate <![CDATA[ < ]]> #{bdate2}
+	</select>
+	
+	<select id="selJpBal3" resultType="jpJejakVO">
+		SELECT wcemail, wcname 
+		FROM KSWCUST0
+		WHERE wccode = #{ccode} 
+	</select>
+	
+	<select id="selJpBal4" resultType="jpJejakVO">
+		SELECT a.m1, a.m2, a.m3, a.m4, a.m5, a.m6, a.m7, a.m8, a.m9, a.listid, a.bucode, a.pwan, a.iwan, b.wcname
+		FROM TMPLIST2 AS a, KSWCUST0 AS b
+		WHERE a.bdate <![CDATA[ >= ]]> #{bdate1}
+			AND a.bdate <![CDATA[ < ]]> #{bdate2}
+			AND a.m3 = b.wccode 
+		ORDER BY a.bdate ASC, a.uid ASC 
+	</select>
+	
+	<select id="selJpBal5" resultType="jpJejakVO">
+		SELECT a.uid, a.btype, a.bmyun, a.bcode,  a.bname,  a.bpanh,  a.bnum, a.tbigo, 
+			b.sbjanh, b.sbsbjh1, b.sbsbjh2, b.sbsbjh3, b.sbsbjh4, b.sbsbpg1, b.sbsbpg2, 
+		    b.sbsbpg3,  b.sbsbpg4, b.sbbigo, b.sbcoti, b.sbcoti2, b.sbipgo 
+		FROM TMPLIST AS a, KSCBOOK0 AS b 
+		WHERE a.uid = #{listid}
+			AND a.bcode = b.sbbook LIMIT 1
+	</select>
+	
+	<!-- 표지작업지시서 -->
+	<select id="selJpPyo" resultType="jpJejakVO">
+		SELECT a.bdate, a.m2, a.m3, a.m12, a.m13, a.m5, b.*, c.bname, c.btype, c.bcode, c.bnum, d.sbjlsu, d.sbuprc 
+		FROM TMPLIST2 AS a,TMPLIST3 AS b, TMPLIST AS c, KSCBOOK0 AS d 
+		WHERE a.uid=b.listid 
+			AND (b.gubn not like '%본문%') 
+			AND a.listid=c.uid 
+			AND a.bdate <![CDATA[ >= ]]> #{bdate1} 
+			AND a.bdate <![CDATA[ < ]]> #{bdate2}
+			AND c.bcode=d.SBBOOK 
+		ORDER BY b.uid ASC
+	</select>
+	
+	<select id="selYakc" resultType="jpJejakVO">
+		SELECT wcyakc 
+		FROM KSWCUST0 
+		WHERE wccode = #{wccode}
+	</select>
+	
+	<!-- 본문작업지시서 -->
+	<select id="selJpBon" resultType="jpJejakVO">
+		SELECT a.uid, a.bdate, a.m1, a.m3, a.bucode, c.bname, c.bcode, 
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = m1) AS temp1,
+   			(SELECT wcname FROM KSWCUST0 WHERE wccode = m3) AS temp2
+		FROM TMPLIST2 AS a, TMPLIST AS c, KSWCUST0 AS d
+		WHERE a.listid=c.uid 
+			AND a.bdate <![CDATA[ >= ]]> #{bdate1}  
+			AND a.bdate <![CDATA[ < ]]> #{bdate2}
+			AND d.wccode = a.m1 
+		ORDER BY a.bdate ASC, a.uid ASC
+	</select>
+	
+	<select id="selJpBon2" resultType="jpJejakVO">
+		SELECT a.bdate, a.bucode, a.pwan, b.bcode, b.bname, b.bnum, b.btype, c.wcname, d.jname, d.jcode, d.t3bigo,
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = a.m1) AS wcname2,
+			(SELECT pannum5 FROM TMPLIST5 WHERE listid5 = #{uid} AND gubn5 LIKE '%본문%') AS pannum5
+		FROM TMPLIST2 AS a, TMPLIST AS b, KSWCUST0 AS c , TMPLIST3 AS d
+		WHERE a.uid = #{uid}
+			AND a.listid = b.uid 
+			AND a.m3 = c.wccode
+		    AND d.listid = #{uid}
+			AND d.bucode = a.bucode
+		    AND d.gubn LIKE '%본문%'
+    </select>
+    
+    <select id="selJpBon3" resultType="jpJejakVO">
+	    SELECT uid, jm, yb, gb, dae, colo, t4bigo 
+		FROM TMPLIST4 
+		WHERE listid = #{uid}
+			AND bu = #{bucode}
+			AND gb LIKE '%본문%' 
+		ORDER BY dae ASC, uid ASC
+	 </select>
+	 
+	  <select id="selJpBon4" resultType="jpJejakVO">
+		SELECT jm, yb
+		FROM TMPLIST3 
+		WHERE listid = #{uid}
+			AND bucode = #{bucode}
+			AND gubn LIKE '%본문%'
+	  </select>
+    
+	<!-- 입고대장 여기 고쳐야댕 따로 공통으로 빼야해 -->
+	<select id="selWarehousing" resultType="jpJejakVO">
+		SELECT a.*, b.bname, b.bnum, b.btype, c.wcname
+		FROM TMPLIST2 AS a, TMPLIST AS b, KSWCUST0 AS c
+		WHERE a.bdate <![CDATA[ >= ]]> #{bdate1} 
+			AND a.bdate <![CDATA[ < ]]> #{bdate2} 
+			AND a.bucode=0 
+			AND a.listid = b.uid 
+			AND a.m3 = c.wccode
+		ORDER BY iwan ASC, uid ASC
+	</select>
+	
+	<!-- 제작예정리스트 열람 -->
+	<select id="selYejung1" resultType="jpJejakVO">
+		SELECT signdate 
+		FROM YEJUNG 
+		ORDER BY signdate DESC LIMIT 1
+	</select>
+	
+	<select id="selYejung2" resultType="jpJejakVO">
+		SELECT *
+		FROM YEJUNG 
+		WHERE signdate = #{signdate} 
+		AND bname NOT LIKE '' 
+		ORDER BY bcode ASC
+	</select>
+	
+	<!-- 제품정가인상리스트 -->
+	<select id="selJpPriceUpList" resultType="jpJejakVO">
+		SELECT A.*, B.sbname 
+		FROM INSANG AS a 
+		LEFT OUTER JOIN KSCBOOK0 AS b 
+		ON a.bcode = b.sbbook WHERE a.pub = 0 
+		ORDER BY a.bcode ASC
+	</select>
+	
+	<!-- 제품보류리스트 -->
+	<select id="selJpHoldList" resultType="jpJejakVO">
+		SELECT sbbook, sbname 
+		FROM KSCBOOK0 
+		WHERE sbgubn LIKE 'B' 
+		ORDER BY sbbook ASC
+	</select>
+	
+	<!-- 제품폐간리스트 -->
+	<select id="selJpCloseList" resultType="jpJejakVO">
+		SELECT sbbook, sbname 
+		FROM KSCBOOK0 
+		WHERE sbpegi LIKE 'P' 
+		ORDER BY sbbook ASC
+	</select>
+	
+	<!-- 신간적정재고관리 -->
+	<select id="selJpNewStockList" resultType="jpJejakVO">
+		SELECT a.*, b.sbname 
+		FROM YEJUNG2 AS a 
+		LEFT OUTER JOIN KSCBOOK0 AS b 
+		ON a.yjbook = b.sbbook 
+		WHERE a.yjdate >= #{bdate} 
+		ORDER BY a.yjdate ASC, a.yjbook ASC
+	</select>
+	
+</mapper>

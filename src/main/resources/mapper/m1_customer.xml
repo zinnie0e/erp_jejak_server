@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guru.erpserver.mapper.CustomerMapper">
+
+	<select id="selCustList" resultType="customerVO">
+		SELECT uid, wccode, wcname, wctel, wcjuso, wcjob, wcyakc, wcjana
+		FROM KSWCUST0
+		ORDER BY wccode ASC, wcname ASC
+	</select>
+	
+	<select id="selCustDetail" resultType="customerVO">
+		SELECT *
+		FROM KSWCUST0
+		WHERE uid = #{uid}
+	</select>
+	
+	<insert id="inCust" parameterType="customerVO">
+		INSERT INTO KSWCUST0 (
+			wccode, wcname, wcdeap, wcjuso, wctel,
+			wcjob, tax, wcjana, wcyakc, wcemail,
+			wccode2, sucode, jmfield
+		) VALUES (
+			#{wccode}, #{wcname}, #{wcdeap}, #{wcjuso}, #{wctel},
+			#{wcjob}, #{tax}, #{wcjana}, #{wcyakc}, #{wcemail},
+			#{wccode}, #{wccode}, #{jmfield}
+		)
+	</insert>
+	
+	<update id="upCust" parameterType="customerVO">
+		UPDATE KSWCUST0 SET
+			wccode=#{wccode}, wcname=#{wcname}, wcdeap=#{wcdeap}, wcjuso=#{wcjuso}, wctel=#{wctel},
+			wcjob=#{wcjob}, tax=#{tax}, wcjana=#{wcjana}, wcyakc=#{wcyakc}, wcemail=#{wcemail},
+			wccode2=#{wccode}, sucode=#{wccode}, jmfield=#{jmfield}
+		WHERE uid = #{uid}
+	</update>
+	
+	<delete id="delCust" parameterType="customerVO">
+		DELETE FROM KSWCUST0
+		WHERE uid = #{uid}
+	</delete>
+	
+	<select id="selIpList" resultType="customerVO">
+		SELECT * 
+		FROM KSCIPS 
+		WHERE UNAME LIKE '2%' OR UNAME LIKE '4%' ORDER BY UNAME ASC
+	</select>
+	
+	<update id="upIp" parameterType="customerVO">
+		UPDATE KSCIPS SET 
+		ips=#{ips} WHERE uid=#{uid}
+	</update>
+	
+</mapper>
