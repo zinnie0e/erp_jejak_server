@@ -47,17 +47,13 @@ public class DirectKbController {
 	public List<DirectKbVO> selKbPrint2() throws Exception {
 		return directKbSVC.selKbPrint2();
 	}
-	// 입력 : ccode, cdate, cgubn, cprice
+	@RequestMapping(value = "/directkb/select_kb_print3", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPrint3() throws Exception {
+		return directKbSVC.selKbPrint3();
+	}
+	// 입력 : uid, ccode, cdate, cgubn, cprice
 	@RequestMapping(value="/directkb/insert_kb_print", method=RequestMethod.POST)
 	public boolean inKbPrint(@RequestBody DirectKbVO params) throws Exception {
-		//여기 작업중
-		
-		System.out.print("1");
-		long max_uid = directKbSVC.selKbPrint3();
-		System.out.print("2");
-		System.out.print(max_uid++);
-		params.setUid(Long.valueOf(directKbSVC.selKbPrint3() + 1));
-		
 		return directKbSVC.inKbPrint(params);
 	}
 	
@@ -69,6 +65,15 @@ public class DirectKbController {
 	@RequestMapping(value = "/directkb/select_kb_house_organ2", method = RequestMethod.POST)
 	public List<DirectKbVO> selKbHouseOrgan2() throws Exception {
 		return directKbSVC.selKbHouseOrgan2();
+	}
+	@RequestMapping(value = "/directkb/select_kb_house_organ3", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbHouseOrgan3() throws Exception {
+		return directKbSVC.selKbHouseOrgan3();
+	}
+	// 입력 : uid, ccode, cdate, cgubn, cprice
+	@RequestMapping(value="/directkb/insert_kb_house_organ", method=RequestMethod.POST)
+	public boolean inKbHouseOrgan(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.inKbHouseOrgan(params);
 	}
 	
 	// TODO 인쇄비

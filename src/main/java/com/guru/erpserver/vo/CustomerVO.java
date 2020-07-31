@@ -33,4 +33,8 @@ public class CustomerVO {
 	private String scdung;
 	private String ips;
 	private String uname;
+	
+	private int count; //리미트 시작값
+	private int lm_s; //리미트 시작값
+	private int lm_t; //리미트 전체값
 }

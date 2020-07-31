@@ -275,6 +275,21 @@
 		ORDER BY bcode ASC
 	</select>
 	
+	<!-- 제작예정리스트 등록 -->
+	<select id="selYejungRegi1" resultType="jpJejakVO">
+		SELECT count(*) AS count
+		FROM KSCBOOK0 
+		WHERE ${keyfield} LIKE CONCAT('%', #{key}, '%')
+	</select>
+	
+	<select id="selYejungRegi2" resultType="jpJejakVO">
+		SELECT sbbook, sbname, uid
+		FROM KSCBOOK0 
+		WHERE ${keyfield} LIKE CONCAT('%', #{key}, '%')
+		ORDER BY uid DESC
+		LIMIT #{lm_s}, #{lm_t}
+	</select>
+	
 	<!-- 제품정가인상리스트 -->
 	<select id="selJpPriceUpList" resultType="jpJejakVO">
 		SELECT A.*, B.sbname 

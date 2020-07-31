@@ -6,7 +6,9 @@ import com.guru.erpserver.vo.CustomerVO;
 
 @Mapper
 public interface CustomerMapper {
-	public List<CustomerVO> selCustList();
+	
+	public List<CustomerVO> selCustList1();
+	public List<CustomerVO> selCustList2(CustomerVO params);
 	
 	public List<CustomerVO> selCustDetail(CustomerVO params);
 	

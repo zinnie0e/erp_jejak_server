@@ -16,12 +16,14 @@ public interface DirectKbService {
 	// TODO 출력료
 	List<DirectKbVO> selKbPrint1() throws Exception;
 	List<DirectKbVO> selKbPrint2() throws Exception;
-	long selKbPrint3() throws Exception;
+	List<DirectKbVO> selKbPrint3() throws Exception;
 	boolean inKbPrint(DirectKbVO params) throws Exception;
 	
 	// TODO 사보료
 	List<DirectKbVO> selKbHouseOrgan1() throws Exception;
 	List<DirectKbVO> selKbHouseOrgan2() throws Exception;
+	List<DirectKbVO> selKbHouseOrgan3() throws Exception;
+	boolean inKbHouseOrgan(DirectKbVO params) throws Exception;
 	
 	// TODO 인쇄비
 	List<DirectKbVO> selKbPresswork1(DirectKbVO params) throws Exception;

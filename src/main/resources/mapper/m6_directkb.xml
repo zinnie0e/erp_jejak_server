@@ -59,6 +59,19 @@
 		WHERE wcjob='사보'
 	</select>
 	
+	<select id="selKbHouseOrgan3" resultType="directKbVO">
+		SELECT max(uid) AS max_uid 
+		FROM BITABLE2
+	</select>
+	
+	<insert id="inKbHouseOrgan" parameterType="directKbVO">
+		INSERT INTO BITABLE2 (
+			uid, ccode, cdate, cgubn, cprice
+		) VALUES ( 
+			#{uid}, #{ccode}, #{cdate}, #{cgubn}, #{cprice}
+		)
+	</insert>
+	
 	<!-- 인쇄비 -->
 	<select id="selKbPresswork1" resultType="directKbVO">
 		SELECT a.uid, a.listid, a.bdate, a.crnum, a.bucode, b.bname, b.bcode, c.wcname, c.tax 

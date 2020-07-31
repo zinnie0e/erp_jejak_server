@@ -16,23 +16,69 @@ public class BooksServiceImpl implements BooksService{
 	private BooksMapper booksDAO;
 	
 	@Override
-	public ArrayList<HashMap<String, Object>> selBooksList() throws Exception {
-		return mappingSelBooksList(booksDAO.selBooksList());
+	public List<BooksVO> selBooksList1() throws Exception {
+		return booksDAO.selBooksList1();
+	}
+	@Override
+	public List<BooksVO> selBooksList2(BooksVO params) throws Exception {
+		return booksDAO.selBooksList2(params);
 	}
 	
 	@Override
-	public ArrayList<HashMap<String, Object>> selBooksListCodeCheck(BooksVO params) throws Exception {
-		return mappingSelBooksList(booksDAO.selBooksListCodeCheck(params));
+	public List<BooksVO> selBooksListCheck1(BooksVO params) throws Exception {
+		return booksDAO.selBooksListCheck1(params);
 	}
 	
 	@Override
-	public ArrayList<HashMap<String, Object>> selBooksListNameCheck(BooksVO params) throws Exception {
-		return mappingSelBooksList(booksDAO.selBooksListNameCheck(params));
+	public List<BooksVO> selBooksListCheck2(BooksVO params) throws Exception {
+		return booksDAO.selBooksListCheck2(params);
+	}
+	
+	@Override
+	public List<BooksVO> selBooksListCodeCheck1(BooksVO params) throws Exception {
+		return booksDAO.selBooksListCodeCheck1(params);
+	}
+	
+	@Override
+	public List<BooksVO> selBooksListCodeCheck2(BooksVO params) throws Exception {
+		return booksDAO.selBooksListCodeCheck2(params);
+	}
+	
+	@Override
+	public List<BooksVO> selBooksListNameCheck1(BooksVO params) throws Exception {
+		return booksDAO.selBooksListNameCheck1(params);
+	}
+	
+	@Override
+	public List<BooksVO> selBooksListNameCheck2(BooksVO params) throws Exception {
+		return booksDAO.selBooksListNameCheck2(params);
 	}
 	
 	@Override
 	public List<BooksVO> selBooksDetail(BooksVO params) throws Exception {
 		return booksDAO.selBooksDetail(params);
+	}
+	
+	@Override
+	public List<BooksVO> selBooksDeasu1(BooksVO params) throws Exception {
+		return booksDAO.selBooksDeasu1(params);
+	}
+	@Override
+	public List<BooksVO> selBooksDeasu2(BooksVO params) throws Exception {
+		return booksDAO.selBooksDeasu2(params);
+	}
+	
+	@Override
+	public List<BooksVO> selBooksYong1(BooksVO params) throws Exception {
+		return booksDAO.selBooksYong1(params);
+	}
+	@Override
+	public List<BooksVO> selBooksYong2(BooksVO params) throws Exception {
+		return booksDAO.selBooksYong2(params);
+	}
+	@Override
+	public List<BooksVO> selBooksYong3() throws Exception {
+		return booksDAO.selBooksYong3();
 	}
 	
 	@Override

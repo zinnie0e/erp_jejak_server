@@ -57,6 +57,10 @@ public interface JpJejakService {
 	String selYejung1() throws Exception;
 	List<JpJejakVO> selYejung2(JpJejakVO params) throws Exception;
 	
+	//TODO 제작예정리스트 등록
+	List<JpJejakVO> selYejungRegi1(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selYejungRegi2(JpJejakVO params) throws Exception;
+	
 	//TODO 제품정가인상리스트
 	List<JpJejakVO> selJpPriceUpList() throws Exception;
 	

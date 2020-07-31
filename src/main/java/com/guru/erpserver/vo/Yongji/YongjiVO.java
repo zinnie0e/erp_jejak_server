@@ -26,6 +26,9 @@ public class YongjiVO {
 	private String yjname;
 	
 	private long bdate;
+	private long count;
+	private long lm_s; //리미트 시작값
+	private long lm_t; //리미트 전체값
 	
 	private String m1;
 	private String m2;

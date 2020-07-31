@@ -83,6 +83,8 @@ public interface YongjiService {
 	String selYjJeonKswcust0Wcname(YongjiVO params) throws Exception;
 	
 	//TODO 용지등록하기
+	List<YongjiVO> selYjRegiList1() throws Exception;
+	List<YongjiVO> selYjRegiList2(YongjiVO params) throws Exception;
 	List<YongjiVO> selYjRegKswjijl0List() throws Exception;
 	YongjiVO selYjRegDetail(YongjiVO params) throws Exception;
 	long selYjRegJiinoutCurno(YongjiVO params) throws Exception;
@@ -120,5 +122,7 @@ public interface YongjiService {
 	List<YongjiVO> selYjMonCheckInput41(YongjiVO params) throws Exception;
 	List<YongjiVO> selYjMonCheckInput42(YongjiVO params) throws Exception;
 	boolean upYjMonCheckInput51(YongjiVO params) throws Exception;
+	List<YongjiVO> selYjMonPopup1(YongjiVO params) throws Exception;
+	List<YongjiVO> selYjMonPopup2(YongjiVO params) throws Exception;
 	
 }

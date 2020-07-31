@@ -4,8 +4,6 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 import com.guru.erpserver.vo.DirectKbVO;
-import com.guru.erpserver.vo.JmJejakVO;
-import com.guru.erpserver.vo.Yongji.YongjiVO;
 
 @Mapper
 public interface DirectKbMapper {
@@ -18,12 +16,14 @@ public interface DirectKbMapper {
 	// TODO 출력료
 	public List<DirectKbVO> selKbPrint1();
 	public List<DirectKbVO> selKbPrint2();
-	public long selKbPrint3();
+	public List<DirectKbVO> selKbPrint3();
 	public int inKbPrint(DirectKbVO params);
 	
 	// TODO 사보료
 	public List<DirectKbVO> selKbHouseOrgan1();
 	public List<DirectKbVO> selKbHouseOrgan2();
+	public List<DirectKbVO> selKbHouseOrgan3();
+	public int inKbHouseOrgan(DirectKbVO params);
 	
 	// TODO 인쇄비
 	public List<DirectKbVO> selKbPresswork1(DirectKbVO params);

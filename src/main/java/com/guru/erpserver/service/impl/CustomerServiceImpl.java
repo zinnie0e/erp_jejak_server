@@ -13,8 +13,13 @@ public class CustomerServiceImpl implements CustomerService{
 	private CustomerMapper custDAO;
 	
 	@Override
-	public List<CustomerVO> selCustList() throws Exception {
-		return custDAO.selCustList();
+	public List<CustomerVO> selCustList1() throws Exception {
+		return custDAO.selCustList1();
+	}
+	
+	@Override
+	public List<CustomerVO> selCustList2(CustomerVO params) throws Exception {
+		return custDAO.selCustList2(params);
 	}
 	
 	@Override

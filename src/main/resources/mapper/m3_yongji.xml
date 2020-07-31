@@ -421,7 +421,20 @@
 		WHERE wccode = #{wccode}
 	</select>
 
-	<!-- 용지등록하기 -->		
+	<!-- 용지등록하기 -->
+	<select id="selYjRegiList1" resultType="yongjiVO">
+		SELECT count(*) as count 
+		FROM KSWJIJL0
+	</select>
+			
+	<select id="selYjRegiList2" resultType="yongjiVO">
+		SELECT a.uid, a.wjcode, a.wjname, a.ib, a.halin, a.danga, a.facdanga,
+			(SELECT curno FROM JIINOUT WHERE jicode = a.wjcode ORDER BY DATE DESC, jeon desc, uid DESC LIMIT 1) AS curno
+		FROM KSWJIJL0 AS a 
+		ORDER BY a.ib ASC, a.wjcode ASC, a.wjname ASC
+		LIMIT #{lm_s}, #{lm_t}
+	</select>
+	
 	<select id="selYjRegKswjijl0List" resultType="yongjiVO">
 		SELECT *
 		FROM KSWJIJL0
@@ -659,4 +672,21 @@
 			QNTY4=#{qnty4}
 		WHERE UID = #{uid}
 	</update>
+	
+	<select id="selYjMonPopup1" resultType="yongjiVO">
+		SELECT * 
+		FROM YONGJIMS3 
+		WHERE msdate = #{msdate}
+			AND yjcode LIKE #{yjcode}
+	</select>
+	
+	<select id="selYjMonPopup2" resultType="yongjiVO">
+		SELECT a.*, (SELECT wcname FROM KSWCUST0 WHERE wccode LIKE a.comid) AS wcname
+		FROM JIINOUT as a 
+		WHERE a.jicode LIKE #{yjcode}
+			AND a.date <![CDATA[ >= ]]> #{date1}
+		    AND a.date <![CDATA[ < ]]> #{date2}
+		ORDER BY a.date ASC, a.jeon ASC
+	</select>
+	
 </mapper>

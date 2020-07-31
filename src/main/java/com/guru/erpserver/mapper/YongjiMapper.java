@@ -85,6 +85,8 @@ public interface YongjiMapper {
 	public YongjiVO selYjJeonKswcust0Wcname(YongjiVO params);
 	
 	//TODO 용지등록하기
+	public List<YongjiVO> selYjRegiList1();
+	public List<YongjiVO> selYjRegiList2(YongjiVO params);
 	public List<YongjiVO> selYjRegKswjijl0List();
 	public YongjiVO selYjRegDetail(YongjiVO params);
 	public YongjiVO selYjRegJiinoutCurno(YongjiVO params);
@@ -122,4 +124,6 @@ public interface YongjiMapper {
 	public List<YongjiVO> selYjMonCheckInput41(YongjiVO params);
 	public List<YongjiVO> selYjMonCheckInput42(YongjiVO params);
 	public int upYjMonCheckInput51(YongjiVO params);
+	public List<YongjiVO> selYjMonPopup1(YongjiVO params);
+	public List<YongjiVO> selYjMonPopup2(YongjiVO params);
 }

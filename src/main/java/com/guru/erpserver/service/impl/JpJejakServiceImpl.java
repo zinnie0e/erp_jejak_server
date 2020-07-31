@@ -190,6 +190,16 @@ public class JpJejakServiceImpl implements JpJejakService{
 		return jpJejakDAO.selYejung2(params);
 	}
 	
+	//TODO 제작예정리스트 등록
+	@Override
+	public List<JpJejakVO> selYejungRegi1(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selYejungRegi1(params);
+	}
+	@Override
+	public List<JpJejakVO> selYejungRegi2(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selYejungRegi2(params);
+	}
+	
 	//TODO 제품정가인상리스트
 	@Override
 	public List<JpJejakVO> selJpPriceUpList() throws Exception {

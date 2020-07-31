@@ -216,6 +216,18 @@ public class JpJejakController {
 		return jpJejakSVC.selYejung2(params);
 	}
 	
+	//TODO 제작예정리스트 등록
+	//입력 : keyfield, key
+	@RequestMapping(value="/jpjejak/select_jp_yejung_regi1", method=RequestMethod.POST)
+	public List<JpJejakVO> selYejungRegi1(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selYejungRegi1(params);
+	}
+	//입력 : keyfield, key, lm_s, lm_t
+	@RequestMapping(value="/jpjejak/select_jp_yejung_regi2", method=RequestMethod.POST)
+	public List<JpJejakVO> selYejungRegi2(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selYejungRegi2(params);
+	}
+	
 	//TODO 제품정가인상리스트
 	@RequestMapping(value="/jpjejak/select_jp_priceup_list", method=RequestMethod.POST)
 	public List<JpJejakVO> selJpPriceUpList() throws Exception {

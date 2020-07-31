@@ -42,7 +42,7 @@ public class DirectKbServiceImpl implements DirectKbService {
 	}
 
 	@Override
-	public long selKbPrint3() throws Exception {
+	public List<DirectKbVO> selKbPrint3() throws Exception {
 		return directKbDAO.selKbPrint3();
 	}
 
@@ -60,6 +60,16 @@ public class DirectKbServiceImpl implements DirectKbService {
 	@Override
 	public List<DirectKbVO> selKbHouseOrgan2() throws Exception {
 		return directKbDAO.selKbHouseOrgan2();
+	}
+	
+	@Override
+	public List<DirectKbVO> selKbHouseOrgan3() throws Exception {
+		return directKbDAO.selKbHouseOrgan3();
+	}
+
+	@Override
+	public boolean inKbHouseOrgan(DirectKbVO params) throws Exception {
+		return (directKbDAO.inKbHouseOrgan(params) == 1) ? true : false;
 	}
 	
 	// TODO 인쇄비

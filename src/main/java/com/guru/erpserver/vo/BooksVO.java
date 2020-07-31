@@ -132,4 +132,32 @@ public class BooksVO {
 	private String memo_vn;
 	private String sbename;
 	private String sbpub;
+	
+	private String tmpcode;
+	private String dbname;
+	
+	private String wdbook;
+	private int wdboo9;
+	private int wdsuns;
+	private int wdsrno;
+	private int wddesu;
+	private int wdpage;
+	private int wdcolo;
+	private int wdqnty;
+	
+	private String wybook;
+	private int wyboo9;
+	private int wysuns;
+	private String wygubn;
+	private int wycolo;
+	private int wypage;
+	private String wyjijl;
+	private String wjcode;
+	private String wjname;
+	private int wyjuls;
+	
+	private String key;
+	private long count; //리미트 시작값
+	private long lm_s; //리미트 시작값
+	private long lm_t; //리미트 전체값
 }

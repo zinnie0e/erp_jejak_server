@@ -2,30 +2,98 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guru.erpserver.mapper.BooksMapper">
 
-	<select id="selBooksList" resultType="booksVO">
+	<select id="selBooksList1" resultType="booksVO">
+		SELECT count(*) as count
+		FROM KSCBOOK0
+	</select>
+
+	<select id="selBooksList2" resultType="booksVO">
 		SELECT SBBOOK, SBNAME, uid
 		FROM KSCBOOK0
 		ORDER BY uid DESC
+		LIMIT #{lm_s}, #{lm_t}
 	</select>
 	
-	<select id="selBooksListCodeCheck" resultType="booksVO">
+	<select id="selBooksListCheck1" resultType="booksVO">
+		SELECT count(*) as count
+		FROM KSCBOOK0 
+		WHERE (sbbook LIKE CONCAT('%', #{key}, '%')) 
+			OR (REPLACE(sbname,' ', '') LIKE CONCAT('%', #{key}, '%')) 
+	</select>
+	
+	<select id="selBooksListCheck2" resultType="booksVO">
+		SELECT sbbook, sbname, uid 
+		FROM KSCBOOK0 
+		WHERE (sbbook LIKE CONCAT('%', #{key}, '%')) 
+			OR (REPLACE(sbname,' ', '') LIKE CONCAT('%', #{key}, '%')) 
+		ORDER BY sbbook ASC
+		LIMIT #{lm_s}, #{lm_t}
+	</select>
+	
+	<select id="selBooksListCodeCheck1" resultType="booksVO">
+		SELECT count(*) as count
+		FROM KSCBOOK0
+		WHERE SBBOOK LIKE CONCAT('%', #{sbbook}, '%')
+	</select>
+	
+	<select id="selBooksListCodeCheck2" resultType="booksVO">
 		SELECT SBBOOK, SBNAME, uid
 		FROM KSCBOOK0
 		WHERE SBBOOK LIKE CONCAT('%', #{sbbook}, '%')
 		ORDER BY SBBOOK ASC
+		LIMIT #{lm_s}, #{lm_t}
 	</select>
 	
-	<select id="selBooksListNameCheck" resultType="booksVO">
+	<select id="selBooksListNameCheck1" resultType="booksVO">
+		SELECT count(*) as count
+		FROM KSCBOOK0
+		WHERE REPLACE(SBNAME,' ', '') LIKE CONCAT('%', #{sbname}, '%')
+	</select>
+	
+	<select id="selBooksListNameCheck2" resultType="booksVO">
 		SELECT SBBOOK, SBNAME, uid
 		FROM KSCBOOK0
 		WHERE REPLACE(SBNAME,' ', '') LIKE CONCAT('%', #{sbname}, '%')
 		ORDER BY SBBOOK ASC
+		LIMIT #{lm_s}, #{lm_t}
 	</select>
 	
 	<select id="selBooksDetail" resultType="booksVO">
 		SELECT *
 		FROM KSCBOOK0
 		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selBooksDeasu1" resultType="booksVO">
+		SELECT count(uid) AS count 
+		FROM ${dbname}
+		WHERE wdbook = #{tmpcode}
+	</select>
+	
+	<select id="selBooksDeasu2" resultType="booksVO">
+		SELECT * 
+		FROM ${dbname}
+		WHERE wdbook = #{tmpcode}
+		ORDER BY uid ASC
+	</select>
+	
+	<select id="selBooksYong1" resultType="booksVO">
+		SELECT count(uid) AS count 
+		FROM ${dbname}
+		WHERE wybook = #{tmpcode}
+	</select>
+	
+	<select id="selBooksYong2" resultType="booksVO">
+		SELECT * 
+		FROM ${dbname}
+		WHERE wybook = #{tmpcode}
+		ORDER BY uid ASC
+	</select>
+	
+	<select id="selBooksYong3" resultType="booksVO">
+		SELECT wjcode, wjname 
+		FROM KSWJIJL0 
+		ORDER BY wjname ASC, wjcode ASC
 	</select>
 	
 	<insert id="inBooks" parameterType="booksVO">

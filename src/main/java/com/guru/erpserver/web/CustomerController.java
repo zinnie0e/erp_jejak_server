@@ -19,10 +19,15 @@ import com.guru.erpserver.vo.CustomerVO;
 public class CustomerController {
 	@Resource
 	private CustomerService custSVC;
-
-	@RequestMapping(value="/cust/select_list", method=RequestMethod.POST)
-	public List<CustomerVO> selCustList() throws Exception {
-		return custSVC.selCustList();
+	
+	@RequestMapping(value="/cust/select_custList1", method=RequestMethod.POST)
+	public List<CustomerVO> selCustList1() throws Exception {
+		return custSVC.selCustList1();
+	}
+	
+	@RequestMapping(value="/cust/select_custList2", method=RequestMethod.POST)
+	public List<CustomerVO> selCustList2(@RequestBody CustomerVO params) throws Exception {
+		return custSVC.selCustList2(params);
 	}
 	
 	@RequestMapping(value="/cust/select_detail", method=RequestMethod.POST)

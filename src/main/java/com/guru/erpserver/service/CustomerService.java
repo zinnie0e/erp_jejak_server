@@ -4,7 +4,9 @@ import java.util.List;
 import com.guru.erpserver.vo.CustomerVO;
 
 public interface CustomerService {
-	List<CustomerVO> selCustList() throws Exception;
+	
+	List<CustomerVO> selCustList1() throws Exception;
+	List<CustomerVO> selCustList2(CustomerVO params) throws Exception;
 	
 	List<CustomerVO> selCustDetail(CustomerVO params) throws Exception;
 	

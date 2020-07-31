@@ -283,6 +283,14 @@ public class YongjiServiceImpl implements YongjiService{
 	
 	//TODO 용지등록하기
 	@Override
+	public List<YongjiVO> selYjRegiList1() throws Exception {
+		return YongjiDAO.selYjRegiList1();
+	}
+	@Override
+	public List<YongjiVO> selYjRegiList2(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjRegiList2(params);
+	}
+	@Override
 	public List<YongjiVO> selYjRegKswjijl0List() throws Exception {
 		return YongjiDAO.selYjRegKswjijl0List();
 	}
@@ -423,5 +431,13 @@ public class YongjiServiceImpl implements YongjiService{
 	@Override
 	public boolean upYjMonCheckInput51(YongjiVO params) throws Exception {
 		return (YongjiDAO.upYjMonCheckInput51(params) == 1) ? true : false;
+	}
+	@Override
+	public List<YongjiVO> selYjMonPopup1(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjMonPopup1(params);
+	}
+	@Override
+	public List<YongjiVO> selYjMonPopup2(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjMonPopup2(params);
 	}
 }

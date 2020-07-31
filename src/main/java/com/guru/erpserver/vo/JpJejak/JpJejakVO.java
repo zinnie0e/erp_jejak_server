@@ -267,6 +267,13 @@ public class JpJejakVO {
 	private String ncode;
 	private long nprice;
 	
+	//TODO 제작예정리스트 등록
+	private int count; //리미트 시작값
+	private int lm_s; //리미트 시작값
+	private int lm_t; //리미트 전체값
+	private String keyfield;
+	private String key;
+	
 	//TODO 제품정가인상리스트
 	private long pub;
 	

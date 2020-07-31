@@ -58,6 +58,10 @@ public interface JpJejakMapper {
 	public JpJejakVO selYejung1();
 	public List<JpJejakVO> selYejung2(JpJejakVO params);
 	
+	//TODO 제작예정리스트 등록
+	public List<JpJejakVO> selYejungRegi1(JpJejakVO params);	
+	public List<JpJejakVO> selYejungRegi2(JpJejakVO params);	
+	
 	//TODO 제품정가인상리스트
 	public List<JpJejakVO> selJpPriceUpList();
 	

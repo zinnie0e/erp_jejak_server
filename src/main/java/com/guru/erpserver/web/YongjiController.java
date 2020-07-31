@@ -727,6 +727,17 @@ public class YongjiController {
 	}
 	
 	//TODO 용지등록하기
+	
+	@RequestMapping(value="/yongji/select_yg_regi_list1", method=RequestMethod.POST)
+	public List<YongjiVO> selYjRegiList1( ) throws Exception {
+		return yongjiSVC.selYjRegiList1();
+	}
+	//입력 : lm_s
+	@RequestMapping(value="/yongji/select_yg_regi_list2", method=RequestMethod.POST)
+	public List<YongjiVO> selYjRegiList2(@RequestBody YongjiVO params) throws Exception {
+		return yongjiSVC.selYjRegiList2(params);
+	}
+	
 	@RequestMapping(value="/yongji/select_reg_list", method=RequestMethod.POST)
 	public List<YongjiVO> selYjRegList() throws Exception {
 		List<YongjiVO> result_params = new ArrayList<YongjiVO>();
@@ -1079,6 +1090,17 @@ public class YongjiController {
 			}
 			return result;
 		}
+		
+	//입력 : msdate, yjcode
+	@RequestMapping(value="/yongji/select_mon_popup1", method=RequestMethod.POST)
+	public List<YongjiVO> selYjMonPopup1(@RequestBody YongjiVO params) throws Exception {
+		return yongjiSVC.selYjMonPopup1(params);
+	}
+	//입력 : yjcode, date1, date2
+	@RequestMapping(value="/yongji/select_mon_popup2", method=RequestMethod.POST)
+	public List<YongjiVO> selYjMonPopup2(@RequestBody YongjiVO params) throws Exception {
+		return yongjiSVC.selYjMonPopup2(params);
+	}
 		
 	//TODO 공용 함수
 	private String setYear(String set_year, Date set_date) {
