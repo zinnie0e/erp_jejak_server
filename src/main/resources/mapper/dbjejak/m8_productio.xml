@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guru.erpserver.mapper.dbjejak.ProductIOMapper">
+
+	<!-- 구매일보 -->
+	<select id="selPurchaseDaily1" resultType="productIOVO">
+		SELECT s1ilja
+		FROM KS1${dbname}A
+		WHERE s1gubn LIKE 'A' 
+		GROUP BY s1ilja ASC
+	</select>
+	
+	<select id="selPurchaseDaily2" resultType="productIOVO">
+		SELECT s1cust, s1book, s1qnty, s1dang, s1uprc, s1amnt, s1bunh 
+		FROM KS1${dbname}A
+		WHERE s1ilja LIKE #{date}
+			AND s1gubn LIKE 'A' 
+		ORDER BY s1cust ASC
+	</select>
+	
+	<select id="selPurchaseDaily3" resultType="productIOVO">
+		SELECT sbname 
+		FROM KSCBOOK0 
+		WHERE sbbook LIKE #{s1book}
+	</select>
+	
+	<select id="selPurchaseDaily4" resultType="productIOVO">
+		SELECT wccode2, wcname 
+		FROM KSWCUST0 
+		WHERE wccode2 LIKE #{s1cust}
+	</select>
+	
+	<select id="selPurchaseDaily5" resultType="productIOVO">
+		SELECT a.jdate, a.jnum, a.juid 
+		FROM IBTABLE AS a, IBTABLE2 AS b 
+		WHERE b.pnum LIKE #{s1bunh} 
+			AND b.idate LIKE #{date} 
+		    AND a.uid = b.t1id 
+		    AND a.bookcode LIKE #{s1book}
+	</select>
+	
+	<!-- 월입고현황표 -->
+	<select id="selMonStockStatusTable" resultType="productIOVO">
+		SELECT a.*, b.wcname, c.wtotal, c.wdanga 
+		FROM IBTABLE AS a, KSWCUST0 as b, TWONGA AS c
+		WHERE a.jdate <![CDATA[ >= ]]> #{date1}
+			AND a.jdate <![CDATA[ < ]]> #{date2}
+			AND a.m3 = b.wccode 
+			AND a.juid = c.jenum 
+			AND c.jabtag = 0 
+		ORDER BY a.fchk ASC, a.uid ASC, a.jdate ASC
+	</select>
+	
+	<update id="upMonStockStatusTable1" parameterType="productIOVO">
+		UPDATE IBTABLE 
+		SET fchk = 1 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upMonStockStatusTable2" parameterType="productIOVO">
+		UPDATE IBTABLE2 
+		SET fchk2 = 1 
+		WHERE t1id = #{uid}
+		ORDER BY idate DESC LIMIT 1
+	</update>
+	
+	<!-- 월입고현황표 디테일 -->
+	<select id="selMonStockStatusTableDetail1" resultType="productIOVO">
+		SELECT a.*, b.wcname, c.wtotal 
+		FROM IBTABLE AS a, KSWCUST0 AS b, TWONGA AS c 
+		WHERE a.uid = #{uid}
+			AND a.m3 = b.wccode 
+		    AND a.juid = c.jenum
+	</select>
+	
+	<select id="selMonStockStatusTableDetail2" resultType="productIOVO">
+		SELECT * 
+		FROM IBTABLE2 
+		WHERE t1id = #{uid}
+		ORDER BY idate ASC, uid2 ASC
+	</select>
+	
+	<!-- 일일집계현황 -->
+	<select id="selDailyStatus1" resultType="productIOVO">
+		SELECT uid 
+		FROM KS1${dbname}A
+		WHERE s1ilja = #{date}
+	</select>
+	
+	<select id="selDailyStatus2" resultType="productIOVO">
+		SELECT s1gubn, sum(s1qnty) AS sum1, sum(s1amnt) AS sum2 
+		FROM KS1${dbname}A
+		WHERE s1ilja = #{date} 
+		GROUP BY s1gubn 
+		ORDER BY s1gubn ASC
+	</select>
+	
+	<!-- 폐기리스트 -->
+	<select id="selDisposalList" resultType="productIOVO">
+		SELECT a.s1book, a.s1uprc, SUM(a.s1qnty) AS sum1, SUM(a.s1amnt) AS sum2, b.sbname 
+		FROM KS1${dbname}A AS a, KSCBOOK0 AS b 
+		WHERE a.s1gubn ='F' 
+			AND a.s1book = b.sbbook 
+		GROUP BY s1book 
+		ORDER BY a.s1book ASC
+	</select>
+	
+</mapper>

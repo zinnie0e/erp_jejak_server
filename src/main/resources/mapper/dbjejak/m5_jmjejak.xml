@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guru.erpserver.mapper.dbjejak.JmJejakMapper">
+
+	<!-- 공통 -->
+	<select id="selJmDayList" resultType="jmJejakVO">
+		SELECT jbdate 
+		FROM TMPJAB 
+		WHERE (date_format(from_unixtime(jbdate), '%Y%m') = #{jbdate}) 
+		GROUP BY date_format(from_unixtime(jbdate), '%Y%m%d') 
+		ORDER BY jbdate ASC
+	</select>
+	
+	<!-- 제작계획표 -->
+	<select id="selJmjejakplan0" resultType="jmJejakVO">
+		SELECT COUNT(*) as count
+		FROM TMPJAB AS a, KSCBOOK0 AS b 
+		WHERE a.jbdate <![CDATA[ >= ]]> #{date1}
+			AND a.jbdate <![CDATA[ < ]]> #{date2}
+		    AND b.sbbook LIKE a.jbcode
+		ORDER BY jbdate, a.uid ASC
+	</select>
+	
+	<select id="selJmjejakplan1" resultType="jmJejakVO">
+		SELECT a.uid, a.jbdate, a.jbname, a.jbamnt, a.jbpanh, a.jbbigo, a.jbpage, a.jbjanh, a.m1, a.m2, a.m3, a.m8, b.sbcoti,
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = m1) AS wcname1,
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = m2) AS wcname2,
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = m3) AS wcname3,
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = m8) AS wcname8
+		FROM TMPJAB AS a, KSCBOOK0 AS b 
+		WHERE a.jbdate <![CDATA[ >= ]]> #{date1}
+			AND a.jbdate <![CDATA[ < ]]> #{date2}
+		    AND b.sbbook LIKE a.jbcode
+		ORDER BY jbdate, uid ASC
+	</select>
+	
+	<select id="selJmjejakplan2" resultType="jmJejakVO">
+		select yjcode, yjname, jm, yb, gubn, colo
+		from TMPJAB3 
+		where jbid = #{uid}
+		order by uid asc
+	</select>
+	
+	<!-- 표지작업지시서 -->
+	<select id="selJmPyo" resultType="jmJejakVO">
+		SELECT a.jbdate, a.m2, a.m3, a.jbname, a.jbcode, a.jbamnt, b.*, d.sbjlsu
+		FROM TMPJAB AS a, TMPJAB3 AS b, KSCBOOK0 AS d
+		WHERE a.uid = b.jbid
+			AND (b.gubn NOT LIKE '%본문%')
+			AND a.jbdate <![CDATA[ >= ]]> #{tdate1}
+			AND a.jbdate <![CDATA[ < ]]> #{tdate2}
+			AND a.jbcode = d.sbbook
+		ORDER BY b.uid ASC
+	</select>
+	
+	<!-- 본문작업지시서 -->
+	<select id="selJmBon0" resultType="jmJejakVO">
+		SELECT COUNT(*) as count
+		FROM TMPJAB
+		WHERE jbdate <![CDATA[ >= ]]> #{tdate1}
+			AND jbdate <![CDATA[ < ]]> #{tdate2}
+		ORDER BY jbdate ASC 
+	</select>
+	
+	<select id="selJmBon" resultType="jmJejakVO">
+		SELECT uid, jbdate,  jbname, 
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = m1) AS temp1,
+		   	(SELECT wcname FROM KSWCUST0 WHERE wccode = m3) AS temp2
+		FROM TMPJAB
+		WHERE jbdate <![CDATA[ >= ]]> #{tdate1}
+			AND jbdate <![CDATA[ < ]]> #{tdate2}
+		ORDER BY jbdate ASC 
+		LIMIT #{lm_s}, #{lm_t}
+	</select>
+	
+	<select id="selJmBon2" resultType="jmJejakVO">
+		SELECT a.jbdate, a.jbname, a.jbamnt, b.wcname, c.yjname, c.yjcode, c.t3bigo, c.jm, c.yb, d.pannum5,
+			(SELECT wcname FROM KSWCUST0 WHERE wccode = a.m1) AS wcname2
+		FROM TMPJAB AS a LEFT JOIN KSWCUST0 AS b ON a.m3 = b.wccode, TMPJAB3 AS c, TMPJAB5 AS d
+		WHERE a.uid = #{uid}
+			AND c.jbid = #{uid}
+		    AND c.gubn LIKE '%본문%'
+		    AND d.listid = #{uid}
+		    AND d.gubn5 LIKE '%본문%'
+    </select>
+    
+    <select id="selJmBon3" resultType="jmJejakVO">
+		SELECT uid, jm, yb, gb, dae, colo, t4bigo 
+		FROM TMPJAB4 
+		WHERE listid = #{uid}
+			AND gb LIKE '%본문%' 
+		ORDER BY dae ASC, uid ASC
+    </select>
+	
+	<!-- 발주서 -->
+	<select id="selJmBal1" resultType="jmJejakVO">
+		SELECT wccode, wcname, wcjob 
+		FROM KSWCUST0 
+		WHERE ((wccode <![CDATA[ > ]]> '1001' AND wccode <![CDATA[ < ]]> '4000') 
+			or (wccode <![CDATA[ > ]]> '4002' AND wccode <![CDATA[ < ]]> '6000')) 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selJmBal2" resultType="jmJejakVO">
+		SELECT * 
+		FROM TMPJAB 
+		WHERE jbdate <![CDATA[ >= ]]> #{tdate1} 
+			AND jbdate <![CDATA[ < ]]> #{tdate2}
+	</select>
+	
+	<select id="selJmBal3" resultType="jmJejakVO">
+		SELECT wcname 
+		FROM KSWCUST0 
+		WHERE wccode = #{ccode}
+	</select>
+	
+	<select id="selJmBal4" resultType="jmJejakVO">
+		select a.m2, a.m3, a.m5, a.m6, a.m8, a.jbname, a.jbpanh, a.jbpage, a.jbamnt, a.jbcode, b.wcname 
+		from TMPJAB as a, KSWCUST0 as b
+		where jbdate <![CDATA[ >= ]]> #{tdate1} 
+			and jbdate <![CDATA[ < ]]> #{tdate2}
+		    and b.wccode LIKE a.m3
+		order by jbdate asc
+	</select>
+	
+	<select id="selJmBal5" resultType="jmJejakVO">
+		select sbjanh, sbbigo, sbcoti 
+		from KSCBOOK0 
+		where sbbook = #{jbcode} limit 1
+	</select>
+</mapper>

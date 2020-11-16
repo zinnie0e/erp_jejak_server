@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guru.erpserver.mapper.dbjejak.AccountingSlipMapper">
+
+	<!-- 회계전표 -->
+	<select id="selAccountingSlip1" resultType="accountingSlipVO">
+		SELECT DISTINCT(jeuid) 
+		FROM HGJEON 
+		WHERE ymd LIKE #{ymd} 
+		ORDER BY jeuid ASC
+	</select>
+	
+	<select id="selAccountingSlip2" resultType="accountingSlipVO">
+		SELECT * 
+		FROM HGJEON 
+		WHERE jeuid = #{jeuid}
+			AND ymd LIKE #{ymd}
+		order by seqno asc
+	</select>
+	
+	<select id="selAccountingSlip3" resultType="accountingSlipVO">
+		SELECT * 
+		FROM HGJEON2 
+		WHERE paruid = #{paruid}
+	</select>
+	
+	<!-- 원천징수 -->
+	<select id="selWithholdingTax" resultType="accountingSlipVO">
+		SELECT *
+		FROM KKY1 
+		WHERE kydate1 LIKE #{date}
+		ORDER BY kyname ASC
+	</select>
+	
+	<select id="selWithholdingTax2" resultType="accountingSlipVO">
+		SELECT * 
+		FROM KKY1 
+		WHERE kydate1 LIKE #{date}
+		ORDER BY kydate2 ASC, kyname ASC
+	</select>
+	
+	<insert id="inWithholdingTax" parameterType="accountingSlipVO">
+		INSERT INTO KKY1 (
+			kydate1, kydate2, kyname, kynum, kyaddr,
+		    kycomm, kyamnt, kytax1, kytax2, kygubn
+		) VALUES (
+			#{kydate1}, #{kydate2}, #{kyname}, #{kynum}, #{kyaddr},
+			#{kycomm}, #{kyamnt}, #{kytax1}, #{kytax1}, #{kygubn}
+		)
+	</insert>
+	
+	<update id="upWithholdingTax" parameterType="accountingSlipVO">
+		UPDATE KKY1 
+		SET ${chrec} = #{value} 
+		WHERE UID = #{uid} 
+	</update>
+	
+	<delete id="delWithholdingTax" parameterType="accountingSlipVO">
+		DELETE FROM KKY1 
+		WHERE uid = #{uid}
+	</delete>
+	
+	<!-- 도서별 월별집계 -->
+	<select id="selMonthlySumByBook" resultType="accountingSlipVO">
+		SELECT SUM(CASE WHEN s1gubn	= 'A' THEN s1qnty ELSE 0 END) AS sumq1, 
+			SUM(CASE WHEN s1gubn = 'A' THEN s1amnt ELSE 0 END) AS suma1, 
+			SUM(CASE WHEN s1gubn = 'C' THEN s1qnty ELSE 0 END) AS sumq3, 
+			SUM(CASE WHEN s1gubn = 'C' THEN s1amnt ELSE 0 END) AS suma3,
+			SUM(CASE WHEN s1gubn = 'D' THEN s1qnty ELSE 0 END) AS sumq4, 
+			SUM(CASE WHEN s1gubn = 'D' THEN s1amnt ELSE 0 END) AS suma4,
+			SUM(CASE WHEN s1gubn = 'E' THEN s1qnty ELSE 0 END) AS sumq5, 
+			SUM(CASE WHEN s1gubn = 'E' THEN s1amnt ELSE 0 END) AS suma5, 
+			SUM(CASE WHEN s1gubn = 'F' THEN s1qnty ELSE 0 END) AS sumq6, 
+			SUM(CASE WHEN s1gubn = 'F' THEN s1amnt ELSE 0 END) AS suma6 
+		FROM KS1${year}${month}A
+		WHERE s1book = #{bookcode}
+		GROUP BY s1book
+	</select>
+	
+	<!-- 년도별 월별집계 -->
+	<select id="selMonthlyAggregateByYear" resultType="accountingSlipVO">
+		SELECT SUM(CASE WHEN s1gubn = 'A' THEN s1qnty ELSE 0 END) AS sumq1, 
+			SUM(CASE WHEN s1gubn = 'A' THEN s1amnt ELSE 0 END) AS suma1,
+			SUM(CASE WHEN s1gubn = 'C' THEN s1qnty ELSE 0 END) AS sumq3, 
+			SUM(CASE WHEN s1gubn = 'C' THEN s1amnt ELSE 0 END) AS suma3,
+			SUM(CASE WHEN s1gubn = 'D' THEN s1qnty ELSE 0 END) AS sumq4,
+			SUM(CASE WHEN s1gubn = 'D' THEN s1amnt ELSE 0 END) AS suma4,
+			SUM(CASE WHEN s1gubn = 'E' THEN s1qnty ELSE 0 END) AS sumq5,
+			SUM(CASE WHEN s1gubn = 'E' THEN s1amnt ELSE 0 END) AS suma5,
+			SUM(CASE WHEN s1gubn = 'F' THEN s1qnty ELSE 0 END) AS sumq6,
+			SUM(CASE WHEN s1gubn = 'F' THEN s1amnt ELSE 0 END) AS suma6
+		FROM KS1${year}${month}A
+	</select>
+	
+	<!-- 도서별 제작현황 -->
+	<select id="selProductionByBook1" resultType="accountingSlipVO">
+		select sbname 
+		from KSCBOOK0 
+		where sbbook = #{sbbook} limit 1
+	</select>
+	
+	<select id="selProductionByBook2" resultType="accountingSlipVO">
+		SELECT uid, bnum 
+		FROM TMPLIST 
+		WHERE bcode LIKE #{bcode}
+			AND signdate <![CDATA[ > ]]> '20090100' 
+			AND bcheck = 1 
+		ORDER BY signdate DESC
+	</select>
+	
+	<select id="selProductionByBook3" resultType="accountingSlipVO">
+		SELECT uid, bdate
+		FROM TMPLIST2 as a
+		WHERE listid = #{listid}
+	</select>
+	
+	<select id="selProductionByBook3_1" resultType="accountingSlipVO">
+		SELECT wtotal 
+		FROM TWONGA 
+		WHERE jenum = #{uid}
+	</select>
+	
+	<select id="selProductionByBook3_2" resultType="accountingSlipVO">
+		SELECT tnum, xnum, fchk, uid as uid2
+		FROM IBTABLE 
+		WHERE juid = #{uid}
+	</select>
+	
+	<select id="selProductionByBook4" resultType="accountingSlipVO">
+		SELECT * 
+		FROM IBTABLE2
+		WHERE t1id = #{uid2}
+		ORDER BY idate ASC
+	</select>
+	
+	<select id="selProductionByBook5" resultType="accountingSlipVO">
+		SELECT * 
+		FROM OLDJEJAK 
+		WHERE wwbook LIKE #{wwbook}
+			AND wwyyyy <![CDATA[ < ]]> '09' 
+		ORDER BY wwyyyy DESC, wwmmmm DESC, wwdddd DESC
+	</select>
+	
+	<!-- 미입고도서 -->
+	<select id="selBooksNotIn1" resultType="accountingSlipVO">
+		SELECT listdate 
+		FROM IBTABLE3 
+		LIMIT 1
+	</select>
+	
+	<select id="selBooksNotIn2" resultType="accountingSlipVO">
+		SELECT * 
+		FROM IBTABLE3 
+		ORDER BY uid ASC
+	</select>
+	
+	<!-- 전도서재고조회 -->
+	<select id="selAllBooksStock1" resultType="accountingSlipVO">
+		SELECT sbbook, sbname 
+		FROM KSCBOOK0 
+		WHERE sbbook <![CDATA[ >= ]]> '100000' 
+			AND sbbook <![CDATA[ <= ]]> '999999' 
+		    AND sbpegi NOT LIKE 'P' 
+		    AND sbgubn NOT LIKE 'B' 
+		ORDER BY sbbook ASC
+	</select>
+	
+	<select id="selAllBooksStock2" resultType="accountingSlipVO">
+		SELECT sqcrnm 
+		FROM KSCQNTY0 
+		WHERE sqbook LIKE #{sbbook}
+	</select>
+	
+	<select id="selAllBooksStock3" resultType="accountingSlipVO">
+		SELECT SUM(xnum) as sum_xnum
+		FROM IBTABLE 
+		WHERE bookcode LIKE #{sbbook}
+			AND xnum <![CDATA[ > ]]> 0 
+			AND fchk = 0
+	</select>
+	
+	
+	
+</mapper>

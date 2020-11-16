@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guru.erpserver.mapper.dbjejak.DirectKbMapper">
+
+	<!-- 용지대 -->
+	<select id="selKbYongji1" resultType="directKbVO">
+		SELECT wccode, wcname 
+		FROM KSWCUST0 
+		WHERE wcjob LIKE '용지' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selKbYongji2" resultType="directKbVO">
+		SELECT COUNT(uid) AS count, SUM(tprice) AS sum 
+		FROM JIINOUT 
+		WHERE date <![CDATA[ >= ]]> #{date1} 
+			AND date <![CDATA[ < ]]> #{date2} 
+			AND comid LIKE #{wccode}
+	</select>
+	
+	<!-- 출력료 -->
+	<select id="selKbPrint1" resultType="directKbVO">
+		SELECT a.uid, a.cdate, a.cgubn, a.cprice, b.wcname 
+		FROM BITABLE3 AS a , KSWCUST0 AS b 
+		WHERE b.wccode = a.ccode 
+		ORDER BY a.cdate ASC, a.uid ASC
+	</select>
+	
+	<select id="selKbPrint2" resultType="directKbVO">
+		SELECT wccode, wcname 
+		FROM KSWCUST0 
+		WHERE wcjob='출력'
+	</select>
+	
+	<select id="selKbPrint3" resultType="directKbVO">
+		SELECT max(uid) AS max_uid 
+		FROM BITABLE3
+	</select>
+	
+	<insert id="inKbPrint" parameterType="directKbVO">
+		INSERT INTO BITABLE3 (
+			uid, ccode, cdate, cgubn, cprice
+		) VALUES ( 
+			#{uid}, #{ccode}, #{cdate}, #{cgubn}, #{cprice}
+		)
+	</insert>
+	
+	<!-- 사보료 -->
+	<select id="selKbHouseOrgan1" resultType="directKbVO">
+		SELECT a.uid, a.cdate, a.cgubn, a.cprice, b.wcname 
+		FROM BITABLE2 AS a , KSWCUST0 AS b 
+		WHERE b.wccode = a.ccode 
+		ORDER BY a.cdate ASC, a.uid ASC
+	</select>
+	
+	<select id="selKbHouseOrgan2" resultType="directKbVO">
+		SELECT wccode, wcname 
+		FROM KSWCUST0 
+		WHERE wcjob='사보'
+	</select>
+	
+	<select id="selKbHouseOrgan3" resultType="directKbVO">
+		SELECT max(uid) AS max_uid 
+		FROM BITABLE2
+	</select>
+	
+	<insert id="inKbHouseOrgan" parameterType="directKbVO">
+		INSERT INTO BITABLE2 (
+			uid, ccode, cdate, cgubn, cprice
+		) VALUES ( 
+			#{uid}, #{ccode}, #{cdate}, #{cgubn}, #{cprice}
+		)
+	</insert>
+	
+	<!-- 인쇄비 -->
+	<select id="selKbPresswork1" resultType="directKbVO">
+		SELECT a.uid, a.listid, a.bdate, a.crnum, a.bucode, b.bname, b.bcode, c.wcname, c.tax 
+		FROM TMPLIST2 AS a, TMPLIST AS b, KSWCUST0 AS c 
+		WHERE a.listid = b.uid 
+			AND a.m1 = c.wccode 
+			AND a.bdate <![CDATA[ >= ]]> #{date1}
+			AND a.bdate <![CDATA[ < ]]> #{date2}
+		ORDER BY a.bdate ASC, a.uid ASC
+	</select>
+	
+	<select id="selKbPresswork2" resultType="directKbVO">
+		SELECT op52, sum5
+		FROM TMPLIST5 
+		WHERE listid5 = #{uid}
+	</select>
+	
+	<select id="selKbPresswork3" resultType="directKbVO">
+		SELECT pcost 
+		FROM TMPLIST3 
+		WHERE listid = #{uid}
+	</select>
+	
+	<select id="selKbPresswork4" resultType="directKbVO">
+		SELECT uid, jbdate, jbname 
+		FROM TMPJAB 
+		WHERE jbdate <![CDATA[ >= ]]> #{date1}
+			AND jbdate <![CDATA[ < ]]> #{date2}
+		ORDER BY uid ASC
+	</select>
+	
+	<select id="selKbPresswork5" resultType="directKbVO">
+		SELECT sum5 
+		FROM TMPJAB5 
+		WHERE listid = #{uid}
+	</select>
+	
+	<select id="selKbPresswork6" resultType="directKbVO">
+		SELECT pcost 
+		FROM TMPJAB3 
+		WHERE jbid = #{uid}
+	</select>
+	
+	<select id="selKbPresswork7" resultType="directKbVO">
+		SELECT a.crnum, a.bdate, a.m1, b.bname, b.bcode, c.wcname, c.tax
+		FROM TMPLIST2 AS a, TMPLIST AS b, KSWCUST0 AS c
+		WHERE a.uid = #{uid}
+			AND a.listid = b.uid 
+			AND a.m1 = c.wccode
+	</select>
+	
+	<select id="selKbPresswork8" resultType="directKbVO">
+		SELECT filmcost5, daeji5, gubn5, filmnum5, filmdan5, uid, op52, sobu5, panst5, pannum5, sobudan5
+		FROM TMPLIST5
+		WHERE listid5 = #{uid}
+	</select>
+	
+	<select id="selKbPresswork9" resultType="directKbVO">
+		SELECT pcost, gubn, rnum, colo, pdanga 
+		FROM TMPLIST3 
+		WHERE listid = #{uid}
+	</select>
+	
+	<update id="upKbPressworkOp52" parameterType="directKbVO">
+		UPDATE TMPLIST5 SET 
+			op52 = #{op52}
+		WHERE listid5 = #{uid}
+	</update>
+	
+	<!-- 제본비 -->
+	<select id="selKbBinding1" resultType="directKbVO">
+		SELECT a.t1id, a.idate, b.juid, b.jdate, b.bookcode, b.bookname, b.jnum, c.wcname
+		FROM IBTABLE2 AS a , IBTABLE AS b, KSWCUST0 AS c, TMPLIST2 AS d
+		WHERE a.idate LIKE #{tdate} 
+			AND b.uid = a.t1id
+			AND d.uid = b.juid 
+			AND d.m3 = c.wccode
+		ORDER BY a.t1id ASC
+	</select>
+	
+	<select id="selKbBinding2" resultType="directKbVO">
+		SELECT uid2 
+		FROM IBTABLE2 
+		WHERE t1id = #{t1id}
+		AND idate <![CDATA[ < ]]> #{idate}
+	</select>
+	
+	<select id="selKbBinding3" resultType="directKbVO">
+		SELECT sum(totcost7) as sum_totcost7
+		FROM BITABLE7 
+		WHERE crnum7 = #{juid}
+	</select>
+	
+	<!-- 코팅비 -->
+	<select id="selKbCoating1" resultType="directKbVO">
+		SELECT a.uid, a.bdate, a.crnum, b.bname, b.bcode, c.totcost8, c.cnum8, c.cprice8
+		FROM TMPLIST2 AS a, TMPLIST AS b ,BITABLE8 AS c
+		WHERE a.bdate <![CDATA[ >= ]]> #{date1}
+			AND a.bdate <![CDATA[ < ]]> #{date2}
+			AND a.listid = b.uid 
+		    AND c.crnum8 = a.uid
+		ORDER BY a.bdate ASC, a.uid ASC
+	</select>
+	
+	<select id="selKbCoating2" resultType="directKbVO">
+		SELECT a.uid, a.jbdate, a.jbname, b.totcost8, b.cnum8, b.cprice8
+		FROM TMPJAB AS a, BIJAB8 AS b
+		WHERE a.jbdate <![CDATA[ >= ]]> #{date1}
+			AND a.jbdate <![CDATA[ < ]]> #{date2}
+		    AND b.crnum8 = a.uid
+		ORDER BY a.jbdate ASC, a.uid ASC
+	</select>
+	
+	<!-- 비닐비, 케이스대, CD음반대, 스티커대, 기타 -->
+	<select id="selKbManagement1" resultType="directKbVO">
+		SELECT a.uid, a.cprice9, a.cnum9, a.cdate9, a.ccode9, a.bcode9, b.sbname, c.wcname 
+		FROM BITABLE9 AS a, KSCBOOK0 AS b , KSWCUST0 AS c
+		WHERE a.cdate9 <![CDATA[ >= ]]> #{date1}
+			AND a.cdate9 <![CDATA[ < ]]> #{date2}
+		    AND a.bitag = #{tag}
+			AND a.bcode9 = b.SBBOOK
+		    AND a.ccode9 <![CDATA[ <> ]]> 'N'
+		    AND a.ccode9 <![CDATA[ <> ]]> '0'
+		    AND c.wccode = a.ccode9 
+		ORDER BY a.cdate9 ASC, a.uid ASC
+	</select>
+	
+	<select id="selKbManagement2" resultType="directKbVO">
+		SELECT a.uid, a.cprice9, a.cnum9, a.cdate9, a.ccode9, a.bcode9, b.sbname, c.wcname
+		FROM BIJAB9 AS a, KSCBOOK0 AS b , KSWCUST0 AS c
+		WHERE a.cdate9 <![CDATA[ >= ]]> #{date1}
+			AND a.cdate9 <![CDATA[ < ]]> #{date2}
+		    AND a.bitag = #{tag}
+		    AND a.bcode9 = b.SBBOOK 
+		    AND a.ccode9 <![CDATA[ <> ]]> 'N'
+		    AND a.ccode9 <![CDATA[ <> ]]> '0'
+		    AND c.wccode = a.ccode9 
+		ORDER BY a.cdate9 ASC, a.uid ASC
+	</select>
+	
+	<select id="selKbManagement3" resultType="directKbVO">
+		SELECT wcname, wccode, tax 
+		FROM KSWCUST0 
+		WHERE wccode = #{ccode9}
+	</select>
+	
+	<select id="selKbManagement4" resultType="directKbVO">
+		SELECT a.uid, a.cnum9, a.cprice9, a.op29, a.cdate9, a.ccode9, b.sbbook, b.sbname 
+		FROM BITABLE9 AS a, KSCBOOK0 AS b 
+		WHERE a.ccode9 = #{ccode9}
+			AND a.bitag = #{tag}
+			AND a.bcode9 = b.sbbook 
+			AND a.chk9 = 0 	
+		ORDER BY a.cdate9 DESC
+	</select>
+	
+	<select id="selKbManagement5" resultType="directKbVO">
+		SELECT a.uid, a.cnum9, a.cprice9, a.op29, a.cdate9, a.ccode9, b.sbbook, b.sbname 
+		FROM BIJAB9 AS a, KSCBOOK0 AS b 
+		WHERE a.ccode9 = #{ccode9}
+			AND a.bitag = #{tag}
+			AND a.bcode9 = b.sbbook 
+			AND a.chk9 = 0 
+		ORDER BY a.cdate9 DESC
+	</select>
+	
+	<update id="upOp29" parameterType="directKbVO">
+		UPDATE BITABLE9 SET 
+			op29 = #{tval} 
+		WHERE uid = #{uid}
+	</update>
+</mapper>

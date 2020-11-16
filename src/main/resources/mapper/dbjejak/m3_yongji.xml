@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guru.erpserver.mapper.dbjejak.YongjiMapper">
+	<!-- 공용 -->
+	<select id="selYjCustYjList" resultType="yongjiVO">
+		SELECT *
+		FROM KSWCUST0
+		WHERE wcjob LIKE '용지'
+	</select>
+	
+	<select id="selYjCustWcnameYjList" resultType="yongjiVO">
+		SELECT wcname, wccode
+		FROM KSWCUST0
+		WHERE wcjob LIKE '용지'
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selYjCustWcname" resultType="yongjiVO">
+		SELECT wcname
+		FROM KSWCUST0
+		WHERE wccode = #{wccode}
+	</select>
+	
+	<select id="selYjWjname" resultType="yongjiVO">
+		SELECT wjname
+		FROM KSWJIJL0
+		WHERE wjcode = #{jicode}
+	</select>
+	
+	<select id="selYjJiinoutList" resultType="yongjiVO">
+		SELECT date, num, comid, comment, curno, jeon, jeuid 
+		FROM JIINOUT 
+		WHERE jicode = #{jicode}
+		ORDER BY date DESC, jeon DESC
+	</select>
+	
+	<!-- 용지구입 -->
+	<select id="selYjList" resultType="yongjiVO">
+		SELECT *
+		FROM KSWJIJL0
+		ORDER BY ib ASC, wjcode ASC, wjname ASC
+	</select>
+	
+	<select id="selYjOrderOrderList" resultType="yongjiVO">
+		SELECT a.*, b.ib
+		FROM YOJIJUMN AS a, KSWJIJL0 AS b
+		WHERE a.gmcheck = 0
+			AND a.yjcode = b.wjcode
+		ORDER BY a.yjcode ASC
+	</select>
+	
+	<select id="selYjOrderCount1" resultType="yongjiVO">
+		SELECT COUNT(uid)
+		FROM TMPLIST3
+		WHERE jutag = 0
+			AND (jm <![CDATA[ > ]]> 0 OR yb <![CDATA[ < ]]> 0)
+	</select>
+	
+	<select id="selYjOrderCount2" resultType="yongjiVO">
+		SELECT COUNT(uid)
+		FROM TMPJAB3
+		WHERE jutag = 0
+			AND (jm <![CDATA[ > ]]> 0 OR yb <![CDATA[ > ]]> 0)
+	</select>
+	
+	<delete id="delYjOrderYojijumn" parameterType="yongjiVO">
+		DELETE FROM YOJIJUMN
+		WHERE gmcheck = 0
+	</delete>
+	
+	<select id="selYjOrderInCheck1" resultType="yongjiVO">
+		SELECT a.bdate, b.uid, b.jcode, b.jname, b.jm, b.yb
+		FROM TMPLIST2 AS a, TMPLIST3 AS b
+		WHERE b.jutag = 0
+			AND a.uid = b.listid
+			AND ((b.jm <![CDATA[ > ]]> 0) || (b.yb <![CDATA[ > ]]> 0))
+	</select>
+	
+	<select id="selYjOrderInCheck2" resultType="yongjiVO">
+		SELECT a.*, b.jbcode
+		FROM TMPJAB3 AS a, TMPJAB AS b
+		WHERE a.jutag = 0
+			AND a.jbid = b.uid
+	</select>
+	
+	<insert id="inYjOrderYojijumn" parameterType="yongjiVO">
+		INSERT INTO YOJIJUMN (
+			jdate, yjcode, yjname, yjamount, cnumlist,
+			gmcom, gmcheck
+		) VALUES (
+			#{jdate}, #{yjcode}, #{yjname}, #{yjamount}, #{cnumlist},
+			'0', '0'
+		)
+	</insert>
+	
+	<select id="selYjOrderUpCheck" resultType="yongjiVO">
+		SELECT *
+		FROM JIINOUT
+		WHERE jicode = #{yjcode}
+		ORDER BY uid DESC LIMIT 1
+	</select>
+	
+	<update id="upYjOrderYojijumn" parameterType="yongjiVO">
+		UPDATE YOJIJUMN SET
+			fixnum=#{fixnum}, fxamount=#{fxamount}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderListCheckDate1" resultType="yongjiVO">
+		SELECT a.*, b.wjname, b.facdanga, b.halin
+		FROM JIINOUT AS a, KSWJIJL0 AS b
+		WHERE a.date <![CDATA[ >= ]]> #{date1}
+			AND a.date <![CDATA[ < ]]> #{date2}
+			AND comid not like '1001'
+			AND a.tprice = 0
+			AND a.jicode = b.wjcode
+		ORDER BY a.comid ASC, a.date ASC, a.uid ASC
+	</select>
+	
+	<select id="selYjOrderListCheckDate2" resultType="yongjiVO">
+		SELECT a.*, b.wjname
+		FROM JIINOUT AS a, KSWJIJL0 AS b
+		WHERE a.date <![CDATA[ >= ]]> #{date1}
+			AND a.date <![CDATA[ < ]]> #{date2}
+			AND a.tprice <![CDATA[ <> ]]> 0
+			AND a.jicode = b.wjcode
+		ORDER BY a.date ASC, a.uid ASC
+	</select>
+	
+	<select id="selYjOrderFacdanga" resultType="yongjiVO">
+		SELECT facdanga
+		FROM KSWJIJL0
+		WHERE wjcode = #{jcode]
+	</select>
+	
+	<update id="upYjOrderJiinout" parameterType="yongjiVO">
+		UPDATE JIINOUT SET
+			tprice=#{tprice}, halin=#{halin}, cdate=#{cdate}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderDetailDate" resultType="yongjiVO">
+		SELECT date
+		FROM JIINOUT
+		WHERE uid = #{uid]
+	</select>
+	
+	<update id="upYjOrderDetailDate1" parameterType="yongjiVO">
+		UPDATE JIINOUT SET
+			date=#{date}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderDetailDate2" resultType="yongjiVO">
+		SELECT jeon
+		FROM JIINOUT
+		WHERE uid = #{uid}
+	</select>
+	
+	<update id="upYjOrderDetailDate3" parameterType="yongjiVO">
+		UPDATE JEONPYO${value} SET
+			bdate=#{bdate}
+		WHERE uid = #{jeon}
+	</update>
+	
+	<select id="selYjOrderDetailCust" resultType="yongjiVO">
+		SELECT a.comid, b.wcname
+		FROM JIINOUT AS a, KSWCUST0 AS b
+		WHERE a.uid = #{uid}
+			AND a.comid = b.wccode
+	</select>
+	
+	<update id="upYjOrderDetailCust1" parameterType="yongjiVO">
+		UPDATE JIINOUT SET
+			comid=#{comid}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderDetailCust2" resultType="yongjiVO">
+		SELECT jeon, date
+		FROM JIINOUT
+		WHERE uid = #{uid}
+	</select>
+	
+	<update id="upYjOrderDetailCust3" parameterType="yongjiVO">
+		UPDATE JEONPYO${value} SET
+			buycom=#{buycom}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderDetailCode" resultType="yongjiVO">
+		SELECT a.jicode, b.wjname
+		FROM JIINOUT AS a, KSWJIJL0 AS b
+		WHERE a.uid = #{uid}
+			AND a.jicode = b.wjcode
+	</select>
+	
+	<select id="selYjOrderDetailCodeList" resultType="yongjiVO">
+		SELECT wjcode, wjname
+		FROM KSWJIJL0
+		ORDER BY ib ASC, wjcode ASC
+	</select>
+	
+	<update id="upYjOrderDetailCode1" parameterType="yongjiVO">
+		UPDATE JIINOUT SET
+			jicode=#{wjcode}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderDetailCode2" resultType="yongjiVO">
+		SELECT jeon, date
+		FROM JIINOUT
+		WHERE uid = #{uid}
+	</select>
+	
+	<update id="upYjOrderDetailCode3" parameterType="yongjiVO">
+		UPDATE JEONPYO${value} SET
+			jiname=#{wjname}, jicode=#{wjcode}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderCheckOI" parameterType="yongjiVO">
+		SELECT *
+		FROM YOJIJUMN
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selYjOrderJeonpyoUidCount" parameterType="yongjiVO">
+		SELECT MAX(uid)
+		FROM JEONPYO${value}
+	</select>
+	
+	<select id="selYjOrderJiinoutUidCount" parameterType="yongjiVO">
+		SELECT MAX(uid)
+		FROM JIINOUT
+	</select>
+	
+	<insert id="inYjOrderJeonpyo" parameterType="yongjiVO">
+		INSERT INTO JEONPYO${value} (
+			spcom, bname, bcode, busu, panh,
+			myun, jnum1, jnum2, bdate, buycom,
+			jiname, jicode, jsum, comment, JEJANUM,
+			uid
+		) VALUES (
+			#{spcom}, #{bname}, #{bcode}, #{busu}, #{panh},
+			#{myun}, #{jnum1}, #{jnum2}, #{bdate}, #{buycom},
+			#{jiname}, #{jicode}, #{jsum}, #{comment}, #{JEJANUM},
+			#{uid}
+		)	
+	</insert>
+	
+	<select id="selYjOrderJiinout" parameterType="yongjiVO">
+		SELECT *
+		FROM JIINOUT
+		WHERE jicode = #{yjcode}
+		ORDER BY uid DESC LIMIT 1
+	</select>
+	
+	<insert id="inYjOrderJiinout" parameterType="yongjiVO">
+		INSERT INTO JIINOUT (
+			uid, jicode, date, num, comid,
+			comment, curno, jeon, jeuid
+		) VALUES (
+			#{uid}, #{jicode}, #{date}, #{num}, '1001',
+			#{comment}, #{curno}, #{jeon}, #{jeuid}
+		)	
+	</insert>
+	
+	<insert id="inYjOrderCheckOrder1" parameterType="yongjiVO">
+		INSERT INTO JEONPYO${value} (
+			uid, bdate, buycom, jiname, jicode,
+			jsum
+		) VALUES (
+			#{uid}, #{bdate}, #{buycom}, #{jiname}, #{jicode},
+			#{jsum}
+		)
+	</insert>
+	
+	<select id="selYjOrderCheckOrder2" parameterType="yongjiVO">
+		SELECT curno
+		FROM JIINOUT
+		WHERE jicode = #{jicode}
+		ORDER BY date DESC, uid DESC LIMIT 1
+	</select>
+	
+	<insert id="inYjOrderCheckOrder3" parameterType="yongjiVO">
+		INSERT INTO JIINOUT (
+			uid, jicode, date, num, comid,
+			comment, curno, jeon, jeuid, bigo
+		) VALUES (
+			#{uid}, #{jicode},#{date}, #{num}, #{comid},
+			'入', #{curno}, #{jeon}, '0', #{bigo}
+		)	
+	</insert>
+	
+	<update id="upYjOrderCheckInputJ1" parameterType="yongjiVO">
+		UPDATE TMPJAB3 SET
+			JUTAG='1'
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderCheckInputJ2" parameterType="yongjiVO">
+		SELECT *
+		FROM TMPJAB3
+		WHERE uid = #{uid}
+	</select>
+	
+	<update id="upYjOrderCheckInputJ13" parameterType="yongjiVO">
+		UPDATE TMPJAB3 SET
+			YB=#{yb}, JUTAG='1'
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderCheckInputJ11" parameterType="yongjiVO">
+		SELECT *
+		FROM TMPJAB4
+		WHERE LISTID = #{listid}
+	</select>
+	
+	<update id="upYjOrderCheckInputJ12" parameterType="yongjiVO">
+		UPDATE TMPLIST4 SET
+			YB=#{yb}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderCheckInputJ21" parameterType="yongjiVO">
+		SELECT *
+		FROM TMPJAB
+		WHERE UID = #{jbid}
+	</select>
+	
+	<select id="selYjOrderCheckInput" parameterType="yongjiVO">
+		SELECT *
+		FROM TMPLIST3
+		WHERE uid = #{uid}
+	</select>
+	
+	<update id="upYjOrderCheckInput11" parameterType="yongjiVO">
+		UPDATE TMPLIST3 SET
+			yb=#{yb}, jutag='1'
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderCheckInput12" parameterType="yongjiVO">
+		SELECT *
+		FROM TMPLIST4
+		WHERE listid = #{listid}
+			AND jc like #{yjcode}
+	</select>
+	
+	<update id="upYjOrderCheckInput13" parameterType="yongjiVO">
+		UPDATE TMPLIST4 SET
+			yb=#{yb}
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upYjOrderCheckInput14" parameterType="yongjiVO">
+		UPDATE TMPLIST3 SET
+			JUTAG='1'
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjOrderCheckInpu21" parameterType="yongjiVO">
+		SELECT a.m1, a.crnum, b.bname, b.bcode, b.bmyun, b.bpanh, b.bnum
+		FROM TMPLIST2 AS a, TMPLIST AS b
+		WHERE a.uid = #{listid}
+			AND a.listid = b.uid
+	</select>
+	
+	<update id="upYjOrderYojijumnGmcheck" parameterType="yongjiVO">
+		UPDATE YOJIJUMN SET
+			gmcheck='1'
+		WHERE uid = #{uid}
+	</update>
+	
+	<!-- 거래처별 구매 -->
+	<select id="selYjCustJiinoutList" resultType="yongjiVO">
+		SELECT *
+		FROM JIINOUT
+		WHERE comid = #{wccode}
+			AND date <![CDATA[ >= ]]> #{date1}
+			AND date <![CDATA[ <= ]]> #{date2}
+			AND num <![CDATA[ > ]]> 0
+		ORDER BY date ASC
+	</select>
+	
+	<select id="selYjCustKswjijl0Wjname" resultType="yongjiVO">
+		SELECT wjname
+		FROM KSWJIJL0
+		WHERE wjcode = #{jicode}
+	</select>
+	
+	<!-- 용지전표 -->
+	<select id="selYjJeonList" resultType="yongjiVO">
+		SELECT a.*, b.uid
+		FROM JEONPYO${value} AS a, KSWJIJL0 AS b
+		WHERE a.jicode = b.wjcode
+			AND a.bdate <![CDATA[ >= ]]> #{date1}
+			AND a.bdate <![CDATA[ < ]]> #{date2}
+		ORDER BY a.uid DESC, a.jejanum DESC, a.bdate DESC
+	</select>
+	
+	<select id="selYjJeonDetail" resultType="yongjiVO">
+		SELECT a.wjname, a.wjcode, b.*
+		FROM KSWJIJL0 AS a, JIINOUT AS b
+		WHERE a.uid = #{uid}
+			AND a.wjcode = b.jicode
+		ORDER BY b.jeon DESC, b.uid DESC
+	</select>
+	
+	<select id="selYjJeonJiinoutList" resultType="yongjiVO">
+		SELECT date, num, comid, comment, curno, jeon, jeuid
+		FROM JIINOUT
+		WHERE jicode = #{jicode}
+		ORDER BY date DESC, jeon DESC
+	</select>
+	
+	<select id="selYjJeonKswcust0Wcname" resultType="yongjiVO">
+		SELECT wcname
+		FROM KSWCUST0
+		WHERE wccode = #{wccode}
+	</select>
+
+	<!-- 용지등록하기 -->
+	<select id="selYjRegiList1" resultType="yongjiVO">
+		SELECT count(*) as count 
+		FROM KSWJIJL0
+	</select>
+			
+	<select id="selYjRegiList2" resultType="yongjiVO">
+		SELECT a.uid, a.wjcode, a.wjname, a.ib, a.halin, a.danga, a.facdanga,
+			(SELECT curno FROM JIINOUT WHERE jicode = a.wjcode ORDER BY DATE DESC, jeon desc, uid DESC LIMIT 1) AS curno
+		FROM KSWJIJL0 AS a 
+		ORDER BY a.ib ASC, a.wjcode ASC, a.wjname ASC
+		LIMIT #{lm_s}, #{lm_t}
+	</select>
+	
+	<select id="selYjRegKswjijl0List" resultType="yongjiVO">
+		SELECT *
+		FROM KSWJIJL0
+		ORDER BY ib ASC, wjcode ASC, wjname ASC
+	</select>
+	
+	<select id="selYjRegDetail" resultType="yongjiVO">
+		SELECT *
+		FROM KSWJIJL0
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selYjRegJiinoutCurno" resultType="yongjiVO">
+		SELECT curno
+		FROM JIINOUT
+		WHERE jicode = #{wjcode}
+		ORDER BY date DESC, jeon DESC, uid DESC LIMIT 1
+	</select>
+	
+	<insert id="inYjRegKswjijl0" parameterType="yongjiVO">
+		INSERT INTO KSWJIJL0 (
+			wjcode, wjname, ib, danga, facdanga,
+			halin, wjtype, op1, op2, op3
+		) VALUES (
+			#{wjcode}, #{wjname}, #{ib}, #{danga}, #{facdanga},
+			#{halin}, #{wjtype}, #{op1}, #{op2}, #{op3}
+		)
+	</insert>
+	
+	<insert id="inYjRegJiinout" parameterType="yongjiVO">
+		INSERT INTO JIINOUT (
+			jicode, date, cdate, comment, curno,
+			danga
+		) VALUES (
+			#{wjcode}, #{date}, #{cdate}, #{comment}, #{curno},
+			#{danga}
+		)
+	</insert>
+	
+	<update id="upYjRegKswjijl0" parameterType="yongjiVO">
+		UPDATE KSWJIJL0 SET
+			wjcode=#{wjcode}, wjname=#{wjname}, ib=#{ib}, danga=#{danga}, facdanga=#{facdanga},
+			halin=#{halin}, wjtype=#{wjtype}, op1=#{op1}, op2=#{op2}, op3=#{op3}
+		WHERE uid = #{uid}
+	</update>
+	
+	<delete id="delYjRegKswjijl0" parameterType="yongjiVO">
+		DELETE FROM KSWJIJL0
+		WHERE uid = #{uid}
+	</delete>
+	
+	<!-- 용지장부 -->
+	<select id="selYjJangJiinoutList" resultType="yongjiVO">
+		SELECT *
+		FROM JIINOUT
+		WHERE jicode = #{wjcode}
+			AND date <![CDATA[ >= ]]> #{date1}
+			AND date <![CDATA[ < ]]> #{date2}
+		ORDER BY date ASC, jeon ASC
+	</select>
+	
+	<select id="selYjJangJiinoutCuList" resultType="yongjiVO">
+		SELECT *
+		FROM JIINOUT
+		WHERE comid = #{wccode}
+			AND date <![CDATA[ >= ]]> #{date1}
+			AND date <![CDATA[ < ]]> #{date2}
+		ORDER BY date ASC
+	</select>
+
+	<select id="selYjJangWjname" resultType="yongjiVO">
+		SELECT wjname
+		FROM KSWJIJL0
+		WHERE wjcode = #{jicode}
+	</select>
+	
+	<select id="selYjJangYjList" resultType="yongjiVO">
+		SELECT wjname, wjcode
+		FROM KSWJIJL0
+		WHERE jsuns <![CDATA[ < ]]> 99
+		ORDER BY jsuns ASC
+	</select>
+	
+	<select id="selYjJangJp" resultType="yongjiVO">
+		SELECT busu, comment
+		FROM JEONPYO${value}
+		WHERE uid = #{jeon}
+	</select>
+	
+	<!-- 월별 용지 재고 현황 -->
+	<select id="selYjMonKswjijl0List" resultType="yongjiVO">
+		SELECT *
+		FROM KSWJIJL0
+		ORDER BY ib ASC, wjcode ASC, wjname ASC
+	</select>
+	
+	<select id="selYjMonCheckList" resultType="yongjiVO">
+		SELECT *
+		FROM YONGJIMS3
+		WHERE MSDATE = #{msdate}
+	</select>
+	
+	<insert id="inYjMon" parameterType="yongjiVO">
+		INSERT INTO YONGJIMS3 (
+			YJCODE, MSDATE
+		) VALUES (
+			#{wjcode}, #{msdate}
+		)
+	</insert>
+	
+	<select id="selYjMonList" resultType="yongjiVO">
+		SELECT a.*, b.wjname
+		FROM YONGJIMS3 AS a, KSWJIJL0 AS b
+		WHERE a.msdate = #{msdate}
+			AND a.yjcode = b.wjcode
+			AND (a.QNTY1 <![CDATA[ > ]]> 0
+			OR a.QNTY2 <![CDATA[ > ]]> 0
+			OR a.QNTY3 <![CDATA[ > ]]> 0
+			OR a.QNTY4 <![CDATA[ > ]]> 0)
+		ORDER BY a.uid ASC
+	</select>
+	
+	<select id="selYjMonJiinoutList" resultType="yongjiVO">
+		SELECT *
+		FROM JIINOUT
+		WHERE jicode = #{yjcode}
+			AND date <![CDATA[ >= ]]> #{date1}
+			AND date <![CDATA[ < ]]> #{date2}
+		ORDER BY date ASC, jeon ASC
+	</select>
+	
+	<select id="selYjMonKswcust0Wcname" resultType="yongjiVO">
+		SELECT wcname
+		FROM KSWCUST0
+		WHERE wccode = #{comid}
+	</select>
+	
+	<select id="selYjMonCheckIb" resultType="yongjiVO">
+		SELECT *
+		FROM KSWJIJL0
+		WHERE ib = 0
+		ORDER BY wjcode ASC
+	</select>
+	
+	<select id="selYjMonCheckInput1" resultType="yongjiVO">
+		SELECT *
+		FROM YONGJIMS3
+		WHERE MSDATE = #{msdate}
+			AND YJCODE = #{yjcode}
+	</select>
+	
+	<update id="upYjMonCheckInput2" parameterType="yongjiVO">
+		UPDATE YONGJIMS3 SET
+			QNTY1=0, QNTY2=0, QNTY3=0, QNTY4=0
+		WHERE MSDATE = #{msdate}
+	</update>
+
+	<update id="upYjMonCheckInput11" parameterType="yongjiVO">
+		UPDATE YONGJIMS3 SET
+			QNTY1=#{qnty4}
+		WHERE YJCODE = #{yjcode}
+			AND MSDATE = #{msdate}
+	</update>
+	
+	<select id="selYjMonCheckInput21" resultType="yongjiVO">
+		SELECT jicode, SUM(num) AS nsum
+		FROM JIINOUT
+		WHERE (DATE_FORMAT(FROM_UNIXTIME(date), '%Y%m') = #{msdate})
+			AND comment LIKE '入' 
+		GROUP BY jicode
+	</select>
+	
+	<select id="selYjMonCheckInput22" resultType="yongjiVO">
+		SELECT *
+		FROM YONGJIMS3
+		WHERE YJCODE = #{jicode}
+	</select>
+	
+	<update id="upYjMonCheckInput23" parameterType="yongjiVO">
+		UPDATE YONGJIMS3 SET
+			QNTY2=#{qnty2}
+		WHERE YJCODE = #{yjcode}
+			AND MSDATE = #{msdate}
+	</update>
+	
+	<insert id="inYjMonCheckInput24" parameterType="yongjiVO">
+		INSERT INTO YONGJIMS3 (
+			YJCODE, MSDATE, QNTY2
+		) VALUES (
+			#{yjcode}, #{msdate}, #{qnty2}
+		)
+	</insert>
+	
+	<select id="selYjMonCheckInput31" resultType="yongjiVO">
+		SELECT UID
+		FROM TMPJAB
+		WHERE (DATE_FORMAT(FROM_UNIXTIME(JBDATE), '%Y%m') = #{msdate})
+	</select>
+	
+	<select id="selYjMonCheckInput32" resultType="yongjiVO">
+		SELECT *
+		FROM TMPJAB3
+		WHERE JBID = #{uid}
+			AND JUTAG <![CDATA[ <> ]]> 3
+	</select>
+	
+	<update id="upYjMonCheckInput33" parameterType="yongjiVO">
+		UPDATE YONGJIMS3 SET
+			QNTY3=#{qnty3}
+		WHERE UID = #{uid}
+	</update>
+	
+	<insert id="inYjMonCheckInput34" parameterType="yongjiVO">
+		INSERT INTO YONGJIMS3 (
+			YJCODE, MSDATE, QNTY3
+		) VALUES (
+			#{yjcode}, #{msdate}, #{qnty3}
+		)
+	</insert>
+	
+	<select id="selYjMonCheckInput41" resultType="yongjiVO">
+		SELECT uid
+		FROM TMPLIST2
+		WHERE (DATE_FORMAT(FROM_UNIXTIME(bdate), '%Y%m') = #{msdate})
+	</select>
+	
+	<select id="selYjMonCheckInput42" parameterType="yongjiVO">
+		SELECT *
+		FROM TMPLIST3
+		WHERE listid = #{uid}
+	</select>
+	
+	<update id="upYjMonCheckInput51" parameterType="yongjiVO">
+		UPDATE YONGJIMS3 SET
+			QNTY4=#{qnty4}
+		WHERE UID = #{uid}
+	</update>
+	
+	<select id="selYjMonPopup1" resultType="yongjiVO">
+		SELECT * 
+		FROM YONGJIMS3 
+		WHERE msdate = #{msdate}
+			AND yjcode LIKE #{yjcode}
+	</select>
+	
+	<select id="selYjMonPopup2" resultType="yongjiVO">
+		SELECT a.*, (SELECT wcname FROM KSWCUST0 WHERE wccode LIKE a.comid) AS wcname
+		FROM JIINOUT as a 
+		WHERE a.jicode LIKE #{yjcode}
+			AND a.date <![CDATA[ >= ]]> #{date1}
+		    AND a.date <![CDATA[ < ]]> #{date2}
+		ORDER BY a.date ASC, a.jeon ASC
+	</select>
+	
+</mapper>
