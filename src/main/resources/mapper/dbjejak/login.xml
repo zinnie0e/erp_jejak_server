@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guru.erpserver.mapper.dbjejak.LoginMapper">
+
+	<select id="countLoginIP" resultType="Integer">
+		SELECT COUNT(*)
+		FROM KSCIPS
+		WHERE IPS LIKE #{ip}
+	</select>
+	
+	<select id="countLoginUser" resultType="Integer">
+		SELECT COUNT(*)
+		FROM KSCSAWN
+		WHERE SWSAWN = #{id} AND SWPASS = #{pw}
+	</select>
+</mapper>
