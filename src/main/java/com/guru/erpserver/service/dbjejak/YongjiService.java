@@ -14,7 +14,7 @@ public interface YongjiService {
 	//TODO 용지구입
 	List<YongjiVO> selYjList() throws Exception;
 	
-	List<YongjiVO> selYjOrderOrderList() throws Exception;
+	List<YongjiVO> selYjBuyOrderList() throws Exception;
 	
 	boolean selYjOrderCount1() throws Exception;
 	boolean selYjOrderCount2() throws Exception;
@@ -50,8 +50,10 @@ public interface YongjiService {
 	boolean upYjOrderDetailCode3(YongjiVO params) throws Exception;
 	
 	YongjiVO selYjOrderCheckOI(YongjiVO params) throws Exception;
-	long selYjOrderJeonpyoUidCount(YongjiVO params) throws Exception;
-	long selYjOrderJiinoutUidCount() throws Exception;
+	long selYjOrderJeonpyoMaxUid(YongjiVO params) throws Exception;
+	long selYjOrderJiinoutMaxUid() throws Exception;
+	YongjiVO selYjOrderBuyKswjijl0(YongjiVO params) throws Exception;
+	YongjiVO selYjOrderBuyJiinout(YongjiVO params) throws Exception;
 	boolean inYjOrderJeonpyo(YongjiVO params) throws Exception;
 	YongjiVO selYjOrderJiinout(YongjiVO params) throws Exception;
 	boolean inYjOrderJiinout(YongjiVO params) throws Exception;
@@ -82,6 +84,11 @@ public interface YongjiService {
 	List<YongjiVO> selYjJeonJiinoutList(YongjiVO params) throws Exception;
 	String selYjJeonKswcust0Wcname(YongjiVO params) throws Exception;
 	
+	YongjiVO selYjJeonPopup1(YongjiVO params) throws Exception;
+	String selYjJeonPopup2(YongjiVO params) throws Exception;
+	String selYjJeonPopup3(YongjiVO params) throws Exception;
+	String selYjJeonPopup4(YongjiVO params) throws Exception;
+	
 	//TODO 용지등록하기
 	List<YongjiVO> selYjRegiList1() throws Exception;
 	List<YongjiVO> selYjRegiList2(YongjiVO params) throws Exception;
@@ -100,14 +107,17 @@ public interface YongjiService {
 	List<YongjiVO> selYjJangYjList() throws Exception;
 	YongjiVO selYjJangJp(YongjiVO params) throws Exception;
 	
+	List<YongjiVO> selYjJangOther1(YongjiVO params) throws Exception;
+	YongjiVO selYjJangOther2(YongjiVO params) throws Exception;
+	
 	//TODO 월별 용지 재고 현황
-	List<YongjiVO> selYjMonKswjijl0List() throws Exception;
 	List<YongjiVO> selYjMonCheckList(YongjiVO params) throws Exception;
+	List<YongjiVO> selYjMonKswjijl0List() throws Exception;
 	boolean inYjMon(YongjiVO params) throws Exception;
 	List<YongjiVO> selYjMonList(YongjiVO params) throws Exception;
 	List<YongjiVO> selYjMonJiinoutList(YongjiVO params) throws Exception;
 	String selYjMonKswcust0Wcname(YongjiVO params) throws Exception;
-	List<YongjiVO> selYjMonCheckIb(YongjiVO params) throws Exception;
+	List<YongjiVO> selYjMonCheckIb() throws Exception;
 	YongjiVO selYjMonCheckInput1(YongjiVO params) throws Exception;
 	boolean upYjMonCheckInput2(YongjiVO params) throws Exception;
 	boolean upYjMonCheckInput11(YongjiVO params) throws Exception;
@@ -117,12 +127,16 @@ public interface YongjiService {
 	boolean inYjMonCheckInput24(YongjiVO params) throws Exception;
 	List<YongjiVO> selYjMonCheckInput31(YongjiVO params) throws Exception;
 	List<YongjiVO> selYjMonCheckInput32(YongjiVO params) throws Exception;
-	boolean upYjMonCheckInput33(YongjiVO params) throws Exception;
+	YongjiVO selYjMonCheckInput33(YongjiVO params) throws Exception;
 	boolean inYjMonCheckInput34(YongjiVO params) throws Exception;
+	boolean upYjMonCheckInput35(YongjiVO params) throws Exception;
 	List<YongjiVO> selYjMonCheckInput41(YongjiVO params) throws Exception;
 	List<YongjiVO> selYjMonCheckInput42(YongjiVO params) throws Exception;
+	YongjiVO selYjMonCheckInput43(YongjiVO params) throws Exception;
+	boolean inYjMonCheckInput44(YongjiVO params) throws Exception;
 	boolean upYjMonCheckInput51(YongjiVO params) throws Exception;
 	List<YongjiVO> selYjMonPopup1(YongjiVO params) throws Exception;
 	List<YongjiVO> selYjMonPopup2(YongjiVO params) throws Exception;
 	
+	boolean createTableJeonpyo(YongjiVO params) throws Exception;
 }

@@ -16,8 +16,7 @@ public class LoginVO {
 	private String ip;
 	private String id;
 	private String pw;
-	
-	
+	private String swdung;
 	
 	private String result;
 }

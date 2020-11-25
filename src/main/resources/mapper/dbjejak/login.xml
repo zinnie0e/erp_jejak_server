@@ -8,6 +8,12 @@
 		WHERE IPS LIKE #{ip}
 	</select>
 	
+	<select id="selLoginDung" resultType="LoginVO">
+		SELECT SWDUNG
+		FROM KSCSAWN
+		WHERE SWSAWN = #{id}
+	</select>
+	
 	<select id="countLoginUser" resultType="Integer">
 		SELECT COUNT(*)
 		FROM KSCSAWN

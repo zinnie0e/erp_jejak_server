@@ -44,8 +44,8 @@ public class YongjiServiceImpl implements YongjiService{
 	}
 	
 	@Override
-	public List<YongjiVO> selYjOrderOrderList() throws Exception {
-		return YongjiDAO.selYjOrderOrderList();
+	public List<YongjiVO> selYjBuyOrderList() throws Exception {
+		return YongjiDAO.selYjBuyOrderList();
 	}
 	
 	@Override
@@ -167,12 +167,24 @@ public class YongjiServiceImpl implements YongjiService{
 		return YongjiDAO.selYjOrderCheckOI(params);
 	}
 	@Override
-	public long selYjOrderJeonpyoUidCount(YongjiVO params) throws Exception {
-		return YongjiDAO.selYjOrderJeonpyoUidCount(params);
+	public long selYjOrderJeonpyoMaxUid(YongjiVO params) throws Exception {
+		Integer get_param = YongjiDAO.selYjOrderJeonpyoMaxUid(params);
+		long max = get_param != null ? get_param : 0;
+		return max;
 	}
 	@Override
-	public long selYjOrderJiinoutUidCount() throws Exception {
-		return YongjiDAO.selYjOrderJiinoutUidCount();
+	public long selYjOrderJiinoutMaxUid() throws Exception {
+		Integer get_param = YongjiDAO.selYjOrderJiinoutMaxUid();
+		long max = get_param != null ? get_param : 0;
+		return max;
+	}
+	@Override
+	public YongjiVO selYjOrderBuyKswjijl0(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjOrderBuyKswjijl0(params);
+	}
+	@Override
+	public YongjiVO selYjOrderBuyJiinout(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjOrderBuyJiinout(params);
 	}
 	@Override
 	public boolean inYjOrderJeonpyo(YongjiVO params) throws Exception {
@@ -266,7 +278,11 @@ public class YongjiServiceImpl implements YongjiService{
 	//TODO 용지전표
 	@Override
 	public List<YongjiVO> selYjJeonList(YongjiVO params) throws Exception {
-		return YongjiDAO.selYjJeonList(params);
+		try {
+			return YongjiDAO.selYjJeonList(params);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	@Override
 	public YongjiVO selYjJeonDetail(YongjiVO params) throws Exception {
@@ -279,6 +295,26 @@ public class YongjiServiceImpl implements YongjiService{
 	@Override
 	public String selYjJeonKswcust0Wcname(YongjiVO params) throws Exception {
 		return YongjiDAO.selYjJeonKswcust0Wcname(params).getWcname();
+	}
+	@Override
+	public YongjiVO selYjJeonPopup1(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjJeonPopup1(params);
+	}
+	@Override
+	public String selYjJeonPopup2(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjJeonPopup2(params).getWcname();
+	}
+	@Override
+	public String selYjJeonPopup3(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjJeonPopup3(params).getWcname();
+	}
+	@Override
+	public String selYjJeonPopup4(YongjiVO params) throws Exception {
+		try {
+			return YongjiDAO.selYjJeonPopup4(params).getBigo();
+		} catch (Exception e) {
+			return "";
+		}
 	}
 	
 	//TODO 용지등록하기
@@ -346,15 +382,23 @@ public class YongjiServiceImpl implements YongjiService{
 	public YongjiVO selYjJangJp(YongjiVO params) throws Exception {
 		return YongjiDAO.selYjJangJp(params);
 	}
+	@Override
+	public List<YongjiVO> selYjJangOther1(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjJangOther1(params);
+	}
+	@Override
+	public YongjiVO selYjJangOther2(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjJangOther2(params);
+	}
 	
 	//TODO 월별 용지 재고 현황
 	@Override
-	public List<YongjiVO> selYjMonKswjijl0List() throws Exception {
-		return YongjiDAO.selYjMonKswjijl0List();
-	}
-	@Override
 	public List<YongjiVO> selYjMonCheckList(YongjiVO params) throws Exception {
 		return YongjiDAO.selYjMonCheckList(params);
+	}
+	@Override
+	public List<YongjiVO> selYjMonKswjijl0List() throws Exception {
+		return YongjiDAO.selYjMonKswjijl0List();
 	}
 	@Override
 	public boolean inYjMon(YongjiVO params) throws Exception {
@@ -373,8 +417,8 @@ public class YongjiServiceImpl implements YongjiService{
 		return YongjiDAO.selYjMonKswcust0Wcname(params).getWcname();
 	}
 	@Override
-	public List<YongjiVO> selYjMonCheckIb(YongjiVO params) throws Exception {
-		return YongjiDAO.selYjMonCheckIb(params);
+	public List<YongjiVO> selYjMonCheckIb() throws Exception {
+		return YongjiDAO.selYjMonCheckIb();
 	}
 	@Override
 	public YongjiVO selYjMonCheckInput1(YongjiVO params) throws Exception {
@@ -413,12 +457,16 @@ public class YongjiServiceImpl implements YongjiService{
 		return YongjiDAO.selYjMonCheckInput32(params);
 	}
 	@Override
-	public boolean upYjMonCheckInput33(YongjiVO params) throws Exception {
-		return (YongjiDAO.upYjMonCheckInput33(params) == 1) ? true : false;
+	public YongjiVO selYjMonCheckInput33(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjMonCheckInput33(params);
 	}
 	@Override
 	public boolean inYjMonCheckInput34(YongjiVO params) throws Exception {
 		return (YongjiDAO.inYjMonCheckInput34(params) == 1) ? true : false;
+	}
+	@Override
+	public boolean upYjMonCheckInput35(YongjiVO params) throws Exception {
+		return (YongjiDAO.upYjMonCheckInput35(params) == 1) ? true : false;
 	}
 	@Override
 	public List<YongjiVO> selYjMonCheckInput41(YongjiVO params) throws Exception {
@@ -427,6 +475,14 @@ public class YongjiServiceImpl implements YongjiService{
 	@Override
 	public List<YongjiVO> selYjMonCheckInput42(YongjiVO params) throws Exception {
 		return YongjiDAO.selYjMonCheckInput42(params);
+	}
+	@Override
+	public YongjiVO selYjMonCheckInput43(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjMonCheckInput43(params);
+	}
+	@Override
+	public boolean inYjMonCheckInput44(YongjiVO params) throws Exception {
+		return (YongjiDAO.inYjMonCheckInput44(params) == 1) ? true : false;
 	}
 	@Override
 	public boolean upYjMonCheckInput51(YongjiVO params) throws Exception {
@@ -439,5 +495,15 @@ public class YongjiServiceImpl implements YongjiService{
 	@Override
 	public List<YongjiVO> selYjMonPopup2(YongjiVO params) throws Exception {
 		return YongjiDAO.selYjMonPopup2(params);
+	}
+	
+	@Override
+	public boolean createTableJeonpyo(YongjiVO params) throws Exception {
+		Integer get_param = YongjiDAO.createTableJeonpyo(params);
+		int count = 0;
+		if(get_param != null) {
+			count = get_param;
+		}
+		return (count >= 1) ? true : false;
 	}
 }

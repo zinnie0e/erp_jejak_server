@@ -72,7 +72,7 @@ public class YongjiVO {
 	
 	private String date1; //컬럼명X
 	private String date2; //컬럼명X
-	private long nsum;
+	private long nsum; //컬럼명X
 	
 	//TODO YOJIJUMN(용지주문테이블)
 //	private long uid;
@@ -325,4 +325,7 @@ public class YongjiVO {
 	
 	//TODO 테이블
 	private String value;
+	
+	//TODO 전표 인쇄
+	private String[] popup_value;
 }
