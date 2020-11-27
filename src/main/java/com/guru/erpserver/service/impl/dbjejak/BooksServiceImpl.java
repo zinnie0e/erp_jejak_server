@@ -60,12 +60,29 @@ public class BooksServiceImpl implements BooksService{
 	}
 	
 	@Override
-	public List<BooksVO> selBooksDeasu1(BooksVO params) throws Exception {
-		return booksDAO.selBooksDeasu1(params);
+	public List<BooksVO> selBooksDaesu1(BooksVO params) throws Exception {
+		return booksDAO.selBooksDaesu1(params);
 	}
 	@Override
-	public List<BooksVO> selBooksDeasu2(BooksVO params) throws Exception {
-		return booksDAO.selBooksDeasu2(params);
+	public List<BooksVO> selBooksDaesu2(BooksVO params) throws Exception {
+		return booksDAO.selBooksDaesu2(params);
+	}
+	
+	@Override
+	public boolean delBooksDaesu(BooksVO params) throws Exception {
+		int quert_result = booksDAO.delBooksDaesu(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public long selBooksKswdesu0MaxUid() throws Exception {
+		Integer get_param = booksDAO.selBooksKswdesu0MaxUid();
+		long max = get_param != null ? get_param : 0;
+		return max;
+	}
+	@Override
+	public boolean inBooksDaesu(BooksVO params) throws Exception {
+		int quert_result = booksDAO.inBooksDaesu(params);
+		return (quert_result == 1) ? true : false;
 	}
 	
 	@Override
@@ -79,6 +96,36 @@ public class BooksServiceImpl implements BooksService{
 	@Override
 	public List<BooksVO> selBooksYong3() throws Exception {
 		return booksDAO.selBooksYong3();
+	}
+	
+	@Override
+	public boolean delBooksYongji(BooksVO params) throws Exception {
+		int quert_result = booksDAO.delBooksYongji(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inBooksYongji(BooksVO params) throws Exception {
+		int quert_result = booksDAO.inBooksYongji(params);
+		return (quert_result == 1) ? true : false;
+	}
+	
+	@Override
+	public String selBooksMaxSbbook(BooksVO params) throws Exception {
+		BooksVO get_param = booksDAO.selBooksMaxSbbook(params);
+		return get_param != null ? get_param.getSbbook() : "";
+	}
+	
+	@Override
+	public List<BooksVO> selBooksSoldOut1(BooksVO params) throws Exception {
+		return booksDAO.selBooksSoldOut1(params);
+	}
+	@Override
+	public List<BooksVO> selBooksSoldOut2(BooksVO params) throws Exception {
+		return booksDAO.selBooksSoldOut2(params);
+	}
+	@Override
+	public List<BooksVO> selBooksSoldOut3(BooksVO params) throws Exception {
+		return booksDAO.selBooksSoldOut3(params);
 	}
 	
 	@Override
