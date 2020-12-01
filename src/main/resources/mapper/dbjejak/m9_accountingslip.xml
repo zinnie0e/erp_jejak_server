@@ -5,42 +5,113 @@
 	<!-- 회계전표 -->
 	<select id="selAccountingSlip1" resultType="accountingSlipVO">
 		SELECT DISTINCT(jeuid) 
-		FROM HGJEON 
+		FROM jejak.HGJEON 
 		WHERE ymd LIKE #{ymd} 
 		ORDER BY jeuid ASC
 	</select>
 	
+	<select id="selAccountingSlip1_1" resultType="accountingSlipVO">
+		SELECT bdate 
+		FROM jejak.TMPLIST2 
+		WHERE uid = #{uid} 
+	</select>
+	
 	<select id="selAccountingSlip2" resultType="accountingSlipVO">
 		SELECT * 
-		FROM HGJEON 
+		FROM jejak.HGJEON 
 		WHERE jeuid = #{jeuid}
 			AND ymd LIKE #{ymd}
-		order by seqno asc
+		ORDER BY seqno ASC
 	</select>
 	
 	<select id="selAccountingSlip3" resultType="accountingSlipVO">
 		SELECT * 
-		FROM HGJEON2 
+		FROM jejak.HGJEON2 
 		WHERE paruid = #{paruid}
 	</select>
+	
+	<select id="selAccountingSlip4" resultType="accountingSlipVO"> <!-- 전표작성 -->
+		SELECT count(uid) as count, substring(jmfield,1,2) as jmfieldyac
+		FROM jejak.KSWCUST0 
+		WHERE jmfield NOT LIKE 'N' 
+		GROUP BY substring(jmfield,1,2)
+	</select>
+	
+	<select id="selAccountingSlip5" resultType="accountingSlipVO"> 
+		SELECT * 
+		FROM jejak.HGJEON 
+		WHERE ymd LIKE #{ymd}
+		ORDER BY UID ASC
+	</select>
+	
+	<delete id="delAccountingSlip1" parameterType="accountingSlipVO">
+		DELETE FROM jejak.HGJEON2 
+		WHERE paruid = #{paruid}
+	</delete>
+	
+	<select id="selAccountingSlip6" resultType="accountingSlipVO"> 
+		SELECT * 
+		FROM jejak.${dbname}
+		WHERE jejonum = #{jeuid}
+			AND JABTAG = 0
+	</select>
+	
+	<select id="selAccountingSlip7" resultType="accountingSlipVO"> 
+		SELECT w9 
+		FROM jejak.TWONGA 
+		WHERE jenum = #{jeuid}
+	</select>
+	
+	<select id="selAccountingSlip8_1" resultType="accountingSlipVO"> 
+		SELECT uid 
+		FROM jejak.HGJEON 
+		WHERE jeuid = #{jeuid}
+			AND ymd <![CDATA[ < ]]> #{ymd}
+		ORDER BY ymd DESC, seqno DESC
+	</select>
+	
+	<select id="selAccountingSlip8_2" resultType="accountingSlipVO"> 
+		SELECT uid 
+		FROM jejak.HGJEON 
+		WHERE jeuid = #{jeuid}
+			AND ymd <![CDATA[ <= ]]> #{ymd}
+		    AND seqno <![CDATA[ < ]]> #{seqno}
+		ORDER BY ymd DESC, seqno DESC
+	</select>
+	
+	<select id="selAccountingSlip9" resultType="accountingSlipVO"> 
+		SELECT * 
+		FROM jejak.HGJEON2 
+		WHERE paruid = #{paruid}
+	</select>
+	
+	<insert id="inAccountingSlip" parameterType="accountingSlipVO">
+		INSERT INTO jejak.HGJEON2 (
+			paruid, ymd2, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, 
+			j1, j2, j3, j4, j5, j6, j7, j8, j9, j10, j11, j12, j13, j14, j15, jab
+		) VALUES (
+			#{paruid}, #{ymd2}, #{b1}, #{b2}, #{b3}, #{b4}, #{b5}, #{b6}, #{b7}, #{b8}, #{b9}, #{b10}, #{b11}, #{b12}, #{b13}, #{b14}, #{b15},
+			#{j1}, #{j2}, #{j3}, #{j4}, #{j5}, #{j6}, #{j7}, #{j8}, #{j9}, #{j10}, #{j11}, #{j12}, #{j13}, #{j14}, #{j15}, #{jab}
+		)
+	</insert>
 	
 	<!-- 원천징수 -->
 	<select id="selWithholdingTax" resultType="accountingSlipVO">
 		SELECT *
-		FROM KKY1 
+		FROM jejak.KKY1 
 		WHERE kydate1 LIKE #{date}
 		ORDER BY kyname ASC
 	</select>
 	
 	<select id="selWithholdingTax2" resultType="accountingSlipVO">
 		SELECT * 
-		FROM KKY1 
+		FROM jejak.KKY1 
 		WHERE kydate1 LIKE #{date}
 		ORDER BY kydate2 ASC, kyname ASC
 	</select>
 	
 	<insert id="inWithholdingTax" parameterType="accountingSlipVO">
-		INSERT INTO KKY1 (
+		INSERT INTO jejak.KKY1 (
 			kydate1, kydate2, kyname, kynum, kyaddr,
 		    kycomm, kyamnt, kytax1, kytax2, kygubn
 		) VALUES (
@@ -50,13 +121,13 @@
 	</insert>
 	
 	<update id="upWithholdingTax" parameterType="accountingSlipVO">
-		UPDATE KKY1 
+		UPDATE jejak.KKY1 
 		SET ${chrec} = #{value} 
 		WHERE UID = #{uid} 
 	</update>
 	
 	<delete id="delWithholdingTax" parameterType="accountingSlipVO">
-		DELETE FROM KKY1 
+		DELETE FROM jejak.KKY1 
 		WHERE uid = #{uid}
 	</delete>
 	
@@ -72,7 +143,7 @@
 			SUM(CASE WHEN s1gubn = 'E' THEN s1amnt ELSE 0 END) AS suma5, 
 			SUM(CASE WHEN s1gubn = 'F' THEN s1qnty ELSE 0 END) AS sumq6, 
 			SUM(CASE WHEN s1gubn = 'F' THEN s1amnt ELSE 0 END) AS suma6 
-		FROM KS1${year}${month}A
+		FROM jejak.KS1${year}${month}A
 		WHERE s1book = #{bookcode}
 		GROUP BY s1book
 	</select>
@@ -89,19 +160,19 @@
 			SUM(CASE WHEN s1gubn = 'E' THEN s1amnt ELSE 0 END) AS suma5,
 			SUM(CASE WHEN s1gubn = 'F' THEN s1qnty ELSE 0 END) AS sumq6,
 			SUM(CASE WHEN s1gubn = 'F' THEN s1amnt ELSE 0 END) AS suma6
-		FROM KS1${year}${month}A
+		FROM jejak.KS1${year}${month}A
 	</select>
 	
 	<!-- 도서별 제작현황 -->
 	<select id="selProductionByBook1" resultType="accountingSlipVO">
 		select sbname 
-		from KSCBOOK0 
+		from jejak.KSCBOOK0 
 		where sbbook = #{sbbook} limit 1
 	</select>
 	
 	<select id="selProductionByBook2" resultType="accountingSlipVO">
 		SELECT uid, bnum 
-		FROM TMPLIST 
+		FROM jejak.TMPLIST 
 		WHERE bcode LIKE #{bcode}
 			AND signdate <![CDATA[ > ]]> '20090100' 
 			AND bcheck = 1 
@@ -110,54 +181,246 @@
 	
 	<select id="selProductionByBook3" resultType="accountingSlipVO">
 		SELECT uid, bdate
-		FROM TMPLIST2 as a
+		FROM jejak.TMPLIST2 as a
 		WHERE listid = #{listid}
 	</select>
 	
 	<select id="selProductionByBook3_1" resultType="accountingSlipVO">
 		SELECT wtotal 
-		FROM TWONGA 
+		FROM jejak.TWONGA 
 		WHERE jenum = #{uid}
 	</select>
 	
 	<select id="selProductionByBook3_2" resultType="accountingSlipVO">
 		SELECT tnum, xnum, fchk, uid as uid2
-		FROM IBTABLE 
+		FROM jejak.IBTABLE 
 		WHERE juid = #{uid}
 	</select>
 	
 	<select id="selProductionByBook4" resultType="accountingSlipVO">
 		SELECT * 
-		FROM IBTABLE2
+		FROM jejak.IBTABLE2
 		WHERE t1id = #{uid2}
 		ORDER BY idate ASC
 	</select>
 	
 	<select id="selProductionByBook5" resultType="accountingSlipVO">
 		SELECT * 
-		FROM OLDJEJAK 
+		FROM jejak.OLDJEJAK 
 		WHERE wwbook LIKE #{wwbook}
 			AND wwyyyy <![CDATA[ < ]]> '09' 
 		ORDER BY wwyyyy DESC, wwmmmm DESC, wwdddd DESC
 	</select>
 	
+	<!-- 전기 이월 작업 -->
+	<select id="createTableKTBKSyy0" resultType="accountingSlipVO"> <!-- 도서수량 -->
+		CREATE TABLE IF NOT EXISTS jejak.${dbname} (
+			UID mediumint(12) unsigned NOT NULL auto_increment,
+			TBSBOOK char(6) NOT NULL default '',
+			TBMGUBN int(1) default '0',
+			TBASR int(7) default '0',
+			TBBSR int(7) default '0',
+			TBCSR int(7) default '0',
+			TBDSR int(7) default '0',
+			TBESR int(7) default '0',
+			TBFSR int(7) default '0',
+			PRIMARY KEY  (UID)
+		) ENGINE = MyISAM COMMENT = '도서수량집계 - KTBKSyy0' AUTO_INCREMENT = 1 CHARSET = utf8;
+	</select>
+	
+	<select id="trunTableKTBKSyy0" resultType="accountingSlipVO"> 
+		TRUNCATE jejak.${dbname}
+	</select>
+	
+	<select id="trunTableKTTEMP1" resultType="accountingSlipVO"> 
+		TRUNCATE jejak.KTTEMP1
+	</select>
+	
+	<select id="selElecCarryoverWork1" resultType="accountingSlipVO"> 
+		SELECT DISTINCT(tbsbook)
+		FROM jejak.${dbname}
+	</select>
+	
+	<insert id="inElecCarryoverWork1" parameterType="accountingSlipVO"> 
+		INSERT INTO jejak.KTTEMP1 (
+			s1book
+		) VALUES (
+			#{s1book}
+		)
+	</insert>
+	
+	<select id="selElecCarryoverWork2" resultType="accountingSlipVO"> 
+		SELECT s1book 
+		FROM jejak.KTTEMP1 
+		ORDER BY s1book ASC
+	</select>
+	
+	<select id="selElecCarryoverWork3" resultType="accountingSlipVO"> 
+		SELECT * 
+		FROM jejak.${dbname} 
+		WHERE tbsbook LIKE #{tbsbook} 
+		ORDER BY tbmgubn ASC
+	</select>
+	
+	<insert id="inElecCarryoverWork2_1" parameterType="accountingSlipVO"> 
+		INSERT INTO jejak.${dbname} (
+			tbsbook, tbmgubn, tbasr
+		) VALUES (
+			#{tbsbook}, 0, #{tbasr}
+		)
+	</insert>
+	
+	<insert id="inElecCarryoverWork2_2" parameterType="accountingSlipVO"> 
+		INSERT INTO jejak.${dbname} (
+			tbsbook, tbmgubn
+		) VALUES (
+			#{tbsbook}, #{tbmgubn}
+		)
+	</insert>
+	
+	<select id="createTableKTBKKyy0" resultType="accountingSlipVO"> <!-- 도서금액 -->
+		CREATE TABLE IF NOT EXISTS jejak.${dbname} (
+			UID mediumint(12) unsigned NOT NULL auto_increment,
+			TBKBOOK char(6) NOT NULL default '',
+			TB00AKM int(12) NOT NULL default '0',
+			TB00BKM int(12) NOT NULL default '0',
+			TB00CKM int(12) NOT NULL default '0',
+			TB00DKM int(12) NOT NULL default '0',
+			TB00EKM int(12) NOT NULL default '0',
+			TB00FKM int(12) NOT NULL default '0',
+			TB01AKM int(12) NOT NULL default '0',
+			TB01BKM int(12) NOT NULL default '0',
+			TB01CKM int(12) NOT NULL default '0',
+			TB01DKM int(12) NOT NULL default '0',
+			TB01EKM int(12) NOT NULL default '0',
+			TB01FKM int(12) NOT NULL default '0',
+			TB02AKM int(12) NOT NULL default '0',
+			TB02BKM int(12) NOT NULL default '0',
+			TB02CKM int(12) NOT NULL default '0',
+			TB02DKM int(12) NOT NULL default '0',
+			TB02EKM int(12) NOT NULL default '0',
+			TB02FKM int(12) NOT NULL default '0',
+			TB03AKM int(12) NOT NULL default '0',
+			TB03BKM int(12) NOT NULL default '0',
+			TB03CKM int(12) NOT NULL default '0',
+			TB03DKM int(12) NOT NULL default '0',
+			TB03EKM int(12) NOT NULL default '0',
+			TB03FKM int(12) NOT NULL default '0',
+			TB04AKM int(12) NOT NULL default '0',
+			TB04BKM int(12) NOT NULL default '0',
+			TB04CKM int(12) NOT NULL default '0',
+			TB04DKM int(12) NOT NULL default '0',
+			TB04EKM int(12) NOT NULL default '0',
+			TB04FKM int(12) NOT NULL default '0',
+			TB05AKM int(12) NOT NULL default '0',
+			TB05BKM int(12) NOT NULL default '0',
+			TB05CKM int(12) NOT NULL default '0',
+			TB05DKM int(12) NOT NULL default '0',
+			TB05EKM int(12) NOT NULL default '0',
+			TB05FKM int(12) NOT NULL default '0',
+			TB06AKM int(12) NOT NULL default '0',
+			TB06BKM int(12) NOT NULL default '0',
+			TB06CKM int(12) NOT NULL default '0',
+			TB06DKM int(12) NOT NULL default '0',
+			TB06EKM int(12) NOT NULL default '0',
+			TB06FKM int(12) NOT NULL default '0',
+			TB07AKM int(12) NOT NULL default '0',
+			TB07BKM int(12) NOT NULL default '0',
+			TB07CKM int(12) NOT NULL default '0',
+			TB07DKM int(12) NOT NULL default '0',
+			TB07EKM int(12) NOT NULL default '0',
+			TB07FKM int(12) NOT NULL default '0',
+			TB08AKM int(12) NOT NULL default '0',
+			TB08BKM int(12) NOT NULL default '0',
+			TB08CKM int(12) NOT NULL default '0',
+			TB08DKM int(12) NOT NULL default '0',
+			TB08EKM int(12) NOT NULL default '0',
+			TB08FKM int(12) NOT NULL default '0',
+			TB09AKM int(12) NOT NULL default '0',
+			TB09BKM int(12) NOT NULL default '0',
+			TB09CKM int(12) NOT NULL default '0',
+			TB09DKM int(12) NOT NULL default '0',
+			TB09EKM int(12) NOT NULL default '0',
+			TB09FKM int(12) NOT NULL default '0',
+			TB10AKM int(12) NOT NULL default '0',
+			TB10BKM int(12) NOT NULL default '0',
+			TB10CKM int(12) NOT NULL default '0',
+			TB10DKM int(12) NOT NULL default '0',
+			TB10EKM int(12) NOT NULL default '0',
+			TB10FKM int(12) NOT NULL default '0',
+			TB11AKM int(12) NOT NULL default '0',
+			TB11BKM int(12) NOT NULL default '0',
+			TB11CKM int(12) NOT NULL default '0',
+			TB11DKM int(12) NOT NULL default '0',
+			TB11EKM int(12) NOT NULL default '0',
+			TB11FKM int(12) NOT NULL default '0',
+			TB12AKM int(12) NOT NULL default '0',
+			TB12BKM int(12) NOT NULL default '0',
+			TB12CKM int(12) NOT NULL default '0',
+			TB12DKM int(12) NOT NULL default '0',
+			TB12EKM int(12) NOT NULL default '0',
+			TB12FKM int(12) NOT NULL default '0',
+			PRIMARY KEY  (UID),
+			KEY TBKBOOK (TBKBOOK)
+		) ENGINE = MyISAM COMMENT = '도서금액집계 - KTBKKyymm' AUTO_INCREMENT = 1 CHARSET = utf8;
+	</select>
+	
+	<select id="selElecCarryoverWork4" resultType="accountingSlipVO"> 
+		SELECT DISTINCT(tbkbook)
+		FROM jejak.${dbname}
+	</select>
+	
+	
+	
 	<!-- 미입고도서 -->
 	<select id="selBooksNotIn1" resultType="accountingSlipVO">
 		SELECT listdate 
-		FROM IBTABLE3 
+		FROM jejak.IBTABLE3 
 		LIMIT 1
 	</select>
 	
 	<select id="selBooksNotIn2" resultType="accountingSlipVO">
 		SELECT * 
-		FROM IBTABLE3 
+		FROM jejak.IBTABLE3 
 		ORDER BY uid ASC
 	</select>
 	
+	<insert id="turnBooksNotIn1" parameterType="accountingSlipVO"> <!-- 새로계산 -->
+		TRUNCATE jejak.IBTABLE3
+	</insert>
+	
+	<select id="selBooksNotIn3" resultType="accountingSlipVO">
+		SELECT * 
+		FROM jejak.IBTABLE 
+		WHERE fchk = 0 
+			AND jdate <![CDATA[ < ]]> #{new_date3}
+		ORDER BY jdate ASC
+	</select>
+	
+	<select id="selBooksNotIn4" resultType="accountingSlipVO">
+		SELECT m3 
+		FROM jejak.TMPLIST2 
+		WHERE uid = #{juid}
+	</select>
+	
+	<select id="selBooksNotIn5" resultType="accountingSlipVO">
+		SELECT wcyakc 
+		FROM jejak.KSWCUST0 
+		WHERE wccode LIKE #{m3}
+	</select>
+	
+	<insert id="inBooksNotIn1" parameterType="accountingSlipVO">
+		INSERT INTO jejak.IBTABLE3 (
+			listdate, mkdate, mkbook, mkname, mknum, mknum2, mkname2
+		) VALUES (
+			#{new_date}, #{new_date2}, #{bookcode}, #{bookname}, #{jnum}, #{xnum}, #{custname}
+		)
+	</insert>
+	
 	<!-- 전도서재고조회 -->
-	<select id="selAllBooksStock1" resultType="accountingSlipVO">
+	<select id="selAllBooksStock1" resultType="accountingSlipVO"> <!-- 출판사 -->
 		SELECT sbbook, sbname 
-		FROM KSCBOOK0 
+		FROM sky.KSCBOOK0 
 		WHERE sbbook <![CDATA[ >= ]]> '100000' 
 			AND sbbook <![CDATA[ <= ]]> '999999' 
 		    AND sbpegi NOT LIKE 'P' 
@@ -165,20 +428,73 @@
 		ORDER BY sbbook ASC
 	</select>
 	
+	<select id="selAllBooksStock1_2" resultType="accountingSlipVO"> <!-- 출판사 보류 -->
+		SELECT sbbook, sbname 
+		FROM sky.KSCBOOK0 
+		WHERE sbbook <![CDATA[ >= ]]> '100000' 
+			AND sbbook <![CDATA[ <= ]]> '999999' 
+		    AND sbpegi NOT LIKE 'P' 
+		    AND sbgubn LIKE 'B' 
+		ORDER BY sbbook ASC
+	</select>
+	
+	<select id="selAllBooksStock1_3" resultType="accountingSlipVO"> <!-- 데이타 -->
+		SELECT sbbook, sbname 
+		FROM sky.KSCBOOK0 
+		WHERE sbbook <![CDATA[ >= ]]> '030000' 
+			AND sbbook <![CDATA[ < ]]> '050000' 
+		    AND sbpegi NOT LIKE 'P' 
+		    AND sbgubn LIKE 'B'
+		ORDER BY sbbook ASC
+	</select>
+	
+	<select id="selAllBooksStock1_4" resultType="accountingSlipVO"> <!-- 데이타 보류 -->
+		SELECT sbbook, sbname 
+		FROM sky.KSCBOOK0 
+		WHERE sbbook <![CDATA[ >= ]]> '030000' 
+			AND sbbook <![CDATA[ < ]]> '050000' 
+		    AND sbpegi NOT LIKE 'P' 
+		    AND sbgubn NOT LIKE 'B'
+		ORDER BY sbbook ASC
+	</select>
+	
+	<select id="selAllBooksStock1_5" resultType="accountingSlipVO"> <!-- 마스터 -->
+		SELECT sbbook, sbname 
+		FROM sky.KSCBOOK0 
+		WHERE sbbook <![CDATA[ >= ]]> '080000' 
+			AND sbbook <![CDATA[ < ]]> '100000' 
+			AND sbpegi NOT LIKE 'P' 
+		    AND sbgubn NOT LIKE 'B' 
+		ORDER BY sbbook ASC
+	</select>
+	
+	<select id="selAllBooksStock1_6" resultType="accountingSlipVO"> <!-- 마스터 보류 -->
+		SELECT sbbook, sbname 
+		FROM sky.KSCBOOK0 
+		WHERE sbbook <![CDATA[ >= ]]> '080000' 
+			AND sbbook <![CDATA[ < ]]> '100000' 
+			AND sbpegi NOT LIKE 'P' 
+		    AND sbgubn LIKE 'B' 
+		ORDER BY sbbook ASC
+	</select>
+	
 	<select id="selAllBooksStock2" resultType="accountingSlipVO">
 		SELECT sqcrnm 
-		FROM KSCQNTY0 
+		FROM ${dbname}KSCQNTY0 
 		WHERE sqbook LIKE #{sbbook}
 	</select>
 	
 	<select id="selAllBooksStock3" resultType="accountingSlipVO">
+		SELECT sqcrnm0 
+		FROM sky.KSCQNTY0 
+		WHERE sqbook LIKE #{sbbook}
+	</select>
+	
+	<select id="selAllBooksStock4" resultType="accountingSlipVO">
 		SELECT SUM(xnum) as sum_xnum
-		FROM IBTABLE 
+		FROM ${dbname}IBTABLE 
 		WHERE bookcode LIKE #{sbbook}
 			AND xnum <![CDATA[ > ]]> 0 
 			AND fchk = 0
 	</select>
-	
-	
-	
 </mapper>

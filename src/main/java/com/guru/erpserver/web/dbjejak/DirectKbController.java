@@ -34,6 +34,21 @@ public class DirectKbController {
 	public List<DirectKbVO> selKbYongji2(@RequestBody DirectKbVO params) throws Exception {
 		return directKbSVC.selKbYongji2(params);
 	}
+	// 입력 : wccode
+	@RequestMapping(value = "/directkb/select_kb_yongji3", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbYongji3(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbYongji3(params);
+	}
+	// 입력 : date1, date2, wccode
+	@RequestMapping(value = "/directkb/select_kb_yongji4", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbYongji4(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbYongji4(params);
+	}
+	// 입력 : jicode
+	@RequestMapping(value = "/directkb/select_kb_yongji5", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbYongji5(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbYongji5(params);
+	}
 	
 	// TODO 출력료
 	@RequestMapping(value = "/directkb/select_kb_print1", method = RequestMethod.POST)
@@ -124,6 +139,61 @@ public class DirectKbController {
 	public boolean upKbPressworkOp52(@RequestBody DirectKbVO params) throws Exception {
 		return directKbSVC.upKbPressworkOp52(params);
 	}
+	// 입력 : uid
+	@RequestMapping(value = "/directkb/select_kb_presswork10", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPresswork10(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbPresswork10(params);
+	}
+	// 입력 : daeji5, sum5, uid
+	@RequestMapping(value="/directkb/update_kb_presswork_2", method=RequestMethod.POST)
+	public boolean upKbPresswork2(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.upKbPresswork2(params);
+	}
+	// 입력 : bdate
+	@RequestMapping(value = "/directkb/select_kb_presswork11", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPresswork11(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbPresswork11(params);
+	}
+	// 입력 : uid
+	@RequestMapping(value = "/directkb/select_kb_presswork12", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPresswork12(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbPresswork12(params);
+	}
+	// 입력 : bdate
+	@RequestMapping(value = "/directkb/select_kb_presswork13", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPresswork13(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbPresswork13(params);
+	}
+	// 입력 : uid
+	@RequestMapping(value = "/directkb/select_kb_presswork14", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPresswork14(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbPresswork14(params);
+	}
+	// 입력 : bdate
+	@RequestMapping(value = "/directkb/select_kb_presswork15", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPresswork15(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbPresswork15(params);
+	}
+	// 입력 : uid
+	@RequestMapping(value = "/directkb/select_kb_presswork16", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPresswork16(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbPresswork16(params);
+	}
+	// 입력 : bdate
+	@RequestMapping(value = "/directkb/select_kb_presswork17", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPresswork17(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbPresswork17(params);
+	}
+	// 입력 : uid
+	@RequestMapping(value = "/directkb/select_kb_presswork18", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPresswork18(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbPresswork18(params);
+	}
+	// 입력 : uid
+	@RequestMapping(value = "/directkb/select_kb_presswork19", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbPresswork19(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbPresswork19(params);
+	}
 	
 	// TODO 제본비
 	// 입력 : tdate
@@ -141,6 +211,66 @@ public class DirectKbController {
 	public DirectKbVO selKbBinding3(@RequestBody DirectKbVO params) throws Exception {
 		return directKbSVC.selKbBinding3(params);
 	}
+	// 입력 : idate
+	@RequestMapping(value = "/directkb/select_kb_binding4", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding4(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding4(params);
+	}
+	// 입력 : cdate7, ccode7
+	@RequestMapping(value = "/directkb/select_kb_binding5", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding5(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding5(params);
+	}
+	// 입력 : idate
+	@RequestMapping(value = "/directkb/select_kb_binding6", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding6(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding6(params);
+	}
+	// 입력 : t1id, idate
+	@RequestMapping(value = "/directkb/select_kb_binding7", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding7(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding7(params);
+	}
+	// 입력 : t1id
+	@RequestMapping(value = "/directkb/select_kb_binding8", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding8(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding8(params);
+	}
+	// 입력 : uid
+	@RequestMapping(value = "/directkb/select_kb_binding9", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding9(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding9(params);
+	}
+	// 입력 : fieldname1, fieldname2, sbbook
+	@RequestMapping(value = "/directkb/select_kb_binding10", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding10(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding10(params);
+	}
+	// 입력 : crnum7
+	@RequestMapping(value = "/directkb/select_kb_binding11", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding11(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding11(params);
+	}
+	// 입력 : tcode, bucode
+	@RequestMapping(value = "/directkb/select_kb_binding12", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding12(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding12(params);
+	}
+	// 입력 : listid
+	@RequestMapping(value = "/directkb/select_kb_binding13", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding13(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding13(params);
+	}
+	// 입력 : jbdate, m3
+	@RequestMapping(value = "/directkb/select_kb_binding14", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding14(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding14(params);
+	}
+	// 입력 : crnum7
+	@RequestMapping(value = "/directkb/select_kb_binding15", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbBinding15(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbBinding15(params);
+	}
 	
 	// TODO 코팅비
 	// 입력 : date1, date2
@@ -153,7 +283,30 @@ public class DirectKbController {
 	public List<DirectKbVO> selKbCoating2(@RequestBody DirectKbVO params) throws Exception {
 		return directKbSVC.selKbCoating2(params);
 	}
-	
+	@RequestMapping(value = "/directkb/select_kb_coating3", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbCoating3() throws Exception {
+		return directKbSVC.selKbCoating3();
+	}
+	// 입력 : date1, date2, wccode
+	@RequestMapping(value = "/directkb/select_kb_coating4", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbCoating4(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbCoating4(params);
+	}
+	// 입력 : uid
+	@RequestMapping(value = "/directkb/select_kb_coating5", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbCoating5(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbCoating5(params);
+	}
+	// 입력 : date1, date2, wccode
+	@RequestMapping(value = "/directkb/select_kb_coating6", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbCoating6(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbCoating6(params);
+	}
+	// 입력 : uid
+	@RequestMapping(value = "/directkb/select_kb_coating7", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbCoating7(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbCoating7(params);
+	}
 	
 	// TODO 비닐비, 케이스대, CD음반대, 스티커대, 기타
 	// 입력 : tag, date1, date2
@@ -185,6 +338,40 @@ public class DirectKbController {
 	@RequestMapping(value="/directkb/update_kb_op29", method=RequestMethod.POST)
 	public boolean upOp29(@RequestBody DirectKbVO params) throws Exception {
 		return directKbSVC.upOp29(params);
+	}
+	// 입력 : key, keyfield
+	@RequestMapping(value = "/directkb/select_kb_management6", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbManagement6(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbManagement6(params);
+	}
+	// 입력 : 
+	@RequestMapping(value="/directkb/update_kb_management1", method=RequestMethod.POST)
+	public boolean upKbManagement1(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.upKbManagement1(params);
+	}
+	// 입력 : 
+	@RequestMapping(value = "/directkb/select_kb_management7", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbManagement7(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbManagement7(params);
+	}
+	// 입력 : 
+	@RequestMapping(value="/directkb/update_kb_management2", method=RequestMethod.POST)
+	public boolean upKbManagement2(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.upKbManagement2(params);
+	}
+	// 입력 : 
+	@RequestMapping(value = "/directkb/select_kb_management8", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbManagement8(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.selKbManagement8(params);
+	}
+	@RequestMapping(value = "/directkb/select_kb_management9", method = RequestMethod.POST)
+	public List<DirectKbVO> selKbManagement9() throws Exception {
+		return directKbSVC.selKbManagement9();
+	}
+	// 입력 : 
+	@RequestMapping(value="/directkb/insert_kb_management1", method=RequestMethod.POST)
+	public boolean inKbManagement1(@RequestBody DirectKbVO params) throws Exception {
+		return directKbSVC.inKbManagement1(params);
 	}
 	
 }

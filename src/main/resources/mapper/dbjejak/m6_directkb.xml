@@ -5,40 +5,61 @@
 	<!-- 용지대 -->
 	<select id="selKbYongji1" resultType="directKbVO">
 		SELECT wccode, wcname 
-		FROM KSWCUST0 
+		FROM jejak.KSWCUST0 
 		WHERE wcjob LIKE '용지' 
 		ORDER BY wccode ASC
 	</select>
 	
 	<select id="selKbYongji2" resultType="directKbVO">
 		SELECT COUNT(uid) AS count, SUM(tprice) AS sum 
-		FROM JIINOUT 
+		FROM jejak.JIINOUT 
 		WHERE date <![CDATA[ >= ]]> #{date1} 
 			AND date <![CDATA[ < ]]> #{date2} 
 			AND comid LIKE #{wccode}
 	</select>
 	
+	<select id="selKbYongji3" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.KSWCUST0 
+		WHERE wccode LIKE #{wccode}
+	</select>
+	
+	<select id="selKbYongji4" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.JIINOUT 
+		WHERE date <![CDATA[ >= ]]> #{date1}
+			AND date <![CDATA[ <= ]]> #{date2}
+			AND comid LIKE #{wccode}
+		ORDER BY date ASC, jicode ASC
+	</select>
+	
+	<select id="selKbYongji5" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.KSWJIJL0 
+		WHERE wjcode LIKE #{jicode}
+	</select>
+	
 	<!-- 출력료 -->
 	<select id="selKbPrint1" resultType="directKbVO">
 		SELECT a.uid, a.cdate, a.cgubn, a.cprice, b.wcname 
-		FROM BITABLE3 AS a , KSWCUST0 AS b 
+		FROM jejak.BITABLE3 AS a , jejak.KSWCUST0 AS b 
 		WHERE b.wccode = a.ccode 
 		ORDER BY a.cdate ASC, a.uid ASC
 	</select>
 	
 	<select id="selKbPrint2" resultType="directKbVO">
 		SELECT wccode, wcname 
-		FROM KSWCUST0 
+		FROM jejak.KSWCUST0 
 		WHERE wcjob='출력'
 	</select>
 	
 	<select id="selKbPrint3" resultType="directKbVO">
 		SELECT max(uid) AS max_uid 
-		FROM BITABLE3
+		FROM jejak.BITABLE3
 	</select>
 	
 	<insert id="inKbPrint" parameterType="directKbVO">
-		INSERT INTO BITABLE3 (
+		INSERT INTO jejak.BITABLE3 (
 			uid, ccode, cdate, cgubn, cprice
 		) VALUES ( 
 			#{uid}, #{ccode}, #{cdate}, #{cgubn}, #{cprice}
@@ -48,24 +69,24 @@
 	<!-- 사보료 -->
 	<select id="selKbHouseOrgan1" resultType="directKbVO">
 		SELECT a.uid, a.cdate, a.cgubn, a.cprice, b.wcname 
-		FROM BITABLE2 AS a , KSWCUST0 AS b 
+		FROM jejak.BITABLE2 AS a, jejak.KSWCUST0 AS b 
 		WHERE b.wccode = a.ccode 
 		ORDER BY a.cdate ASC, a.uid ASC
 	</select>
 	
 	<select id="selKbHouseOrgan2" resultType="directKbVO">
 		SELECT wccode, wcname 
-		FROM KSWCUST0 
+		FROM jejak.KSWCUST0 
 		WHERE wcjob='사보'
 	</select>
 	
 	<select id="selKbHouseOrgan3" resultType="directKbVO">
 		SELECT max(uid) AS max_uid 
-		FROM BITABLE2
+		FROM jejak.BITABLE2
 	</select>
 	
 	<insert id="inKbHouseOrgan" parameterType="directKbVO">
-		INSERT INTO BITABLE2 (
+		INSERT INTO jejak.BITABLE2 (
 			uid, ccode, cdate, cgubn, cprice
 		) VALUES ( 
 			#{uid}, #{ccode}, #{cdate}, #{cgubn}, #{cprice}
@@ -75,7 +96,7 @@
 	<!-- 인쇄비 -->
 	<select id="selKbPresswork1" resultType="directKbVO">
 		SELECT a.uid, a.listid, a.bdate, a.crnum, a.bucode, b.bname, b.bcode, c.wcname, c.tax 
-		FROM TMPLIST2 AS a, TMPLIST AS b, KSWCUST0 AS c 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSWCUST0 AS c 
 		WHERE a.listid = b.uid 
 			AND a.m1 = c.wccode 
 			AND a.bdate <![CDATA[ >= ]]> #{date1}
@@ -85,19 +106,19 @@
 	
 	<select id="selKbPresswork2" resultType="directKbVO">
 		SELECT op52, sum5
-		FROM TMPLIST5 
+		FROM jejak.TMPLIST5 
 		WHERE listid5 = #{uid}
 	</select>
 	
 	<select id="selKbPresswork3" resultType="directKbVO">
 		SELECT pcost 
-		FROM TMPLIST3 
+		FROM jejak.TMPLIST3 
 		WHERE listid = #{uid}
 	</select>
 	
 	<select id="selKbPresswork4" resultType="directKbVO">
 		SELECT uid, jbdate, jbname 
-		FROM TMPJAB 
+		FROM jejak.TMPJAB 
 		WHERE jbdate <![CDATA[ >= ]]> #{date1}
 			AND jbdate <![CDATA[ < ]]> #{date2}
 		ORDER BY uid ASC
@@ -105,46 +126,125 @@
 	
 	<select id="selKbPresswork5" resultType="directKbVO">
 		SELECT sum5 
-		FROM TMPJAB5 
+		FROM jejak.TMPJAB5 
 		WHERE listid = #{uid}
 	</select>
 	
 	<select id="selKbPresswork6" resultType="directKbVO">
 		SELECT pcost 
-		FROM TMPJAB3 
+		FROM jejak.TMPJAB3 
 		WHERE jbid = #{uid}
 	</select>
 	
 	<select id="selKbPresswork7" resultType="directKbVO">
 		SELECT a.crnum, a.bdate, a.m1, b.bname, b.bcode, c.wcname, c.tax
-		FROM TMPLIST2 AS a, TMPLIST AS b, KSWCUST0 AS c
-		WHERE a.uid = #{uid}
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSWCUST0 AS c
+		WHERE a.uid = #{uid} 
 			AND a.listid = b.uid 
 			AND a.m1 = c.wccode
 	</select>
 	
 	<select id="selKbPresswork8" resultType="directKbVO">
 		SELECT filmcost5, daeji5, gubn5, filmnum5, filmdan5, uid, op52, sobu5, panst5, pannum5, sobudan5
-		FROM TMPLIST5
+		FROM jejak.TMPLIST5
 		WHERE listid5 = #{uid}
 	</select>
 	
 	<select id="selKbPresswork9" resultType="directKbVO">
 		SELECT pcost, gubn, rnum, colo, pdanga 
-		FROM TMPLIST3 
+		FROM jejak.TMPLIST3 
 		WHERE listid = #{uid}
 	</select>
 	
 	<update id="upKbPressworkOp52" parameterType="directKbVO">
-		UPDATE TMPLIST5 SET 
+		UPDATE jejak.TMPLIST5 SET 
 			op52 = #{op52}
 		WHERE listid5 = #{uid}
 	</update>
 	
+	<select id="selKbPresswork10" resultType="directKbVO">
+		SELECT sobu5 
+		FROM jejak.TMPLIST5 
+		WHERE uid = #{uid}
+	</select>
+	
+	<update id="upKbPresswork2" parameterType="directKbVO">
+		UPDATE jejak.TMPLIST5 SET 
+			filmnum5 = 0, filmdan5 = 0, filmcost5 = 0, daeji5 = #{daeji5}, sum5 = #{sum5}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selKbPresswork11" resultType="directKbVO">
+		SELECT a.*, b.bname, b.bpanh 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b 
+		WHERE (date_format(from_unixtime(a.bdate), '%Y%m') = #{bdate}) 
+			AND a.listid = b.uid 
+		    AND a.m1 LIKE '1001' 
+		ORDER BY a.bdate ASC, a.uid ASC
+	</select>
+	
+	<select id="selKbPresswork12" resultType="directKbVO">
+		SELECT sum(pannum5) AS pnum, sobudan5, sum(filmnum5) AS fnum, filmdan5, sum(daeji5) AS daeji 
+		FROM jejak.TMPLIST5 
+		WHERE listid5 = #{uid} 
+		GROUP BY listid5
+	</select>
+	
+	<select id="selKbPresswork13" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.TMPJAB 
+		WHERE (date_format(from_unixtime(jbdate), '%Y%m') = #{bdate}) 
+			AND M1 LIKE '1001' 
+		ORDER BY jbdate ASC
+	</select>
+	
+	<select id="selKbPresswork14" resultType="directKbVO">
+		SELECT sum(pannum5) AS pnum, sobudan5, sum(daeji5) AS daeji 
+		FROM jejak.TMPJAB5 
+		WHERE listid = #{uid} 
+		GROUP BY listid
+	</select>
+	
+	<select id="selKbPresswork15" resultType="directKbVO">
+		SELECT a.*, b.bname, b.bcode, b.bpanh 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b
+		WHERE (date_format(from_unixtime(a.bdate), '%Y%m') = #{bdate}) 
+			AND a.listid=b.uid 
+			AND a.m1 like '1001' 
+		ORDER BY a.bdate ASC, a.uid ASC
+	</select>
+	
+	<select id="selKbPresswork16" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE listid = #{uid} 
+	</select>
+	
+	<select id="selKbPresswork17" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.TMPJAB 
+		WHERE (date_format(from_unixtime(jbdate), '%Y%m') = #{bdate})
+			AND m1 LIKE '1001' 
+		ORDER BY JBDATE ASC
+	</select>
+	
+	<select id="selKbPresswork18" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.TMPJAB3 
+		WHERE jbid = #{uid} 
+	</select>
+	
+	<select id="selKbPresswork19" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.BIJAB7 
+		WHERE crnum7 = #{uid} 
+			AND ccode7 = '3999'
+	</select>
+	
 	<!-- 제본비 -->
 	<select id="selKbBinding1" resultType="directKbVO">
 		SELECT a.t1id, a.idate, b.juid, b.jdate, b.bookcode, b.bookname, b.jnum, c.wcname
-		FROM IBTABLE2 AS a , IBTABLE AS b, KSWCUST0 AS c, TMPLIST2 AS d
+		FROM jejak.IBTABLE2 AS a , jejak.IBTABLE AS b, jejak.KSWCUST0 AS c, jejak.TMPLIST2 AS d
 		WHERE a.idate LIKE #{tdate} 
 			AND b.uid = a.t1id
 			AND d.uid = b.juid 
@@ -154,21 +254,101 @@
 	
 	<select id="selKbBinding2" resultType="directKbVO">
 		SELECT uid2 
-		FROM IBTABLE2 
+		FROM jejak.IBTABLE2 
 		WHERE t1id = #{t1id}
-		AND idate <![CDATA[ < ]]> #{idate}
+			AND idate <![CDATA[ < ]]> #{idate}
 	</select>
 	
 	<select id="selKbBinding3" resultType="directKbVO">
 		SELECT sum(totcost7) as sum_totcost7
-		FROM BITABLE7 
+		FROM jejak.BITABLE7 
 		WHERE crnum7 = #{juid}
+	</select>
+	
+	<select id="selKbBinding4" resultType="directKbVO">
+		SELECT ccode 
+		FROM jejak.IBTABLE2 
+		WHERE idate LIKE CONCAT(#{idate}, '%')
+		GROUP BY ccode 
+		ORDER BY ccode ASC
+	</select>
+	
+	<select id="selKbBinding5" resultType="directKbVO">
+		SELECT sum(totcost7) as sum_totcost7
+		FROM jejak.BITABLE7 
+		WHERE ccode7 = #{ccode7} 
+			AND (date_format(from_unixtime(cdate7), '%Y%m') = #{cdate7})
+	</select>
+	
+	<select id="selKbBinding6" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.IBTABLE2 
+		WHERE idate LIKE CONCAT(#{idate}, '%')
+		ORDER BY t1id ASC
+	</select>
+	
+	<select id="selKbBinding7" resultType="directKbVO">
+		SELECT uid2 
+		FROM jejak.IBTABLE2 
+		WHERE t1id = #{t1id} 
+			AND idate <![CDATA[ < ]]> #{idate} 
+	</select>
+	
+	<select id="selKbBinding8" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.IBTABLE 
+		WHERE uid = #{t1id} 
+	</select>
+	
+	<select id="selKbBinding9" resultType="directKbVO">
+		SELECT bucode 
+		from jejak.TMPLIST2 
+		WHERE uid = #{uid} 
+	</select>
+	
+	<select id="selKbBinding10" resultType="directKbVO">
+		SELECT ${fieldname1}, ${fieldname2}, sbname 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook LIKE #{sbbook} 
+	</select>
+	
+	<select id="selKbBinding11" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.BITABLE7
+		WHERE crnum7 = #{crnum7} 
+	</select>
+	
+	<select id="selKbBinding12" resultType="directKbVO">
+		SELECT sum(wdqnty) AS sum_wdqnty
+		FROM jejak.KSWDESU0 
+		WHERE wdbook LIKE #{tcode} 
+			AND wdboo9 LIKE #{bucode}
+	</select>
+	
+	<select id="selKbBinding13" resultType="directKbVO">
+		SELECT count(uid) AS count_uid
+		FROM jejak.TMPLIST3
+		WHERE listid = #{listid}
+			AND gubn LIKE '표지'
+	</select>
+	
+	<select id="selKbBinding14" resultType="directKbVO">
+		SELECT uid 
+		FROM jejak.TMPJAB 
+		WHERE (date_format(from_unixtime(jbdate), '%Y%m') = #{jbdate}) 
+			AND m3 = #{m3}
+	</select>
+	
+	<select id="selKbBinding15" resultType="directKbVO">
+		SELECT totcost7 
+		FROM jejak.BIJAB7 
+		WHERE crnum7 = #{crnum7}
 	</select>
 	
 	<!-- 코팅비 -->
 	<select id="selKbCoating1" resultType="directKbVO">
 		SELECT a.uid, a.bdate, a.crnum, b.bname, b.bcode, c.totcost8, c.cnum8, c.cprice8
-		FROM TMPLIST2 AS a, TMPLIST AS b ,BITABLE8 AS c
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.BITABLE8 AS c
 		WHERE a.bdate <![CDATA[ >= ]]> #{date1}
 			AND a.bdate <![CDATA[ < ]]> #{date2}
 			AND a.listid = b.uid 
@@ -178,17 +358,56 @@
 	
 	<select id="selKbCoating2" resultType="directKbVO">
 		SELECT a.uid, a.jbdate, a.jbname, b.totcost8, b.cnum8, b.cprice8
-		FROM TMPJAB AS a, BIJAB8 AS b
+		FROM jejak.TMPJAB AS a, jejak.BIJAB8 AS b
 		WHERE a.jbdate <![CDATA[ >= ]]> #{date1}
 			AND a.jbdate <![CDATA[ < ]]> #{date2}
 		    AND b.crnum8 = a.uid
 		ORDER BY a.jbdate ASC, a.uid ASC
 	</select>
 	
+	<select id="selKbCoating3" resultType="directKbVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE jmfield LIKE 'CT1' 
+			OR jmfield LIKE 'CT2' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selKbCoating4" resultType="directKbVO">
+		SELECT a.*, b.bname, b.bcode 
+		FROM jejak.TMPLIST2 AS a, TMPLIST AS b 
+		WHERE a.bdate <![CDATA[ >= ]]> #{date1}
+			AND a.bdate <![CDATA[ < ]]> #{date2}
+			AND a.m2 LIKE #{wccode}
+			AND a.listid = b.uid 
+		ORDER BY a.bdate ASC, a.uid ASC
+	</select>
+	
+	<select id="selKbCoating5" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.BITABLE8 
+		WHERE crnum8 = #{uid}
+	</select>
+	
+	<select id="selKbCoating6" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.TMPJAB 
+		WHERE jbdate <![CDATA[ >= ]]> #{date1}
+			AND jbdate <![CDATA[ < ]]> #{date2}
+			AND m2 LIKE #{wccode}
+		ORDER BY jbdate ASC, uid ASC
+	</select>
+	
+	<select id="selKbCoating7" resultType="directKbVO">
+		SELECT * 
+		FROM BIJAB8 
+		WHERE crnum8 = #{uid}
+	</select>
+	
 	<!-- 비닐비, 케이스대, CD음반대, 스티커대, 기타 -->
 	<select id="selKbManagement1" resultType="directKbVO">
 		SELECT a.uid, a.cprice9, a.cnum9, a.cdate9, a.ccode9, a.bcode9, b.sbname, c.wcname 
-		FROM BITABLE9 AS a, KSCBOOK0 AS b , KSWCUST0 AS c
+		FROM jejak.BITABLE9 AS a, jejak.KSCBOOK0 AS b , jejak.KSWCUST0 AS c
 		WHERE a.cdate9 <![CDATA[ >= ]]> #{date1}
 			AND a.cdate9 <![CDATA[ < ]]> #{date2}
 		    AND a.bitag = #{tag}
@@ -201,7 +420,7 @@
 	
 	<select id="selKbManagement2" resultType="directKbVO">
 		SELECT a.uid, a.cprice9, a.cnum9, a.cdate9, a.ccode9, a.bcode9, b.sbname, c.wcname
-		FROM BIJAB9 AS a, KSCBOOK0 AS b , KSWCUST0 AS c
+		FROM jejak.BIJAB9 AS a, jejak.KSCBOOK0 AS b , jejak.KSWCUST0 AS c
 		WHERE a.cdate9 <![CDATA[ >= ]]> #{date1}
 			AND a.cdate9 <![CDATA[ < ]]> #{date2}
 		    AND a.bitag = #{tag}
@@ -214,13 +433,13 @@
 	
 	<select id="selKbManagement3" resultType="directKbVO">
 		SELECT wcname, wccode, tax 
-		FROM KSWCUST0 
+		FROM jejak.KSWCUST0 
 		WHERE wccode = #{ccode9}
 	</select>
 	
 	<select id="selKbManagement4" resultType="directKbVO">
 		SELECT a.uid, a.cnum9, a.cprice9, a.op29, a.cdate9, a.ccode9, b.sbbook, b.sbname 
-		FROM BITABLE9 AS a, KSCBOOK0 AS b 
+		FROM jejak.BITABLE9 AS a, jejak.KSCBOOK0 AS b 
 		WHERE a.ccode9 = #{ccode9}
 			AND a.bitag = #{tag}
 			AND a.bcode9 = b.sbbook 
@@ -230,7 +449,7 @@
 	
 	<select id="selKbManagement5" resultType="directKbVO">
 		SELECT a.uid, a.cnum9, a.cprice9, a.op29, a.cdate9, a.ccode9, b.sbbook, b.sbname 
-		FROM BIJAB9 AS a, KSCBOOK0 AS b 
+		FROM jejak.BIJAB9 AS a, jejak.KSCBOOK0 AS b 
 		WHERE a.ccode9 = #{ccode9}
 			AND a.bitag = #{tag}
 			AND a.bcode9 = b.sbbook 
@@ -239,8 +458,54 @@
 	</select>
 	
 	<update id="upOp29" parameterType="directKbVO">
-		UPDATE BITABLE9 SET 
+		UPDATE jejak.BITABLE9 SET 
 			op29 = #{tval} 
 		WHERE uid = #{uid}
 	</update>
+	
+	<select id="selKbManagement6" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.KSWCUST0 
+		WHERE ${key} LIKE CONCAT('%', #{keyfield}, '%')
+		ORDER BY wcname ASC, uid ASC
+	</select>
+	
+	<update id="upKbManagement1" parameterType="directKbVO">
+		UPDATE jejak.BITABLE9 SET 
+			cprice9 = #{cprice9}  
+		WHERE uid = #{uid}  
+	</update>
+	
+	<select id="selKbManagement7" resultType="directKbVO">
+		SELECT crnum9 
+		FROM jejak.BITABLE9 
+		WHERE uid = #{uid}  
+	</select>
+	
+	<update id="upKbManagement2" parameterType="directKbVO">
+		UPDATE jejak.TWONGA SET 
+			${fieldname} = #{cprice9}   
+		WHERE jenum = #{jenum}  
+			AND uid <![CDATA[ <> ]]> 0
+	</update>
+	
+	<select id="selKbManagement8" resultType="directKbVO">
+		SELECT * 
+		FROM jejak.KSCBOOK0 
+		WHERE REPLACE(${key}, ' ', '') LIKE CONCAT('%', #{keyfield}, '%') 
+		ORDER BY sbname ASC, sbbook DESC, uid ASC
+	</select>
+	
+	<select id="selKbManagement9" resultType="directKbVO">
+		SELECT max(uid) AS max_uid
+		FROM jejak.BITABLE9
+	</select>
+	
+	<insert id="inKbManagement1" parameterType="directKbVO">
+		INSERT INTO jejak.BITABLE9 (
+			uid, ccode9, bcode9, cdate9, cprice9, bitag
+		) values (
+			#{uid}, #{ccode9}, #{bcode9}, #{cdate9}, #{cprice9}, 5
+		)
+	</insert>
 </mapper>

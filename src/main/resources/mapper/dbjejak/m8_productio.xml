@@ -2,37 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guru.erpserver.mapper.dbjejak.ProductIOMapper">
 
+	<!-- 폐기관리 -->
+	<select id="selDisposalManagement1" resultType="productIOVO">
+		SELECT max(s1bunh) 
+		FROM jejak.KS1${dbname}A 
+		WHERE s1ilja = #{s1ilja}
+			AND s1gubn = 'F'
+	</select>
+
 	<!-- 구매일보 -->
 	<select id="selPurchaseDaily1" resultType="productIOVO">
 		SELECT s1ilja
-		FROM KS1${dbname}A
+		FROM jejak.KS1${dbname}A
 		WHERE s1gubn LIKE 'A' 
-		GROUP BY s1ilja ASC
+		GROUP BY s1ilja 
+		ORDER BY s1ilja ASC
 	</select>
 	
 	<select id="selPurchaseDaily2" resultType="productIOVO">
 		SELECT s1cust, s1book, s1qnty, s1dang, s1uprc, s1amnt, s1bunh 
-		FROM KS1${dbname}A
+		FROM jejak.KS1${dbname}A
 		WHERE s1ilja LIKE #{date}
 			AND s1gubn LIKE 'A' 
 		ORDER BY s1cust ASC
 	</select>
 	
+	<select id="selPurchaseDaily2_2" resultType="productIOVO">
+		SELECT s1cust, s1book, s1qnty, s1dang, s1uprc, s1amnt, s1bunh 
+		FROM jejak.KS1${dbname}A
+		WHERE s1ilja LIKE #{date}
+			AND s1gubn LIKE 'A' 
+		ORDER BY s1bunh ASC, s1cust ASC
+	</select>
+	
 	<select id="selPurchaseDaily3" resultType="productIOVO">
 		SELECT sbname 
-		FROM KSCBOOK0 
+		FROM jejak.KSCBOOK0 
 		WHERE sbbook LIKE #{s1book}
 	</select>
 	
 	<select id="selPurchaseDaily4" resultType="productIOVO">
 		SELECT wccode2, wcname 
-		FROM KSWCUST0 
+		FROM jejak.KSWCUST0 
 		WHERE wccode2 LIKE #{s1cust}
 	</select>
 	
 	<select id="selPurchaseDaily5" resultType="productIOVO">
 		SELECT a.jdate, a.jnum, a.juid 
-		FROM IBTABLE AS a, IBTABLE2 AS b 
+		FROM jejak.IBTABLE AS a, jejak.IBTABLE2 AS b 
 		WHERE b.pnum LIKE #{s1bunh} 
 			AND b.idate LIKE #{date} 
 		    AND a.uid = b.t1id 
@@ -42,7 +59,7 @@
 	<!-- 월입고현황표 -->
 	<select id="selMonStockStatusTable" resultType="productIOVO">
 		SELECT a.*, b.wcname, c.wtotal, c.wdanga 
-		FROM IBTABLE AS a, KSWCUST0 as b, TWONGA AS c
+		FROM jejak.IBTABLE AS a, jejak.KSWCUST0 as b, jejak.TWONGA AS c
 		WHERE a.jdate <![CDATA[ >= ]]> #{date1}
 			AND a.jdate <![CDATA[ < ]]> #{date2}
 			AND a.m3 = b.wccode 
@@ -52,22 +69,39 @@
 	</select>
 	
 	<update id="upMonStockStatusTable1" parameterType="productIOVO">
-		UPDATE IBTABLE 
+		UPDATE jejak.IBTABLE 
 		SET fchk = 1 
 		WHERE uid = #{uid}
 	</update>
 	
 	<update id="upMonStockStatusTable2" parameterType="productIOVO">
-		UPDATE IBTABLE2 
+		UPDATE jejak.IBTABLE2 
 		SET fchk2 = 1 
 		WHERE t1id = #{uid}
 		ORDER BY idate DESC LIMIT 1
 	</update>
 	
-	<!-- 월입고현황표 디테일 -->
-	<select id="selMonStockStatusTableDetail1" resultType="productIOVO">
+	<select id="selMonStockStatusTable2" resultType="productIOVO"> 
+		SELECT a.*, b.wcname, c.wtotal, c.wdanga 
+		FROM jejak.IBTABLE AS a, jejak.KSWCUST0 as b, jejak.TWONGA AS c
+		WHERE a.jdate <![CDATA[ >= ]]> #{date1}
+			AND a.jdate <![CDATA[ < ]]> #{date2}
+			AND a.m3 = b.wccode 
+			AND a.juid = c.jenum 
+			AND c.jabtag = 0 
+		ORDER BY a.subsuns ASC
+	</select>
+	
+	<select id="selMonStockStatusTable3" resultType="productIOVO">
+		SELECT *
+		FROM jejak.IBTABLE2
+		WHERE t1id = #{uid}
+		ORDER BY idate ASC, uid2 ASC
+	</select>
+	
+	<select id="selMonStockStatusTableDetail1" resultType="productIOVO"> <!-- 월입고현황표 디테일 -->
 		SELECT a.*, b.wcname, c.wtotal 
-		FROM IBTABLE AS a, KSWCUST0 AS b, TWONGA AS c 
+		FROM jejak.IBTABLE AS a, jejak.KSWCUST0 AS b, jejak.TWONGA AS c 
 		WHERE a.uid = #{uid}
 			AND a.m3 = b.wccode 
 		    AND a.juid = c.jenum
@@ -75,21 +109,213 @@
 	
 	<select id="selMonStockStatusTableDetail2" resultType="productIOVO">
 		SELECT * 
-		FROM IBTABLE2 
+		FROM jejak.IBTABLE2 
 		WHERE t1id = #{uid}
 		ORDER BY idate ASC, uid2 ASC
+	</select> 
+	
+	<!-- 재고조회 -->
+	<select id="selInventoryInquiry1" resultType="productIOVO">
+		SELECT a.sbpegi, a.sbname, a.sbbook, a.sbuprc, b.sqcrnm0
+		FROM sky.KSCBOOK0 AS a, sky.KSCQNTY0 AS b 
+		WHERE a.sbbook <![CDATA[ >= ]]> #{sbbook}
+			and a.sbbook = b.sqbook 
+		ORDER BY a.sbbook ASC 
+		LIMIT #{lm_s}, 30
+	</select>
+	
+	<select id="selInventoryInquiry2" resultType="productIOVO">
+		SELECT sqcrnm 
+		FROM jejak.KSCQNTY0 
+		WHERE sqbook = #{sqbook}
+	</select>
+	
+	<select id="selInventoryInquiry3" resultType="productIOVO">
+		SELECT sbbook, sbname, sbpegi
+		FROM jejak.KSCBOOK0 
+		WHERE (sbbook LIKE CONCAT('%', #{bname}, '%')) 
+			or (REPLACE(sbname,' ', '') LIKE CONCAT('%', #{bname}, '%')) 
+		order by sbname asc, sbbook ASC
+	</select>
+	
+	
+	<!-- 월간거래처구분별일일집계 -->
+	<select id="selMonCuDailyTotal1" resultType="productIOVO">
+		SELECT wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wccode2 = #{wccode2} limit 1
+	</select>
+	
+	<select id="selMonCuDailyTotal2" resultType="productIOVO">
+		SELECT s1ilja, s1bunh, sum(s1qnty) as sum1, sum(s1amnt) as sum2 
+		FROM jejak.KS1${dbname}A
+		WHERE s1ilja <![CDATA[ >= ]]> #{s1ilja1}
+			and s1ilja <![CDATA[ <= ]]> #{s1ilja2}
+		    and s1gubn = #{s1gubn}
+		    and s1cust = #{s1cust}
+		GROUP BY s1ilja, s1bunh 
+		ORDER BY s1ilja ASC, s1bunh ASC
+	</select>
+	
+	<!-- 도서수불카드 -->
+	<select id="selBookPaymentCard1" resultType="productIOVO">
+		SELECT sbname
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook = #{sbbook} LIMIT 1
+	</select>
+	
+	<select id="selBookPaymentCard2" resultType="productIOVO">
+		SELECT * 
+		FROM jejak.KTBKS${dbname}0
+		WHERE tbsbook = #{sbbook}
+			AND tbmgubn <![CDATA[ < ]]> #{month}
+	</select>
+	
+	<select id="selBookPaymentCard3" resultType="productIOVO">
+		SELECT sum(CASE WHEN s1gubn='A' THEN s1qnty ELSE 0 END) AS sum1, 
+			sum(CASE WHEN s1gubn='B' THEN s1qnty ELSE 0 END) AS sum2, 
+			sum(CASE WHEN s1gubn='C' THEN s1qnty ELSE 0 END) AS sum3, 
+			sum(CASE WHEN s1gubn='D' THEN s1qnty ELSE 0 END) AS sum4, 
+			sum(CASE WHEN s1gubn='E' THEN s1qnty ELSE 0 END) AS sum5, 
+			sum(CASE WHEN s1gubn='F' THEN s1qnty ELSE 0 END) AS sum6, s1cust, s1ilja, s1bunh 
+		FROM jejak.KS1${dbname}A
+		WHERE s1book = #{sbbook}
+		GROUP BY s1bunh, s1ilja 
+		ORDER BY s1ilja ASC, s1bunh ASC
+	</select>
+	
+	<!-- 거래명세서일일번호별집계 -->
+	<select id="selDealDailyNumber1" resultType="productIOVO">
+		SELECT a.s1ilja, a.s1bunh, a.s1cust, sum(a.s1qnty) AS sum1, sum(a.s1amnt) AS sum2, a.s1kgub, b.wcname 
+		FROM jejak.KS1${dbname}A AS a, jejak.KSWCUST0 AS b 
+		WHERE a.s1gubn = #{s1gubn}
+			AND a.s1cust = b.wccode2 
+		GROUP BY a.s1ilja, a.s1bunh 
+		ORDER BY a.s1ilja ASC
+	</select>
+	
+	<select id="selDealDailyNumber2" resultType="productIOVO">
+		SELECT a.s1bunh, a.s1cust, sum(a.s1qnty) AS sum1, sum(a.s1amnt) AS sum2, b.wcname 
+		FROM jejak.KS1${dbname}A AS a, jejak.KSWCUST0 AS b 
+		WHERE a.s1ilja = #{s1ilja}
+			AND a.s1gubn = #{s1gubn}
+		    AND a.s1cust = b.wccode2 
+		GROUP BY s1bunh 
+		ORDER BY s1bunh ASC
+	</select>
+	
+	<select id="selDealDailyNumber3" resultType="productIOVO"> <!-- 계산서 인쇄 준비-->
+		SELECT s1ilja, s1cust, SUM(s1qnty) AS sum1, SUM(s1amnt) AS sum2 
+		FROM jejak.KS1${dbname}A 
+		WHERE s1gubn LIKE #{s1gubn}
+			AND s1cust NOT LIKE '1006' 
+		GROUP BY s1ilja, s1cust 
+		ORDER BY s1ilja ASC
+	</select>
+	
+	<select id="selDealDailyNumber3_2" resultType="productIOVO">
+		SELECT s1cust, sum(s1qnty) AS sum1, sum(s1amnt) AS sum2 
+		FROM jejak.KS1${dbname}A 
+		WHERE s1gubn = #{s1gubn}
+			AND s1cust LIKE '1006' 
+		GROUP BY s1cust
+	</select>
+	
+	<select id="selDealDailyNumber4" resultType="productIOVO">
+		SELECT * 
+		FROM jejak.${dbname}
+		WHERE s3ilja LIKE #{s3ilja}
+			AND s3cust LIKE #{s3cust}
+		    AND s3gubn LIKE #{s1gubn}
+	</select>
+	
+	<select id="selDealDailyNumber4_2" resultType="productIOVO">
+		SELECT * 
+		FROM jejak.${dbname} 
+		WHERE s3ilja LIKE #{s3ilja}
+			AND s3cust LIKE #{s3cust}
+			AND S3GUBN LIKE #{s1gubn}
+			AND S3CJIL LIKE '월합'
+	</select>
+	
+	<update id="upDealDailyNumber1" parameterType="productIOVO">
+		UPDATE jejak.${dbname}
+		SET s3qnty = #{s3qnty}, s3amnt = #{s3amnt}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selDealDailyNumber5" resultType="productIOVO">
+		SELECT max(s3balb) as max_s3balb 
+		FROM jejak.${dbname}
+		WHERE s3ilja >= #{s3ilja}
+	</select>
+	
+	<insert id="inDealDailyNumber1" parameterType="productIOVO">
+		INSERT INTO jejak.${dbname} (
+			s3ilja, s3gubn, s3balb, s3cust, s3qnty, s3amnt, s3cjil, s3sgub, s3mank
+		) VALUES (
+			#{s3ilja}, #{s3gubn}, #{s3balb}, #{s3cust}, #{s3qnty}, #{s3amnt}, #{s3cjil}, '2', #{s3mank}
+		)
+	</insert>
+	
+	<select id="selDealDailyNumber6" resultType="productIOVO"> <!-- 계산서 인쇄 -->
+		SELECT * 
+		FROM jejak.${dbname}
+		WHERE s3ilja <![CDATA[ >= ]]> #{s3ilja1}
+			AND s3ilja <![CDATA[ <= ]]> #{s3ilja2}
+		    AND s3gubn LIKE #{s3gubn}
+		    AND s3cust NOT LIKE '1006'
+	</select>
+	
+	<select id="selDealDailyNumber7" resultType="productIOVO">
+		SELECT * 
+		FROM jejak.${dbname}
+		WHERE s3ilja LIKE CONCAT(#{s3ilja}, '%')
+			AND s3gubn LIKE #{s3gubn}
+		    AND s3cust LIKE '1006' 
+		    AND s3cjil LIKE '월합'
+	</select>
+	
+	<select id="selDealDailyNumber8" resultType="productIOVO">
+		SELECT wcname, wcsaup, wcdeap, wcjuso, wctae, wcjong 
+		FROM jejak.KSWCUST0 
+		WHERE wccode2 LIKE #{s1cust} LIMIT 1
+	</select>
+	
+	<select id="selDealDailyNumber9" resultType="productIOVO">
+		SELECT s1book 
+		FROM jejak.KS1${dbname}A
+		WHERE s1ilja LIKE CONCAT(#{s1ilja}, '%')
+			AND s1cust LIKE '1006' 
+			AND s1gubn LIKE #{s1gubn}
+		ORDER BY s1ilja ASC, s1suns ASC LIMIT 1
+	</select>
+	
+	<select id="selDealDailyNumber10" resultType="productIOVO">
+		SELECT s1book 
+		FROM jejak.KS1${dbname}A
+		WHERE s1ilja LIKE #{s1ilja}
+			AND s1cust LIKE #{s1cust}
+		    AND s1gubn LIKE #{s1gubn}
+		ORDER BY s1suns ASC LIMIT 1
+	</select>
+	
+	<select id="selDealDailyNumber11" resultType="productIOVO">
+		SELECT sbname 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook LIKE #{sbbook} LIMIT 1
 	</select>
 	
 	<!-- 일일집계현황 -->
 	<select id="selDailyStatus1" resultType="productIOVO">
 		SELECT uid 
-		FROM KS1${dbname}A
+		FROM jejak.KS1${dbname}A
 		WHERE s1ilja = #{date}
 	</select>
 	
 	<select id="selDailyStatus2" resultType="productIOVO">
 		SELECT s1gubn, sum(s1qnty) AS sum1, sum(s1amnt) AS sum2 
-		FROM KS1${dbname}A
+		FROM jejak.KS1${dbname}A
 		WHERE s1ilja = #{date} 
 		GROUP BY s1gubn 
 		ORDER BY s1gubn ASC
@@ -98,7 +324,7 @@
 	<!-- 폐기리스트 -->
 	<select id="selDisposalList" resultType="productIOVO">
 		SELECT a.s1book, a.s1uprc, SUM(a.s1qnty) AS sum1, SUM(a.s1amnt) AS sum2, b.sbname 
-		FROM KS1${dbname}A AS a, KSCBOOK0 AS b 
+		FROM jejak.KS1${dbname}A AS a, jejak.KSCBOOK0 AS b 
 		WHERE a.s1gubn ='F' 
 			AND a.s1book = b.sbbook 
 		GROUP BY s1book 
