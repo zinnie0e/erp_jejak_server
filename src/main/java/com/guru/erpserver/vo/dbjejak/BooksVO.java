@@ -156,7 +156,36 @@ public class BooksVO {
 	private String wjname;
 	private int wyjuls;
 	
+	private String s1ilja;
+	private String s1gubn;
+	private String s1bunh;
+	private int s1suns;
+	private String s1cust;
+	private String s1cudu;
+	private String s1bodu;
+	private String s1book;
+	private int s1qnty;
+	private int s1uprc;
+	private double s1dang;
+	private int s1hal1;
+	private long s1amnt;
+	private int s1vatt;
+	private String s1kssb;
+	private String s1balb;
+	private String s1kgub;
+	private String s1pgub;
+	private String s1pumj;
+	private String s1damd;
+	private String s1jjja;
+	private String s1jjch;
+	private String s1modi;
+	private String s1loca;
+	
+	private String scyakc;
+	
+	private String value;
 	private String key;
+	private long num_value;
 	private long count; //리미트 시작값
 	private long lm_s; //리미트 시작값
 	private long lm_t; //리미트 전체값

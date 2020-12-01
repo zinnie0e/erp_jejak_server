@@ -22,12 +22,25 @@ public interface BooksService {
 	
 	List<BooksVO> selBooksDetail(BooksVO params) throws Exception;
 	
-	List<BooksVO> selBooksDeasu1(BooksVO params) throws Exception;
-	List<BooksVO> selBooksDeasu2(BooksVO params) throws Exception;
+	List<BooksVO> selBooksDaesu1(BooksVO params) throws Exception;
+	List<BooksVO> selBooksDaesu2(BooksVO params) throws Exception;
+	
+	boolean delBooksDaesu(BooksVO params) throws Exception;
+	long selBooksKswdesu0MaxUid() throws Exception;
+	boolean inBooksDaesu(BooksVO params) throws Exception;
 	
 	List<BooksVO> selBooksYong1(BooksVO params) throws Exception;
 	List<BooksVO> selBooksYong2(BooksVO params) throws Exception;
 	List<BooksVO> selBooksYong3() throws Exception;
+	
+	boolean delBooksYongji(BooksVO params) throws Exception;
+	boolean inBooksYongji(BooksVO params) throws Exception;
+	
+	String selBooksMaxSbbook(BooksVO params) throws Exception;
+	
+	List<BooksVO> selBooksSoldOut1(BooksVO params) throws Exception;
+	List<BooksVO> selBooksSoldOut2(BooksVO params) throws Exception;
+	List<BooksVO> selBooksSoldOut3(BooksVO params) throws Exception;
 	
 	boolean inBooks(BooksVO params) throws Exception;
 	

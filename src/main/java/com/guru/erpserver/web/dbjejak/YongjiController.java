@@ -64,9 +64,9 @@ public class YongjiController {
 		return yongjiSVC.selYjList();
 	}
 	
-	@RequestMapping(value="/yongji/select_order_order_list", method=RequestMethod.POST)
-	public List<YongjiVO> selYjOrderOrderList() throws Exception {
-		return yongjiSVC.selYjOrderOrderList();
+	@RequestMapping(value="/yongji/select_buy_order_list", method=RequestMethod.POST)
+	public List<YongjiVO> selYjBuyOrderList() throws Exception {
+		return yongjiSVC.selYjBuyOrderList();
 	}
 	
 	@RequestMapping(value="/yongji/check_order", method=RequestMethod.POST)
@@ -74,8 +74,8 @@ public class YongjiController {
 		return yongjiSVC.selYjOrderCount1() && yongjiSVC.selYjOrderCount2();
 	}
 	
-	@RequestMapping(value="/yongji/in_order_order", method=RequestMethod.POST)
-	public long inYjOrderOrder() throws Exception {
+	@RequestMapping(value="/yongji/in_buy_order", method=RequestMethod.POST)
+	public long inYjBuyOrder() throws Exception {
 		long result = 0;
 		
 		yongjiSVC.delYjOrderYojijumn();
@@ -152,9 +152,10 @@ public class YongjiController {
 			}
 		}
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(sdf.format(new Date()));
-		long set_date = (int)(date.getTime() / 1000);	
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		Date date = sdf.parse(sdf.format(new Date()));
+		Date date = new Date();
+		long set_date = date.getTime() / 1000;	
 
 		for(int i = 0; i < arr_count; i++) {
 			YongjiVO temp_YongjiVO = new YongjiVO();
@@ -171,11 +172,11 @@ public class YongjiController {
 		return result;
 	}
 	
-	@RequestMapping(value="/yongji/up_order_order", method=RequestMethod.POST)
-	public long upYjOrderOrder(@RequestBody YongjiVO params) throws Exception {
+	@RequestMapping(value="/yongji/up_buy_order", method=RequestMethod.POST)
+	public long upYjBuyOrder() throws Exception {
 		long result = 0;
 		
-		List<YongjiVO> list_params = yongjiSVC.selYjOrderOrderList();
+		List<YongjiVO> list_params = yongjiSVC.selYjBuyOrderList();
 		
 		for(YongjiVO get_param : list_params) {
 			long amount = 0l;
@@ -298,10 +299,11 @@ public class YongjiController {
 	public long upYjOrderDetailDate(@RequestBody YongjiVO params) throws Exception {
 		long result = 0;
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(sdf.format(new Date()));
-		long set_date = (date.getTime() / 1000);
-		params.setDate((long)set_date);
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		Date date = sdf.parse(sdf.format(new Date()));
+		Date date = new Date();
+		long set_date = date.getTime() / 1000;
+		params.setDate(set_date);
 		
 		if(yongjiSVC.upYjOrderDetailDate1(params)) {
 			params.setJeon(yongjiSVC.selYjOrderDetailDate2(params));
@@ -375,10 +377,59 @@ public class YongjiController {
 		return result;
 	}
 	
-	//입력 : uid, fxamount, comid, bigo, ib, m4
+	//입력 : jicode, comid, jsum, bigo
 	@RequestMapping(value="/yongji/in_order_check_input", method=RequestMethod.POST)
-	public long inYjOrderCheckInput(@RequestBody YongjiVO params) throws Exception {
-		long result = 0;
+	public int inYjOrderCheckInputList(@RequestBody YongjiVO params) throws Exception {
+		int result = 0;
+		
+		YongjiVO temp_jeonpyo = new YongjiVO();
+		temp_jeonpyo.setValue(setYear("yy", new Date()));
+		
+		long max_jeonpyo_uid = yongjiSVC.selYjOrderJeonpyoMaxUid(temp_jeonpyo);
+		max_jeonpyo_uid = max_jeonpyo_uid > 0 ? max_jeonpyo_uid++ : 1;
+		
+		Date date = new Date();
+		long set_date = (int)(date.getTime() / 1000);
+		
+		long set_jsum = params.getJsum() + 500;
+		
+		
+		temp_jeonpyo.setUid(max_jeonpyo_uid);
+		temp_jeonpyo.setBdate(set_date);
+		temp_jeonpyo.setBuycom(String.valueOf(params.getComid()));
+		temp_jeonpyo.setJiname(yongjiSVC.selYjOrderBuyKswjijl0(params).getWjname());
+		temp_jeonpyo.setJicode(params.getJicode());
+		temp_jeonpyo.setJsum(set_jsum);
+		
+		if(!yongjiSVC.inYjOrderCheckOrder1(temp_jeonpyo)) {
+			return 1;
+		}
+		
+		
+		long max_jiinout_uid = yongjiSVC.selYjOrderJiinoutMaxUid();
+		max_jiinout_uid = max_jiinout_uid > 0 ? max_jiinout_uid++ : 1;
+		
+		YongjiVO temp_jiinout = new YongjiVO();
+		temp_jiinout.setUid(max_jiinout_uid);
+		temp_jiinout.setJicode(params.getJicode());
+		temp_jiinout.setDate(set_date);
+		temp_jiinout.setNum(set_jsum);
+		temp_jiinout.setComid(params.getComid());
+		temp_jiinout.setCurno(yongjiSVC.selYjOrderBuyJiinout(params).getCurno() + set_jsum);
+		temp_jiinout.setJeon(max_jeonpyo_uid);
+		temp_jiinout.setBigo(params.getBigo());
+		
+		if(yongjiSVC.inYjOrderCheckOrder3(temp_jiinout)) {
+			return 2;
+		}
+		
+		return 0;
+	}
+	
+	//입력 : uid, fxamount, comid, bigo, ib
+	@RequestMapping(value="/yongji/in_order_check_input_list", method=RequestMethod.POST)
+	public HashMap<String, String> inYjOrderCheckInput(@RequestBody YongjiVO params) throws Exception {
+		int[] result = {0, 0, 0, 0, 0};
 		
 		YongjiVO get_yojijymn = yongjiSVC.selYjOrderCheckOI(params);
 		
@@ -386,36 +437,35 @@ public class YongjiController {
 			YongjiVO temp_jeonpyo = new YongjiVO();
 			temp_jeonpyo.setValue(setYear("yy", new Date()));
 			
-			long count_jeonpyo_uid = yongjiSVC.selYjOrderJeonpyoUidCount(temp_jeonpyo);
-			count_jeonpyo_uid = count_jeonpyo_uid > 0 ? count_jeonpyo_uid++ : 1;
+			long max_jeonpyo_uid = yongjiSVC.selYjOrderJeonpyoMaxUid(temp_jeonpyo);
+			max_jeonpyo_uid = max_jeonpyo_uid > 0 ? max_jeonpyo_uid++ : 1;
 
-			temp_jeonpyo.setUid(count_jeonpyo_uid);
+			temp_jeonpyo.setUid(max_jeonpyo_uid);
 			temp_jeonpyo.setBdate(get_yojijymn.getJdate());
 			temp_jeonpyo.setBuycom(String.valueOf(params.getComid()));
 			temp_jeonpyo.setJiname(get_yojijymn.getYjname());
 			temp_jeonpyo.setJicode(get_yojijymn.getYjcode());
 			temp_jeonpyo.setJsum((long)get_yojijymn.getFxamount());
 			
-			if(yongjiSVC.inYjOrderCheckOrder1(temp_jeonpyo)) {
-				long count_jiinout_uid = yongjiSVC.selYjOrderJiinoutUidCount();
-				count_jiinout_uid = count_jiinout_uid > 0 ? count_jiinout_uid++ : 1;
-				
-				long set_curno = (long)(yongjiSVC.selYjOrderCheckOrder2(temp_jeonpyo) + get_yojijymn.getFxamount());
-				
-				YongjiVO temp_jiinout = new YongjiVO();
-				temp_jiinout.setUid(count_jiinout_uid);
-				temp_jiinout.setJicode(get_yojijymn.getYjcode());
-				temp_jiinout.setDate(get_yojijymn.getJdate());
-				temp_jiinout.setNum((long)get_yojijymn.getFxamount());
-				temp_jiinout.setComid(params.getComid());
-				temp_jiinout.setCurno(set_curno);
-				temp_jiinout.setJeon(count_jeonpyo_uid);
-				temp_jiinout.setBigo(params.getBigo());
-				
-				if(yongjiSVC.inYjOrderCheckOrder3(temp_jiinout)) {
-					result++;
-				}
-			}
+			if(yongjiSVC.inYjOrderCheckOrder1(temp_jeonpyo)) result[0]++;
+			
+			
+			long max_jiinout_uid = yongjiSVC.selYjOrderJiinoutMaxUid();
+			max_jiinout_uid = max_jiinout_uid > 0 ? max_jiinout_uid++ : 1;
+			
+			long set_curno = (long)(yongjiSVC.selYjOrderCheckOrder2(get_yojijymn) + get_yojijymn.getFxamount());
+			
+			YongjiVO temp_jiinout = new YongjiVO();
+			temp_jiinout.setUid(max_jiinout_uid);
+			temp_jiinout.setJicode(get_yojijymn.getYjcode());
+			temp_jiinout.setDate(get_yojijymn.getJdate());
+			temp_jiinout.setNum((long)get_yojijymn.getFxamount());
+			temp_jiinout.setComid(params.getComid());
+			temp_jiinout.setCurno(set_curno);
+			temp_jiinout.setJeon(max_jeonpyo_uid);
+			temp_jiinout.setBigo(params.getBigo());
+			
+			if(yongjiSVC.inYjOrderCheckOrder3(temp_jiinout)) result[0] += 10;
 		}
 		
 		String[] get_cnumlist = get_yojijymn.getCnumlist().split("*");
@@ -435,62 +485,71 @@ public class YongjiController {
 				YongjiVO set_tmpjab3_uid = new YongjiVO();
 				set_tmpjab3_uid.setUid(set_uid);
 				
-				if(!yongjiSVC.upYjOrderCheckInputJ1(set_tmpjab3_uid)) {
-					//잡물 기록 오류
-					return 997;
-				} else {
-					YongjiVO get_tmpjab3 = yongjiSVC.selYjOrderCheckInputJ2(set_tmpjab3_uid);
+				YongjiVO get_tmpjab3 = yongjiSVC.selYjOrderCheckInputJ2(set_tmpjab3_uid);
+				
+				long get_tmpjab3_jm = get_tmpjab3.getJm();
+				long get_tmpjab3_yb = get_tmpjab3.getYb();
+				
+				if(!(get_tmpjab3_jm > 0 || get_tmpjab3_yb > 0)) {
+					continue;
+				}
+				
+				if(params.getIb() > 0) {
+					long next_yb = i < cnum_rem ? cnum_value++ : cnum_value;
+					long set_tmpjab4_yb = get_tmpjab3_yb + next_yb;
 					
-					long get_tmpjab3_jm = get_tmpjab3.getJm();
-					long get_tmpjab3_yb = get_tmpjab3.getYb();
+					get_tmpjab3_yb = set_tmpjab4_yb;
 					
-					if(get_tmpjab3_jm > 0 || get_tmpjab3_yb > 0) {
-						continue;
-					}
+					YongjiVO temp_tmpjab3 = new YongjiVO();
+					temp_tmpjab3.setUid(get_tmpjab3.getUid());
+					temp_tmpjab3.setYb(set_tmpjab4_yb);
 					
-					if(params.getIb() > 0) {
-						long next_yb = i < cnum_rem ? cnum_value++ : cnum_value;
-						long set_tmpjab4_yb = get_tmpjab3_yb + next_yb;
+					if(!yongjiSVC.upYjOrderCheckInputJ3(temp_tmpjab3)) {
+						//입사용지 여분 조절 오류
+						result[4] = 999;
+						return resultInYjOrderCheckInput(result);
+					} else {
+						YongjiVO temp_tmpjab4 = new YongjiVO();
+						temp_tmpjab4.setListid(get_tmpjab3.getJbid());
 						
-						get_tmpjab3_yb = set_tmpjab4_yb;
+						List<YongjiVO> list_tmpjab4 = yongjiSVC.selYjOrderCheckInputJ11(temp_tmpjab4);
 						
-						YongjiVO temp_tmpjab3 = new YongjiVO();
-						temp_tmpjab3.setUid(get_tmpjab3.getUid());
-						temp_tmpjab3.setYb(set_tmpjab4_yb);
+						long yb_value = (long)Math.floor(next_yb / list_tmpjab4.size());
+						long yb_rem = next_yb % list_tmpjab4.size();
 						
-						if(!yongjiSVC.upYjOrderCheckInputJ3(temp_tmpjab3)) {
-							//입사용지 여분 조절 오류
-							return 999;
-						} else {
-							YongjiVO temp_tmpjab4 = new YongjiVO();
-							temp_tmpjab4.setListid(get_tmpjab3.getJbid());
+						for(int n = 0; n < list_tmpjab4.size(); n++) {
+							long set_tmplist4_yb = list_tmpjab4.get(n).getYb() + yb_value;
+							set_tmplist4_yb += n < yb_rem ? 1 : 0;
 							
-							List<YongjiVO> list_tmpjab4 = yongjiSVC.selYjOrderCheckInputJ11(temp_tmpjab4);
+							YongjiVO temp_tmplist4 = new YongjiVO();
+							temp_tmplist4.setUid(list_tmpjab4.get(n).getUid());
+							temp_tmplist4.setYb(set_tmplist4_yb);
 							
-							long yb_value = (long)Math.floor(next_yb / list_tmpjab4.size());
-							long yb_rem = next_yb % list_tmpjab4.size();
-							
-							for(int n = 0; n < list_tmpjab4.size(); n++) {
-								long set_tmplist4_yb = list_tmpjab4.get(n).getYb() + yb_value;
-								set_tmplist4_yb += n < yb_rem ? 1 : 0;
-								
-								YongjiVO temp_tmplist4 = new YongjiVO();
-								temp_tmplist4.setUid(list_tmpjab4.get(n).getUid());
-								temp_tmplist4.setYb(set_tmplist4_yb);
-								
-								if(!yongjiSVC.upYjOrderCheckInputJ12(temp_tmplist4)) {
-									//입사용지 여분 조절 오류2
-									return 998;
-								}
+							if(!yongjiSVC.upYjOrderCheckInputJ12(temp_tmplist4)) {
+								//입사용지 여분 조절 오류2
+								result[4] = 998;
+								return resultInYjOrderCheckInput(result);
 							}
 						}
 					}
-					
+				} else {
+					if(!yongjiSVC.upYjOrderCheckInputJ1(set_tmpjab3_uid)) {
+						//잡물 기록 오류
+						result[4] = 997;
+						return resultInYjOrderCheckInput(result);
+					}
+				}
+				
+				if(!yongjiSVC.upYjOrderCheckInputJ1(set_tmpjab3_uid)) {
+					//잡물 기록 오류
+					result[4] = 997;
+					return resultInYjOrderCheckInput(result);
+				} else {
 					YongjiVO temp_jeonpyo = new YongjiVO();
 					temp_jeonpyo.setValue(setYear("yy", new Date()));
 					
-					long count_jeonpyo_uid = yongjiSVC.selYjOrderJeonpyoUidCount(temp_jeonpyo);
-					count_jeonpyo_uid = count_jeonpyo_uid > 0 ? count_jeonpyo_uid++ : 1;
+					long max_jeonpyo_uid = yongjiSVC.selYjOrderJeonpyoMaxUid(temp_jeonpyo);
+					max_jeonpyo_uid = max_jeonpyo_uid > 0 ? max_jeonpyo_uid++ : 1;
 					
 					YongjiVO get_tmpjab = yongjiSVC.selYjOrderCheckInputJ21(get_tmpjab3);
 					
@@ -505,21 +564,22 @@ public class YongjiController {
 					temp_jeonpyo.setJnum1(get_tmpjab3_jm);
 					temp_jeonpyo.setJnum2(get_tmpjab3_yb);
 					temp_jeonpyo.setBdate(get_yojijymn.getJdate());
-					temp_jeonpyo.setBuycom(params.getM4());
+					temp_jeonpyo.setBuycom(String.valueOf(params.getComid()));
 					temp_jeonpyo.setJiname(get_yojijymn.getYjname());
 					temp_jeonpyo.setJicode(get_yojijymn.getYjcode());
 					temp_jeonpyo.setJsum(sum_jm_yb);
 					temp_jeonpyo.setComment(get_tmpjab3.getGubn());
 					temp_jeonpyo.setJejanum(get_tmpjab.getUid());
-					temp_jeonpyo.setUid(count_jeonpyo_uid);
+					temp_jeonpyo.setUid(max_jeonpyo_uid);
 					
 					if(!yongjiSVC.inYjOrderJeonpyo(params)) {
 						//전표 기록 오류 2
-						return 996;
+						result[4] = 996;
+						return resultInYjOrderCheckInput(result);
 					}
 					
-					long count_jiinout_uid = yongjiSVC.selYjOrderJiinoutUidCount();
-					count_jiinout_uid = count_jiinout_uid > 0 ? count_jiinout_uid++ : 1;
+					long max_jiinout_uid = yongjiSVC.selYjOrderJiinoutMaxUid();
+					max_jiinout_uid = max_jiinout_uid > 0 ? max_jiinout_uid++ : 1;
 					
 					YongjiVO get_jiinout = yongjiSVC.selYjOrderJiinout(get_yojijymn);
 					long set_curno = get_jiinout.getCurno() - sum_jm_yb;
@@ -527,17 +587,17 @@ public class YongjiController {
 					sum_jm_yb *= -1;
 					
 					YongjiVO temp_jiinout = new YongjiVO();
-					temp_jiinout.setUid(count_jiinout_uid);
+					temp_jiinout.setUid(max_jiinout_uid);
 					temp_jiinout.setJicode(get_yojijymn.getYjcode());
 					temp_jiinout.setDate(get_yojijymn.getJdate());
 					temp_jiinout.setNum(sum_jm_yb);
 					temp_jiinout.setComment(get_tmpjab.getJbname());
 					temp_jiinout.setCurno(set_curno);
-					temp_jiinout.setJeon(count_jeonpyo_uid);
+					temp_jiinout.setJeon(max_jeonpyo_uid);
 					temp_jiinout.setJeuid(get_tmpjab.getUid());
 					
 					if(yongjiSVC.inYjOrderJiinout(temp_jiinout)) {
-						result++;
+						result[1]++;
 					}
 				}
 			} else {
@@ -551,7 +611,7 @@ public class YongjiController {
 				long get_tmplist3_jm = get_tmplist3.getJm();
 				long get_tmplist3_yb = get_tmplist3.getYb();
 				
-				if(get_tmplist3_jm > 0 || get_tmplist3_yb > 0) {
+				if(!(get_tmplist3_jm > 0 || get_tmplist3_yb > 0)) {
 					continue;
 				}
 				
@@ -583,21 +643,21 @@ public class YongjiController {
 							temp_tmplist4.setYb(set_tmplist4_yb);
 							
 							if(yongjiSVC.upYjOrderCheckInput13(temp_tmplist4)) {
-								result++;
+								result[2]++;
 							}
 						}
 					}
 				} else {
 					if(yongjiSVC.upYjOrderCheckInput14(set_tmplist3_uid)) {
-						result++;
+						result[2]++;
 					}
 				}
 				
 				YongjiVO temp_jeonpyo = new YongjiVO();
 				temp_jeonpyo.setValue(setYear("yy", new Date()));
 				
-				long count_jeonpyo_uid = yongjiSVC.selYjOrderJeonpyoUidCount(temp_jeonpyo);
-				count_jeonpyo_uid = count_jeonpyo_uid > 0 ? count_jeonpyo_uid++ : 1;
+				long max_jeonpyo_uid = yongjiSVC.selYjOrderJeonpyoMaxUid(temp_jeonpyo);
+				max_jeonpyo_uid = max_jeonpyo_uid > 0 ? max_jeonpyo_uid++ : 1;
 				
 				YongjiVO get_tmplists = yongjiSVC.selYjOrderCheckInpu21(get_tmplist3);
 				
@@ -617,21 +677,22 @@ public class YongjiController {
 				temp_jeonpyo.setJnum1(get_tmplist3_jm);
 				temp_jeonpyo.setJnum2(get_tmplist3_yb);
 				temp_jeonpyo.setBdate(get_yojijymn.getJdate());
-				temp_jeonpyo.setBuycom(params.getM4());
+				temp_jeonpyo.setBuycom(String.valueOf(params.getComid()));
 				temp_jeonpyo.setJiname(get_yojijymn.getYjname());
 				temp_jeonpyo.setJicode(get_yojijymn.getYjcode());
 				temp_jeonpyo.setJsum(sum_jm_yb);
 				temp_jeonpyo.setComment(set_tmplist3_gubn);
 				temp_jeonpyo.setJejanum(get_tmplists.getCrnum());
-				temp_jeonpyo.setUid(count_jeonpyo_uid);
+				temp_jeonpyo.setUid(max_jeonpyo_uid);
 				
 				if(!yongjiSVC.inYjOrderJeonpyo(params)) {
 					//전표 기록 오류 2
-					return 996;
+					result[4] = 996;
+					return resultInYjOrderCheckInput(result);
 				}
 				
-				long count_jiinout_uid = yongjiSVC.selYjOrderJiinoutUidCount();
-				count_jiinout_uid = count_jiinout_uid > 0 ? count_jiinout_uid++ : 1;
+				long max_jiinout_uid = yongjiSVC.selYjOrderJiinoutMaxUid();
+				max_jiinout_uid = max_jiinout_uid > 0 ? max_jiinout_uid++ : 1;
 				
 				YongjiVO get_jiinout = yongjiSVC.selYjOrderJiinout(get_yojijymn);
 				long set_curno = get_jiinout.getCurno() - sum_jm_yb;
@@ -639,26 +700,38 @@ public class YongjiController {
 				sum_jm_yb *= -1;
 				
 				YongjiVO temp_jiinout = new YongjiVO();
-				temp_jiinout.setUid(count_jiinout_uid);
+				temp_jiinout.setUid(max_jiinout_uid);
 				temp_jiinout.setJicode(get_yojijymn.getYjcode());
 				temp_jiinout.setDate(get_yojijymn.getJdate());
 				temp_jiinout.setNum(sum_jm_yb);
 				temp_jiinout.setComment(get_tmplists.getBname());
 				temp_jiinout.setCurno(set_curno);
-				temp_jiinout.setJeon(count_jeonpyo_uid);
+				temp_jiinout.setJeon(max_jeonpyo_uid);
 				temp_jiinout.setJeuid(get_tmplists.getCrnum());
 				
 				if(yongjiSVC.inYjOrderJiinout(temp_jiinout)) {
-					result++;
+					result[1]++;
 				}
 			}
 		}
 		
 		if(yongjiSVC.upYjOrderYojijumnGmcheck(params)) {
-			result++;
+			result[3]++;
 		}
 		
-		return result;
+		return resultInYjOrderCheckInput(result);
+	}
+	
+	private HashMap<String, String> resultInYjOrderCheckInput(int[] result) {
+		HashMap<String, String> result_map = new HashMap<>();
+		
+		result_map.put("in_count", String.valueOf(result[0]));
+		result_map.put("in_count_for", String.valueOf(result[1]));
+		result_map.put("up_count_for", String.valueOf(result[2]));
+		result_map.put("up_count_yojijumn", String.valueOf(result[3]));
+		result_map.put("error", String.valueOf(result[4]));
+		
+		return result_map;
 	}
 	
 	//TODO 거래처별 구매	
@@ -685,6 +758,12 @@ public class YongjiController {
 		
 		List<YongjiVO> list_params = yongjiSVC.selYjJeonList(params);
 		
+		if(list_params == null) {
+			yongjiSVC.createTableJeonpyo(params);
+			
+			list_params = yongjiSVC.selYjJeonList(params);
+		}
+		
 		for(YongjiVO get_param : list_params) {
 			String spcom = get_param.getSpcom();
 			
@@ -707,7 +786,7 @@ public class YongjiController {
 	public YongjiVO selYjJpJyCheck(@RequestBody YongjiVO params) throws Exception {
 		return yongjiSVC.selYjJeonDetail(params);
 	}
-	
+		
 	//입력 : value(년도 2자리), date1, date2
 	@RequestMapping(value="/yongji/select_jp_yj_list", method=RequestMethod.POST)
 	public List<YongjiVO> selYjJpJyList(@RequestBody YongjiVO params) throws Exception {
@@ -725,7 +804,24 @@ public class YongjiController {
 		}		
 		return result_params;
 	}
-	
+
+	//입력 : value(년도 2자리), uid
+	@RequestMapping(value="/yongji/sel_yj_jeon_popup", method=RequestMethod.POST)
+	public YongjiVO selYjJeonPopup1(@RequestBody YongjiVO params) throws Exception {
+		YongjiVO result_params = yongjiSVC.selYjJeonPopup1(params);
+		
+		String[] set_params = new String[3];
+		
+		System.out.println(result_params.getBuycom());
+		set_params[0] = yongjiSVC.selYjJeonPopup2(result_params);
+		set_params[1] = result_params.getBuycom().isEmpty() ? "" : yongjiSVC.selYjJeonPopup3(result_params);
+		set_params[2] = yongjiSVC.selYjJeonPopup4(params);
+		
+		result_params.setPopup_value(set_params);
+		
+		return result_params;
+	}
+		
 	//TODO 용지등록하기
 	
 	@RequestMapping(value="/yongji/select_yg_regi_list1", method=RequestMethod.POST)
@@ -740,16 +836,7 @@ public class YongjiController {
 	
 	@RequestMapping(value="/yongji/select_reg_list", method=RequestMethod.POST)
 	public List<YongjiVO> selYjRegList() throws Exception {
-		List<YongjiVO> result_params = new ArrayList<YongjiVO>();
-		
-		List<YongjiVO> list_params = yongjiSVC.selYjRegKswjijl0List();
-		
-		for(YongjiVO get_param : list_params) {			
-			get_param.setCurno(yongjiSVC.selYjRegJiinoutCurno(get_param));
-			
-			result_params.add(get_param);
-		}
-		return result_params;
+		return yongjiSVC.selYjRegKswjijl0List();
 	}
 	
 	//입력 : uid
@@ -787,26 +874,23 @@ public class YongjiController {
 	public YongjiVO selYjJangJp(@RequestBody YongjiVO params) throws Exception {
 		return yongjiSVC.selYjJangJp(params);
 	}
+
+	//입력 : date1, date2
+	@RequestMapping(value="/yongji/select_jang_yj_other1", method=RequestMethod.POST)
+	public List<YongjiVO> selYjJangOther1(@RequestBody YongjiVO params) throws Exception {
+		return yongjiSVC.selYjJangOther1(params);
+	}
 	
-	/*//입력 : wjcode, date1, date2
-	@RequestMapping(value="/yongji/select_jang_yj_io_list", method=RequestMethod.POST)
-	public List<YongjiVO> selYjJangYjIOList(@RequestBody YongjiVO params) throws Exception {
-		return yongjiSVC.selYjJangJiinoutList(params);
-	}*/
+	//입력 : jicode
+	@RequestMapping(value="/yongji/select_jang_yj_other2", method=RequestMethod.POST)
+	public YongjiVO selYjJangOther2(@RequestBody YongjiVO params) throws Exception {
+		return yongjiSVC.selYjJangOther2(params);
+	}
 	
 	//입력 : wjcode, date1, date2
 	@RequestMapping(value="/yongji/select_jang_yj_io_list", method=RequestMethod.POST)
 	public List<YongjiVO> selYjJangYjIOList(@RequestBody YongjiVO params) throws Exception {
-		List<YongjiVO> result_params = new ArrayList<YongjiVO>();
-		
-		List<YongjiVO> list_params = yongjiSVC.selYjJangJiinoutList(params);
-		
-		for(YongjiVO get_param : list_params) {
-			get_param.setWjname(yongjiSVC.selYjJangWjname(get_param));
-			
-			result_params.add(get_param);
-		}
-		return result_params;
+		return yongjiSVC.selYjJangJiinoutList(params);
 	}
 	
 	//입력 : wccode, date1, date2
@@ -871,30 +955,28 @@ public class YongjiController {
 	
 	//입력 : msdate
 	@RequestMapping(value="/yongji/select_mon_check_input1", method=RequestMethod.POST)
-	public int selYjMonCheckInput1(@RequestBody YongjiVO params) throws Exception {
-		int result = 0;
+	public HashMap<String, String> selYjMonCheckInput1(@RequestBody YongjiVO params) throws Exception {
+		HashMap<String, String> result_map = new HashMap<>();
+		int in_count = 0;
+		int reset_qnty = 0;
+		int up_count = 0;
 		
-		List<YongjiVO> list_params1 = yongjiSVC.selYjMonCheckIb(params);
 		String get_year = params.getMsdate().substring(0, 4);
 		String get_month = params.getMsdate().substring(4, 2);
 		
+		List<YongjiVO> list_params1 = yongjiSVC.selYjMonCheckIb();
 		for(YongjiVO get_param : list_params1) {
-			YongjiVO temp_yongjims3 = new YongjiVO();
-			temp_yongjims3.setYjcode(get_param.getWjcode());
-			temp_yongjims3.setMsdate(params.getMsdate());
+			get_param.setMsdate(params.getMsdate());
 			
-			YongjiVO get_yongjims3 = yongjiSVC.selYjMonCheckInput1(temp_yongjims3);
-			
+			YongjiVO get_yongjims3 = yongjiSVC.selYjMonCheckInput1(get_param);
 			if(get_yongjims3 == null) {
-				temp_yongjims3.setWjcode(get_param.getWjcode());
-				
-				if(yongjiSVC.inYjMon(temp_yongjims3)) {
-					result++;
+				if(yongjiSVC.inYjMon(get_param)) {
+					in_count++;
 				}
 			}
 		}
 		if(yongjiSVC.upYjMonCheckInput2(params)) {
-			result++;
+			reset_qnty++;
 		}
 		
 		//기초재고
@@ -914,161 +996,144 @@ public class YongjiController {
 		
 		List<YongjiVO> list_params2 = yongjiSVC.selYjMonCheckList(set_yongjims3);
 		for(YongjiVO get_param : list_params2) {
-			YongjiVO temp_yongjims3 = new YongjiVO();
-			temp_yongjims3.setQnty1(get_param.getQnty4());
-			temp_yongjims3.setYjcode(get_param.getYjcode());
-			temp_yongjims3.setMsdate(params.getMsdate());
-			
-			if(yongjiSVC.upYjMonCheckInput11(temp_yongjims3)) {
-				result++;
+			get_param.setMsdate(set_year + set_month);
+
+			if(yongjiSVC.upYjMonCheckInput11(get_param)) {
+				up_count++;
 			}
 		}
 		
-		return result;
+		result_map.put("in_count", String.valueOf(in_count));
+		result_map.put("reset_qnty", String.valueOf(reset_qnty));
+		result_map.put("up_count", String.valueOf(up_count));
+		return result_map;
 	}
 	
 	//입력 : msdate
 	@RequestMapping(value="/yongji/select_mon_check_input2", method=RequestMethod.POST)
-	public ArrayList<HashMap<String, Object>> selYjMonCheckInput2(@RequestBody YongjiVO params) throws Exception {
-		ArrayList<HashMap<String, Object>> result_list = new ArrayList<HashMap<String, Object>>();
+	public HashMap<String, String> selYjMonCheckInput2(@RequestBody YongjiVO params) throws Exception {
+		HashMap<String, String> result_map = new HashMap<>();
+		int in_count = 0;
+		int up_count = 0;
 		
 		//입고
 		List<YongjiVO> list_params = yongjiSVC.selYjMonCheckInput21(params);
 		for(YongjiVO get_param : list_params) {
-			HashMap<String, Object> temp_map = new HashMap<>();
-			temp_map.put("jicode", get_param.getJicode());
+//			HashMap<String, Object> temp_map = new HashMap<>();
+//			temp_map.put("jicode", get_param.getJicode());
+			
+			get_param.setMsdate(params.getMsdate());
 			
 			YongjiVO get_yongjims3 = yongjiSVC.selYjMonCheckInput22(get_param);
-			
-			YongjiVO temp_yongjims3 = new YongjiVO();
-			temp_yongjims3.setYjcode(get_param.getJicode());
-			temp_yongjims3.setMsdate(params.getMsdate());
-			temp_yongjims3.setQnty2(get_param.getNsum());
-			
 			if(get_yongjims3 != null) {
-				String up_check = "";
-				if(yongjiSVC.upYjMonCheckInput23(temp_yongjims3)) {
-					up_check = "ok";
+				if(yongjiSVC.upYjMonCheckInput23(get_param)) {
+					up_count++;
 				}
-				temp_map.put("up_result", up_check);
 			} else {
-				String in_check = "";
-				if(yongjiSVC.inYjMonCheckInput24(temp_yongjims3)) {
-					in_check = "ok";
+				if(yongjiSVC.inYjMonCheckInput24(get_param)) {
+					in_count++;
 				}
-				temp_map.put("in_result", in_check);
 			}
-			
-			result_list.add(temp_map);
 		}
 		
-		return result_list;
+		result_map.put("in_count", String.valueOf(in_count));
+		result_map.put("up_count", String.valueOf(up_count));
+		return result_map;
 	}
 	
 	//입력 : msdate
 	@RequestMapping(value="/yongji/select_mon_check_input3", method=RequestMethod.POST)
-	public ArrayList<HashMap<String, Object>> selYjMonCheckInput3(@RequestBody YongjiVO params) throws Exception {
-		ArrayList<HashMap<String, Object>> result_list = new ArrayList<HashMap<String, Object>>();
+	public HashMap<String, String> selYjMonCheckInput3(@RequestBody YongjiVO params) throws Exception {
+		HashMap<String, String> result_map = new HashMap<>();
+		int in_count = 0;
+		int up_count = 0;
 		
 		//출고1
 		List<YongjiVO> list_params1 = yongjiSVC.selYjMonCheckInput31(params);
 		for(YongjiVO get_param1 : list_params1) {
 			List<YongjiVO> list_params2 = yongjiSVC.selYjMonCheckInput32(get_param1);
 			for(YongjiVO get_param2 : list_params2) {
-				HashMap<String, Object> temp_map = new HashMap<>();
+//				HashMap<String, Object> temp_map = new HashMap<>();
+//				
+//				if(get_param2.getYjcode().equals("120001")){
+//					temp_map.put("yjcode", get_param2.getYjcode());
+//					temp_map.put("jm", get_param2.getJm());
+//					temp_map.put("yb", get_param2.getYb());
+//					temp_map.put("uid", get_param1.getUid());
+//				}
+//				
+				get_param2.setMsdate(params.getMsdate());
 				
-				if(get_param2.getYjcode().equals("120001")){
-					temp_map.put("yjcode", get_param2.getYjcode());
-					temp_map.put("jm", get_param2.getJm());
-					temp_map.put("yb", get_param2.getYb());
-					temp_map.put("uid", get_param1.getUid());
-				}
-				
-				YongjiVO temp_yongjims3 = new YongjiVO();
-				temp_yongjims3.setMsdate(params.getMsdate());
-				temp_yongjims3.setYjcode(get_param2.getYjcode());
-				
-				YongjiVO get_yongjims3 = yongjiSVC.selYjMonCheckInput1(temp_yongjims3);
-				
+				YongjiVO get_yongjims3 = yongjiSVC.selYjMonCheckInput33(get_param2);
 				if(get_yongjims3 != null) {
 					long set_qnty3 = get_param2.getJm() + get_param2.getYb() + get_yongjims3.getQnty3();
-					temp_yongjims3.setQnty3(set_qnty3);
-					temp_yongjims3.setUid(get_yongjims3.getUid());
+					get_yongjims3.setQnty3(set_qnty3);
 					
-					String up_check = "";
-					if(yongjiSVC.upYjMonCheckInput33(temp_yongjims3)) {
-						up_check = "ok";
+					if(yongjiSVC.upYjMonCheckInput35(get_yongjims3)) {
+						up_count++;
 					}
-					temp_map.put("up_result", up_check);
 				} else {
 					long set_qnty3 = get_param2.getJm() + get_param2.getYb();
-					temp_yongjims3.setQnty3(set_qnty3);
+					get_param2.setQnty3(set_qnty3);
 					
-					String in_check = "";
-					if(yongjiSVC.inYjMonCheckInput34(temp_yongjims3)) {
-						in_check = "ok";
+					if(yongjiSVC.inYjMonCheckInput34(get_param2)) {
+						in_count++;
 					}
-					temp_map.put("in_result", in_check);
 				}
-				
-				result_list.add(temp_map);
 			}
 		}
 		
-		return result_list;
+		result_map.put("in_count", String.valueOf(in_count));
+		result_map.put("up_count", String.valueOf(up_count));
+		return result_map;
 	}
 	
 	//입력 : msdate
 	@RequestMapping(value="/yongji/select_mon_check_input4", method=RequestMethod.POST)
-	public ArrayList<HashMap<String, Object>> selYjMonCheckInput4(@RequestBody YongjiVO params) throws Exception {
-		ArrayList<HashMap<String, Object>> result_list = new ArrayList<HashMap<String, Object>>();
+	public HashMap<String, String> selYjMonCheckInput4(@RequestBody YongjiVO params) throws Exception {
+		HashMap<String, String> result_map = new HashMap<>();
+		int in_count = 0;
+		int up_count = 0;
 		
 		//출고2
 		List<YongjiVO> list_params1 = yongjiSVC.selYjMonCheckInput41(params);
 		for(YongjiVO get_param1 : list_params1) {
 			List<YongjiVO> list_params2 = yongjiSVC.selYjMonCheckInput42(get_param1);
 			for(YongjiVO get_param2 : list_params2) {
-				HashMap<String, Object> temp_map = new HashMap<>();
+//				HashMap<String, Object> temp_map = new HashMap<>();
+//				
+//				if(get_param2.getJcode().equals("120001")){
+//					temp_map.put("jcode", get_param2.getJcode());
+//					temp_map.put("jm", get_param2.getJm());
+//					temp_map.put("yb", get_param2.getYb());
+//					temp_map.put("uid", get_param1.getUid());
+//				}
 				
-				if(get_param2.getJcode().equals("120001")){
-					temp_map.put("jcode", get_param2.getJcode());
-					temp_map.put("jm", get_param2.getJm());
-					temp_map.put("yb", get_param2.getYb());
-					temp_map.put("uid", get_param1.getUid());
-				}
+				get_param2.setMsdate(params.getMsdate());
 				
-				YongjiVO temp_yongjims3 = new YongjiVO();
-				temp_yongjims3.setMsdate(params.getMsdate());
-				temp_yongjims3.setYjcode(get_param2.getJcode());
-				
-				YongjiVO get_yongjims3 = yongjiSVC.selYjMonCheckInput1(temp_yongjims3);
-				
+				YongjiVO get_yongjims3 = yongjiSVC.selYjMonCheckInput43(get_param2);
 				if(get_yongjims3 != null) {
 					long set_qnty3 = get_param2.getJm() + get_param2.getYb() + get_yongjims3.getQnty3();
-					temp_yongjims3.setQnty3(set_qnty3);
-					temp_yongjims3.setUid(get_yongjims3.getUid());
 					
-					String up_check = "";
-					if(yongjiSVC.upYjMonCheckInput33(temp_yongjims3)) {
-						up_check = "ok";
+					get_yongjims3.setQnty3(set_qnty3);
+					
+					if(yongjiSVC.upYjMonCheckInput35(get_yongjims3)) {
+						up_count++;
 					}
-					temp_map.put("up_result", up_check);
 				} else {
 					long set_qnty3 = get_param2.getJm() + get_param2.getYb();
-					temp_yongjims3.setQnty3(set_qnty3);
+					get_param2.setQnty3(set_qnty3);
 					
-					String in_check = "";
-					if(yongjiSVC.inYjMonCheckInput34(temp_yongjims3)) {
-						in_check = "ok";
+					if(yongjiSVC.inYjMonCheckInput44(get_param2)) {
+						in_count++;
 					}
-					temp_map.put("in_result", in_check);
 				}
-				
-				result_list.add(temp_map);
 			}
 		}
 		
-		return result_list;
+		result_map.put("in_count", String.valueOf(in_count));
+		result_map.put("up_count", String.valueOf(up_count));
+		return result_map;
 	}
 	
 	//입력 : msdate
@@ -1080,11 +1145,9 @@ public class YongjiController {
 			List<YongjiVO> list_params = yongjiSVC.selYjMonCheckList(params);
 			for(YongjiVO get_param : list_params) {
 				long set_qnty4 = get_param.getQnty1() + get_param.getQnty2() - get_param.getQnty3();
+				get_param.setQnty4(set_qnty4);
 				
-				YongjiVO temp_yongjims3 = new YongjiVO();
-				temp_yongjims3.setQnty4(set_qnty4);
-				temp_yongjims3.setUid(get_param.getUid());
-				if(yongjiSVC.upYjMonCheckInput51(temp_yongjims3)) {
+				if(yongjiSVC.upYjMonCheckInput51(get_param)) {
 					result++;
 				}
 			}

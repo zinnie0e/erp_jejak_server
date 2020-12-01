@@ -27,6 +27,11 @@ public class LoginController {
 		return loginSVC.countLoginUser(params);
 	}
 	
+	@RequestMapping(value="/login/dung", method=RequestMethod.POST)
+	public String selLoginDung(@RequestBody LoginVO params) throws Exception {
+		return loginSVC.selLoginDung(params);
+	}
+	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public LoginVO checkLogin(@RequestBody LoginVO params) throws Exception {
 		LoginVO result = new LoginVO();
@@ -34,6 +39,7 @@ public class LoginController {
 		if (loginSVC.countLoginIP(params) || "ajk".equals(params.getId()) || "ksj".equals(params.getId()) || "kgy".equals(params.getId())) {
 			if (loginSVC.countLoginUser(params)) {
 				result.setResult("success");
+				result.setSwdung(loginSVC.selLoginDung(params));
 			} else {
 				result.setResult("fail");
 			}

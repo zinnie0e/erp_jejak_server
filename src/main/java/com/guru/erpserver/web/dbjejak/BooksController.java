@@ -64,13 +64,26 @@ public class BooksController {
 		return booksSVC.selBooksDetail(params);
 	}
 	
-	@RequestMapping(value="/books/select_book_deasu1", method=RequestMethod.POST)
-	public List<BooksVO> selBooksDeasu1(@RequestBody BooksVO params) throws Exception {
-		return booksSVC.selBooksDeasu1(params);
+	@RequestMapping(value="/books/select_book_daesu1", method=RequestMethod.POST)
+	public List<BooksVO> selBooksDaesu1(@RequestBody BooksVO params) throws Exception {
+		return booksSVC.selBooksDaesu1(params);
 	}
-	@RequestMapping(value="/books/select_book_deasu2", method=RequestMethod.POST)
-	public List<BooksVO> selBooksDeasu2(@RequestBody BooksVO params) throws Exception {
-		return booksSVC.selBooksDeasu2(params);
+	@RequestMapping(value="/books/select_book_daesu2", method=RequestMethod.POST)
+	public List<BooksVO> selBooksDaesu2(@RequestBody BooksVO params) throws Exception {
+		return booksSVC.selBooksDaesu2(params);
+	}
+	
+	@RequestMapping(value="/books/del_books_daesu", method=RequestMethod.POST)
+	public boolean delBooksDaesu(@RequestBody BooksVO params) throws Exception {
+		return booksSVC.delBooksDaesu(params);
+	}
+	@RequestMapping(value="/books/sel_books_kswdesu0_max_uid", method=RequestMethod.POST)
+	public long selBooksKswdesu0MaxUid() throws Exception {
+		return booksSVC.selBooksKswdesu0MaxUid();
+	}
+	@RequestMapping(value="/books/in_books_daesu", method=RequestMethod.POST)
+	public boolean inBooksDaesu(@RequestBody BooksVO params) throws Exception {
+		return booksSVC.inBooksDaesu(params);
 	}
 	
 	@RequestMapping(value="/books/select_book_yong1", method=RequestMethod.POST)
@@ -84,6 +97,33 @@ public class BooksController {
 	@RequestMapping(value="/books/select_book_yong3", method=RequestMethod.POST)
 	public List<BooksVO> selBooksYong3() throws Exception {
 		return booksSVC.selBooksYong3();
+	}
+	
+	@RequestMapping(value="/books/del_books_yongji", method=RequestMethod.POST)
+	public boolean delBooksYongji(@RequestBody BooksVO params) throws Exception {
+		return booksSVC.delBooksYongji(params);
+	}
+	@RequestMapping(value="/books/in_books_yongji", method=RequestMethod.POST)
+	public boolean inBooksYongji(@RequestBody BooksVO params) throws Exception {
+		return booksSVC.inBooksYongji(params);
+	}
+	
+	@RequestMapping(value="/books/sel_books_max_sbbook", method=RequestMethod.POST)
+	public String selBooksMaxSbbook(@RequestBody BooksVO params) throws Exception {
+		return booksSVC.selBooksMaxSbbook(params);
+	}
+	
+	@RequestMapping(value="/books/sel_books_sold_out1", method=RequestMethod.POST)
+	public List<BooksVO> selBooksSoldOut1(@RequestBody BooksVO params) throws Exception {
+		return booksSVC.selBooksSoldOut1(params);
+	}
+	@RequestMapping(value="/books/sel_books_sold_out2", method=RequestMethod.POST)
+	public List<BooksVO> selBooksSoldOut2(@RequestBody BooksVO params) throws Exception {
+		return booksSVC.selBooksSoldOut2(params);
+	}
+	@RequestMapping(value="/books/sel_books_sold_out3", method=RequestMethod.POST)
+	public List<BooksVO> selBooksSoldOut3(@RequestBody BooksVO params) throws Exception {
+		return booksSVC.selBooksSoldOut3(params);
 	}
 	
 	@RequestMapping(value="/books/insert", method=RequestMethod.POST)

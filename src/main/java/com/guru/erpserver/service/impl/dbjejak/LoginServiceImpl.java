@@ -23,6 +23,11 @@ public class LoginServiceImpl implements LoginService{
 	}
 	
 	@Override
+	public String selLoginDung(LoginVO params) throws Exception {
+		return loginDAO.selLoginDung(params).getSwdung();
+	}
+	
+	@Override
 	public boolean countLoginUser(LoginVO params) throws Exception {
 		System.out.println(params.getId() + "/" + params.getPw() + "/" + params.getIp());
 		Integer get_param = loginDAO.countLoginUser(params);

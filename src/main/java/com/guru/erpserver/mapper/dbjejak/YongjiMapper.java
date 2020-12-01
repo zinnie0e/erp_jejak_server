@@ -16,10 +16,10 @@ public interface YongjiMapper {
 	//TODO 용지구입
 	public List<YongjiVO> selYjList();
 	
-	public List<YongjiVO> selYjOrderOrderList();
+	public List<YongjiVO> selYjBuyOrderList();
 	
-	public int selYjOrderCount1();
-	public int selYjOrderCount2();
+	public Integer selYjOrderCount1();
+	public Integer selYjOrderCount2();
 	
 	public int delYjOrderYojijumn();
 	public List<YongjiVO> selYjOrderInCheck1();
@@ -52,8 +52,10 @@ public interface YongjiMapper {
 	public int upYjOrderDetailCode3(YongjiVO params);
 	
 	public YongjiVO selYjOrderCheckOI(YongjiVO params);
-	public int selYjOrderJeonpyoUidCount(YongjiVO params);
-	public int selYjOrderJiinoutUidCount();
+	public Integer selYjOrderJeonpyoMaxUid(YongjiVO params);
+	public Integer selYjOrderJiinoutMaxUid();
+	public YongjiVO selYjOrderBuyKswjijl0(YongjiVO params);
+	public YongjiVO selYjOrderBuyJiinout(YongjiVO params);
 	public int inYjOrderJeonpyo(YongjiVO params);
 	public YongjiVO selYjOrderJiinout(YongjiVO params);
 	public int inYjOrderJiinout(YongjiVO params);
@@ -84,6 +86,11 @@ public interface YongjiMapper {
 	public List<YongjiVO> selYjJeonJiinoutList(YongjiVO params);
 	public YongjiVO selYjJeonKswcust0Wcname(YongjiVO params);
 	
+	public YongjiVO selYjJeonPopup1(YongjiVO params);
+	public YongjiVO selYjJeonPopup2(YongjiVO params);
+	public YongjiVO selYjJeonPopup3(YongjiVO params);
+	public YongjiVO selYjJeonPopup4(YongjiVO params);
+	
 	//TODO 용지등록하기
 	public List<YongjiVO> selYjRegiList1();
 	public List<YongjiVO> selYjRegiList2(YongjiVO params);
@@ -102,14 +109,17 @@ public interface YongjiMapper {
 	public List<YongjiVO> selYjJangYjList();
 	public YongjiVO selYjJangJp(YongjiVO params);
 	
+	public List<YongjiVO> selYjJangOther1(YongjiVO params);
+	public YongjiVO selYjJangOther2(YongjiVO params);
+	
 	//TODO 월별 용지 재고 현황
-	public List<YongjiVO> selYjMonKswjijl0List();
 	public List<YongjiVO> selYjMonCheckList(YongjiVO params);
+	public List<YongjiVO> selYjMonKswjijl0List();
 	public int inYjMon(YongjiVO params);
 	public List<YongjiVO> selYjMonList(YongjiVO params);
 	public List<YongjiVO> selYjMonJiinoutList(YongjiVO params);
 	public YongjiVO selYjMonKswcust0Wcname(YongjiVO params);
-	public List<YongjiVO> selYjMonCheckIb(YongjiVO params);
+	public List<YongjiVO> selYjMonCheckIb();
 	public YongjiVO selYjMonCheckInput1(YongjiVO params);
 	public int upYjMonCheckInput2(YongjiVO params);
 	public int upYjMonCheckInput11(YongjiVO params);
@@ -119,11 +129,16 @@ public interface YongjiMapper {
 	public int inYjMonCheckInput24(YongjiVO params);
 	public List<YongjiVO> selYjMonCheckInput31(YongjiVO params);
 	public List<YongjiVO> selYjMonCheckInput32(YongjiVO params);
-	public int upYjMonCheckInput33(YongjiVO params);
+	public YongjiVO selYjMonCheckInput33(YongjiVO params);
 	public int inYjMonCheckInput34(YongjiVO params);
+	public int upYjMonCheckInput35(YongjiVO params);
 	public List<YongjiVO> selYjMonCheckInput41(YongjiVO params);
 	public List<YongjiVO> selYjMonCheckInput42(YongjiVO params);
+	public YongjiVO selYjMonCheckInput43(YongjiVO params);
+	public int inYjMonCheckInput44(YongjiVO params);
 	public int upYjMonCheckInput51(YongjiVO params);
 	public List<YongjiVO> selYjMonPopup1(YongjiVO params);
 	public List<YongjiVO> selYjMonPopup2(YongjiVO params);
+	
+	public Integer createTableJeonpyo(YongjiVO params);
 }

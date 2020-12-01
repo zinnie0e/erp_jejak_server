@@ -22,16 +22,29 @@ public interface BooksMapper {
 	
 	public List<BooksVO> selBooksDetail(BooksVO params);
 
-	public List<BooksVO> selBooksDeasu1(BooksVO params);
-	public List<BooksVO> selBooksDeasu2(BooksVO params);
+	public List<BooksVO> selBooksDaesu1(BooksVO params);
+	public List<BooksVO> selBooksDaesu2(BooksVO params);
+	
+	public Integer delBooksDaesu(BooksVO params);
+	public Integer selBooksKswdesu0MaxUid();
+	public Integer inBooksDaesu(BooksVO params);
 	
 	public List<BooksVO> selBooksYong1(BooksVO params);
 	public List<BooksVO> selBooksYong2(BooksVO params);
 	public List<BooksVO> selBooksYong3();
 	
-	public int inBooks(BooksVO params);
+	public Integer delBooksYongji(BooksVO params);
+	public Integer inBooksYongji(BooksVO params);
 	
-	public int upBooks(BooksVO params);
+	public BooksVO selBooksMaxSbbook(BooksVO params);
 	
-	public int delBooks(BooksVO params);
+	public List<BooksVO> selBooksSoldOut1(BooksVO params);
+	public List<BooksVO> selBooksSoldOut2(BooksVO params);
+	public List<BooksVO> selBooksSoldOut3(BooksVO params);
+	
+	public Integer inBooks(BooksVO params);
+	
+	public Integer upBooks(BooksVO params);
+	
+	public Integer delBooks(BooksVO params);
 }

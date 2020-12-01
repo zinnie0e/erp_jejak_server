@@ -41,12 +41,12 @@
 		ORDER BY ib ASC, wjcode ASC, wjname ASC
 	</select>
 	
-	<select id="selYjOrderOrderList" resultType="yongjiVO">
+	<select id="selYjBuyOrderList" resultType="yongjiVO">
 		SELECT a.*, b.ib
 		FROM YOJIJUMN AS a, KSWJIJL0 AS b
 		WHERE a.gmcheck = 0
 			AND a.yjcode = b.wjcode
-		ORDER BY a.yjcode ASC
+		ORDER BY a.fxamount DESC, a.yjcode ASC
 	</select>
 	
 	<select id="selYjOrderCount1" resultType="yongjiVO">
@@ -225,14 +225,28 @@
 		WHERE uid = #{uid}
 	</select>
 	
-	<select id="selYjOrderJeonpyoUidCount" parameterType="yongjiVO">
+	<select id="selYjOrderJeonpyoMaxUid" parameterType="Integer">
 		SELECT MAX(uid)
 		FROM JEONPYO${value}
 	</select>
 	
-	<select id="selYjOrderJiinoutUidCount" parameterType="yongjiVO">
+	<select id="selYjOrderJiinoutMaxUid" parameterType="Integer">
 		SELECT MAX(uid)
 		FROM JIINOUT
+	</select>
+	
+	<select id="selYjOrderBuyKswjijl0" parameterType="yongjiVO">
+		SELECT *
+		FROM KSWJIJL0
+		WHERE wjcode = #{jicode}
+		LIMIT 1
+	</select>
+	
+	<select id="selYjOrderBuyJiinout" parameterType="yongjiVO">
+		SELECT *
+		FROM JIINOUT
+		WHERE jicode = #{jicode}
+		ORDER BY date DESC, uid DESC LIMIT 1
 	</select>
 	
 	<insert id="inYjOrderJeonpyo" parameterType="yongjiVO">
@@ -279,7 +293,7 @@
 	<select id="selYjOrderCheckOrder2" parameterType="yongjiVO">
 		SELECT curno
 		FROM JIINOUT
-		WHERE jicode = #{jicode}
+		WHERE jicode = #{yjcode}
 		ORDER BY date DESC, uid DESC LIMIT 1
 	</select>
 	
@@ -305,7 +319,7 @@
 		WHERE uid = #{uid}
 	</select>
 	
-	<update id="upYjOrderCheckInputJ13" parameterType="yongjiVO">
+	<update id="upYjOrderCheckInputJ3" parameterType="yongjiVO">
 		UPDATE TMPJAB3 SET
 			YB=#{yb}, JUTAG='1'
 		WHERE uid = #{uid}
@@ -420,6 +434,30 @@
 		FROM KSWCUST0
 		WHERE wccode = #{wccode}
 	</select>
+	
+	<select id="selYjJeonPopup1" resultType="yongjiVO">
+		SELECT *
+		FROM JEONPYO${value}
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selYjJeonPopup2" resultType="yongjiVO">
+		SELECT wcname
+		FROM KSWCUST0 
+		WHERE wccode = #{spcom}
+	</select>
+	
+	<select id="selYjJeonPopup3" resultType="yongjiVO">
+		SELECT wcname
+		FROM KSWCUST0 
+		WHERE wccode = #{buycom}
+	</select>
+	
+	<select id="selYjJeonPopup4" resultType="yongjiVO">
+		SELECT bigo
+		FROM JIINOUT 
+		WHERE jeon = #{uid}
+	</select>
 
 	<!-- 용지등록하기 -->
 	<select id="selYjRegiList1" resultType="yongjiVO">
@@ -438,7 +476,7 @@
 	<select id="selYjRegKswjijl0List" resultType="yongjiVO">
 		SELECT *
 		FROM KSWJIJL0
-		ORDER BY ib ASC, wjcode ASC, wjname ASC
+		ORDER BY ib ASC, wjname ASC
 	</select>
 	
 	<select id="selYjRegDetail" resultType="yongjiVO">
@@ -490,7 +528,7 @@
 	<select id="selYjJangJiinoutList" resultType="yongjiVO">
 		SELECT *
 		FROM JIINOUT
-		WHERE jicode = #{wjcode}
+		WHERE jicode LIKE #{wjcode}
 			AND date <![CDATA[ >= ]]> #{date1}
 			AND date <![CDATA[ < ]]> #{date2}
 		ORDER BY date ASC, jeon ASC
@@ -499,7 +537,7 @@
 	<select id="selYjJangJiinoutCuList" resultType="yongjiVO">
 		SELECT *
 		FROM JIINOUT
-		WHERE comid = #{wccode}
+		WHERE comid LIKE #{wccode}
 			AND date <![CDATA[ >= ]]> #{date1}
 			AND date <![CDATA[ < ]]> #{date2}
 		ORDER BY date ASC
@@ -524,17 +562,32 @@
 		WHERE uid = #{jeon}
 	</select>
 	
-	<!-- 월별 용지 재고 현황 -->
-	<select id="selYjMonKswjijl0List" resultType="yongjiVO">
+	<select id="selYjJangOther1" resultType="yongjiVO">
 		SELECT *
-		FROM KSWJIJL0
-		ORDER BY ib ASC, wjcode ASC, wjname ASC
+		FROM JIINOUT
+		WHERE date <![CDATA[ >= ]]> #{date1}
+			AND date <![CDATA[ < ]]> #{date2}
+		ORDER BY jeon ASC
 	</select>
 	
+	<select id="selYjJangOther2" resultType="yongjiVO">
+		SELECT wjname, jsuns
+		FROM KSWJIJL0
+		WHERE wjcode LIKE #{jicode}
+	</select>
+	
+	
+	<!-- 월별 용지 재고 현황 -->
 	<select id="selYjMonCheckList" resultType="yongjiVO">
 		SELECT *
 		FROM YONGJIMS3
 		WHERE MSDATE = #{msdate}
+	</select>
+	
+	<select id="selYjMonKswjijl0List" resultType="yongjiVO">
+		SELECT *
+		FROM KSWJIJL0
+		ORDER BY ib ASC, wjcode ASC
 	</select>
 	
 	<insert id="inYjMon" parameterType="yongjiVO">
@@ -583,7 +636,7 @@
 		SELECT *
 		FROM YONGJIMS3
 		WHERE MSDATE = #{msdate}
-			AND YJCODE = #{yjcode}
+			AND YJCODE = #{wjcode}
 	</select>
 	
 	<update id="upYjMonCheckInput2" parameterType="yongjiVO">
@@ -610,13 +663,13 @@
 	<select id="selYjMonCheckInput22" resultType="yongjiVO">
 		SELECT *
 		FROM YONGJIMS3
-		WHERE YJCODE = #{jicode}
+		WHERE YJCODE LIKE #{jicode}
 	</select>
 	
 	<update id="upYjMonCheckInput23" parameterType="yongjiVO">
 		UPDATE YONGJIMS3 SET
-			QNTY2=#{qnty2}
-		WHERE YJCODE = #{yjcode}
+			QNTY2=#{nsum}
+		WHERE YJCODE = #{jicode}
 			AND MSDATE = #{msdate}
 	</update>
 	
@@ -624,7 +677,7 @@
 		INSERT INTO YONGJIMS3 (
 			YJCODE, MSDATE, QNTY2
 		) VALUES (
-			#{yjcode}, #{msdate}, #{qnty2}
+			#{jicode}, #{msdate}, #{nsum}
 		)
 	</insert>
 	
@@ -641,11 +694,12 @@
 			AND JUTAG <![CDATA[ <> ]]> 3
 	</select>
 	
-	<update id="upYjMonCheckInput33" parameterType="yongjiVO">
-		UPDATE YONGJIMS3 SET
-			QNTY3=#{qnty3}
-		WHERE UID = #{uid}
-	</update>
+	<select id="selYjMonCheckInput33" resultType="yongjiVO">
+		SELECT *
+		FROM YONGJIMS3
+		WHERE MSDATE = #{msdate}
+			AND YJCODE = #{yjcode}
+	</select>
 	
 	<insert id="inYjMonCheckInput34" parameterType="yongjiVO">
 		INSERT INTO YONGJIMS3 (
@@ -654,6 +708,13 @@
 			#{yjcode}, #{msdate}, #{qnty3}
 		)
 	</insert>
+	
+	<update id="upYjMonCheckInput35" parameterType="yongjiVO">
+		UPDATE YONGJIMS3 SET
+			QNTY3=#{qnty3}
+		WHERE UID = #{uid}
+	</update>
+	
 	
 	<select id="selYjMonCheckInput41" resultType="yongjiVO">
 		SELECT uid
@@ -666,6 +727,21 @@
 		FROM TMPLIST3
 		WHERE listid = #{uid}
 	</select>
+	
+	<select id="selYjMonCheckInput43" resultType="yongjiVO">
+		SELECT *
+		FROM YONGJIMS3
+		WHERE MSDATE = #{msdate}
+			AND YJCODE = #{jcode}
+	</select>
+	
+	<insert id="inYjMonCheckInput44" parameterType="yongjiVO">
+		INSERT INTO YONGJIMS3 (
+			YJCODE, MSDATE, QNTY3
+		) VALUES (
+			#{jcode}, #{msdate}, #{qnty3}
+		)
+	</insert>
 	
 	<update id="upYjMonCheckInput51" parameterType="yongjiVO">
 		UPDATE YONGJIMS3 SET
@@ -689,4 +765,28 @@
 		ORDER BY a.date ASC, a.jeon ASC
 	</select>
 	
+	
+	<!-- 전표 테이블 생성 -->
+	<select id="createTableJeonpyo" resultType="yongjiVO">
+		CREATE TABLE jeonpyo${value} (
+		  uid mediumint(10) NOT NULL AUTO_INCREMENT,
+		  bdate int(10) NOT NULL DEFAULT 0,
+		  JEJANUM int(3) NOT NULL DEFAULT 0,
+		  spcom varchar(10) DEFAULT NULL,
+		  buycom varchar(10) NOT NULL DEFAULT 'N',
+		  bname varchar(100) DEFAULT NULL,
+		  bcode varchar(10) DEFAULT NULL,
+		  busu int(10) NOT NULL DEFAULT 0,
+		  panh varchar(6) NOT NULL DEFAULT '0',
+		  myun int(10) NOT NULL DEFAULT 0,
+		  jiname varchar(30) NOT NULL DEFAULT 'N',
+		  jicode varchar(10) NOT NULL DEFAULT 'N',
+		  jnum1 int(10) NOT NULL DEFAULT 0,
+		  jnum2 int(10) NOT NULL DEFAULT 0,
+		  jsum int(10) NOT NULL DEFAULT 0,
+		  comment varchar(100) DEFAULT NULL,
+		  pcheck int(1) NOT NULL DEFAULT 0,
+		  PRIMARY KEY (uid)
+		) ENGINE=MyISAM AUTO_INCREMENT=450 DEFAULT CHARSET=utf8 COMMENT='용지전표';
+	</select>
 </mapper>

@@ -64,18 +64,38 @@
 		WHERE uid = #{uid}
 	</select>
 	
-	<select id="selBooksDeasu1" resultType="booksVO">
+	<select id="selBooksDaesu1" resultType="booksVO">
 		SELECT count(uid) AS count 
 		FROM ${dbname}
 		WHERE wdbook = #{tmpcode}
 	</select>
 	
-	<select id="selBooksDeasu2" resultType="booksVO">
+	<select id="selBooksDaesu2" resultType="booksVO">
 		SELECT * 
 		FROM ${dbname}
 		WHERE wdbook = #{tmpcode}
 		ORDER BY uid ASC
 	</select>
+	
+	<delete id="delBooksDaesu" parameterType="booksVO">
+		DELETE FROM KSWDESU0
+		WHERE wdbook = #{tmpcode}
+	</delete>
+	
+	<select id="selBooksKswdesu0MaxUid" parameterType="Integer">
+		SELECT MAX(uid)
+		FROM KSWDESU0
+	</select>
+	
+	<insert id="inBooksDaesu" parameterType="booksVO">
+		INSERT INTO KSWDESU0 (
+			uid, WDBOOK, WDBOO9, WDSUNS, WDSRNO,
+			WDDESU, WDPAGE, WDCOLO, WDQNTY
+		) VALUES (
+			#{uid}, #{wdbook}, #{wdboo9}, #{wdsuns}, '1'
+			#{wddesu}, #{wdpage}, #{wdcolo}, #{wdqnty}
+		)
+	</insert>
 	
 	<select id="selBooksYong1" resultType="booksVO">
 		SELECT count(uid) AS count 
@@ -90,15 +110,72 @@
 		ORDER BY uid ASC
 	</select>
 	
+	<delete id="delBooksYongji" parameterType="booksVO">
+		DELETE FROM KSWYONJ0
+		WHERE wybook = #{tmpcode}
+	</delete>
+	
+	<insert id="inBooksYongji" parameterType="booksVO">
+		INSERT INTO KSWYONJ0 (
+			WYBOOK, WYBOO9, WYSUNS, WYGUBN, WYJIJL,
+			WYCOLO, WYPAGE
+		) VALUES (
+			#{wybook}, #{wdboo9}, #{wdsuns}, #{wdgubn}, #{wyjijl}
+			#{wycolo}, #{wdpage}
+		)
+	</insert>
+	
 	<select id="selBooksYong3" resultType="booksVO">
 		SELECT wjcode, wjname 
 		FROM KSWJIJL0 
 		ORDER BY wjname ASC, wjcode ASC
 	</select>
 	
+	<select id="selBooksMaxSbbook" resultType="booksVO">
+		SELECT MAX(sbbook) AS sbbook
+		FROM KSCBOOK0 
+		WHERE (sbbook LIKE CONCAT(#{key}, '%'))
+	</select>
+
+	<!-- skydb -->
+	<select id="selBooksSoldOut1" resultType="booksVO">
+		SELECT a.*, b.sbname, b.sbpegi, c.scyakc
+		FROM temp_KS1${value}0 AS a, temp_KSCBOOK0 AS b, temp_KSCCUST0 AS c
+		WHERE a.s1book = #{num_value}
+			AND (a.s1pumj = '1' OR a.s1pumj = '4')
+			AND a.s1book = b.sbbook
+			AND a.s1cust = c.sccust
+			AND b.sbpegi NOT LIKE 'P'
+		ORDER BY a.s1ilja ASC, a.s1cust ASC, a.s1suns DESC;
+	</select>
+	
+	<!-- skydb -->
+	<select id="selBooksSoldOut2" resultType="booksVO">
+		SELECT a.*, b.sbname, b.sbpegi, c.scyakc
+		FROM temp_KS1${value}0 AS a, temp_KSCBOOK0 AS b, temp_KSCCUST0 AS c
+		WHERE a.s1cust = #{num_value}
+			AND (a.s1pumj = '1' OR a.s1pumj = '4')
+			AND a.s1book = b.sbbook
+			AND a.s1cust = c.sccust
+			AND b.sbpegi NOT LIKE 'P'
+		ORDER BY a.s1ilja ASC, a.s1bunh ASC;
+	</select>
+	
+	<!-- skydb -->
+	<select id="selBooksSoldOut3" resultType="booksVO">
+		SELECT a.*, b.sbname, b.sbpegi, c.scyakc
+		FROM temp_KS1${value}0 AS a, temp_KSCBOOK0 AS b, temp_KSCCUST0 AS c
+		WHERE (a.s1pumj = '1' OR a.s1pumj = '4')
+			AND a.s1ilja <![CDATA[ >= ]]> #{value}
+			AND a.s1book = b.sbbook
+			AND a.s1cust = c.sccust
+			AND b.sbpegi NOT LIKE 'P'
+		ORDER BY a.s1ilja ASC, a.s1bunh ASC;
+	</select>
+            
 	<insert id="inBooks" parameterType="booksVO">
 		INSERT INTO KSCBOOK0 (
-			SBINSE, SBBIGO, SBJLSU, SBBOOK, SBNAME,
+			SBINSE, SBHJ04, SBBIGO, SBJLSU, SBBOOK, SBNAME,
 			SBNAME2, SBUPRC, SBPANH, SBJANH, SBPAGE,
 			SBSBPH1, SBSBJH1, SBSBPG1, SBSBPH2, SBSBJH2,
 			SBSBPG2, SBSBPH3, SBSBJH3, SBSBPG3, SBSBPH4,
@@ -106,7 +183,7 @@
 			SBCD, SBCOTI, SBCASE2, SBCOTI2, SBWING2,
 			SBMYUN, SBBYUL, SBHWBO
 		) VALUES (
-			#{sbinse}, #{sbbigo}, #{sbjlsu}, #{sbbook}, #{sbname},
+			#{sbinse}, #{sbhj04}, #{sbbigo}, #{sbjlsu}, #{sbbook}, #{sbname},
 			#{sbname2}, #{sbuprc}, #{sbpanh}, #{sbjanh}, #{sbpage},
 			#{sbsbph1}, #{sbsbjh1}, #{sbsbpg1}, #{sbsbph2}, #{sbsbjh2},
 			#{sbsbpg2}, #{sbsbph3}, #{sbsbjh3}, #{sbsbpg3}, #{sbsbph4},
