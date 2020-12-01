@@ -30,6 +30,239 @@
 		    AND (jm > 0 or yb > 0)
 	</select>
 	
+	<select id="selBookCostStatement4" resultType="monthClosingVO">
+		select a.uid, b.bcode, b.btype, c.sbsbph1, c.sbsbph2, c.sbsbph3, c.sbsbph4, c.sbsbjh1, c.sbsbjh2, c.sbsbjh3, c.sbsbjh4, c.sbsbpg1, c.sbsbpg2, c.sbsbpg3, c.sbsbpg4
+		from TMPLIST2 as a, TMPLIST as b, KSCBOOK0 as c
+		where a.uid=#{uid}
+		and a.listid=b.uid
+		and b.bcode=c.SBBOOK
+		limit 1
+	</select>
+	
+	<select id="selBookCostStatement5" resultType="monthClosingVO">
+		select a.crnum, a.bdate, a.m1, a.m2, a.m3, b.bnum, b.bname, b.bcode, b.bmyun, c.sbpanh, c.sbjanh, c.sbuprc, d.wcname 
+		from TMPLIST2 as a, TMPLIST as b, KSCBOOK0 as c, KSWCUST0 as d 
+		where a.uid=#{uid}
+		and a.bucode=0 
+		and a.listid=b.uid 
+		and b.bcode=c.SBBOOK 
+		and a.m1=d.wccode
+	</select>
+	
+	<select id="selBookCostStatement6" resultType="monthClosingVO">
+		select * 
+		from TMPLIST5 
+		where listid5=#{uid} 
+		order by uid asc
+	</select>	
+	
+	<select id="selBookCostStatement7" resultType="monthClosingVO">
+		select * 
+		from TMPLIST5 
+		where listid5=#{bur_uid} 
+		order by uid asc
+	</select>
+	
+	<select id="selBookCostStatement8" resultType="monthClosingVO">
+	select * 
+	from TMPLIST3 
+	where listid=#{uid} 
+	order by uid asc
+	</select>	
+	
+	<select id="selBookCostStatement9" resultType="monthClosingVO">
+	select * 
+	from TMPLIST3 
+	where listid=#{bur_uid} 
+	order by uid asc
+	</select>	
+	
+	<select id="selBookCostStatement10" resultType="monthClosingVO">
+	select * 
+	from KSWCUST0 
+	where wccode=#{m3}
+	</select>	
+	
+	<select id="selBookCostStatement11" resultType="monthClosingVO">
+	select * 
+	from BITABLE7 
+	where crnum7=#{uid} 
+	order by uid asc
+	</select>	
+	
+	<select id="selBookCostStatement12" resultType="monthClosingVO">
+	SELECT m3 
+	FROM TMPLIST2 WHERE 
+	uid=#{bur_uid}
+	</select>
+		
+	<select id="selBookCostStatement13" resultType="monthClosingVO">
+	select * 
+	from KSWCUST0
+	where wccode=#{jebon}
+	</select>	
+	
+	<select id="selBookCostStatement14" resultType="monthClosingVO">
+	select * 
+	from BITABLE7 
+	where uid=#{bur_uid}
+	</select>
+		
+	<select id="selBookCostStatement15" resultType="monthClosingVO">
+	select a.*, b.wcname 
+	from BITABLE8 as a, KSWCUST0 as b 
+	where a.crnum8= #{uid} 
+	and a.ccode8=b.wccode
+	</select>
+		
+	<select id="selBookCostStatement16" resultType="monthClosingVO">
+	SELECT * 
+	FROM BITABLE9 
+	WHERE crnum9=#{uid} AND bitag=1
+	</select>
+		
+	<select id="selBookCostStatement17" resultType="monthClosingVO">
+	SELECT wcname 
+	FROM KSWCUST0 
+	WHERE wccode 
+	LIKE #{ccode9}
+	</select>	
+	<select id="selBookCostStatement18" resultType="monthClosingVO">
+	select * 
+	from TWONGA 
+	where jenum=#{uid} 
+	and jabtag=0
+	</select>	
+	
+	<insert id="inBookCostStatement19" parameterType="monthClosingVO">
+	INSERT INTO TWONGA (jenum, jabtag) VALUES (#{uid}, 0)
+	</insert>	
+	
+	<update id="upBookCostStatement20" parameterType="monthClosingVO">
+	UPDATE TWONGA SET w21=#{new_21} WHERE jenum=#{uid} and jabtag=0
+	</update>
+	
+	<select id="selBookCostStatement21" resultType="monthClosingVO">
+	SELECT SBDUNG, SBINSE, SBJJGB FROM KSCBOOK0 WHERE SBBOOK LIKE #{bookcode}
+	</select>
+	
+	<select id="selBookCostStatement22" resultType="monthClosingVO">
+	SELECT STHALY 
+	FROM KSCTABL0 
+	WHERE STCUDN 
+	LIKE '026' 
+	AND STDSDN 
+	LIKE #{sthaly}	
+	</select>
+	
+	<select id="selBookCostStatement23" resultType="monthClosingVO">
+	update TWONGA set wtotal=#{total_cost}, wdanga=#{total_danga} where jenum=#{uid} and jabtag=0
+	</select>
+	
+	<!-- 도서별 원가계산서 인쇄 -->
+	<select id="selBookCostStatement24" resultType="monthClosingVO">
+	select a.uid, a.crnum, a.bdate, a.m1, a.m2, a.m3, b.bnum, b.bname, b.bcode, b.bmyun, b.btype, c.SBPANH, c.SBJANH, c.SBSBJH1,
+	c.SBSBJH2, c.SBSBJH3, c.SBSBJH4, c.SBSBPH1, c.SBSBPH2, c.SBSBPH3, c.SBSBPH4, c.SBSBPG1, c.SBSBPG2, c.SBSBPG3, c.SBSBPG4, c.SBUPRC, d.wcname 
+	from TMPLIST2 as a, TMPLIST as b, KSCBOOK0 as c, KSWCUST0 as d 
+	where a.uid=#{uid}
+	and a.listid=b.uid 
+	and b.bcode=c.SBBOOK 
+	and a.m1=d.wccode
+	</select>
+	
+	<select id="selBookCostStatement25" resultType="monthClosingVO">
+	select a.*, b.bnum, b.bname, b.bcode, b.bmyun, b.btype, c.SBPANH, c.SBJANH, c.SBSBJH1, c.SBSBJH2, c.SBSBJH3, c.SBSBJH4, c.SBSBPH1, c.SBSBPH2, c.SBSBPH3, c.SBSBPH4, c.SBSBPG1, c.SBSBPG2, c.SBSBPG3, c.SBSBPG4, c.SBUPRC, d.wcname 
+	from TMPLIST2 as a, TMPLIST as b, KSCBOOK0 as c, KSWCUST0 as d 
+	where a.bdate <![CDATA[ > ]]> #{date1} 
+	and a.bdate <![CDATA[ < ]]> #{date2}
+	and a.bucode=0 and a.listid=b.uid 
+	and b.bcode=c.SBBOOK 
+	and a.m1=d.wccode 
+	order by a.crnum asc
+	</select>
+	
+	<select id="selBookCostStatement26" resultType="monthClosingVO">		
+	select * 
+	from TMPLIST5 
+	where listid5=#{uid} 
+	order by uid asc
+	</select>
+	
+	<select id="selBookCostStatement27" resultType="monthClosingVO">
+	select * 
+	from TMPLIST5 
+	where listid5=#{bur_uid} 
+	order by uid asc
+	</select>
+	
+	<select id="selBookCostStatement28" resultType="monthClosingVO">
+	select * 
+	from TMPLIST3 
+	where listid=#{uid} 
+	and gubn like '%본문%'		
+	</select>
+	
+	<select id="selBookCostStatement29" resultType="monthClosingVO">	
+	select * 
+	from TMPLIST3 
+	where listid=#{bur_uid} 
+	order by uid asc	
+	</select>
+	
+	<select id="selBookCostStatement30" resultType="monthClosingVO">
+	SELECT SBDUNG 
+	FROM KSCBOOK0 
+	WHERE SBBOOK LIKE #{bookcode}		
+	</select>
+	
+	<select id="selBookCostStatement31" resultType="monthClosingVO">
+	select * 
+	from TWONGA 
+	where jenum=#{uid}		
+	</select>
+	
+	<select id="selBookCostStatement32" resultType="monthClosingVO">
+	select * 
+	from TMPLIST2 
+	where (date_format(from_unixtime(bdate), '%Y%m%d')=#{date}) 
+	order by bdate asc	
+	</select>
+	
+	<select id="selBookCostStatement33" resultType="monthClosingVO">
+	select * 
+	from TMPLIST3 
+	where listid=#{mrow}
+	and ycost=0
+	</select>
+	
+	<select id="selBookCostStatement34" resultType="monthClosingVO">
+	select * 
+	from KSWJIJL0 
+	where wjcode=#{jcode}
+	</select>
+	 
+	<update id="upBookCostStatement35" parameterType="monthClosingVO">
+	update TMPLIST3 set ycost=#{new_cost} where uid=#{row}
+	</update>
+	
+	<select id="selBookCostStatement36" resultType="monthClosingVO">
+	select a.uid, b.bcode, c.SBSBPH1, c.SBSBPH2, c.SBSBPH3, c.SBSBPH4 
+	from TMPLIST2 as a, TMPLIST as b, KSCBOOK0 as c 
+	where a.uid=#{uid} 
+	and a.listid=b.uid 
+	and b.bcode=c.SBBOOK limit 1
+	</select>
+	
+	<select id="selBookCostStatement37" resultType="monthClosingVO">
+	select * 
+	from TMPLIST3 
+	where listid=#{bur_uid} 
+	and ycost=0 and bucode=#{i}
+	</select>
+	
+	
+		
+			
 	<!-- 잡물 원가계산서 -->
 	<select id="selJMCostStatement1" resultType="monthClosingVO">
 		SELECT count(uid) AS count 
@@ -56,6 +289,109 @@
 			AND jutag <![CDATA[ < ]]> 3
 	</select>
 	
+	<select id="selJMCostStatement4" resultType="monthClosingVO">
+		select * 
+		from TMPJAB 
+		where JBDATE <![CDATA[ > ]]>  #{date1} 
+		and JBDATE <![CDATA[ < ]]> #{date2}
+		order by UID asc
+	</select>
+	
+	<select id="selJMCostStatement5" resultType="monthClosingVO">
+		select SOBUDAN5, GUBN5, PANST5, sum(PANNUM5) as pans, sum(SOBU5) as sobus, sum(SUM5) as sums, DAEJI5, FILMNUM5, FILMDAN5, FILMCOST5 
+		from TMPJAB5 
+		where LISTID=#{uid} 
+		group by GUBN5 
+		order by UID asc
+	</select>
+	
+	<select id="selJMCostStatement6" resultType="monthClosingVO">
+	select wcname 
+	from KSWCUST0 
+	where wccode=#{m1}
+	</select>
+	
+	<select id="selJMCostStatement7" resultType="monthClosingVO">
+	select YJCODE, YJNAME, sum(JM) as jms, sum(YB) as ybs, GUBN, COLO, sum(RNUM) as rnums, sum(YCOST) as ycosts, sum(PCOST) as pcosts, PDANGA 
+	from TMPJAB3 
+	where JBID=#{uid} 
+	group by GUBN 
+	order by UID asc
+	</select>
+	
+	<select id="selJMCostStatement8" resultType="monthClosingVO">
+	select * 
+	from KSWCUST0 
+	where wccode=#{m3}
+	</select>
+	
+	<select id="selJMCostStatement9" resultType="monthClosingVO">
+	select * 
+	from BIJAB7 
+	where crnum7=#{uid}
+	order by uid asc
+	</select>
+	
+	<select id="selJMCostStatement10" resultType="monthClosingVO">
+	select a.*, b.wcname 
+	from BIJAB8 as a, KSWCUST0 as b 
+	where a.crnum8=#{uid} 
+	and a.ccode8=b.wccode
+	</select>
+	
+	<select id="selJMCostStatement11" resultType="monthClosingVO">
+	select * 
+	from KSWCUST0 
+	where wccode=#{m8}
+	</select>
+	
+	<select id="selJMCostStatement12" resultType="monthClosingVO">
+	SELECT * 
+	FROM BIJAB9 
+	WHERE bitag=1 
+	AND ccode9 
+	LIKE '#{m8}' 
+	AND crnum9=#{uid}
+	</select>
+	
+	<select id="selJMCostStatement13" resultType="monthClosingVO">
+	select * 
+	from TWONGA
+	where jenum=#{uid} 
+	and jabtag=1
+	</select>
+	
+	<select id="selJMCostStatement14" resultType="monthClosingVO">
+	select * 
+	from TMPJAB 
+	where UID=#{uid}
+	</select>
+	
+	<select id="selJMCostStatement15" resultType="monthClosingVO">
+	select * 
+	from TMPJAB5 
+	where LISTID=#{uid} 
+	order by UID asc
+	</select>
+	
+	<select id="selJMCostStatement16" resultType="monthClosingVO">
+	select * 
+	from TMPJAB3 
+	where JBID=#{uid} 
+	order by UID asc
+	</select>
+	
+	<insert id="inJMCostStatement17" parameterType="monthClosingVO">
+	INSERT INTO TWONGA (jenum, jabtag) VALUES (#{uid}, 1)
+	</insert>
+	
+	<update id="updateJMCostStatement18" parameterType="monthClosingVO">
+	update TWONGA set wtotal=#{total_cost}, wdanga=#{total_danga} where jenum=#{uid} and jabtag=1
+	</update>
+	
+	
+	
+	
 	<!-- 품목별 원재료명세서(월별) -->
 	<select id="selPumMon1" resultType="monthClosingVO">
 		SELECT * 
@@ -77,6 +413,161 @@
 		ORDER BY a.uid ASC
 	</select>
 	
+	<!-- yj_ms2 -->
+	<select id="selPumMon4" resultType="monthClosingVO">
+		SELECT * 
+		FROM KSWJIJL0 
+		ORDER BY ib ASC, wjcode ASC
+	</select>
+	
+	<select id="selPumMon5" resultType="monthClosingVO">
+		SELECT * 
+		FROM KSWJIJL0 
+		ORDER BY ib ASC, wjcode ASC
+	</select>
+	
+	<select id="selPumMon6" resultType="monthClosingVO">
+		SELECT * 
+		FROM YONGJIMS 
+		WHERE MSDATE 
+		LIKE #{bdate}
+	</select>
+	
+	<select id="selPumMon7" resultType="monthClosingVO">
+		select jicode, sum(tprice) as psum, sum(num) as nsum 
+		from JIINOUT 
+		where (date_format(from_unixtime(date), '%Y%m')=#{bdate}) 
+		and comment like '入' group by jicode
+	</select>
+	
+	<select id="selPumMon8" resultType="monthClosingVO">
+		select UID 
+		from TMPJAB 
+		where (date_format(from_unixtime(JBDATE), '%Y%m')=#{bdate})
+	</select>
+	
+	<select id="selPumMon9" resultType="monthClosingVO">
+		select * 
+		from TMPJAB3 
+		where JBID=#{uid}
+		and JUTAG <![CDATA[<>]]> 3
+	</select>
+	
+	<select id="selPumMon10" resultType="monthClosingVO">
+		select * 
+		from YONGJIMS 
+		where MSDATE=#{bdate}
+		and YJCODE=#{yjcode}
+	</select>
+	
+	<select id="selPumMon11" resultType="monthClosingVO">
+		select uid 
+		from TMPLIST2
+		where (date_format(from_unixtime(bdate), '%Y%m')=#{bdate})
+	</select>
+	
+	<select id="selPumMon12" resultType="monthClosingVO">
+		select * 
+		from TMPLIST3 
+		where listid=#{uid}
+	</select>
+	
+	<select id="selPumMon13" resultType="monthClosingVO">
+		select * 
+		from YONGJIMS 
+		where MSDATE=#{bdate}
+		and YJCODE=#{jcode}
+	</select>
+	
+	<select id="selPumMon14" resultType="monthClosingVO">
+		select * 
+		from YONGJIMS 
+		where MSDATE=#{bdate}
+	</select>
+		
+	<select id="selPumMon15" resultType="monthClosingVO">
+		select a.JBNAME, b.UID, b.YCOST 
+		from TMPJAB as a, TMPJAB3 as b 
+		where (date_format(from_unixtime(a.JBDATE), '%Y%m')=#{bdate})
+		and a.UID=b.JBID and b.YJCODE=#{yjcode} order by a.UID asc limit 1
+	</select>	
+	
+	<select id="selPumMon16" resultType="monthClosingVO">
+		select a.listid, b.uid, b.ycost 
+		from TMPLIST2 as a, TMPLIST3 as b 
+		where (date_format(from_unixtime(a.bdate), '%Y%m')=#{bdate})
+		and a.uid=b.listid and b.jcode='$row[YJCODE]' order by a.uid asc limit 1
+	</select>	
+	
+	
+	<insert id="inPumMon2" parameterType="monthClosingVO">
+		INSERT
+		INTO YONGJIMS (YJCODE, MSDATE) 
+		VALUES (#{wjcode}, #{bdate})
+	</insert>
+	
+	<update id="upPumMon1" parameterType="monthClosingVO">
+		update YONGJIMS 
+		set QNTY1=0, AMNT1=0, QNTY2=0, AMNT2=0, QNTY3=0, AMNT3=0, QNTY4=0, AMNT4=0 
+		where MSDATE LIKE #{bdate}
+	</update>
+	
+	<update id="upPumMon2" parameterType="monthClosingVO">
+		UPDATE YONGJIMS 
+		SET QNTY1=#{qnty1}, AMNT1=#{amnt1} 
+		WHERE YJCODE=#{yjcode} AND MSDATE=#{bdate}
+	</update>
+	
+	<update id="upPumMon3" parameterType="monthClosingVO">
+	update YONGJIMS 
+	set QNTY2=#{nsum}, AMNT2=#{psum}
+	where YJCODE=#{jicode}
+	and MSDATE=#{bdate}
+	</update>
+	
+	<update id="upPumMon4" parameterType="monthClosingVO">
+	update YONGJIMS 
+	set QNTY3=#{new_q}, AMNT3=#{new_a} 
+	where UID=#{uid}
+	</update>
+	
+	<update id="upPumMon5" parameterType="monthClosingVO">
+	update YONGJIMS 
+	set QNTY3=#{new_q}, AMNT3=#{new_a} 
+	where UID=#{uid}
+	</update>
+	
+	<update id="upPumMon6" parameterType="monthClosingVO">
+	update YONGJIMS 
+	set QNTY4=#{new_q}, AMNT4=0 
+	where UID=#{uid}
+	</update>
+	
+	<update id="upPumMon7" parameterType="monthClosingVO">
+	update TMPJAB3 
+	set YCOST=#{new_a} 
+	where UID=#{uid}
+	</update>
+	
+	<update id="upPumMon8" parameterType="monthClosingVO">
+	update TMPLIST3 
+	set ycost=#{new_a} 
+	where uid=#{uid}
+	</update>
+	
+	<update id="upPumMon9" parameterType="monthClosingVO">
+	update YONGJIMS 
+	set AMNT3=#{new_val}
+	where UID=#{uid}
+	</update>
+	
+	<update id="upPumMon10" parameterType="monthClosingVO">
+	update YONGJIMS 
+	set QNTY4=#{new_q}, AMNT4=#{new_a} 
+	where UID=#{uid}
+	</update>
+	<!-- yj_ms2 -->
+	
 	<insert id="inPumMon1" parameterType="monthClosingVO">
 		INSERT INTO YONGJIMS (
 			yjcode, msdate
@@ -86,6 +577,8 @@
 		)
 	</insert>
 	
+	
+	
 	<!-- 품목별 원재료명세서(기간) -->
 	<select id="selPumPer1" resultType="monthClosingVO">
 		SELECT a.*, b.wjname 
@@ -94,6 +587,49 @@
 			AND a.yjcode = b.wjcode 
 		ORDER BY a.uid ASC
 	</select>
+	
+	<select id="selPumPer2" resultType="monthClosingVO">
+		SELECT wjcode 
+		FROM KSWJIJL0 
+		ORDER BY ib ASC, wjcode ASC
+	</select>
+	
+	<select id="selPumPer3" resultType="monthClosingVO">
+		SELECT QNTY1, AMNT1 
+		FROM YONGJIMS 
+		WHERE YJCODE 
+		LIKE #{yjcode} AND MSDATE 
+		LIKE #{msdate}
+	</select>
+	
+	<select id="selPumPer4" resultType="monthClosingVO">
+		SELECT QNTY1, AMNT1 
+		FROM YONGJIMS 
+		WHERE YJCODE 
+		LIKE #{yjcode} AND MSDATE 
+		LIKE #{msdate}
+	</select>
+	
+	<select id="selPumPer5" resultType="monthClosingVO">
+		SELECT SUM(QNTY2) as qnty2, SUM(AMNT2) as amnt2, SUM(QNTY3) as qnty3 , SUM(AMNT3) as amnt3
+		FROM YONGJIMS 
+		WHERE YJCODE 
+		LIKE 450080
+		AND MSDATE <![CDATA[>=]]>  202001
+		AND MSDATE <![CDATA[<=]]> 202012
+	</select>
+	
+	<insert id="inPumPer1" parameterType="monthClosingVO">
+	INSERT 
+	INTO YONGJIMS2 (yjcode, msdate, QNTY1, AMNT1, QNTY2, AMNT2, QNTY3, AMNT3, QNTY4, AMNT4) 
+	VALUES (#{yjcode}, #{indate}, #{qnty1}, #{amnt1}, #{qnty2}, #{amnt2}, #{qnty3}, #{amnt3}, #{qnty4}, #{amnt4})
+	</insert>
+	
+	<delete id="delPumPer1" parameterType="monthClosingVO">
+	DELETE 
+	FROM YONGJIMS2 
+	WHERE MSDATE LIKE #{bdate}
+	</delete>
 	
 	<!-- 저자료 지급 내역(상/하) -->
 	<select id="selRoyaltyUD1" resultType="monthClosingVO">
@@ -107,6 +643,76 @@
 	<select id="selRoyaltyUD2" resultType="monthClosingVO">
 		Select (SELECT sum(s1qnty) FROM KS1${dbname}A WHERE s1gubn = 'C' AND s1book = #{sbbook}) AS sum1, 
 			(SELECT sum(s1qnty) FROM KS1${dbname}A WHERE s1gubn = 'D' AND s1book = #{sbbook}) AS sum2
+	</select>
+	
+	<select id="selRoyaltyUD3" resultType="monthClosingVO">
+		select distinct(SBJUJA) 
+		from KSCBOOK0 
+		where SBJJGB=1 
+		and SBINSE > 0 
+		ORDER BY SBJUJA ASC
+	</select>
+	
+	<select id="selRoyaltyUD4" resultType="monthClosingVO">
+		SELECT * 
+		FROM KSCBOOK0 
+		WHERE SBJUJA 
+		LIKE #{jname}
+		AND SBJJGB=1 
+		AND SBINSE > 0 
+		ORDER BY SBBOOK ASC
+	</select>
+	
+	<select id="selRoyaltyUD5" resultType="monthClosingVO">
+		SELECT NAME2 
+		FROM JEOJA 
+		WHERE NAME1 
+		LIKE #{jname}
+	</select>
+	
+	<select id="selRoyaltyUD6" resultType="monthClosingVO">
+		select sum(S1QNTY) as s1qnty
+		from ${dbname} 
+		where S1GUBN='C' 
+		and S1BOOK=#{sbbook}
+	</select>
+	
+	<select id="selRoyaltyUD7" resultType="monthClosingVO">
+		select sum(S1QNTY) as s1qnty 
+		from ${dbname} 
+		where S1GUBN='D' 
+		and S1BOOK=#{sbbook}
+	</select>
+	
+	<select id="selRoyaltyUD8" resultType="monthClosingVO">
+		SELECT * 
+		FROM KSCBOOK0 
+		WHERE SBJUJA 
+		LIKE #{jname} 
+		AND SBJJGB=1 
+		AND SBINSE > 0 
+		ORDER BY SBBOOK ASC
+	</select>
+	
+	<select id="selRoyaltyUD9" resultType="monthClosingVO">
+		select sum(S1QNTY) as s1qnty 
+		from ${dbname} 
+		where S1GUBN='C' 
+		and S1BOOK=#{sbbook}
+	</select>
+	
+	<select id="selRoyaltyUD10" resultType="monthClosingVO">
+		select sum(S1QNTY) as s1qnty 
+		from ${dbname} 
+		where S1GUBN='D' 
+		and S1BOOK=#{sbbook}
+	</select>
+	
+	<select id="selRoyaltyUD11" resultType="monthClosingVO">
+		SELECT * 
+		FROM JEOJA 
+		WHERE NAME1 
+		LIKE #{jname}
 	</select>
 	
 	<!-- 월별 저자료 지출결의서 -->
@@ -134,6 +740,269 @@
 			OR a.sbbook LIKE '31134%'
 		ORDER BY a.sbbook ASC
 	</select>
+	
+	<!-- 구매단가입력 -->
+	<select id="selPurchasePrice1" resultType="monthClosingVO">
+		SELECT UID 
+		FROM HGJEON 
+		WHERE YMD LIKE #{bdate}
+	</select>
+	
+	<select id="selPurchasePrice2" resultType="monthClosingVO">
+		SELECT * 
+		FROM IBTABLE2 
+		WHERE idate 
+		LIKE #{bdate}
+		ORDER BY t1id ASC, idate ASC, uid2 ASC
+	</select>
+	
+	<select id="selPurchasePrice3" resultType="monthClosingVO">
+		SELECT * 
+		FROM IBTABLE 
+		WHERE uid=#{uid}
+	</select>
+	
+	<select id="selPurchasePrice4" resultType="monthClosingVO">
+		SELECT JEJOAMNT, SUM1 
+		FROM ${jejotbl} 
+		WHERE JEJONUM=#{juid} 
+		AND JABTAG=0
+	</select>
+	
+	<select id="selPurchasePrice5" resultType="monthClosingVO">
+		SELECT * 
+		FROM HGJEON 
+		WHERE JEUID=#{juid} 
+		AND YMD <![CDATA[ <= ]]> #{bdate}
+	</select>
+	
+	<select id="selPurchasePrice6" resultType="monthClosingVO">
+		SELECT * 
+		FROM HGJEON2 
+		WHERE PARUID=#{uid}
+	</select>
+	
+	<select id="selPurchasePrice7" resultType="monthClosingVO">
+		SELECT * FROM ${tblname} 
+		WHERE S1BOOK 
+		LIKE #{bookcode} 
+		AND S1QNTY=#{inum}
+		AND S1ILJA LIKE #{idate} 
+		AND S1GUBN LIKE 'A'
+	</select>
+	
+	<select id="selPurchasePrice8" resultType="monthClosingVO">
+		SELECT MAX(SEQNO) 
+		FROM HGJEON 
+		WHERE YMD 
+		LIKE #{bdate} 
+		AND JEUID=#{juid}
+	</select>
+	
+	<select id="selPurchasePrice9" resultType="monthClosingVO">
+		SELECT S1BOOK, SUM(S1QNTY) as s1qnty, SUM(S1AMNT) as s1amnt
+		FROM ${dbname} 
+		WHERE S1GUBN 
+		LIKE 'A' 
+		GROUP BY S1BOOK 
+		ORDER BY S1BOOK ASC
+	</select>
+	
+	<select id="selPurchasePrice10" resultType="monthClosingVO">
+		SELECT SUM(TBASR) AS ASR, SUM(TBBSR) AS BSR, SUM(TBCSR) AS CSR, SUM(TBDSR) AS DSR, SUM(TBESR) AS ESR, SUM(TBFSR) AS FSR 
+		FROM ${dbname} 
+		WHERE TBSBOOK 
+		LIKE #{bookcode} 
+		AND TBMGUBN <![CDATA[<]]> #{tbmgubn}
+	</select>
+	
+	<select id="selPurchasePrice11" resultType="monthClosingVO">
+		SELECT SUM(TBAKM) AS ASR, SUM(TBBKM) AS BSR, SUM(TBCKM) AS CSR, SUM(TBDKM) AS DSR, SUM(TBEKM) AS ESR, SUM(TBFKM) AS FSR 
+		FROM ${dbname} 
+		WHERE TBKBOOK 
+		LIKE #{bookcode} 
+		AND TBMGUBN <![CDATA[ < ]]> #{tbmgubn}
+	</select>
+	
+	<select id="selPurchasePrice12" resultType="monthClosingVO">
+		SELECT * 
+		FROM KSCIPDN0 
+		WHERE SGBOOK 
+		LIKE #{bookcode} 
+		AND SGYYYY LIKE #{date1}
+	</select>
+	
+	<select id="selPurchasePrice13" resultType="monthClosingVO">
+		SELECT * 
+		FROM ${dbname}
+		WHERE (S1GUBN LIKE 'E' OR S1GUBN LIKE 'F')
+	</select>
+	
+	<select id="selPurchasePrice14" resultType="monthClosingVO">
+		SELECT * 
+		FROM KSCIPDN0 
+		WHERE SGBOOK 
+		LIKE #{s1book} 
+		AND SGYYYY 
+		LIKE #{date1}
+	</select>
+	
+	<insert id="inPurchasePrice1" parameterType="monthClosingVO">
+	INSERT INTO HGJEON (YMD, SEQNO, ACCTCODE, TYPE, DEBIT, CREDIT, DESCRIPT, INUM, IDANGA, JEUID, FCHK) VALUES 
+	(#{bdate}, #{seqno}, #{acctcode}, #{type}, #{debit}, #{credit}, #{descript}, #{inum}, #{idanga}, #{juid}, #{fchk})
+	</insert>
+	
+	<insert id="inPurchasePrice2" parameterType="monthClosingVO">
+	INSERT INTO KSCIPDN0 (SGBOOK, SGYYYY, #{dbname}) VALUES (#{bookcode}, #{date1}, #{new_danga})
+	</insert>
+	
+	<update id="upPurchasePrice1" parameterType="monthClosingVO">
+	UPDATE IBTABLE2 
+	SET idanga=#{new_danga} 
+	WHERE uid2=#{uid}
+	</update>
+	
+	<update id="upPurchasePrice2" parameterType="monthClosingVO">
+	UPDATE KSCIPDN0 
+	SET #{dbname}=#{new_danga} 
+	WHERE SGBOOK 
+	LIKE #{bookcode} 
+	AND SGYYYY 
+	LIKE #{date1}
+	</update>
+	
+	<update id="upPurchasePrice3" parameterType="monthClosingVO">
+	UPDATE ${dbname} 
+	SET S1DANG=#{s1dang}, S1AMNT=#{s1amnt} 
+	WHERE UID=#{uid}
+	</update>
+	
+	<delete id="delPurchasePrice1" parameterType="monthClosingVO">
+	DELETE
+	FROM HGJEON2 
+	WHERE PARUID=#{uid}
+	</delete>
+	
+	<delete id="delPurchasePrice2" parameterType="monthClosingVO">
+	DELETE 
+	FROM HGJEON 
+	WHERE YMD 
+	LIKE #{bdate}
+	</delete>
+	
+	<!-- 도서 수량/금액 집계 -->
+	<select id="selBookQuantityAmountTotal1" resultType="monthClosingVO">
+		select S1BOOK, sum(S1QNTY) as SUM1, sum(S1AMNT) as SUM2, S1GUBN 
+		from ${dbname} 
+		group by S1BOOK,S1GUBN 
+		order by S1BOOK ASC, S1GUBN ASC
+	</select>
+	
+	<select id="selBookQuantityAmountTotal2" resultType="monthClosingVO">
+		select * 
+		from ${dbname2} 
+		where TBSBOOK=#{s1book}
+	</select>
+	
+	<select id="selBookQuantityAmountTotal3" resultType="monthClosingVO">
+		select * 
+		from ${dbname3} 
+		where TBKBOOK=#{s1book}
+	</select>
+	
+	<select id="selBookQuantityAmountTotal4" resultType="monthClosingVO">
+		select * 
+		from ${dbname3} 
+		where TBKBOOK=#{s1book}
+		AND TBMGUBN=#{tm}
+	</select>
+	
+	<select id="selBookQuantityAmountTotal5" resultType="monthClosingVO">
+		select * 
+		from KSCIPDN0 
+		where SGBOOK=#{s1book} 
+		and SGYYYY=#{ty};
+	</select>
+	
+	<select id="selBookQuantityAmountTotal6" resultType="monthClosingVO">
+		select * 
+		from ${dbname2} 
+		where TBSBOOK=#{s1book} 
+		and TBMGUBN=#{tm}
+	</select>
+	
+	<insert id="inBookQuantityAmountTotal1" parameterType="monthClosingVO">
+	insert into #{dbname2} (TBSBOOK, TBMGUBN) values (#{s1book}, #{tbmgubn})
+	</insert>
+	
+	<insert id="inBookQuantityAmountTotal2" parameterType="monthClosingVO">
+	insert into ${dbname2} (TBSBOOK,TBMGUBN,#{fieldname}) 
+	values (#{s1book}, #{tm}, #{sum1})
+	</insert>
+	
+	<insert id="inBookQuantityAmountTotal3" parameterType="monthClosingVO">
+	insert into ${dbname3} (TBKBOOK, TBMGUBN) values (#{s1book}, #{tbmgubn})
+	</insert>
+	
+	<update id="upBookQuantityAmountTotal1" parameterType="monthClosingVO">
+	UPDATE ${dbname2} 
+	SET TBASR=0, TBBSR=0, TBCSR=0, TBDSR=0, TBESR=0, TBFSR=0
+	where TBMGUBN=#{tm}
+	</update>
+	
+	<update id="upBookQuantityAmountTotal2" parameterType="monthClosingVO">
+	UPDATE ${dbname3} SET TBAKM=0, TBBKM=0, TBCKM=0, TBDKM=0,TBEKM=0, TBFKM=0
+	where TBMGUBN=#{tm}
+	</update>
+	
+	<update id="upBookQuantityAmountTotal3" parameterType="monthClosingVO">
+	update ${dbname2} set ${fieldname}=#{sum1} where UID=#{uid}
+	</update>
+	
+	<update id="upBookQuantityAmountTotal4" parameterType="monthClosingVO">
+	update ${dbname3} set ${fieldname} = #{sum2}
+	where TBKBOOK=#{s1book} and TBMGUBN=#{tm}
+	</update>
+	
+	<update id="upBookQuantityAmountTotal5" parameterType="monthClosingVO">
+	update ${dbname3} set ${fieldname} = #{new_val}
+	where TBKBOOK=#{s1book} and TBMGUBN=#{tm}
+	</update>
+		
+	<!-- 도서금액집계 -->
+	<select id="selBookAmountTotal1" resultType="monthClosingVO">
+		select S1BOOK, sum(S1QNTY) as SUM1, sum(S1AMNT) as SUM2, S1GUBN 
+		from ${dbname} 
+		where S1GUBN <![CDATA[!=]]> 'A' 
+		group by S1BOOK,S1GUBN 
+		order by S1BOOK ASC, S1GUBN ASC
+	</select>
+	
+	<select id="selBookAmountTotal2" resultType="monthClosingVO">
+		select * 
+		from KSCIPDN0 
+		where SGBOOK=#{s1book} and SGYYYY=#{ty}
+	</select>
+	
+	<select id="selBookAmountTotal3" resultType="monthClosingVO">
+		select * 
+		from KSCIPDN0 
+		where SGBOOK=#{s1book} and SGYYYY=#{tm}
+	</select>
+	
+	<update id="upBookAmountTotal1" parameterType="monthClosingVO">
+	update #{dbname2} set TBAKM=#{sum2}
+	where TBKBOOK=#{s1book} and TBMGUBN=#{tm}
+	</update>
+	
+	<update id="upBookAmountTotal2" parameterType="monthClosingVO">
+	update #{dbname2} set #{fieldname}=#{new_val}
+	where TBKBOOK=#{s1book} and TBMGUBN=#{tm}
+	</update>
+	 
+	<insert id="inBookAmountTotal1" parameterType="monthClosingVO">
+	insert into #{dbname2} (TBKBOOK, TBMGUBN) values (#{s1book}, #{tm})
+	</insert>
 	
 	<!-- 주은교육 제작현황 -->
 	<select id="selJueun" resultType="monthClosingVO">
