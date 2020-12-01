@@ -211,6 +211,22 @@ public class JpJejakVO {
 	private String wcname3;
 	private String jcode;
 	
+	//TODO 중쇄예정제품
+	private long pnum;
+	private long jnum;
+	
+	private long jbdate;
+	private String jbcode;
+	private String jbname;
+	private long jbamnt;
+	private long jbpage;
+	private String jbpanh;
+	private long jbjanh;
+	private String jbbigo;
+	private long jpr;
+	private long jyj;
+	private long jbdanga;
+		
 	//TODO 발주서
 	private String wcjob;
 	private long listid;
@@ -227,7 +243,6 @@ public class JpJejakVO {
 	private String m11;
 	private String wcemail;
 	private String ccode;
-	
 	
 	//TODO 표지작업지시서
 	private String m2;
@@ -254,7 +269,6 @@ public class JpJejakVO {
 	private String gb;
 	private long dae;
 	private String t4bigo;
-	
 	
 	//TODO 입고대장
 	private long bdate;

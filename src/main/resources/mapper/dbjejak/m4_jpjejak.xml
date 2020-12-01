@@ -165,6 +165,45 @@
 		WHERE listid = #{uid}
 	</select>
 	
+	<!-- 중쇄예정제품 -->
+	<select id="selJpReprint1" resultType="jpJejakVO">
+		SELECT a.*,
+			b.bname, b.bcode, b.bmyun, b.bnum, b.bprice, b.btype,
+			c.sbpanh, c.sbjanh, c.sbsbph1, c.sbsbjh1, c.sbsbph2,
+			c.sbsbjh2, c.sbsbph3, c.sbsbjh3, c.sbsbph4, c.sbsbjh4,
+			c.sbsbpg1, c.sbsbpg2, c.sbsbpg3, c.sbsbpg4, c.sbpage,
+			c.sbinse, c.sbhj04, c.sbinji, c.sbjnji, c.sbjjgb, c.sbkc
+		FROM  TMPLIST2 AS a, TMPLIST AS b, KSCBOOK0 AS c 
+		WHERE a.bdate <![CDATA[ >= ]]> #{date1}
+			AND a.bdate  <![CDATA[ < ]]> #{date2}
+			AND a.listid = b.uid 
+			AND b.bcode = c.sbbook 
+		ORDER BY a.uid ASC
+	</select>
+	
+	<select id="selJpReprint2" resultType="jpJejakVO">
+		SELECT pnum
+		FROM PRINTNUM
+		WHERE bcode LIKE #{bcode}
+			AND jnum <![CDATA[ <= ]]> #{uid}
+		ORDER BY pnum DESC LIMIT 1
+	</select>
+	
+	<select id="selJpReprint3" resultType="jpJejakVO">
+		SELECT *
+		FROM TMPJAB
+		WHERE jbdate <![CDATA[ >= ]]> #{date1}
+			AND jbdate  <![CDATA[ < ]]> #{date2}
+		ORDER BY uid ASC
+	</select>
+	
+	<select id="selJpReprint4" resultType="jpJejakVO">
+		SELECT *
+		FROM KSCBOOK0
+		WHERE sbbook LIKE #{jbcode}
+		LIMIT 1
+	</select>
+	
 	<!-- 발주서 -->
 	<select id="selJpBal1" resultType="jpJejakVO">
 		SELECT wccode, wcname, wcjob 

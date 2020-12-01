@@ -131,6 +131,24 @@ public class JpJejakServiceImpl implements JpJejakService{
 		return jpJejakDAO.selJpjejakplan4(params);
 	}
 	
+	//TODO 중쇄예정제품
+	@Override
+	public List<JpJejakVO> selJpReprint1(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJpReprint1(params);
+	}
+	@Override
+	public JpJejakVO selJpReprint2(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJpReprint2(params);
+	}
+	@Override
+	public List<JpJejakVO> selJpReprint3(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJpReprint3(params);
+	}
+	@Override
+	public JpJejakVO selJpReprint4(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJpReprint4(params);
+	}
+		
 	//TODO 발주서
 	@Override
 	public List<JpJejakVO> selJpBal1() throws Exception {

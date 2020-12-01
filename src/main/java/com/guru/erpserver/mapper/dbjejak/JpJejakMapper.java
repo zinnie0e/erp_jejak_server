@@ -35,6 +35,12 @@ public interface JpJejakMapper {
 	public List<JpJejakVO> selJpjejakplan3(JpJejakVO params);
 	public List<JpJejakVO> selJpjejakplan4(JpJejakVO params);
 	
+	//TODO 중쇄예정제품
+	public List<JpJejakVO> selJpReprint1(JpJejakVO params);
+	public JpJejakVO selJpReprint2(JpJejakVO params);
+	public List<JpJejakVO> selJpReprint3(JpJejakVO params);
+	public JpJejakVO selJpReprint4(JpJejakVO params);
+	
 	//TODO 발주서
 	public List<JpJejakVO> selJpBal1();
 	public List<JpJejakVO> selJpBal2(JpJejakVO params);

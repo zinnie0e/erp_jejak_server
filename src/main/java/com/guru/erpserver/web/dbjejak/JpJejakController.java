@@ -147,6 +147,28 @@ public class JpJejakController {
 		return jpJejakSVC.selJpjejakplan4(params);
 	}
 	
+	//TODO 중쇄예정제품
+	// 입력 : date1, date2
+	@RequestMapping(value = "/jpjejak/select_reprint1", method = RequestMethod.POST)
+	public List<JpJejakVO> selJpReprint1(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJpReprint1(params);
+	}
+	// 입력 : bcode, jnum
+	@RequestMapping(value = "/jpjejak/select_reprint2", method = RequestMethod.POST)
+	public JpJejakVO selJpReprint2(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJpReprint2(params);
+	}
+	// 입력 : date1, date2
+	@RequestMapping(value = "/jpjejak/select_reprint3", method = RequestMethod.POST)
+	public List<JpJejakVO> selJpReprint3(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJpReprint3(params);
+	}
+	// 입력 : jbcode
+	@RequestMapping(value = "/jpjejak/select_reprint4", method = RequestMethod.POST)
+	public JpJejakVO selJpReprint4(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJpReprint4(params);
+	}
+	
 	//TODO 발주서
 	@RequestMapping(value="/jpjejak/select_bal_cust_list", method=RequestMethod.POST)
 	public List<JpJejakVO> selJpBal1() throws Exception {

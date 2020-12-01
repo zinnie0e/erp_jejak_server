@@ -34,6 +34,12 @@ public interface JpJejakService {
 	List<JpJejakVO> selJpjejakplan3(JpJejakVO params) throws Exception;
 	List<JpJejakVO> selJpjejakplan4(JpJejakVO params) throws Exception;
 	
+	//TODO 중쇄예정제품
+	List<JpJejakVO> selJpReprint1(JpJejakVO params) throws Exception;
+	JpJejakVO selJpReprint2(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJpReprint3(JpJejakVO params) throws Exception;
+	JpJejakVO selJpReprint4(JpJejakVO params) throws Exception;
+		
 	//TODO 발주서
 	List<JpJejakVO> selJpBal1() throws Exception;
 	List<JpJejakVO> selJpBal2(JpJejakVO params) throws Exception;
