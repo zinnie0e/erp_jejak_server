@@ -4,19 +4,19 @@
 
 	<select id="countLoginIP" resultType="Integer">
 		SELECT COUNT(*)
-		FROM KSCIPS
+		FROM jejak.KSCIPS
 		WHERE IPS LIKE #{ip}
 	</select>
 	
 	<select id="selLoginDung" resultType="LoginVO">
 		SELECT SWDUNG
-		FROM KSCSAWN
+		FROM jejak.KSCSAWN
 		WHERE SWSAWN = #{id}
 	</select>
 	
 	<select id="countLoginUser" resultType="Integer">
 		SELECT COUNT(*)
-		FROM KSCSAWN
+		FROM jejak.KSCSAWN
 		WHERE SWSAWN = #{id} AND SWPASS = #{pw}
 	</select>
 </mapper>

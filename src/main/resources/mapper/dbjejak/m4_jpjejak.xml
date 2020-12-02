@@ -5,7 +5,7 @@
 	<!-- 공통 -->
 	<select id="selJpDay" resultType="jpJejakVO">
 		SELECT bdate 
-		FROM TMPLIST2 
+		FROM jejak.TMPLIST2 
 		WHERE (date_format(from_unixtime(bdate), '%Y%m') = #{bdate}) 
 		GROUP BY date_format(from_unixtime(bdate), '%Y%m%d') 
 		ORDER BY bdate ASC, uid ASC
@@ -14,7 +14,7 @@
 	<!-- 발주예정제품리스트 -->
 	<select id="selBjlistDateList" resultType="jpJejakVO">
 		SELECT signdate
-		FROM tmplist
+		FROM jejak.tmplist
 		WHERE (SUBSTRING(signdate,1,4) = #{date1})
 			AND (SUBSTRING(signdate,5,2) = #{date2})
 		GROUP BY signdate
@@ -23,13 +23,13 @@
 	
 	<select id="selBjlistPageCount" resultType="jpJejakVO">
 		SELECT COUNT(uid) as count
-		FROM tmplist
+		FROM jejak.tmplist
 		WHERE signdate = #{signdate}
 	</select>
 	
 	<select id="selBjlistList" resultType="jpJejakVO">
 		SELECT *
-		FROM tmplist
+		FROM jejak.tmplist
 		WHERE signdate = #{signdate}
 		ORDER BY bcheck ASC, uid ASC 
 		LIMIT #{lm_s}, #{lm_t}
@@ -37,58 +37,58 @@
 	
 	<select id="selBjlistList1" resultType="jpJejakVO">
 		SELECT * 
-		FROM TMPLIST 
+		FROM jejak.TMPLIST 
 		WHERE signdate <![CDATA[ >= ]]> #{date1}
 			AND signdate <![CDATA[ <= ]]> #{date2}
 		ORDER BY bcheck ASC, uid ASC
 	</select>
 	
 	<delete id="delBjlistItem" parameterType="jpJejakVO">
-		DELETE FROM tmplist
+		DELETE FROM jejak.tmplist
 		WHERE uid = #{uid}
 	</delete>
 	
 	<select id="selBjlistItem" resultType="jpJejakVO">
 		SELECT *
-		FROM tmplist
+		FROM jejak.tmplist
 		WHERE uid = #{uid}
 	</select>
 	
 	<select id="selBjlistBalju1" resultType="jpJejakVO">
 		SELECT SBBOOK
-		FROM kscbook0
+		FROM jejak.kscbook0
 		WHERE SBBOOK LIKE CONCAT(#{bcode}, '%')
 		ORDER BY SBBOOK DESC LIMIT 1
 	</select>
 	
 	<select id="selBjlistBalju2" resultType="jpJejakVO">
 		SELECT SBBOOK
-		FROM kscbook0
+		FROM jejak.kscbook0
 		WHERE SBBOOK = #{bcode}
 	</select>
 	
 	<select id="selBjlistBalju3" resultType="jpJejakVO">
 		SELECT *
-		FROM kscbook0
+		FROM jejak.kscbook0
 		WHERE SBBOOK = #{bcode}
 	</select>
 	
 	<select id="selBjlistBalju4" resultType="jpJejakVO">
 		SELECT *
-		FROM kswyonj0
+		FROM jejak.kswyonj0
 		WHERE WYBOOK = #{bcode}
 		ORDER BY WYBOO9 ASC, WYSUNS ASC, WYGUBN ASC
 	</select>
 	
 	<select id="selBjlistBalju41" resultType="jpJejakVO">
 		SELECT *
-		FROM kswjijl0
+		FROM jejak.kswjijl0
 		WHERE wjcode = #{wyjijl}
 	</select>
 	
 	<select id="selBjlistBalju411" resultType="jpJejakVO">
 		SELECT *
-		FROM yeo
+		FROM jejak.yeo
 		WHERE ty = 1
 			AND bu <![CDATA[ <= ]]> #{bnum}
 		ORDER BY bu DESC LIMIT 1
@@ -96,7 +96,7 @@
 	
 	<select id="selBjlistBalju412" resultType="jpJejakVO">
 		SELECT *
-		FROM yeo
+		FROM jejak.yeo
 		WHERE bu <![CDATA[ <= ]]> #{bnum}
 			AND ty = 0
 			AND do = #{wycolo}
@@ -105,14 +105,14 @@
 	
 	<select id="selBjlistBalju413" resultType="jpJejakVO">
 		SELECT COUNT(uid)
-		FROM kswdesu0
+		FROM jejak.kswdesu0
 		WHERE WDBOOK = #{bcode}
 			AND WDBOO9 = #{wyboo9}
 	</select>
 	
 	<select id="selBjlistBalju4131" resultType="jpJejakVO">
 		SELECT *
-		FROM KSWDESU0
+		FROM jejak.KSWDESU0
 		WHERE WDBOOK = #{bcode}
 			AND WDBOO9 = #{wyboo9}
 		ORDER BY WDDESU ASC
@@ -121,7 +121,7 @@
 	<!-- 제작계획표 -->
 	<select id="selJpjejakplan0" resultType="jpJejakVO">
 		SELECT COUNT(*) as count
-		FROM  TMPLIST2 AS a, TMPLIST AS b, KSCBOOK0 AS c 
+		FROM  jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c 
 		WHERE a.bdate <![CDATA[ >= ]]> #{date1}
 			AND a.bdate  <![CDATA[ < ]]> #{date2}
 			AND a.listid = b.uid 
@@ -131,10 +131,10 @@
 	
 	<select id="selJpjejakplan1" resultType="jpJejakVO">
 		SELECT a.uid, a.listid, a.bdate, a.bucode, a.m1, a.m2, a.m3, a.crnum, b.bname, b.bcode, b.bmyun, b.bnum, b.bprice, b.btype, c.sbpanh, c.sbjanh, c.sbbigo, c.sbinse, c.sbhj04, c.sbcoti, c.sbsbph1, c.sbsbjh1, c.sbsbpg1,
-			(SELECT wcname FROM KSWCUST0 WHERE wccode = m1) AS wcname1,
-			(SELECT wcname FROM KSWCUST0 WHERE wccode = m2) AS wcname2,
-			(SELECT wcname FROM KSWCUST0 WHERE wccode = m3) AS wcname3 
-		FROM  TMPLIST2 AS a, TMPLIST AS b, KSCBOOK0 AS c 
+			(SELECT wcname FROM jejak.KSWCUST0 WHERE wccode = m1) AS wcname1,
+			(SELECT wcname FROM jejak.KSWCUST0 WHERE wccode = m2) AS wcname2,
+			(SELECT wcname FROM jejak.KSWCUST0 WHERE wccode = m3) AS wcname3 
+		FROM  jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c 
 		WHERE a.bdate <![CDATA[ >= ]]> #{date1}
 			AND a.bdate  <![CDATA[ < ]]> #{date2}
 			AND a.listid = b.uid 
@@ -145,7 +145,7 @@
 	
 	<select id="selJpjejakplan2" resultType="jpJejakVO">
 		SELECT listid, jm, yb, gubn, jcode, jname, colo 
-		FROM TMPLIST3 
+		FROM jejak.TMPLIST3 
 		WHERE listid = #{uid} 
 			and (jm != 0 or yb != 0) 
 		ORDER BY uid ASC
@@ -153,7 +153,7 @@
 	
 	<select id="selJpjejakplan3" resultType="jpJejakVO">
 		SELECT uid, signdate, bnum 
-		FROM TMPLIST 
+		FROM jejak.TMPLIST 
 		WHERE bcode LIKE #{bcode} 
 			AND uid <![CDATA[ < ]]> #{listid} 
 		ORDER BY signdate DESC
@@ -161,7 +161,7 @@
 	
 	<select id="selJpjejakplan4" resultType="jpJejakVO">
 		SELECT uid, listid 
-		FROM TMPLIST2 
+		FROM jejak.TMPLIST2 
 		WHERE listid = #{uid}
 	</select>
 	
@@ -173,7 +173,7 @@
 			c.sbsbjh2, c.sbsbph3, c.sbsbjh3, c.sbsbph4, c.sbsbjh4,
 			c.sbsbpg1, c.sbsbpg2, c.sbsbpg3, c.sbsbpg4, c.sbpage,
 			c.sbinse, c.sbhj04, c.sbinji, c.sbjnji, c.sbjjgb, c.sbkc
-		FROM  TMPLIST2 AS a, TMPLIST AS b, KSCBOOK0 AS c 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c 
 		WHERE a.bdate <![CDATA[ >= ]]> #{date1}
 			AND a.bdate  <![CDATA[ < ]]> #{date2}
 			AND a.listid = b.uid 
@@ -183,7 +183,7 @@
 	
 	<select id="selJpReprint2" resultType="jpJejakVO">
 		SELECT pnum
-		FROM PRINTNUM
+		FROM jejak.PRINTNUM
 		WHERE bcode LIKE #{bcode}
 			AND jnum <![CDATA[ <= ]]> #{uid}
 		ORDER BY pnum DESC LIMIT 1
@@ -191,7 +191,7 @@
 	
 	<select id="selJpReprint3" resultType="jpJejakVO">
 		SELECT *
-		FROM TMPJAB
+		FROM jejak.TMPJAB
 		WHERE jbdate <![CDATA[ >= ]]> #{date1}
 			AND jbdate  <![CDATA[ < ]]> #{date2}
 		ORDER BY uid ASC
@@ -199,7 +199,7 @@
 	
 	<select id="selJpReprint4" resultType="jpJejakVO">
 		SELECT *
-		FROM KSCBOOK0
+		FROM jejak.KSCBOOK0
 		WHERE sbbook LIKE #{jbcode}
 		LIMIT 1
 	</select>
@@ -207,7 +207,7 @@
 	<!-- 발주서 -->
 	<select id="selJpBal1" resultType="jpJejakVO">
 		SELECT wccode, wcname, wcjob 
-		FROM KSWCUST0 
+		FROM jejak.KSWCUST0 
 		WHERE wccode <![CDATA[ > ]]> '1001' 
 			AND wccode <![CDATA[ < ]]> '6000'
 		ORDER BY wccode asc
@@ -215,20 +215,20 @@
 	
 	<select id="selJpBal2" resultType="jpJejakVO">
 		SELECT * 
-		FROM TMPLIST2 
+		FROM jejak.TMPLIST2 
 		WHERE bdate <![CDATA[ >= ]]> #{bdate1}
 			AND bdate <![CDATA[ < ]]> #{bdate2}
 	</select>
 	
 	<select id="selJpBal3" resultType="jpJejakVO">
 		SELECT wcemail, wcname 
-		FROM KSWCUST0
+		FROM jejak.KSWCUST0
 		WHERE wccode = #{ccode} 
 	</select>
 	
 	<select id="selJpBal4" resultType="jpJejakVO">
 		SELECT a.m1, a.m2, a.m3, a.m4, a.m5, a.m6, a.m7, a.m8, a.m9, a.listid, a.bucode, a.pwan, a.iwan, b.wcname
-		FROM TMPLIST2 AS a, KSWCUST0 AS b
+		FROM jejak.TMPLIST2 AS a, jejak.KSWCUST0 AS b
 		WHERE a.bdate <![CDATA[ >= ]]> #{bdate1}
 			AND a.bdate <![CDATA[ < ]]> #{bdate2}
 			AND a.m3 = b.wccode 
@@ -239,7 +239,7 @@
 		SELECT a.uid, a.btype, a.bmyun, a.bcode,  a.bname,  a.bpanh,  a.bnum, a.tbigo, 
 			b.sbjanh, b.sbsbjh1, b.sbsbjh2, b.sbsbjh3, b.sbsbjh4, b.sbsbpg1, b.sbsbpg2, 
 		    b.sbsbpg3,  b.sbsbpg4, b.sbbigo, b.sbcoti, b.sbcoti2, b.sbipgo 
-		FROM TMPLIST AS a, KSCBOOK0 AS b 
+		FROM jejak.TMPLIST AS a, jejak.KSCBOOK0 AS b 
 		WHERE a.uid = #{listid}
 			AND a.bcode = b.sbbook LIMIT 1
 	</select>
@@ -247,7 +247,7 @@
 	<!-- 표지작업지시서 -->
 	<select id="selJpPyo" resultType="jpJejakVO">
 		SELECT a.bdate, a.m2, a.m3, a.m12, a.m13, a.m5, b.*, c.bname, c.btype, c.bcode, c.bnum, d.sbjlsu, d.sbuprc 
-		FROM TMPLIST2 AS a,TMPLIST3 AS b, TMPLIST AS c, KSCBOOK0 AS d 
+		FROM jejak.TMPLIST2 AS a,jejak.TMPLIST3 AS b, jejak.TMPLIST AS c, jejak.KSCBOOK0 AS d 
 		WHERE a.uid=b.listid 
 			AND (b.gubn not like '%본문%') 
 			AND a.listid=c.uid 
@@ -259,14 +259,14 @@
 	
 	<select id="selYakc" resultType="jpJejakVO">
 		SELECT wcyakc 
-		FROM KSWCUST0 
+		FROM jejak.KSWCUST0 
 		WHERE wccode = #{wccode}
 	</select>
 	
 	<!-- 본문작업지시서 -->
 	<select id="selJpBon0" resultType="jpJejakVO">
 		SELECT count(*) as count
-		FROM TMPLIST2 AS a, TMPLIST AS c, KSWCUST0 AS d
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS c, jejak.KSWCUST0 AS d
 		WHERE a.listid=c.uid 
 			AND a.bdate <![CDATA[ >= ]]> #{bdate1}  
 			AND a.bdate <![CDATA[ < ]]> #{bdate2}
@@ -276,9 +276,9 @@
 	
 	<select id="selJpBon" resultType="jpJejakVO">
 		SELECT a.uid, a.bdate, a.m1, a.m3, a.bucode, c.bname, c.bcode, 
-			(SELECT wcname FROM KSWCUST0 WHERE wccode = m1) AS temp1,
-   			(SELECT wcname FROM KSWCUST0 WHERE wccode = m3) AS temp2
-		FROM TMPLIST2 AS a, TMPLIST AS c, KSWCUST0 AS d
+			(SELECT wcname FROM jejak.KSWCUST0 WHERE wccode = m1) AS temp1,
+   			(SELECT wcname FROM jejak.KSWCUST0 WHERE wccode = m3) AS temp2
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS c, jejak.KSWCUST0 AS d
 		WHERE a.listid=c.uid 
 			AND a.bdate <![CDATA[ >= ]]> #{bdate1}  
 			AND a.bdate <![CDATA[ < ]]> #{bdate2}
@@ -289,9 +289,9 @@
 	
 	<select id="selJpBon2" resultType="jpJejakVO">
 		SELECT a.bdate, a.bucode, a.pwan, b.bcode, b.bname, b.bnum, b.btype, c.wcname, d.jname, d.jcode, d.t3bigo,
-			(SELECT wcname FROM KSWCUST0 WHERE wccode = a.m1) AS wcname2,
-			(SELECT pannum5 FROM TMPLIST5 WHERE listid5 = #{uid} AND gubn5 LIKE '%본문%') AS pannum5
-		FROM TMPLIST2 AS a, TMPLIST AS b, KSWCUST0 AS c , TMPLIST3 AS d
+			(SELECT wcname FROM jejak.KSWCUST0 WHERE wccode = a.m1) AS wcname2,
+			(SELECT pannum5 FROM jejak.TMPLIST5 WHERE listid5 = #{uid} AND gubn5 LIKE '%본문%') AS pannum5
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSWCUST0 AS c , jejak.TMPLIST3 AS d
 		WHERE a.uid = #{uid}
 			AND a.listid = b.uid 
 			AND a.m3 = c.wccode
@@ -302,7 +302,7 @@
     
     <select id="selJpBon3" resultType="jpJejakVO">
 	    SELECT uid, jm, yb, gb, dae, colo, t4bigo 
-		FROM TMPLIST4 
+		FROM jejak.TMPLIST4 
 		WHERE listid = #{uid}
 			AND bu = #{bucode}
 			AND gb LIKE '%본문%' 
@@ -311,7 +311,7 @@
 	 
 	  <select id="selJpBon4" resultType="jpJejakVO">
 		SELECT jm, yb
-		FROM TMPLIST3 
+		FROM jejak.TMPLIST3 
 		WHERE listid = #{uid}
 			AND bucode = #{bucode}
 			AND gubn LIKE '%본문%'
@@ -320,7 +320,7 @@
 	<!-- 입고대장 여기 고쳐야댕 따로 공통으로 빼야해 -->
 	<select id="selWarehousing" resultType="jpJejakVO">
 		SELECT a.*, b.bname, b.bnum, b.btype, c.wcname
-		FROM TMPLIST2 AS a, TMPLIST AS b, KSWCUST0 AS c
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSWCUST0 AS c
 		WHERE a.bdate <![CDATA[ >= ]]> #{bdate1} 
 			AND a.bdate <![CDATA[ < ]]> #{bdate2} 
 			AND a.bucode=0 
@@ -332,33 +332,33 @@
 	<!-- 제작예정리스트 열람 -->
 	<select id="selYejung1" resultType="jpJejakVO">
 		SELECT signdate 
-		FROM YEJUNG 
+		FROM jejak.YEJUNG 
 		ORDER BY signdate DESC LIMIT 1
 	</select>
 	
 	<select id="selYejung2" resultType="jpJejakVO">
 		SELECT *
-		FROM YEJUNG 
+		FROM jejak.YEJUNG 
 		WHERE signdate = #{signdate} 
 		AND bname NOT LIKE '' 
 		ORDER BY bcode ASC
 	</select>
 	
 	<delete id="delYejung" parameterType="jpJejakVO">
-		DELETE FROM YEJUNG
+		DELETE FROM jejak.YEJUNG
 		WHERE uid = #{uid}
 	</delete>
 	
 	<!-- 제작예정리스트 등록 -->
 	<select id="selYejungRegi1" resultType="jpJejakVO">
 		SELECT count(*) AS count
-		FROM KSCBOOK0 
+		FROM jejak.KSCBOOK0 
 		WHERE ${keyfield} LIKE CONCAT('%', #{key}, '%')
 	</select>
 	
 	<select id="selYejungRegi2" resultType="jpJejakVO">
 		SELECT sbbook, sbname, uid
-		FROM KSCBOOK0 
+		FROM jejak.KSCBOOK0 
 		WHERE ${keyfield} LIKE CONCAT('%', #{key}, '%')
 		ORDER BY uid DESC
 		LIMIT #{lm_s}, #{lm_t}
@@ -367,8 +367,8 @@
 	<!-- 제품정가인상리스트 -->
 	<select id="selJpPriceUpList" resultType="jpJejakVO">
 		SELECT A.*, B.sbname 
-		FROM INSANG AS a 
-		LEFT OUTER JOIN KSCBOOK0 AS b 
+		FROM jejak.INSANG AS a 
+		LEFT OUTER JOIN jejak.KSCBOOK0 AS b 
 		ON a.bcode = b.sbbook WHERE a.pub = 0 
 		ORDER BY a.bcode ASC
 	</select>
@@ -376,7 +376,7 @@
 	<!-- 제품보류리스트 -->
 	<select id="selJpHoldList" resultType="jpJejakVO">
 		SELECT sbbook, sbname 
-		FROM KSCBOOK0 
+		FROM jejak.KSCBOOK0 
 		WHERE sbgubn LIKE 'B' 
 		ORDER BY sbbook ASC
 	</select>
@@ -384,7 +384,7 @@
 	<!-- 제품폐간리스트 -->
 	<select id="selJpCloseList" resultType="jpJejakVO">
 		SELECT sbbook, sbname 
-		FROM KSCBOOK0 
+		FROM jejak.KSCBOOK0 
 		WHERE sbpegi LIKE 'P' 
 		ORDER BY sbbook ASC
 	</select>
@@ -392,20 +392,20 @@
 	<!-- 신간적정재고관리 -->
 	<select id="selJpNewStockList" resultType="jpJejakVO">
 		SELECT a.*, b.sbname 
-		FROM YEJUNG2 AS a 
-		LEFT OUTER JOIN KSCBOOK0 AS b 
+		FROM jejak.YEJUNG2 AS a 
+		LEFT OUTER JOIN jejak.KSCBOOK0 AS b 
 		ON a.yjbook = b.sbbook 
 		WHERE a.yjdate >= #{bdate} 
 		ORDER BY a.yjdate ASC, a.yjbook ASC
 	</select>
 	
 	<delete id="delJpNewStock" parameterType="jpJejakVO">
-		DELETE FROM YEJUNG2
+		DELETE FROM jejak.YEJUNG2
 		WHERE uid = #{uid}
 	</delete>
 	
 	<update id="upJpNewStock" parameterType="jpJejakVO">
-		UPDATE YEJUNG2 SET 
+		UPDATE jejak.YEJUNG2 SET 
 			YJQNTY = #{yjqnty}
 		WHERE uid = #{uid}
 	</update>

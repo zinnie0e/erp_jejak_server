@@ -195,7 +195,6 @@ public class MonthClosingVO {
 	private int tm;
 	private int ty;
 	private String s1book;
-	private float sgdn09;
 	
 	//저자료 지급 내역 (상/하)
 	private String name1;
@@ -217,38 +216,38 @@ public class MonthClosingVO {
 	private int tbdsr;
 	private int tbesr;
 	private int tbfsr;
-	private float SGDN00;
-	private float SGDN01;
-	private float SGDN02;
-	private float SGDN03;
-	private float SGDN04;
-	private float SGDN05;
-	private float SGDN06;
-	private float SGDN07;
-	private float SGDN08;
-	private float SGDN09;
-	private float SGDN10;
-	private float SGDN11;
-	private float SGDN12;
+	private float sgdn00;
+	private float sgdn01;
+	private float sgdn02;
+	private float sgdn03;
+	private float sgdn04;
+	private float sgdn05;
+	private float sgdn06;
+	private float sgdn07;
+	private float sgdn08;
+	private float sgdn09;
+	private float sgdn10;
+	private float sgdn11;
+	private float sgdn12;
 	
 	//구매단가입력
 	private String jejotbl;
 	private long juid;
-	private int B1;
-	private int B2;
-	private int B3;
-	private int B4;
-	private int B5;
-	private int B6;
-	private int B7;
-	private int B8;
-	private int B9;
-	private int B10;
-	private int B11;
-	private int B12;
-	private int B13;
-	private int B14;
-	private int B15;
+	private int b1;
+	private int b2;
+	private int b3;
+	private int b4;
+	private int b5;
+	private int b6;
+	private int b7;
+	private int b8;
+	private int b9;
+	private int b10;
+	private int b11;
+	private int b12;
+	private int b13;
+	private int b14;
+	private int b15;
 	private float new_danga;
 	private String idate;
 	private int inum;
@@ -268,5 +267,4 @@ public class MonthClosingVO {
 	private int dsr;
 	private int esr;
 	private int fsr;
-	
 }

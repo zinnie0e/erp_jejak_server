@@ -4,32 +4,32 @@
 	<!-- 공용 -->
 	<select id="selYjCustYjList" resultType="yongjiVO">
 		SELECT *
-		FROM KSWCUST0
+		FROM jejak.KSWCUST0
 		WHERE wcjob LIKE '용지'
 	</select>
 	
 	<select id="selYjCustWcnameYjList" resultType="yongjiVO">
 		SELECT wcname, wccode
-		FROM KSWCUST0
+		FROM jejak.KSWCUST0
 		WHERE wcjob LIKE '용지'
 		ORDER BY wccode ASC
 	</select>
 	
 	<select id="selYjCustWcname" resultType="yongjiVO">
 		SELECT wcname
-		FROM KSWCUST0
+		FROM jejak.KSWCUST0
 		WHERE wccode = #{wccode}
 	</select>
 	
 	<select id="selYjWjname" resultType="yongjiVO">
 		SELECT wjname
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		WHERE wjcode = #{jicode}
 	</select>
 	
 	<select id="selYjJiinoutList" resultType="yongjiVO">
 		SELECT date, num, comid, comment, curno, jeon, jeuid 
-		FROM JIINOUT 
+		FROM jejak.JIINOUT 
 		WHERE jicode = #{jicode}
 		ORDER BY date DESC, jeon DESC
 	</select>
@@ -37,13 +37,13 @@
 	<!-- 용지구입 -->
 	<select id="selYjList" resultType="yongjiVO">
 		SELECT *
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		ORDER BY ib ASC, wjcode ASC, wjname ASC
 	</select>
 	
 	<select id="selYjBuyOrderList" resultType="yongjiVO">
 		SELECT a.*, b.ib
-		FROM YOJIJUMN AS a, KSWJIJL0 AS b
+		FROM jejak.YOJIJUMN AS a, jejak.KSWJIJL0 AS b
 		WHERE a.gmcheck = 0
 			AND a.yjcode = b.wjcode
 		ORDER BY a.fxamount DESC, a.yjcode ASC
@@ -51,26 +51,26 @@
 	
 	<select id="selYjOrderCount1" resultType="yongjiVO">
 		SELECT COUNT(uid)
-		FROM TMPLIST3
+		FROM jejak.TMPLIST3
 		WHERE jutag = 0
 			AND (jm <![CDATA[ > ]]> 0 OR yb <![CDATA[ < ]]> 0)
 	</select>
 	
 	<select id="selYjOrderCount2" resultType="yongjiVO">
 		SELECT COUNT(uid)
-		FROM TMPJAB3
+		FROM jejak.TMPJAB3
 		WHERE jutag = 0
 			AND (jm <![CDATA[ > ]]> 0 OR yb <![CDATA[ > ]]> 0)
 	</select>
 	
 	<delete id="delYjOrderYojijumn" parameterType="yongjiVO">
-		DELETE FROM YOJIJUMN
+		DELETE FROM jejak.YOJIJUMN
 		WHERE gmcheck = 0
 	</delete>
 	
 	<select id="selYjOrderInCheck1" resultType="yongjiVO">
 		SELECT a.bdate, b.uid, b.jcode, b.jname, b.jm, b.yb
-		FROM TMPLIST2 AS a, TMPLIST3 AS b
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST3 AS b
 		WHERE b.jutag = 0
 			AND a.uid = b.listid
 			AND ((b.jm <![CDATA[ > ]]> 0) || (b.yb <![CDATA[ > ]]> 0))
@@ -78,13 +78,13 @@
 	
 	<select id="selYjOrderInCheck2" resultType="yongjiVO">
 		SELECT a.*, b.jbcode
-		FROM TMPJAB3 AS a, TMPJAB AS b
+		FROM jejak.TMPJAB3 AS a, jejak.TMPJAB AS b
 		WHERE a.jutag = 0
 			AND a.jbid = b.uid
 	</select>
 	
 	<insert id="inYjOrderYojijumn" parameterType="yongjiVO">
-		INSERT INTO YOJIJUMN (
+		INSERT INTO jejak.YOJIJUMN (
 			jdate, yjcode, yjname, yjamount, cnumlist,
 			gmcom, gmcheck
 		) VALUES (
@@ -95,20 +95,20 @@
 	
 	<select id="selYjOrderUpCheck" resultType="yongjiVO">
 		SELECT *
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE jicode = #{yjcode}
 		ORDER BY uid DESC LIMIT 1
 	</select>
 	
 	<update id="upYjOrderYojijumn" parameterType="yongjiVO">
-		UPDATE YOJIJUMN SET
+		UPDATE jejak.YOJIJUMN SET
 			fixnum=#{fixnum}, fxamount=#{fxamount}
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderListCheckDate1" resultType="yongjiVO">
 		SELECT a.*, b.wjname, b.facdanga, b.halin
-		FROM JIINOUT AS a, KSWJIJL0 AS b
+		FROM jejak.JIINOUT AS a, jejak.KSWJIJL0 AS b
 		WHERE a.date <![CDATA[ >= ]]> #{date1}
 			AND a.date <![CDATA[ < ]]> #{date2}
 			AND comid not like '1001'
@@ -119,7 +119,7 @@
 	
 	<select id="selYjOrderListCheckDate2" resultType="yongjiVO">
 		SELECT a.*, b.wjname
-		FROM JIINOUT AS a, KSWJIJL0 AS b
+		FROM jejak.JIINOUT AS a, jejak.KSWJIJL0 AS b
 		WHERE a.date <![CDATA[ >= ]]> #{date1}
 			AND a.date <![CDATA[ < ]]> #{date2}
 			AND a.tprice <![CDATA[ <> ]]> 0
@@ -129,128 +129,128 @@
 	
 	<select id="selYjOrderFacdanga" resultType="yongjiVO">
 		SELECT facdanga
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		WHERE wjcode = #{jcode]
 	</select>
 	
 	<update id="upYjOrderJiinout" parameterType="yongjiVO">
-		UPDATE JIINOUT SET
+		UPDATE jejak.JIINOUT SET
 			tprice=#{tprice}, halin=#{halin}, cdate=#{cdate}
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderDetailDate" resultType="yongjiVO">
 		SELECT date
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE uid = #{uid]
 	</select>
 	
 	<update id="upYjOrderDetailDate1" parameterType="yongjiVO">
-		UPDATE JIINOUT SET
+		UPDATE jejak.JIINOUT SET
 			date=#{date}
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderDetailDate2" resultType="yongjiVO">
 		SELECT jeon
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE uid = #{uid}
 	</select>
 	
 	<update id="upYjOrderDetailDate3" parameterType="yongjiVO">
-		UPDATE JEONPYO${value} SET
+		UPDATE jejak.JEONPYO${value} SET
 			bdate=#{bdate}
 		WHERE uid = #{jeon}
 	</update>
 	
 	<select id="selYjOrderDetailCust" resultType="yongjiVO">
 		SELECT a.comid, b.wcname
-		FROM JIINOUT AS a, KSWCUST0 AS b
+		FROM jejak.JIINOUT AS a, jejak.KSWCUST0 AS b
 		WHERE a.uid = #{uid}
 			AND a.comid = b.wccode
 	</select>
 	
 	<update id="upYjOrderDetailCust1" parameterType="yongjiVO">
-		UPDATE JIINOUT SET
+		UPDATE jejak.JIINOUT SET
 			comid=#{comid}
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderDetailCust2" resultType="yongjiVO">
 		SELECT jeon, date
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE uid = #{uid}
 	</select>
 	
 	<update id="upYjOrderDetailCust3" parameterType="yongjiVO">
-		UPDATE JEONPYO${value} SET
+		UPDATE jejak.JEONPYO${value} SET
 			buycom=#{buycom}
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderDetailCode" resultType="yongjiVO">
 		SELECT a.jicode, b.wjname
-		FROM JIINOUT AS a, KSWJIJL0 AS b
+		FROM jejak.JIINOUT AS a, jejak.KSWJIJL0 AS b
 		WHERE a.uid = #{uid}
 			AND a.jicode = b.wjcode
 	</select>
 	
 	<select id="selYjOrderDetailCodeList" resultType="yongjiVO">
 		SELECT wjcode, wjname
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		ORDER BY ib ASC, wjcode ASC
 	</select>
 	
 	<update id="upYjOrderDetailCode1" parameterType="yongjiVO">
-		UPDATE JIINOUT SET
+		UPDATE jejak.JIINOUT SET
 			jicode=#{wjcode}
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderDetailCode2" resultType="yongjiVO">
 		SELECT jeon, date
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE uid = #{uid}
 	</select>
 	
 	<update id="upYjOrderDetailCode3" parameterType="yongjiVO">
-		UPDATE JEONPYO${value} SET
+		UPDATE jejak.JEONPYO${value} SET
 			jiname=#{wjname}, jicode=#{wjcode}
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderCheckOI" parameterType="yongjiVO">
 		SELECT *
-		FROM YOJIJUMN
+		FROM jejak.YOJIJUMN
 		WHERE uid = #{uid}
 	</select>
 	
 	<select id="selYjOrderJeonpyoMaxUid" parameterType="Integer">
 		SELECT MAX(uid)
-		FROM JEONPYO${value}
+		FROM jejak.JEONPYO${value}
 	</select>
 	
 	<select id="selYjOrderJiinoutMaxUid" parameterType="Integer">
 		SELECT MAX(uid)
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 	</select>
 	
 	<select id="selYjOrderBuyKswjijl0" parameterType="yongjiVO">
 		SELECT *
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		WHERE wjcode = #{jicode}
 		LIMIT 1
 	</select>
 	
 	<select id="selYjOrderBuyJiinout" parameterType="yongjiVO">
 		SELECT *
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE jicode = #{jicode}
 		ORDER BY date DESC, uid DESC LIMIT 1
 	</select>
 	
 	<insert id="inYjOrderJeonpyo" parameterType="yongjiVO">
-		INSERT INTO JEONPYO${value} (
+		INSERT INTO jejak.JEONPYO${value} (
 			spcom, bname, bcode, busu, panh,
 			myun, jnum1, jnum2, bdate, buycom,
 			jiname, jicode, jsum, comment, JEJANUM,
@@ -265,13 +265,13 @@
 	
 	<select id="selYjOrderJiinout" parameterType="yongjiVO">
 		SELECT *
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE jicode = #{yjcode}
 		ORDER BY uid DESC LIMIT 1
 	</select>
 	
 	<insert id="inYjOrderJiinout" parameterType="yongjiVO">
-		INSERT INTO JIINOUT (
+		INSERT INTO jejak.JIINOUT (
 			uid, jicode, date, num, comid,
 			comment, curno, jeon, jeuid
 		) VALUES (
@@ -281,7 +281,7 @@
 	</insert>
 	
 	<insert id="inYjOrderCheckOrder1" parameterType="yongjiVO">
-		INSERT INTO JEONPYO${value} (
+		INSERT INTO jejak.JEONPYO${value} (
 			uid, bdate, buycom, jiname, jicode,
 			jsum
 		) VALUES (
@@ -292,13 +292,13 @@
 	
 	<select id="selYjOrderCheckOrder2" parameterType="yongjiVO">
 		SELECT curno
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE jicode = #{yjcode}
 		ORDER BY date DESC, uid DESC LIMIT 1
 	</select>
 	
 	<insert id="inYjOrderCheckOrder3" parameterType="yongjiVO">
-		INSERT INTO JIINOUT (
+		INSERT INTO jejak.JIINOUT (
 			uid, jicode, date, num, comid,
 			comment, curno, jeon, jeuid, bigo
 		) VALUES (
@@ -308,81 +308,81 @@
 	</insert>
 	
 	<update id="upYjOrderCheckInputJ1" parameterType="yongjiVO">
-		UPDATE TMPJAB3 SET
+		UPDATE jejak.TMPJAB3 SET
 			JUTAG='1'
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderCheckInputJ2" parameterType="yongjiVO">
 		SELECT *
-		FROM TMPJAB3
+		FROM jejak.TMPJAB3
 		WHERE uid = #{uid}
 	</select>
 	
 	<update id="upYjOrderCheckInputJ3" parameterType="yongjiVO">
-		UPDATE TMPJAB3 SET
+		UPDATE jejak.TMPJAB3 SET
 			YB=#{yb}, JUTAG='1'
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderCheckInputJ11" parameterType="yongjiVO">
 		SELECT *
-		FROM TMPJAB4
+		FROM jejak.TMPJAB4
 		WHERE LISTID = #{listid}
 	</select>
 	
 	<update id="upYjOrderCheckInputJ12" parameterType="yongjiVO">
-		UPDATE TMPLIST4 SET
+		UPDATE jejak.TMPLIST4 SET
 			YB=#{yb}
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderCheckInputJ21" parameterType="yongjiVO">
 		SELECT *
-		FROM TMPJAB
+		FROM jejak.TMPJAB
 		WHERE UID = #{jbid}
 	</select>
 	
 	<select id="selYjOrderCheckInput" parameterType="yongjiVO">
 		SELECT *
-		FROM TMPLIST3
+		FROM jejak.TMPLIST3
 		WHERE uid = #{uid}
 	</select>
 	
 	<update id="upYjOrderCheckInput11" parameterType="yongjiVO">
-		UPDATE TMPLIST3 SET
+		UPDATE jejak.TMPLIST3 SET
 			yb=#{yb}, jutag='1'
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderCheckInput12" parameterType="yongjiVO">
 		SELECT *
-		FROM TMPLIST4
+		FROM jejak.TMPLIST4
 		WHERE listid = #{listid}
 			AND jc like #{yjcode}
 	</select>
 	
 	<update id="upYjOrderCheckInput13" parameterType="yongjiVO">
-		UPDATE TMPLIST4 SET
+		UPDATE jejak.TMPLIST4 SET
 			yb=#{yb}
 		WHERE uid = #{uid}
 	</update>
 	
 	<update id="upYjOrderCheckInput14" parameterType="yongjiVO">
-		UPDATE TMPLIST3 SET
+		UPDATE jejak.TMPLIST3 SET
 			JUTAG='1'
 		WHERE uid = #{uid}
 	</update>
 	
 	<select id="selYjOrderCheckInpu21" parameterType="yongjiVO">
 		SELECT a.m1, a.crnum, b.bname, b.bcode, b.bmyun, b.bpanh, b.bnum
-		FROM TMPLIST2 AS a, TMPLIST AS b
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b
 		WHERE a.uid = #{listid}
 			AND a.listid = b.uid
 	</select>
 	
 	<update id="upYjOrderYojijumnGmcheck" parameterType="yongjiVO">
-		UPDATE YOJIJUMN SET
+		UPDATE jejak.YOJIJUMN SET
 			gmcheck='1'
 		WHERE uid = #{uid}
 	</update>
@@ -390,7 +390,7 @@
 	<!-- 거래처별 구매 -->
 	<select id="selYjCustJiinoutList" resultType="yongjiVO">
 		SELECT *
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE comid = #{wccode}
 			AND date <![CDATA[ >= ]]> #{date1}
 			AND date <![CDATA[ <= ]]> #{date2}
@@ -400,14 +400,14 @@
 	
 	<select id="selYjCustKswjijl0Wjname" resultType="yongjiVO">
 		SELECT wjname
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		WHERE wjcode = #{jicode}
 	</select>
 	
 	<!-- 용지전표 -->
 	<select id="selYjJeonList" resultType="yongjiVO">
 		SELECT a.*, b.uid
-		FROM JEONPYO${value} AS a, KSWJIJL0 AS b
+		FROM jejak.JEONPYO${value} AS a, jejak.KSWJIJL0 AS b
 		WHERE a.jicode = b.wjcode
 			AND a.bdate <![CDATA[ >= ]]> #{date1}
 			AND a.bdate <![CDATA[ < ]]> #{date2}
@@ -416,7 +416,7 @@
 	
 	<select id="selYjJeonDetail" resultType="yongjiVO">
 		SELECT a.wjname, a.wjcode, b.*
-		FROM KSWJIJL0 AS a, JIINOUT AS b
+		FROM jejak.KSWJIJL0 AS a, jejak.JIINOUT AS b
 		WHERE a.uid = #{uid}
 			AND a.wjcode = b.jicode
 		ORDER BY b.jeon DESC, b.uid DESC
@@ -424,76 +424,76 @@
 	
 	<select id="selYjJeonJiinoutList" resultType="yongjiVO">
 		SELECT date, num, comid, comment, curno, jeon, jeuid
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE jicode = #{jicode}
 		ORDER BY date DESC, jeon DESC
 	</select>
 	
 	<select id="selYjJeonKswcust0Wcname" resultType="yongjiVO">
 		SELECT wcname
-		FROM KSWCUST0
+		FROM jejak.KSWCUST0
 		WHERE wccode = #{wccode}
 	</select>
 	
 	<select id="selYjJeonPopup1" resultType="yongjiVO">
 		SELECT *
-		FROM JEONPYO${value}
+		FROM jejak.JEONPYO${value}
 		WHERE uid = #{uid}
 	</select>
 	
 	<select id="selYjJeonPopup2" resultType="yongjiVO">
 		SELECT wcname
-		FROM KSWCUST0 
+		FROM jejak.KSWCUST0 
 		WHERE wccode = #{spcom}
 	</select>
 	
 	<select id="selYjJeonPopup3" resultType="yongjiVO">
 		SELECT wcname
-		FROM KSWCUST0 
+		FROM jejak.KSWCUST0 
 		WHERE wccode = #{buycom}
 	</select>
 	
 	<select id="selYjJeonPopup4" resultType="yongjiVO">
 		SELECT bigo
-		FROM JIINOUT 
+		FROM jejak.JIINOUT 
 		WHERE jeon = #{uid}
 	</select>
 
 	<!-- 용지등록하기 -->
 	<select id="selYjRegiList1" resultType="yongjiVO">
 		SELECT count(*) as count 
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 	</select>
 			
 	<select id="selYjRegiList2" resultType="yongjiVO">
 		SELECT a.uid, a.wjcode, a.wjname, a.ib, a.halin, a.danga, a.facdanga,
-			(SELECT curno FROM JIINOUT WHERE jicode = a.wjcode ORDER BY DATE DESC, jeon desc, uid DESC LIMIT 1) AS curno
-		FROM KSWJIJL0 AS a 
+			(SELECT curno FROM jejak.JIINOUT WHERE jicode = a.wjcode ORDER BY DATE DESC, jeon desc, uid DESC LIMIT 1) AS curno
+		FROM jejak.KSWJIJL0 AS a 
 		ORDER BY a.ib ASC, a.wjcode ASC, a.wjname ASC
 		LIMIT #{lm_s}, #{lm_t}
 	</select>
 	
 	<select id="selYjRegKswjijl0List" resultType="yongjiVO">
 		SELECT *
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		ORDER BY ib ASC, wjname ASC
 	</select>
 	
 	<select id="selYjRegDetail" resultType="yongjiVO">
 		SELECT *
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		WHERE uid = #{uid}
 	</select>
 	
 	<select id="selYjRegJiinoutCurno" resultType="yongjiVO">
 		SELECT curno
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE jicode = #{wjcode}
 		ORDER BY date DESC, jeon DESC, uid DESC LIMIT 1
 	</select>
 	
 	<insert id="inYjRegKswjijl0" parameterType="yongjiVO">
-		INSERT INTO KSWJIJL0 (
+		INSERT INTO jejak.KSWJIJL0 (
 			wjcode, wjname, ib, danga, facdanga,
 			halin, wjtype, op1, op2, op3
 		) VALUES (
@@ -503,7 +503,7 @@
 	</insert>
 	
 	<insert id="inYjRegJiinout" parameterType="yongjiVO">
-		INSERT INTO JIINOUT (
+		INSERT INTO jejak.JIINOUT (
 			jicode, date, cdate, comment, curno,
 			danga
 		) VALUES (
@@ -513,21 +513,21 @@
 	</insert>
 	
 	<update id="upYjRegKswjijl0" parameterType="yongjiVO">
-		UPDATE KSWJIJL0 SET
+		UPDATE jejak.KSWJIJL0 SET
 			wjcode=#{wjcode}, wjname=#{wjname}, ib=#{ib}, danga=#{danga}, facdanga=#{facdanga},
 			halin=#{halin}, wjtype=#{wjtype}, op1=#{op1}, op2=#{op2}, op3=#{op3}
 		WHERE uid = #{uid}
 	</update>
 	
 	<delete id="delYjRegKswjijl0" parameterType="yongjiVO">
-		DELETE FROM KSWJIJL0
+		DELETE FROM jejak.KSWJIJL0
 		WHERE uid = #{uid}
 	</delete>
 	
 	<!-- 용지장부 -->
 	<select id="selYjJangJiinoutList" resultType="yongjiVO">
 		SELECT *
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE jicode LIKE #{wjcode}
 			AND date <![CDATA[ >= ]]> #{date1}
 			AND date <![CDATA[ < ]]> #{date2}
@@ -536,7 +536,7 @@
 	
 	<select id="selYjJangJiinoutCuList" resultType="yongjiVO">
 		SELECT *
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE comid LIKE #{wccode}
 			AND date <![CDATA[ >= ]]> #{date1}
 			AND date <![CDATA[ < ]]> #{date2}
@@ -545,26 +545,26 @@
 
 	<select id="selYjJangWjname" resultType="yongjiVO">
 		SELECT wjname
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		WHERE wjcode = #{jicode}
 	</select>
 	
 	<select id="selYjJangYjList" resultType="yongjiVO">
 		SELECT wjname, wjcode
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		WHERE jsuns <![CDATA[ < ]]> 99
 		ORDER BY jsuns ASC
 	</select>
 	
 	<select id="selYjJangJp" resultType="yongjiVO">
 		SELECT busu, comment
-		FROM JEONPYO${value}
+		FROM jejak.JEONPYO${value}
 		WHERE uid = #{jeon}
 	</select>
 	
 	<select id="selYjJangOther1" resultType="yongjiVO">
 		SELECT *
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE date <![CDATA[ >= ]]> #{date1}
 			AND date <![CDATA[ < ]]> #{date2}
 		ORDER BY jeon ASC
@@ -572,7 +572,7 @@
 	
 	<select id="selYjJangOther2" resultType="yongjiVO">
 		SELECT wjname, jsuns
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		WHERE wjcode LIKE #{jicode}
 	</select>
 	
@@ -580,18 +580,18 @@
 	<!-- 월별 용지 재고 현황 -->
 	<select id="selYjMonCheckList" resultType="yongjiVO">
 		SELECT *
-		FROM YONGJIMS3
+		FROM jejak.YONGJIMS3
 		WHERE MSDATE = #{msdate}
 	</select>
 	
 	<select id="selYjMonKswjijl0List" resultType="yongjiVO">
 		SELECT *
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		ORDER BY ib ASC, wjcode ASC
 	</select>
 	
 	<insert id="inYjMon" parameterType="yongjiVO">
-		INSERT INTO YONGJIMS3 (
+		INSERT INTO jejak.YONGJIMS3 (
 			YJCODE, MSDATE
 		) VALUES (
 			#{wjcode}, #{msdate}
@@ -600,7 +600,7 @@
 	
 	<select id="selYjMonList" resultType="yongjiVO">
 		SELECT a.*, b.wjname
-		FROM YONGJIMS3 AS a, KSWJIJL0 AS b
+		FROM jejak.YONGJIMS3 AS a, jejak.KSWJIJL0 AS b
 		WHERE a.msdate = #{msdate}
 			AND a.yjcode = b.wjcode
 			AND (a.QNTY1 <![CDATA[ > ]]> 0
@@ -612,7 +612,7 @@
 	
 	<select id="selYjMonJiinoutList" resultType="yongjiVO">
 		SELECT *
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE jicode = #{yjcode}
 			AND date <![CDATA[ >= ]]> #{date1}
 			AND date <![CDATA[ < ]]> #{date2}
@@ -621,32 +621,32 @@
 	
 	<select id="selYjMonKswcust0Wcname" resultType="yongjiVO">
 		SELECT wcname
-		FROM KSWCUST0
+		FROM jejak.KSWCUST0
 		WHERE wccode = #{comid}
 	</select>
 	
 	<select id="selYjMonCheckIb" resultType="yongjiVO">
 		SELECT *
-		FROM KSWJIJL0
+		FROM jejak.KSWJIJL0
 		WHERE ib = 0
 		ORDER BY wjcode ASC
 	</select>
 	
 	<select id="selYjMonCheckInput1" resultType="yongjiVO">
 		SELECT *
-		FROM YONGJIMS3
+		FROM jejak.YONGJIMS3
 		WHERE MSDATE = #{msdate}
 			AND YJCODE = #{wjcode}
 	</select>
 	
 	<update id="upYjMonCheckInput2" parameterType="yongjiVO">
-		UPDATE YONGJIMS3 SET
+		UPDATE jejak.YONGJIMS3 SET
 			QNTY1=0, QNTY2=0, QNTY3=0, QNTY4=0
 		WHERE MSDATE = #{msdate}
 	</update>
 
 	<update id="upYjMonCheckInput11" parameterType="yongjiVO">
-		UPDATE YONGJIMS3 SET
+		UPDATE jejak.YONGJIMS3 SET
 			QNTY1=#{qnty4}
 		WHERE YJCODE = #{yjcode}
 			AND MSDATE = #{msdate}
@@ -654,7 +654,7 @@
 	
 	<select id="selYjMonCheckInput21" resultType="yongjiVO">
 		SELECT jicode, SUM(num) AS nsum
-		FROM JIINOUT
+		FROM jejak.JIINOUT
 		WHERE (DATE_FORMAT(FROM_UNIXTIME(date), '%Y%m') = #{msdate})
 			AND comment LIKE '入' 
 		GROUP BY jicode
@@ -662,19 +662,19 @@
 	
 	<select id="selYjMonCheckInput22" resultType="yongjiVO">
 		SELECT *
-		FROM YONGJIMS3
+		FROM jejak.YONGJIMS3
 		WHERE YJCODE LIKE #{jicode}
 	</select>
 	
 	<update id="upYjMonCheckInput23" parameterType="yongjiVO">
-		UPDATE YONGJIMS3 SET
+		UPDATE jejak.YONGJIMS3 SET
 			QNTY2=#{nsum}
 		WHERE YJCODE = #{jicode}
 			AND MSDATE = #{msdate}
 	</update>
 	
 	<insert id="inYjMonCheckInput24" parameterType="yongjiVO">
-		INSERT INTO YONGJIMS3 (
+		INSERT INTO jejak.YONGJIMS3 (
 			YJCODE, MSDATE, QNTY2
 		) VALUES (
 			#{jicode}, #{msdate}, #{nsum}
@@ -683,26 +683,26 @@
 	
 	<select id="selYjMonCheckInput31" resultType="yongjiVO">
 		SELECT UID
-		FROM TMPJAB
+		FROM jejak.TMPJAB
 		WHERE (DATE_FORMAT(FROM_UNIXTIME(JBDATE), '%Y%m') = #{msdate})
 	</select>
 	
 	<select id="selYjMonCheckInput32" resultType="yongjiVO">
 		SELECT *
-		FROM TMPJAB3
+		FROM jejak.TMPJAB3
 		WHERE JBID = #{uid}
 			AND JUTAG <![CDATA[ <> ]]> 3
 	</select>
 	
 	<select id="selYjMonCheckInput33" resultType="yongjiVO">
 		SELECT *
-		FROM YONGJIMS3
+		FROM jejak.YONGJIMS3
 		WHERE MSDATE = #{msdate}
 			AND YJCODE = #{yjcode}
 	</select>
 	
 	<insert id="inYjMonCheckInput34" parameterType="yongjiVO">
-		INSERT INTO YONGJIMS3 (
+		INSERT INTO jejak.YONGJIMS3 (
 			YJCODE, MSDATE, QNTY3
 		) VALUES (
 			#{yjcode}, #{msdate}, #{qnty3}
@@ -710,7 +710,7 @@
 	</insert>
 	
 	<update id="upYjMonCheckInput35" parameterType="yongjiVO">
-		UPDATE YONGJIMS3 SET
+		UPDATE jejak.YONGJIMS3 SET
 			QNTY3=#{qnty3}
 		WHERE UID = #{uid}
 	</update>
@@ -718,25 +718,25 @@
 	
 	<select id="selYjMonCheckInput41" resultType="yongjiVO">
 		SELECT uid
-		FROM TMPLIST2
+		FROM jejak.TMPLIST2
 		WHERE (DATE_FORMAT(FROM_UNIXTIME(bdate), '%Y%m') = #{msdate})
 	</select>
 	
 	<select id="selYjMonCheckInput42" parameterType="yongjiVO">
 		SELECT *
-		FROM TMPLIST3
+		FROM jejak.TMPLIST3
 		WHERE listid = #{uid}
 	</select>
 	
 	<select id="selYjMonCheckInput43" resultType="yongjiVO">
 		SELECT *
-		FROM YONGJIMS3
+		FROM jejak.YONGJIMS3
 		WHERE MSDATE = #{msdate}
 			AND YJCODE = #{jcode}
 	</select>
 	
 	<insert id="inYjMonCheckInput44" parameterType="yongjiVO">
-		INSERT INTO YONGJIMS3 (
+		INSERT INTO jejak.YONGJIMS3 (
 			YJCODE, MSDATE, QNTY3
 		) VALUES (
 			#{jcode}, #{msdate}, #{qnty3}
@@ -744,21 +744,21 @@
 	</insert>
 	
 	<update id="upYjMonCheckInput51" parameterType="yongjiVO">
-		UPDATE YONGJIMS3 SET
+		UPDATE jejak.YONGJIMS3 SET
 			QNTY4=#{qnty4}
 		WHERE UID = #{uid}
 	</update>
 	
 	<select id="selYjMonPopup1" resultType="yongjiVO">
 		SELECT * 
-		FROM YONGJIMS3 
+		FROM jejak.YONGJIMS3 
 		WHERE msdate = #{msdate}
 			AND yjcode LIKE #{yjcode}
 	</select>
 	
 	<select id="selYjMonPopup2" resultType="yongjiVO">
-		SELECT a.*, (SELECT wcname FROM KSWCUST0 WHERE wccode LIKE a.comid) AS wcname
-		FROM JIINOUT as a 
+		SELECT a.*, (SELECT wcname FROM jejak.KSWCUST0 WHERE wccode LIKE a.comid) AS wcname
+		FROM jejak.JIINOUT as a 
 		WHERE a.jicode LIKE #{yjcode}
 			AND a.date <![CDATA[ >= ]]> #{date1}
 		    AND a.date <![CDATA[ < ]]> #{date2}
@@ -768,7 +768,7 @@
 	
 	<!-- 전표 테이블 생성 -->
 	<select id="createTableJeonpyo" resultType="yongjiVO">
-		CREATE TABLE jeonpyo${value} (
+		CREATE TABLE jejak.jeonpyo${value} (
 		  uid mediumint(10) NOT NULL AUTO_INCREMENT,
 		  bdate int(10) NOT NULL DEFAULT 0,
 		  JEJANUM int(3) NOT NULL DEFAULT 0,

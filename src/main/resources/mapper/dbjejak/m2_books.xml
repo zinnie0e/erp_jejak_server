@@ -4,26 +4,26 @@
 
 	<select id="selBooksList1" resultType="booksVO">
 		SELECT count(*) as count
-		FROM KSCBOOK0
+		FROM jejak.KSCBOOK0
 	</select>
 
 	<select id="selBooksList2" resultType="booksVO">
 		SELECT SBBOOK, SBNAME, uid
-		FROM KSCBOOK0
+		FROM jejak.KSCBOOK0
 		ORDER BY uid DESC
 		LIMIT #{lm_s}, #{lm_t}
 	</select>
 	
 	<select id="selBooksListCheck1" resultType="booksVO">
 		SELECT count(*) as count
-		FROM KSCBOOK0 
+		FROM jejak.KSCBOOK0 
 		WHERE (sbbook LIKE CONCAT('%', #{key}, '%')) 
 			OR (REPLACE(sbname,' ', '') LIKE CONCAT('%', #{key}, '%')) 
 	</select>
 	
 	<select id="selBooksListCheck2" resultType="booksVO">
 		SELECT sbbook, sbname, uid 
-		FROM KSCBOOK0 
+		FROM jejak.KSCBOOK0 
 		WHERE (sbbook LIKE CONCAT('%', #{key}, '%')) 
 			OR (REPLACE(sbname,' ', '') LIKE CONCAT('%', #{key}, '%')) 
 		ORDER BY sbbook ASC
@@ -32,13 +32,13 @@
 	
 	<select id="selBooksListCodeCheck1" resultType="booksVO">
 		SELECT count(*) as count
-		FROM KSCBOOK0
+		FROM jejak.KSCBOOK0
 		WHERE SBBOOK LIKE CONCAT('%', #{sbbook}, '%')
 	</select>
 	
 	<select id="selBooksListCodeCheck2" resultType="booksVO">
 		SELECT SBBOOK, SBNAME, uid
-		FROM KSCBOOK0
+		FROM jejak.KSCBOOK0
 		WHERE SBBOOK LIKE CONCAT('%', #{sbbook}, '%')
 		ORDER BY SBBOOK ASC
 		LIMIT #{lm_s}, #{lm_t}
@@ -46,13 +46,13 @@
 	
 	<select id="selBooksListNameCheck1" resultType="booksVO">
 		SELECT count(*) as count
-		FROM KSCBOOK0
+		FROM jejak.KSCBOOK0
 		WHERE REPLACE(SBNAME,' ', '') LIKE CONCAT('%', #{sbname}, '%')
 	</select>
 	
 	<select id="selBooksListNameCheck2" resultType="booksVO">
 		SELECT SBBOOK, SBNAME, uid
-		FROM KSCBOOK0
+		FROM jejak.KSCBOOK0
 		WHERE REPLACE(SBNAME,' ', '') LIKE CONCAT('%', #{sbname}, '%')
 		ORDER BY SBBOOK ASC
 		LIMIT #{lm_s}, #{lm_t}
@@ -60,35 +60,35 @@
 	
 	<select id="selBooksDetail" resultType="booksVO">
 		SELECT *
-		FROM KSCBOOK0
+		FROM jejak.KSCBOOK0
 		WHERE uid = #{uid}
 	</select>
 	
 	<select id="selBooksDaesu1" resultType="booksVO">
 		SELECT count(uid) AS count 
-		FROM ${dbname}
+		FROM jejak.${dbname}
 		WHERE wdbook = #{tmpcode}
 	</select>
 	
 	<select id="selBooksDaesu2" resultType="booksVO">
 		SELECT * 
-		FROM ${dbname}
+		FROM jejak.${dbname}
 		WHERE wdbook = #{tmpcode}
 		ORDER BY uid ASC
 	</select>
 	
 	<delete id="delBooksDaesu" parameterType="booksVO">
-		DELETE FROM KSWDESU0
+		DELETE FROM jejak.KSWDESU0
 		WHERE wdbook = #{tmpcode}
 	</delete>
 	
 	<select id="selBooksKswdesu0MaxUid" parameterType="Integer">
 		SELECT MAX(uid)
-		FROM KSWDESU0
+		FROM jejak.KSWDESU0
 	</select>
 	
 	<insert id="inBooksDaesu" parameterType="booksVO">
-		INSERT INTO KSWDESU0 (
+		INSERT INTO jejak.KSWDESU0 (
 			uid, WDBOOK, WDBOO9, WDSUNS, WDSRNO,
 			WDDESU, WDPAGE, WDCOLO, WDQNTY
 		) VALUES (
@@ -99,24 +99,24 @@
 	
 	<select id="selBooksYong1" resultType="booksVO">
 		SELECT count(uid) AS count 
-		FROM ${dbname}
+		FROM jejak.${dbname}
 		WHERE wybook = #{tmpcode}
 	</select>
 	
 	<select id="selBooksYong2" resultType="booksVO">
 		SELECT * 
-		FROM ${dbname}
+		FROM jejak.${dbname}
 		WHERE wybook = #{tmpcode}
 		ORDER BY uid ASC
 	</select>
 	
 	<delete id="delBooksYongji" parameterType="booksVO">
-		DELETE FROM KSWYONJ0
+		DELETE FROM jejak.KSWYONJ0
 		WHERE wybook = #{tmpcode}
 	</delete>
 	
 	<insert id="inBooksYongji" parameterType="booksVO">
-		INSERT INTO KSWYONJ0 (
+		INSERT INTO jejak.KSWYONJ0 (
 			WYBOOK, WYBOO9, WYSUNS, WYGUBN, WYJIJL,
 			WYCOLO, WYPAGE
 		) VALUES (
@@ -127,20 +127,19 @@
 	
 	<select id="selBooksYong3" resultType="booksVO">
 		SELECT wjcode, wjname 
-		FROM KSWJIJL0 
+		FROM jejak.KSWJIJL0 
 		ORDER BY wjname ASC, wjcode ASC
 	</select>
 	
 	<select id="selBooksMaxSbbook" resultType="booksVO">
 		SELECT MAX(sbbook) AS sbbook
-		FROM KSCBOOK0 
+		FROM jejak.KSCBOOK0 
 		WHERE (sbbook LIKE CONCAT(#{key}, '%'))
 	</select>
 
-	<!-- skydb -->
 	<select id="selBooksSoldOut1" resultType="booksVO">
 		SELECT a.*, b.sbname, b.sbpegi, c.scyakc
-		FROM temp_KS1${value}0 AS a, temp_KSCBOOK0 AS b, temp_KSCCUST0 AS c
+		FROM sky.KS1${value}0 AS a, sky.KSCBOOK0 AS b, sky.KSCCUST0 AS c
 		WHERE a.s1book = #{num_value}
 			AND (a.s1pumj = '1' OR a.s1pumj = '4')
 			AND a.s1book = b.sbbook
@@ -149,10 +148,9 @@
 		ORDER BY a.s1ilja ASC, a.s1cust ASC, a.s1suns DESC;
 	</select>
 	
-	<!-- skydb -->
 	<select id="selBooksSoldOut2" resultType="booksVO">
 		SELECT a.*, b.sbname, b.sbpegi, c.scyakc
-		FROM temp_KS1${value}0 AS a, temp_KSCBOOK0 AS b, temp_KSCCUST0 AS c
+		FROM sky.KS1${value}0 AS a, sky.KSCBOOK0 AS b, sky.KSCCUST0 AS c
 		WHERE a.s1cust = #{num_value}
 			AND (a.s1pumj = '1' OR a.s1pumj = '4')
 			AND a.s1book = b.sbbook
@@ -161,10 +159,9 @@
 		ORDER BY a.s1ilja ASC, a.s1bunh ASC;
 	</select>
 	
-	<!-- skydb -->
 	<select id="selBooksSoldOut3" resultType="booksVO">
 		SELECT a.*, b.sbname, b.sbpegi, c.scyakc
-		FROM temp_KS1${value}0 AS a, temp_KSCBOOK0 AS b, temp_KSCCUST0 AS c
+		FROM sky.KS1${value}0 AS a, sky.KSCBOOK0 AS b, sky.KSCCUST0 AS c
 		WHERE (a.s1pumj = '1' OR a.s1pumj = '4')
 			AND a.s1ilja <![CDATA[ >= ]]> #{value}
 			AND a.s1book = b.sbbook
@@ -174,7 +171,7 @@
 	</select>
             
 	<insert id="inBooks" parameterType="booksVO">
-		INSERT INTO KSCBOOK0 (
+		INSERT INTO jejak.KSCBOOK0 (
 			SBINSE, SBHJ04, SBBIGO, SBJLSU, SBBOOK, SBNAME,
 			SBNAME2, SBUPRC, SBPANH, SBJANH, SBPAGE,
 			SBSBPH1, SBSBJH1, SBSBPG1, SBSBPH2, SBSBJH2,
@@ -194,7 +191,7 @@
 	</insert>
 	
 	<update id="upBooks" parameterType="booksVO">
-		UPDATE KSCBOOK0 SET
+		UPDATE jejak.KSCBOOK0 SET
 			SBBOOK=#{sbbook}, SBNAME=#{sbname}, SBUPRC=#{sbuprc}, SBKC=#{sbkc}, SBJEGO=#{sbjego},
 			SBGUME=#{sbgume}, SBAPDT=#{sbapdt}, SBDUNG=#{sbdung}, SBLOCA=#{sbloca}, SBGUBN=#{sbgubn},
 			SBPEGI=#{sbpegi}, SBPEGA=#{sbpega}, SBCPBH=#{sbcpbh}, SBCPSR=#{sbcpsr}, SBCPDN=#{sbcpdn},
@@ -218,7 +215,7 @@
 	</update>
 	
 	<delete id="delBooks" parameterType="booksVO">
-		DELETE FROM KSCBOOK0
+		DELETE FROM jejak.KSCBOOK0
 		WHERE uid = #{uid}
 	</delete>
 </mapper>

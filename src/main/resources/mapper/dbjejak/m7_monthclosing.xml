@@ -5,7 +5,7 @@
 	<!-- 도서별 원가계산서 -->
 	<select id="selBookCostStatement1" resultType="monthClosingVO">
 		SELECT count(uid) AS count
-		FROM TMPLIST2
+		FROM jejak.TMPLIST2
 		WHERE bdate <![CDATA[ > ]]> #{date1}
 			AND bdate <![CDATA[ < ]]> #{date2}
 		    AND bucode = 0
@@ -13,7 +13,7 @@
 	
 	<select id="selBookCostStatement2" resultType="monthClosingVO">
 		SELECT a.uid, a.bdate, a.crnum, a.bucode, b.bname, b.bcode, b.bnum
-		FROM TMPLIST2 AS a, TMPLIST AS b 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b 
 		WHERE a.bdate <![CDATA[ > ]]> #{date1}
 			AND a.bdate <![CDATA[ < ]]> #{date2}
 		    AND a.bucode = 0 
@@ -23,257 +23,271 @@
 	</select>
 	
 	<select id="selBookCostStatement3" resultType="monthClosingVO">
-		SELECT count(uid) as yjtag
-		FROM TMPLIST3 
+		SELECT count(uid) AS yjtag
+		FROM jejak.TMPLIST3 
 		WHERE listid = #{uid}
 			AND ycost = 0 
-		    AND (jm > 0 or yb > 0)
+		    AND (jm > 0 OR yb > 0)
 	</select>
 	
 	<select id="selBookCostStatement4" resultType="monthClosingVO">
-		select a.uid, b.bcode, b.btype, c.sbsbph1, c.sbsbph2, c.sbsbph3, c.sbsbph4, c.sbsbjh1, c.sbsbjh2, c.sbsbjh3, c.sbsbjh4, c.sbsbpg1, c.sbsbpg2, c.sbsbpg3, c.sbsbpg4
-		from TMPLIST2 as a, TMPLIST as b, KSCBOOK0 as c
-		where a.uid=#{uid}
-		and a.listid=b.uid
-		and b.bcode=c.SBBOOK
-		limit 1
+		SELECT a.uid, b.bcode, b.btype, c.sbsbph1, c.sbsbph2, c.sbsbph3, c.sbsbph4, c.sbsbjh1, c.sbsbjh2, c.sbsbjh3, c.sbsbjh4, c.sbsbpg1, c.sbsbpg2, c.sbsbpg3, c.sbsbpg4
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c
+		WHERE a.uid = #{uid}
+			AND a.listid = b.uid
+			AND b.bcode = c.sbbook
+		LIMIT 1
 	</select>
 	
 	<select id="selBookCostStatement5" resultType="monthClosingVO">
-		select a.crnum, a.bdate, a.m1, a.m2, a.m3, b.bnum, b.bname, b.bcode, b.bmyun, c.sbpanh, c.sbjanh, c.sbuprc, d.wcname 
-		from TMPLIST2 as a, TMPLIST as b, KSCBOOK0 as c, KSWCUST0 as d 
-		where a.uid=#{uid}
-		and a.bucode=0 
-		and a.listid=b.uid 
-		and b.bcode=c.SBBOOK 
-		and a.m1=d.wccode
+		SELECT a.crnum, a.bdate, a.m1, a.m2, a.m3, b.bnum, b.bname, b.bcode, b.bmyun, c.sbpanh, c.sbjanh, c.sbuprc, d.wcname 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c, jejak.KSWCUST0 AS d 
+		WHERE a.uid = #{uid}
+			AND a.bucode = 0 
+			AND a.listid = b.uid 
+			AND b.bcode = c.SBBOOK 
+			AND a.m1 = d.wccode
 	</select>
 	
 	<select id="selBookCostStatement6" resultType="monthClosingVO">
-		select * 
-		from TMPLIST5 
-		where listid5=#{uid} 
-		order by uid asc
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE listid5 = #{uid} 
+		ORDER BY uid ASC
 	</select>	
 	
 	<select id="selBookCostStatement7" resultType="monthClosingVO">
-		select * 
-		from TMPLIST5 
-		where listid5=#{bur_uid} 
-		order by uid asc
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE listid5 = #{bur_uid} 
+		ORDER BY uid ASC
 	</select>
 	
 	<select id="selBookCostStatement8" resultType="monthClosingVO">
-	select * 
-	from TMPLIST3 
-	where listid=#{uid} 
-	order by uid asc
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE listid = #{uid} 
+		ORDER BY uid ASC
 	</select>	
 	
 	<select id="selBookCostStatement9" resultType="monthClosingVO">
-	select * 
-	from TMPLIST3 
-	where listid=#{bur_uid} 
-	order by uid asc
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE listid = #{bur_uid} 
+		ORDER BY uid ASC
 	</select>	
 	
 	<select id="selBookCostStatement10" resultType="monthClosingVO">
-	select * 
-	from KSWCUST0 
-	where wccode=#{m3}
+		SELECT * 
+		FROM jejak.KSWCUST0 
+		WHERE wccode = #{m3}
 	</select>	
 	
 	<select id="selBookCostStatement11" resultType="monthClosingVO">
-	select * 
-	from BITABLE7 
-	where crnum7=#{uid} 
-	order by uid asc
+		SELECT * 
+		FROM jejak.BITABLE7 
+		WHERE crnum7 = #{uid} 
+		ORDER BY uid ASC
 	</select>	
 	
 	<select id="selBookCostStatement12" resultType="monthClosingVO">
-	SELECT m3 
-	FROM TMPLIST2 WHERE 
-	uid=#{bur_uid}
+		SELECT m3 
+		FROM jejak.TMPLIST2
+		WHERE uid = #{bur_uid}
 	</select>
 		
 	<select id="selBookCostStatement13" resultType="monthClosingVO">
-	select * 
-	from KSWCUST0
-	where wccode=#{jebon}
+		SELECT * 
+		FROM jejak.KSWCUST0
+		WHERE wccode = #{jebon}
 	</select>	
 	
 	<select id="selBookCostStatement14" resultType="monthClosingVO">
-	select * 
-	from BITABLE7 
-	where uid=#{bur_uid}
+		SELECT * 
+		FROM jejak.BITABLE7 
+		WHERE uid = #{bur_uid}
 	</select>
 		
 	<select id="selBookCostStatement15" resultType="monthClosingVO">
-	select a.*, b.wcname 
-	from BITABLE8 as a, KSWCUST0 as b 
-	where a.crnum8= #{uid} 
-	and a.ccode8=b.wccode
+		SELECT a.*, b.wcname 
+		FROM jejak.BITABLE8 AS a, jejak.KSWCUST0 AS b 
+		WHERE a.crnum8 = #{uid} 
+			AND a.ccode8 = b.wccode
 	</select>
 		
 	<select id="selBookCostStatement16" resultType="monthClosingVO">
-	SELECT * 
-	FROM BITABLE9 
-	WHERE crnum9=#{uid} AND bitag=1
+		SELECT * 
+		FROM jejak.BITABLE9 
+		WHERE crnum9 = #{uid} 
+			AND bitag = 1
 	</select>
 		
 	<select id="selBookCostStatement17" resultType="monthClosingVO">
-	SELECT wcname 
-	FROM KSWCUST0 
-	WHERE wccode 
-	LIKE #{ccode9}
+		SELECT wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wccode LIKE #{ccode9}
 	</select>	
+	
 	<select id="selBookCostStatement18" resultType="monthClosingVO">
-	select * 
-	from TWONGA 
-	where jenum=#{uid} 
-	and jabtag=0
+		SELECT * 
+		FROM jejak.TWONGA 
+		WHERE jenum = #{uid} 
+			AND jabtag = 0
 	</select>	
 	
 	<insert id="inBookCostStatement19" parameterType="monthClosingVO">
-	INSERT INTO TWONGA (jenum, jabtag) VALUES (#{uid}, 0)
+		INSERT INTO jejak.TWONGA (
+			jenum, jabtag
+		) VALUES (
+			#{uid}, 0
+		)
 	</insert>	
 	
 	<update id="upBookCostStatement20" parameterType="monthClosingVO">
-	UPDATE TWONGA SET w21=#{new_21} WHERE jenum=#{uid} and jabtag=0
+		UPDATE jejak.TWONGA SET 
+			w21 = #{new_21} 
+		WHERE jenum = #{uid} 
+			AND jabtag = 0
 	</update>
 	
 	<select id="selBookCostStatement21" resultType="monthClosingVO">
-	SELECT SBDUNG, SBINSE, SBJJGB FROM KSCBOOK0 WHERE SBBOOK LIKE #{bookcode}
+		SELECT sbdung, sbinse, sbjjgb 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook LIKE #{bookcode}
 	</select>
 	
 	<select id="selBookCostStatement22" resultType="monthClosingVO">
-	SELECT STHALY 
-	FROM KSCTABL0 
-	WHERE STCUDN 
-	LIKE '026' 
-	AND STDSDN 
-	LIKE #{sthaly}	
+		SELECT sthaly 
+		FROM jejak.KSCTABL0 
+		WHERE stcudn LIKE '026' 
+			AND stdsdn LIKE #{sthaly}	
 	</select>
 	
 	<select id="selBookCostStatement23" resultType="monthClosingVO">
-	update TWONGA set wtotal=#{total_cost}, wdanga=#{total_danga} where jenum=#{uid} and jabtag=0
+		UPDATE jejak.TWONGA SET 
+			wtotal = #{total_cost}, wdanga = #{total_danga} 
+		WHERE jenum = #{uid} 
+			AND jabtag = 0
 	</select>
 	
 	<!-- 도서별 원가계산서 인쇄 -->
 	<select id="selBookCostStatement24" resultType="monthClosingVO">
-	select a.uid, a.crnum, a.bdate, a.m1, a.m2, a.m3, b.bnum, b.bname, b.bcode, b.bmyun, b.btype, c.SBPANH, c.SBJANH, c.SBSBJH1,
-	c.SBSBJH2, c.SBSBJH3, c.SBSBJH4, c.SBSBPH1, c.SBSBPH2, c.SBSBPH3, c.SBSBPH4, c.SBSBPG1, c.SBSBPG2, c.SBSBPG3, c.SBSBPG4, c.SBUPRC, d.wcname 
-	from TMPLIST2 as a, TMPLIST as b, KSCBOOK0 as c, KSWCUST0 as d 
-	where a.uid=#{uid}
-	and a.listid=b.uid 
-	and b.bcode=c.SBBOOK 
-	and a.m1=d.wccode
+		SELECT a.uid, a.crnum, a.bdate, a.m1, a.m2, a.m3, b.bnum, b.bname, b.bcode, b.bmyun, b.btype, c.SBPANH, c.SBJANH, c.SBSBJH1,c.SBSBJH2, 
+			c.SBSBJH3, c.SBSBJH4, c.SBSBPH1, c.SBSBPH2, c.SBSBPH3, c.SBSBPH4, c.SBSBPG1, c.SBSBPG2, c.SBSBPG3, c.SBSBPG4, c.SBUPRC, d.wcname 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c, jejak.KSWCUST0 AS d 
+		WHERE a.uid = #{uid}
+			AND a.listid = b.uid 
+			AND b.bcode = c.SBBOOK 
+			AND a.m1 = d.wccode
 	</select>
 	
 	<select id="selBookCostStatement25" resultType="monthClosingVO">
-	select a.*, b.bnum, b.bname, b.bcode, b.bmyun, b.btype, c.SBPANH, c.SBJANH, c.SBSBJH1, c.SBSBJH2, c.SBSBJH3, c.SBSBJH4, c.SBSBPH1, c.SBSBPH2, c.SBSBPH3, c.SBSBPH4, c.SBSBPG1, c.SBSBPG2, c.SBSBPG3, c.SBSBPG4, c.SBUPRC, d.wcname 
-	from TMPLIST2 as a, TMPLIST as b, KSCBOOK0 as c, KSWCUST0 as d 
-	where a.bdate <![CDATA[ > ]]> #{date1} 
-	and a.bdate <![CDATA[ < ]]> #{date2}
-	and a.bucode=0 and a.listid=b.uid 
-	and b.bcode=c.SBBOOK 
-	and a.m1=d.wccode 
-	order by a.crnum asc
+		SELECT a.*, b.bnum, b.bname, b.bcode, b.bmyun, b.btype, c.SBPANH, c.SBJANH, c.SBSBJH1, c.SBSBJH2, c.SBSBJH3, c.SBSBJH4, 
+			c.SBSBPH1, c.SBSBPH2, c.SBSBPH3, c.SBSBPH4, c.SBSBPG1, c.SBSBPG2, c.SBSBPG3, c.SBSBPG4, c.SBUPRC, d.wcname 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c, jejak.KSWCUST0 AS d 
+		WHERE a.bdate <![CDATA[ > ]]> #{date1} 
+			AND a.bdate <![CDATA[ < ]]> #{date2}
+			AND a.bucode = 0 
+			AND a.listid = b.uid 
+			AND b.bcode = c.SBBOOK 
+			AND a.m1 = d.wccode 
+		ORDER BY a.crnum ASC
 	</select>
 	
 	<select id="selBookCostStatement26" resultType="monthClosingVO">		
-	select * 
-	from TMPLIST5 
-	where listid5=#{uid} 
-	order by uid asc
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE listid5 = #{uid} 
+		ORDER BY uid ASC
 	</select>
 	
 	<select id="selBookCostStatement27" resultType="monthClosingVO">
-	select * 
-	from TMPLIST5 
-	where listid5=#{bur_uid} 
-	order by uid asc
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE listid5 = #{bur_uid} 
+		ORDER BY uid ASC
 	</select>
 	
 	<select id="selBookCostStatement28" resultType="monthClosingVO">
-	select * 
-	from TMPLIST3 
-	where listid=#{uid} 
-	and gubn like '%본문%'		
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE listid = #{uid} 
+			AND gubn like '%본문%'		
 	</select>
 	
 	<select id="selBookCostStatement29" resultType="monthClosingVO">	
-	select * 
-	from TMPLIST3 
-	where listid=#{bur_uid} 
-	order by uid asc	
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE listid = #{bur_uid} 
+		ORDER BY uid ASC	
 	</select>
 	
 	<select id="selBookCostStatement30" resultType="monthClosingVO">
-	SELECT SBDUNG 
-	FROM KSCBOOK0 
-	WHERE SBBOOK LIKE #{bookcode}		
+		SELECT sbdung 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook LIKE #{bookcode}		
 	</select>
 	
 	<select id="selBookCostStatement31" resultType="monthClosingVO">
-	select * 
-	from TWONGA 
-	where jenum=#{uid}		
+		SELECT * 
+		FROM jejak.TWONGA 
+		WHERE jenum = #{uid}		
 	</select>
 	
 	<select id="selBookCostStatement32" resultType="monthClosingVO">
-	select * 
-	from TMPLIST2 
-	where (date_format(from_unixtime(bdate), '%Y%m%d')=#{date}) 
-	order by bdate asc	
+		SELECT * 
+		FROM jejak.TMPLIST2 
+		WHERE (date_format(from_unixtime(bdate), '%Y%m%d') = #{date}) 
+		ORDER BY bdate ASC	
 	</select>
 	
 	<select id="selBookCostStatement33" resultType="monthClosingVO">
-	select * 
-	from TMPLIST3 
-	where listid=#{mrow}
-	and ycost=0
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE listid = #{mrow}
+			AND ycost = 0
 	</select>
 	
 	<select id="selBookCostStatement34" resultType="monthClosingVO">
-	select * 
-	from KSWJIJL0 
-	where wjcode=#{jcode}
+		SELECT * 
+		FROM jejak.KSWJIJL0 
+		WHERE wjcode = #{jcode}
 	</select>
 	 
 	<update id="upBookCostStatement35" parameterType="monthClosingVO">
-	update TMPLIST3 set ycost=#{new_cost} where uid=#{row}
+		UPDATE jejak.TMPLIST3 SET 
+			ycost = #{new_cost} 
+		WHERE uid = #{row}
 	</update>
 	
 	<select id="selBookCostStatement36" resultType="monthClosingVO">
-	select a.uid, b.bcode, c.SBSBPH1, c.SBSBPH2, c.SBSBPH3, c.SBSBPH4 
-	from TMPLIST2 as a, TMPLIST as b, KSCBOOK0 as c 
-	where a.uid=#{uid} 
-	and a.listid=b.uid 
-	and b.bcode=c.SBBOOK limit 1
+		SELECT a.uid, b.bcode, c.sbsbph1, c.sbsbph2, c.sbsbph3, c.sbsbph4 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c 
+		WHERE a.uid = #{uid} 
+			AND a.listid = b.uid 
+			AND b.bcode = c.SBBOOK 
+		LIMIT 1
 	</select>
 	
 	<select id="selBookCostStatement37" resultType="monthClosingVO">
-	select * 
-	from TMPLIST3 
-	where listid=#{bur_uid} 
-	and ycost=0 and bucode=#{i}
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE listid = #{bur_uid} 
+			AND ycost = 0 
+			AND bucode = #{i}
 	</select>
 	
-	
-		
-			
 	<!-- 잡물 원가계산서 -->
 	<select id="selJMCostStatement1" resultType="monthClosingVO">
 		SELECT count(uid) AS count 
-		FROM TMPJAB 
+		FROM jejak.TMPJAB 
 		WHERE jbdate <![CDATA[ >= ]]> #{date1}
 			AND jbdate <![CDATA[ <= ]]> #{date2}
 	</select>
 	
 	<select id="selJMCostStatement2" resultType="monthClosingVO">
 		SELECT uid, jbdate, jbname, jbamnt
-		FROM TMPJAB 
+		FROM jejak.TMPJAB 
 		WHERE jbdate <![CDATA[ >= ]]> #{date1}
 			AND jbdate <![CDATA[ <= ]]> #{date2}
 		ORDER BY jbdate ASC
@@ -282,7 +296,7 @@
 	
 	<select id="selJMCostStatement3" resultType="monthClosingVO">
 		SELECT count(uid) AS yjtag
-		FROM TMPJAB3 
+		FROM jejak.TMPJAB3 
 		WHERE jbid = #{uid}
 			AND ycost = 0 
 			AND (jm > 0 OR yb > 0) 
@@ -290,124 +304,128 @@
 	</select>
 	
 	<select id="selJMCostStatement4" resultType="monthClosingVO">
-		select * 
-		from TMPJAB 
-		where JBDATE <![CDATA[ > ]]>  #{date1} 
-		and JBDATE <![CDATA[ < ]]> #{date2}
-		order by UID asc
+		SELECT * 
+		FROM jejak.TMPJAB 
+		WHERE jbdate <![CDATA[ > ]]>  #{date1} 
+			AND jbdate <![CDATA[ < ]]> #{date2}
+		ORDER BY UID ASC
 	</select>
 	
 	<select id="selJMCostStatement5" resultType="monthClosingVO">
-		select SOBUDAN5, GUBN5, PANST5, sum(PANNUM5) as pans, sum(SOBU5) as sobus, sum(SUM5) as sums, DAEJI5, FILMNUM5, FILMDAN5, FILMCOST5 
-		from TMPJAB5 
-		where LISTID=#{uid} 
-		group by GUBN5 
-		order by UID asc
+		SELECT sobudan5, gubn5, panst5, sum(pannum5) AS pans, sum(sobu5) AS sobus, sum(sum5) AS sums, daeji5, filmnum5, filmdan5, filmcost5 
+		FROM jejak.TMPJAB5 
+		WHERE listid = #{uid} 
+		GROUP BY gubn5 
+		ORDER BY uid ASC
 	</select>
 	
 	<select id="selJMCostStatement6" resultType="monthClosingVO">
-	select wcname 
-	from KSWCUST0 
-	where wccode=#{m1}
+		SELECT wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wccode = #{m1}
 	</select>
 	
 	<select id="selJMCostStatement7" resultType="monthClosingVO">
-	select YJCODE, YJNAME, sum(JM) as jms, sum(YB) as ybs, GUBN, COLO, sum(RNUM) as rnums, sum(YCOST) as ycosts, sum(PCOST) as pcosts, PDANGA 
-	from TMPJAB3 
-	where JBID=#{uid} 
-	group by GUBN 
-	order by UID asc
+		SELECT yjcode, yjname, sum(jm) AS jms, sum(yb) AS ybs, gubn, colo, sum(rnum) AS rnums, sum(ycost) AS ycosts, sum(pcost) AS pcosts, pdanga 
+		FROM jejak.TMPJAB3 
+		WHERE jbid = #{uid} 
+		GROUP BY gubn 
+		ORDER BY uid ASC
 	</select>
 	
 	<select id="selJMCostStatement8" resultType="monthClosingVO">
-	select * 
-	from KSWCUST0 
-	where wccode=#{m3}
+		SELECT * 
+		FROM jejak.KSWCUST0 
+		WHERE wccode = #{m3}
 	</select>
 	
 	<select id="selJMCostStatement9" resultType="monthClosingVO">
-	select * 
-	from BIJAB7 
-	where crnum7=#{uid}
-	order by uid asc
+		SELECT * 
+		FROM jejak.BIJAB7 
+		WHERE crnum7 = #{uid}
+		ORDER BY uid ASC
 	</select>
 	
 	<select id="selJMCostStatement10" resultType="monthClosingVO">
-	select a.*, b.wcname 
-	from BIJAB8 as a, KSWCUST0 as b 
-	where a.crnum8=#{uid} 
-	and a.ccode8=b.wccode
+		SELECT a.*, b.wcname 
+		FROM jejak.BIJAB8 AS a, jejak.KSWCUST0 AS b 
+		WHERE a.crnum8 = #{uid} 
+			AND a.ccode8 = b.wccode
 	</select>
 	
 	<select id="selJMCostStatement11" resultType="monthClosingVO">
-	select * 
-	from KSWCUST0 
-	where wccode=#{m8}
+		SELECT * 
+		FROM jejak.KSWCUST0 
+		WHERE wccode = #{m8}
 	</select>
 	
 	<select id="selJMCostStatement12" resultType="monthClosingVO">
-	SELECT * 
-	FROM BIJAB9 
-	WHERE bitag=1 
-	AND ccode9 
-	LIKE '#{m8}' 
-	AND crnum9=#{uid}
+		SELECT * 
+		FROM jejak.BIJAB9 
+		WHERE bitag = 1 
+			AND ccode9 LIKE #{m8} 
+			AND crnum9 = #{uid}
 	</select>
 	
 	<select id="selJMCostStatement13" resultType="monthClosingVO">
-	select * 
-	from TWONGA
-	where jenum=#{uid} 
-	and jabtag=1
+		SELECT * 
+		FROM jejak.TWONGA
+		WHERE jenum = #{uid} 
+			AND jabtag = 1
 	</select>
 	
 	<select id="selJMCostStatement14" resultType="monthClosingVO">
-	select * 
-	from TMPJAB 
-	where UID=#{uid}
+		SELECT * 
+		FROM jejak.TMPJAB 
+		WHERE uid = #{uid}
 	</select>
 	
 	<select id="selJMCostStatement15" resultType="monthClosingVO">
-	select * 
-	from TMPJAB5 
-	where LISTID=#{uid} 
-	order by UID asc
+		SELECT * 
+		FROM jejak.TMPJAB5 
+		WHERE listid = #{uid} 
+		ORDER BY uid ASC
 	</select>
 	
 	<select id="selJMCostStatement16" resultType="monthClosingVO">
-	select * 
-	from TMPJAB3 
-	where JBID=#{uid} 
-	order by UID asc
+		SELECT * 
+		FROM jejak.TMPJAB3 
+		WHERE jbid = #{uid} 
+		ORDER BY uid ASC
 	</select>
 	
 	<insert id="inJMCostStatement17" parameterType="monthClosingVO">
-	INSERT INTO TWONGA (jenum, jabtag) VALUES (#{uid}, 1)
+		INSERT INTO jejak.TWONGA (
+			jenum, jabtag
+		) VALUES (
+			#{uid}, 1
+		)
 	</insert>
 	
 	<update id="updateJMCostStatement18" parameterType="monthClosingVO">
-	update TWONGA set wtotal=#{total_cost}, wdanga=#{total_danga} where jenum=#{uid} and jabtag=1
+		UPDATE jejak.TWONGA SET 
+			wtotal = #{total_cost}, wdanga = #{total_danga} 
+		WHERE jenum = #{uid} 
+			AND jabtag = 1
 	</update>
-	
-	
 	
 	
 	<!-- 품목별 원재료명세서(월별) -->
 	<select id="selPumMon1" resultType="monthClosingVO">
 		SELECT * 
-		FROM YONGJIMS 
+		FROM jejak.YONGJIMS 
 		WHERE msdate = #{msdate}
 	</select>
 	
 	<select id="selPumMon2" resultType="monthClosingVO">
 		SELECT wjcode 
-		FROM KSWJIJL0 
+		FROM jejak.KSWJIJL0 
 		ORDER BY ib ASC, wjcode ASC
 	</select>
 	
 	<select id="selPumMon3" resultType="monthClosingVO">
 		SELECT a.*, b.wjname 
-		FROM YONGJIMS AS a, KSWJIJL0 AS b 
+		FROM jejak.YONGJIMS AS a, jejak.KSWJIJL0 AS b 
 		WHERE a.msdate = #{msdate}
 			AND a.yjcode = b.wjcode 
 		ORDER BY a.uid ASC
@@ -416,160 +434,169 @@
 	<!-- yj_ms2 -->
 	<select id="selPumMon4" resultType="monthClosingVO">
 		SELECT * 
-		FROM KSWJIJL0 
+		FROM jejak.KSWJIJL0 
 		ORDER BY ib ASC, wjcode ASC
 	</select>
 	
 	<select id="selPumMon5" resultType="monthClosingVO">
 		SELECT * 
-		FROM KSWJIJL0 
+		FROM jejak.KSWJIJL0 
 		ORDER BY ib ASC, wjcode ASC
 	</select>
 	
 	<select id="selPumMon6" resultType="monthClosingVO">
 		SELECT * 
-		FROM YONGJIMS 
-		WHERE MSDATE 
-		LIKE #{bdate}
+		FROM jejak.YONGJIMS 
+		WHERE msdate LIKE #{bdate}
 	</select>
 	
 	<select id="selPumMon7" resultType="monthClosingVO">
-		select jicode, sum(tprice) as psum, sum(num) as nsum 
-		from JIINOUT 
-		where (date_format(from_unixtime(date), '%Y%m')=#{bdate}) 
-		and comment like '入' group by jicode
+		SELECT jicode, sum(tprice) AS psum, sum(num) AS nsum 
+		FROM jejak.JIINOUT 
+		WHERE (date_format(from_unixtime(date), '%Y%m') = #{bdate}) 
+			AND comment LIKE '入' 
+		GROUP BY jicode
 	</select>
 	
 	<select id="selPumMon8" resultType="monthClosingVO">
-		select UID 
-		from TMPJAB 
-		where (date_format(from_unixtime(JBDATE), '%Y%m')=#{bdate})
+		SELECT uid 
+		FROM jejak.TMPJAB 
+		WHERE (date_format(from_unixtime(jbdate), '%Y%m') = #{bdate})
 	</select>
 	
 	<select id="selPumMon9" resultType="monthClosingVO">
-		select * 
-		from TMPJAB3 
-		where JBID=#{uid}
-		and JUTAG <![CDATA[<>]]> 3
+		SELECT * 
+		FROM jejak.TMPJAB3 
+		WHERE jbid = #{uid}
+			AND jutag <![CDATA[<>]]> 3
 	</select>
 	
 	<select id="selPumMon10" resultType="monthClosingVO">
-		select * 
-		from YONGJIMS 
-		where MSDATE=#{bdate}
-		and YJCODE=#{yjcode}
+		SELECT * 
+		FROM jejak.YONGJIMS 
+		WHERE msdate = #{bdate}
+			AND yjcode = #{yjcode}
 	</select>
 	
 	<select id="selPumMon11" resultType="monthClosingVO">
-		select uid 
-		from TMPLIST2
-		where (date_format(from_unixtime(bdate), '%Y%m')=#{bdate})
+		SELECT uid 
+		FROM jejak.TMPLIST2
+		WHERE (date_format(from_unixtime(bdate), '%Y%m') = #{bdate})
 	</select>
 	
 	<select id="selPumMon12" resultType="monthClosingVO">
-		select * 
-		from TMPLIST3 
-		where listid=#{uid}
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE listid = #{uid}
 	</select>
 	
 	<select id="selPumMon13" resultType="monthClosingVO">
-		select * 
-		from YONGJIMS 
-		where MSDATE=#{bdate}
-		and YJCODE=#{jcode}
+		SELECT * 
+		FROM jejak.YONGJIMS 
+		WHERE msdate = #{bdate}
+			AND yjcode = #{jcode}
 	</select>
 	
 	<select id="selPumMon14" resultType="monthClosingVO">
-		select * 
-		from YONGJIMS 
-		where MSDATE=#{bdate}
+		SELECT * 
+		FROM jejak.YONGJIMS 
+		WHERE msdate = #{bdate}
 	</select>
 		
 	<select id="selPumMon15" resultType="monthClosingVO">
-		select a.JBNAME, b.UID, b.YCOST 
-		from TMPJAB as a, TMPJAB3 as b 
-		where (date_format(from_unixtime(a.JBDATE), '%Y%m')=#{bdate})
-		and a.UID=b.JBID and b.YJCODE=#{yjcode} order by a.UID asc limit 1
+		SELECT a.jbname, b.uid, b.ycost 
+		FROM jejak.TMPJAB AS a, jejak.TMPJAB3 AS b 
+		WHERE (date_format(from_unixtime(a.jbdate), '%Y%m') = #{bdate})
+			AND a.uid = b.jbid 
+			AND b.yjcode = #{yjcode} 
+		ORDER BY a.uid ASC 
+		LIMIT 1
 	</select>	
 	
+	<!-- 확인 -->
 	<select id="selPumMon16" resultType="monthClosingVO">
-		select a.listid, b.uid, b.ycost 
-		from TMPLIST2 as a, TMPLIST3 as b 
-		where (date_format(from_unixtime(a.bdate), '%Y%m')=#{bdate})
-		and a.uid=b.listid and b.jcode='$row[YJCODE]' order by a.uid asc limit 1
+		SELECT a.listid, b.uid, b.ycost 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST3 AS b 
+		WHERE (date_format(from_unixtime(a.bdate), '%Y%m') = #{bdate})
+			AND a.uid = b.listid 
+			AND b.jcode = #{yjcode}
+		ORDER BY a.uid asc 
+		LIMIT 1
 	</select>	
-	
 	
 	<insert id="inPumMon2" parameterType="monthClosingVO">
-		INSERT
-		INTO YONGJIMS (YJCODE, MSDATE) 
-		VALUES (#{wjcode}, #{bdate})
+		INSERT INTO jejak.YONGJIMS (
+			yjcode, msdate
+		) VALUES (
+			#{wjcode}, #{bdate}
+		)
 	</insert>
 	
 	<update id="upPumMon1" parameterType="monthClosingVO">
-		update YONGJIMS 
-		set QNTY1=0, AMNT1=0, QNTY2=0, AMNT2=0, QNTY3=0, AMNT3=0, QNTY4=0, AMNT4=0 
-		where MSDATE LIKE #{bdate}
+		UPDATE jejak.YONGJIMS SET 
+			qnty1 = 0, amnt1 = 0, qnty2 = 0, amnt2 = 0, qnty3 = 0, amnt3 = 0, qnty4 = 0, amnt4 = 0 
+		WHERE msdate LIKE #{bdate}
 	</update>
 	
 	<update id="upPumMon2" parameterType="monthClosingVO">
-		UPDATE YONGJIMS 
-		SET QNTY1=#{qnty1}, AMNT1=#{amnt1} 
-		WHERE YJCODE=#{yjcode} AND MSDATE=#{bdate}
+		UPDATE YONGJIMS SET 
+			qnty1 = #{qnty1}, amnt1 = #{amnt1} 
+		WHERE yjcode = #{yjcode} 
+			AND msdate = #{bdate}
 	</update>
 	
 	<update id="upPumMon3" parameterType="monthClosingVO">
-	update YONGJIMS 
-	set QNTY2=#{nsum}, AMNT2=#{psum}
-	where YJCODE=#{jicode}
-	and MSDATE=#{bdate}
+		UPDATE jejak.YONGJIMS SET 
+			qnty2 = #{nsum}, amnt2 = #{psum}
+		WHERE yjcode = #{jicode}
+			AND msdate = #{bdate}
 	</update>
 	
 	<update id="upPumMon4" parameterType="monthClosingVO">
-	update YONGJIMS 
-	set QNTY3=#{new_q}, AMNT3=#{new_a} 
-	where UID=#{uid}
+		UPDATE jejak.YONGJIMS SET 
+			qnty3 = #{new_q}, amnt3 = #{new_a} 
+		WHERE uid = #{uid}
 	</update>
 	
 	<update id="upPumMon5" parameterType="monthClosingVO">
-	update YONGJIMS 
-	set QNTY3=#{new_q}, AMNT3=#{new_a} 
-	where UID=#{uid}
+		UPDATE jejak.YONGJIMS SET 
+			qnty3 = #{new_q}, amnt3 = #{new_a} 
+		WHERE uid = #{uid}
 	</update>
 	
 	<update id="upPumMon6" parameterType="monthClosingVO">
-	update YONGJIMS 
-	set QNTY4=#{new_q}, AMNT4=0 
-	where UID=#{uid}
+		UPDATE jejak.YONGJIMS SET 
+			qnty4 = #{new_q}, amnt4 = 0 
+		WHERE uid = #{uid}
 	</update>
 	
 	<update id="upPumMon7" parameterType="monthClosingVO">
-	update TMPJAB3 
-	set YCOST=#{new_a} 
-	where UID=#{uid}
+		UPDATE jejak.TMPJAB3 SET 
+			ycost = #{new_a} 
+		WHERE uid = #{uid}
 	</update>
 	
 	<update id="upPumMon8" parameterType="monthClosingVO">
-	update TMPLIST3 
-	set ycost=#{new_a} 
-	where uid=#{uid}
+		UPDATE jejak.TMPLIST3 SET 
+			ycost = #{new_a} 
+		WHERE uid = #{uid}
 	</update>
 	
 	<update id="upPumMon9" parameterType="monthClosingVO">
-	update YONGJIMS 
-	set AMNT3=#{new_val}
-	where UID=#{uid}
+		UPDATE jejak.YONGJIMS SET 
+			amnt3 = #{new_val}
+		WHERE uid = #{uid}
 	</update>
 	
 	<update id="upPumMon10" parameterType="monthClosingVO">
-	update YONGJIMS 
-	set QNTY4=#{new_q}, AMNT4=#{new_a} 
-	where UID=#{uid}
+		UPDATE jejak.YONGJIMS SET 
+			qnty4 = #{new_q}, amnt4 = #{new_a} 
+		WHERE uid = #{uid}
 	</update>
 	<!-- yj_ms2 -->
 	
 	<insert id="inPumMon1" parameterType="monthClosingVO">
-		INSERT INTO YONGJIMS (
+		INSERT INTO jejak.YONGJIMS (
 			yjcode, msdate
 		) 
 		VALUES (
@@ -577,12 +604,10 @@
 		)
 	</insert>
 	
-	
-	
 	<!-- 품목별 원재료명세서(기간) -->
 	<select id="selPumPer1" resultType="monthClosingVO">
 		SELECT a.*, b.wjname 
-		FROM YONGJIMS2 AS a, KSWJIJL0 AS b 
+		FROM jejak.YONGJIMS2 AS a, jejak.KSWJIJL0 AS b 
 		WHERE a.msdate = #{msdate}
 			AND a.yjcode = b.wjcode 
 		ORDER BY a.uid ASC
@@ -590,135 +615,141 @@
 	
 	<select id="selPumPer2" resultType="monthClosingVO">
 		SELECT wjcode 
-		FROM KSWJIJL0 
+		FROM jejak.KSWJIJL0 
 		ORDER BY ib ASC, wjcode ASC
 	</select>
 	
 	<select id="selPumPer3" resultType="monthClosingVO">
-		SELECT QNTY1, AMNT1 
-		FROM YONGJIMS 
-		WHERE YJCODE 
-		LIKE #{yjcode} AND MSDATE 
-		LIKE #{msdate}
+		SELECT qnty1, amnt1 
+		FROM jejak.YONGJIMS 
+		WHERE yjcode LIKE #{yjcode} 
+			AND msdate LIKE #{msdate}
 	</select>
 	
 	<select id="selPumPer4" resultType="monthClosingVO">
-		SELECT QNTY1, AMNT1 
-		FROM YONGJIMS 
-		WHERE YJCODE 
-		LIKE #{yjcode} AND MSDATE 
-		LIKE #{msdate}
+		SELECT qnty1, amnt1 
+		FROM jejak.YONGJIMS 
+		WHERE yjcode LIKE #{yjcode} 
+			AND msdate LIKE #{msdate}
 	</select>
 	
 	<select id="selPumPer5" resultType="monthClosingVO">
-		SELECT SUM(QNTY2) as qnty2, SUM(AMNT2) as amnt2, SUM(QNTY3) as qnty3 , SUM(AMNT3) as amnt3
-		FROM YONGJIMS 
-		WHERE YJCODE 
-		LIKE 450080
-		AND MSDATE <![CDATA[>=]]>  202001
-		AND MSDATE <![CDATA[<=]]> 202012
+		SELECT sum(qnty2) AS qnty2, sum(amnt2) AS amnt2, sum(qnty3) AS qnty3 , sum(amnt3) AS amnt3
+		FROM jejak.YONGJIMS 
+		WHERE yjcode LIKE #{yjcode}
+			AND msdate <![CDATA[>=]]> #{tmon1}
+			AND msdate <![CDATA[<=]]> #{tmon2}
 	</select>
 	
 	<insert id="inPumPer1" parameterType="monthClosingVO">
-	INSERT 
-	INTO YONGJIMS2 (yjcode, msdate, QNTY1, AMNT1, QNTY2, AMNT2, QNTY3, AMNT3, QNTY4, AMNT4) 
-	VALUES (#{yjcode}, #{indate}, #{qnty1}, #{amnt1}, #{qnty2}, #{amnt2}, #{qnty3}, #{amnt3}, #{qnty4}, #{amnt4})
+		INSERT INTO jejak.YONGJIMS2 (
+			yjcode, msdate, qnty1, amnt1, qnty2, amnt2, qnty3, amnt3, qnty4, amnt4
+		) VALUES (
+			#{yjcode}, #{indate}, #{qnty1}, #{amnt1}, #{qnty2}, #{amnt2}, #{qnty3}, #{amnt3}, #{qnty4}, #{amnt4}
+		)
 	</insert>
 	
 	<delete id="delPumPer1" parameterType="monthClosingVO">
-	DELETE 
-	FROM YONGJIMS2 
-	WHERE MSDATE LIKE #{bdate}
+		DELETE 
+		FROM jejak.YONGJIMS2 
+		WHERE msdate LIKE #{bdate}
 	</delete>
 	
 	<!-- 저자료 지급 내역(상/하) -->
 	<select id="selRoyaltyUD1" resultType="monthClosingVO">
 		SELECT a.sbname, a.sbbook, a.sbinse, a.sbhj04, a.sbhjgb, a.sbuprc
-		FROM KSCBOOK0 AS a 
+		FROM jejak.KSCBOOK0 AS a 
 		WHERE a.sbjjgb = 1 
 			AND a.${dbattr} <![CDATA[ > ]]> 0 
 		ORDER BY a.sbbook ASC
 	</select>
 	
 	<select id="selRoyaltyUD2" resultType="monthClosingVO">
-		Select (SELECT sum(s1qnty) FROM KS1${dbname}A WHERE s1gubn = 'C' AND s1book = #{sbbook}) AS sum1, 
-			(SELECT sum(s1qnty) FROM KS1${dbname}A WHERE s1gubn = 'D' AND s1book = #{sbbook}) AS sum2
+		Select (
+			SELECT sum(s1qnty) 
+			FROM jejak.KS1${dbname}A 
+			WHERE s1gubn = 'C' 
+				AND s1book = #{sbbook}
+			) AS sum1, (
+			SELECT sum(s1qnty) 
+			FROM jejak.KS1${dbname}A 
+			WHERE s1gubn = 'D' 
+				AND s1book = #{sbbook}
+			) AS sum2
 	</select>
 	
 	<select id="selRoyaltyUD3" resultType="monthClosingVO">
-		select distinct(SBJUJA) 
-		from KSCBOOK0 
-		where SBJJGB=1 
-		and SBINSE > 0 
-		ORDER BY SBJUJA ASC
+		SELECT distinct(sbjuja) 
+		FROM jejak.KSCBOOK0 
+		WHERE sbjjgb = 1 
+			AND sbinse > 0 
+		ORDER BY sbjuja ASC
 	</select>
 	
 	<select id="selRoyaltyUD4" resultType="monthClosingVO">
 		SELECT * 
-		FROM KSCBOOK0 
-		WHERE SBJUJA 
-		LIKE #{jname}
-		AND SBJJGB=1 
-		AND SBINSE > 0 
-		ORDER BY SBBOOK ASC
+		FROM jejak.KSCBOOK0 
+		WHERE SBJUJA LIKE #{jname}
+			AND sbjjgb = 1 
+			AND sbinse > 0 
+		ORDER BY sbbook ASC
 	</select>
 	
 	<select id="selRoyaltyUD5" resultType="monthClosingVO">
-		SELECT NAME2 
-		FROM JEOJA 
-		WHERE NAME1 
-		LIKE #{jname}
+		SELECT name2 
+		FROM jejak.JEOJA 
+		WHERE name1 LIKE #{jname}
 	</select>
 	
 	<select id="selRoyaltyUD6" resultType="monthClosingVO">
-		select sum(S1QNTY) as s1qnty
-		from ${dbname} 
-		where S1GUBN='C' 
-		and S1BOOK=#{sbbook}
+		SELECT sum(s1qnty) AS s1qnty
+		FROM jejak.${dbname} 
+		WHERE s1gubn = 'C' 
+			AND s1book = #{sbbook}
 	</select>
 	
 	<select id="selRoyaltyUD7" resultType="monthClosingVO">
-		select sum(S1QNTY) as s1qnty 
-		from ${dbname} 
-		where S1GUBN='D' 
-		and S1BOOK=#{sbbook}
+		SELECT sum(s1qnty) AS s1qnty 
+		FROM jejak.${dbname} 
+		WHERE s1gubn = 'D' 
+			AND s1book = #{sbbook}
 	</select>
 	
 	<select id="selRoyaltyUD8" resultType="monthClosingVO">
 		SELECT * 
-		FROM KSCBOOK0 
+		FROM jejak.KSCBOOK0 
 		WHERE SBJUJA 
 		LIKE #{jname} 
-		AND SBJJGB=1 
-		AND SBINSE > 0 
-		ORDER BY SBBOOK ASC
+			AND sbjjgb = 1 
+			AND sbinse > 0 
+		ORDER BY sbbook ASC
 	</select>
 	
 	<select id="selRoyaltyUD9" resultType="monthClosingVO">
-		select sum(S1QNTY) as s1qnty 
-		from ${dbname} 
-		where S1GUBN='C' 
-		and S1BOOK=#{sbbook}
+		SELECT sum(s1qnty) AS s1qnty 
+		FROM jejak.${dbname} 
+		WHERE s1gubn='C' 
+			AND s1book=#{sbbook}
 	</select>
 	
 	<select id="selRoyaltyUD10" resultType="monthClosingVO">
-		select sum(S1QNTY) as s1qnty 
-		from ${dbname} 
-		where S1GUBN='D' 
-		and S1BOOK=#{sbbook}
+		SELECT sum(s1qnty) AS s1qnty 
+		FROM jejak.${dbname} 
+		WHERE s1gubn = 'D' 
+			AND s1book = #{sbbook}
 	</select>
 	
 	<select id="selRoyaltyUD11" resultType="monthClosingVO">
 		SELECT * 
-		FROM JEOJA 
-		WHERE NAME1 
+		FROM jejak.JEOJA 
+		WHERE name1 
 		LIKE #{jname}
 	</select>
 	
 	<!-- 월별 저자료 지출결의서 -->
 	<select id="selMonthlyRoyalty" resultType="monthClosingVO">
 		SELECT a.uid, b.bcode, b.bnum, c.sbinse, c.sbjjgb, c.sbjuja, c.sbuprc, c.sbbook, c.sbname
-		FROM TMPLIST2 AS a, TMPLIST AS b, KSCBOOK0 AS c
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c
 		WHERE (date_format(from_unixtime(a.bdate), '%Y%m') = #{bdate}) 
 			AND a.listid = b.uid 
 		    AND c.sbbook LIKE b.bcode
@@ -730,9 +761,9 @@
 	<!-- 저자료 지급 내역 ?? -->
 	<select id="selRoyalty" resultType="monthClosingVO">
 		SELECT a.sbinse, a.sbbook, a.sbname, a.sbuprc, a.sbhjgb,
-		    (SELECT SUM(s1qnty) FROM KS1${dbname}A WHERE s1gubn = 'C' AND s1book = a.sbbook) AS sum1,
-		    (SELECT SUM(s1qnty) FROM KS1${dbname}A WHERE s1gubn = 'D' AND s1book = a.sbbook) AS sum2
-		FROM KSCBOOK0 AS a
+		    (SELECT sum(s1qnty) FROM jejak.KS1${dbname}A WHERE s1gubn = 'C' AND s1book = a.sbbook) AS sum1,
+		    (SELECT sum(s1qnty) FROM jejak.KS1${dbname}A WHERE s1gubn = 'D' AND s1book = a.sbbook) AS sum2
+		FROM jejak.KSCBOOK0 AS a
 		WHERE a.sbbook LIKE '12521%'
 			OR a.sbbook LIKE '12522%'
 			OR (a.sbbook <![CDATA[ >= ]]> '125340' AND a.sbbook <![CDATA[ <= ]]> '125390')
@@ -743,14 +774,14 @@
 	
 	<!-- 구매단가입력 -->
 	<select id="selPurchasePrice1" resultType="monthClosingVO">
-		SELECT UID 
-		FROM HGJEON 
-		WHERE YMD LIKE #{bdate}
+		SELECT uid 
+		FROM jejak.HGJEON 
+		WHERE ymd LIKE #{bdate}
 	</select>
 	
 	<select id="selPurchasePrice2" resultType="monthClosingVO">
 		SELECT * 
-		FROM IBTABLE2 
+		FROM jejak.IBTABLE2 
 		WHERE idate 
 		LIKE #{bdate}
 		ORDER BY t1id ASC, idate ASC, uid2 ASC
@@ -758,264 +789,291 @@
 	
 	<select id="selPurchasePrice3" resultType="monthClosingVO">
 		SELECT * 
-		FROM IBTABLE 
-		WHERE uid=#{uid}
+		FROM jejak.IBTABLE 
+		WHERE uid = #{uid}
 	</select>
 	
 	<select id="selPurchasePrice4" resultType="monthClosingVO">
-		SELECT JEJOAMNT, SUM1 
-		FROM ${jejotbl} 
-		WHERE JEJONUM=#{juid} 
-		AND JABTAG=0
+		SELECT jejoamnt, sum1 
+		FROM jejak.${jejotbl} 
+		WHERE jejonum = #{juid} 
+			AND jabtag = 0
 	</select>
 	
 	<select id="selPurchasePrice5" resultType="monthClosingVO">
 		SELECT * 
-		FROM HGJEON 
-		WHERE JEUID=#{juid} 
-		AND YMD <![CDATA[ <= ]]> #{bdate}
+		FROM jejak.HGJEON 
+		WHERE jeuid = #{juid} 
+			AND ymd <![CDATA[ <= ]]> #{bdate}
 	</select>
 	
 	<select id="selPurchasePrice6" resultType="monthClosingVO">
 		SELECT * 
-		FROM HGJEON2 
-		WHERE PARUID=#{uid}
+		FROM jejak.GJEON2 
+		WHERE paruid = #{uid}
 	</select>
 	
 	<select id="selPurchasePrice7" resultType="monthClosingVO">
-		SELECT * FROM ${tblname} 
+		SELECT * 
+		FROM jejak.${tblname} 
 		WHERE S1BOOK 
 		LIKE #{bookcode} 
-		AND S1QNTY=#{inum}
-		AND S1ILJA LIKE #{idate} 
-		AND S1GUBN LIKE 'A'
+			AND s1qnty = #{inum}
+			AND s1ilja LIKE #{idate} 
+			AND s1gubn LIKE 'A'
 	</select>
 	
 	<select id="selPurchasePrice8" resultType="monthClosingVO">
-		SELECT MAX(SEQNO) 
-		FROM HGJEON 
-		WHERE YMD 
-		LIKE #{bdate} 
-		AND JEUID=#{juid}
+		SELECT max(seqno) 
+		FROM jejak.HGJEON 
+		WHERE ymd LIKE #{bdate} 
+			AND jeuid = #{juid}
 	</select>
 	
 	<select id="selPurchasePrice9" resultType="monthClosingVO">
-		SELECT S1BOOK, SUM(S1QNTY) as s1qnty, SUM(S1AMNT) as s1amnt
-		FROM ${dbname} 
-		WHERE S1GUBN 
-		LIKE 'A' 
-		GROUP BY S1BOOK 
-		ORDER BY S1BOOK ASC
+		SELECT s1book, sum(s1qnty) AS s1qnty, sum(s1amnt) AS s1amnt
+		FROM jejak.${dbname} 
+		WHERE s1gubn LIKE 'A' 
+		GROUP BY s1book 
+		ORDER BY s1book ASC
 	</select>
 	
 	<select id="selPurchasePrice10" resultType="monthClosingVO">
-		SELECT SUM(TBASR) AS ASR, SUM(TBBSR) AS BSR, SUM(TBCSR) AS CSR, SUM(TBDSR) AS DSR, SUM(TBESR) AS ESR, SUM(TBFSR) AS FSR 
-		FROM ${dbname} 
-		WHERE TBSBOOK 
+		SELECT sum(tbasr) AS asr, sum(tbbsr) AS bsr, sum(tbcsr) AS csr, sum(tbdsr) AS dsr, sum(tbesr) AS esr, sum(tbfsr) AS fsr 
+		FROM jejak.${dbname} 
+		WHERE tbsbook 
 		LIKE #{bookcode} 
-		AND TBMGUBN <![CDATA[<]]> #{tbmgubn}
+			AND tbmgubn <![CDATA[<]]> #{tbmgubn}
 	</select>
 	
 	<select id="selPurchasePrice11" resultType="monthClosingVO">
-		SELECT SUM(TBAKM) AS ASR, SUM(TBBKM) AS BSR, SUM(TBCKM) AS CSR, SUM(TBDKM) AS DSR, SUM(TBEKM) AS ESR, SUM(TBFKM) AS FSR 
-		FROM ${dbname} 
-		WHERE TBKBOOK 
-		LIKE #{bookcode} 
-		AND TBMGUBN <![CDATA[ < ]]> #{tbmgubn}
+		SELECT sum(tbakm) AS asr, sum(tbbkm) AS bsr, sum(tbckm) AS csr, sum(tbdkm) AS dsr, sum(tbekm) AS esr, sum(tbfkm) AS fsr 
+		FROM jejak.${dbname} 
+		WHERE tbkbook LIKE #{bookcode} 
+			AND tbmgubn <![CDATA[ < ]]> #{tbmgubn}
 	</select>
 	
 	<select id="selPurchasePrice12" resultType="monthClosingVO">
 		SELECT * 
-		FROM KSCIPDN0 
-		WHERE SGBOOK 
+		FROM jejak.KSCIPDN0 
+		WHERE sgbook 
 		LIKE #{bookcode} 
-		AND SGYYYY LIKE #{date1}
+			AND sgyyyy LIKE #{date1}
 	</select>
 	
 	<select id="selPurchasePrice13" resultType="monthClosingVO">
 		SELECT * 
-		FROM ${dbname}
-		WHERE (S1GUBN LIKE 'E' OR S1GUBN LIKE 'F')
+		FROM jejak.${dbname}
+		WHERE (s1gubn LIKE 'E' OR s1gubn LIKE 'F')
 	</select>
 	
 	<select id="selPurchasePrice14" resultType="monthClosingVO">
 		SELECT * 
-		FROM KSCIPDN0 
-		WHERE SGBOOK 
-		LIKE #{s1book} 
-		AND SGYYYY 
-		LIKE #{date1}
+		FROM jejak.KSCIPDN0 
+		WHERE sgbook LIKE #{s1book} 
+			AND sgyyyy LIKE #{date1}
 	</select>
 	
 	<insert id="inPurchasePrice1" parameterType="monthClosingVO">
-	INSERT INTO HGJEON (YMD, SEQNO, ACCTCODE, TYPE, DEBIT, CREDIT, DESCRIPT, INUM, IDANGA, JEUID, FCHK) VALUES 
-	(#{bdate}, #{seqno}, #{acctcode}, #{type}, #{debit}, #{credit}, #{descript}, #{inum}, #{idanga}, #{juid}, #{fchk})
+		INSERT INTO jejak.HGJEON (
+			ymd, seqno, acctcode, type, debit, credit, descript, inum, idanga, jeuid, fchk
+		) VALUES (
+			#{bdate}, #{seqno}, #{acctcode}, #{type}, #{debit}, #{credit}, #{descript}, #{inum}, #{idanga}, #{juid}, #{fchk}
+		)
 	</insert>
 	
 	<insert id="inPurchasePrice2" parameterType="monthClosingVO">
-	INSERT INTO KSCIPDN0 (SGBOOK, SGYYYY, #{dbname}) VALUES (#{bookcode}, #{date1}, #{new_danga})
+		INSERT INTO jejak.KSCIPDN0 (
+			sgbook, sgyyyy, #{dbname}
+		) VALUES (
+			#{bookcode}, #{date1}, #{new_danga}
+		)
 	</insert>
 	
 	<update id="upPurchasePrice1" parameterType="monthClosingVO">
-	UPDATE IBTABLE2 
-	SET idanga=#{new_danga} 
-	WHERE uid2=#{uid}
+		UPDATE jejak.IBTABLE2 SET 
+			idanga = #{new_danga} 
+		WHERE uid2 = #{uid}
 	</update>
 	
 	<update id="upPurchasePrice2" parameterType="monthClosingVO">
-	UPDATE KSCIPDN0 
-	SET #{dbname}=#{new_danga} 
-	WHERE SGBOOK 
-	LIKE #{bookcode} 
-	AND SGYYYY 
-	LIKE #{date1}
+		UPDATE jejak.KSCIPDN0 SET 
+			#{dbname} = #{new_danga} 
+		WHERE sgbook LIKE #{bookcode} 
+			AND sgyyyy LIKE #{date1}
 	</update>
 	
 	<update id="upPurchasePrice3" parameterType="monthClosingVO">
-	UPDATE ${dbname} 
-	SET S1DANG=#{s1dang}, S1AMNT=#{s1amnt} 
-	WHERE UID=#{uid}
+		UPDATE jejak.${dbname} SET 
+			s1dang = #{s1dang}, s1amnt = #{s1amnt} 
+		WHERE uid = #{uid}
 	</update>
 	
 	<delete id="delPurchasePrice1" parameterType="monthClosingVO">
-	DELETE
-	FROM HGJEON2 
-	WHERE PARUID=#{uid}
+		DELETE
+		FROM jejak.HGJEON2 
+		WHERE paruid = #{uid}
 	</delete>
 	
 	<delete id="delPurchasePrice2" parameterType="monthClosingVO">
-	DELETE 
-	FROM HGJEON 
-	WHERE YMD 
-	LIKE #{bdate}
+		DELETE 
+		FROM jejak.HGJEON 
+		WHERE ymd LIKE #{bdate}
 	</delete>
 	
 	<!-- 도서 수량/금액 집계 -->
 	<select id="selBookQuantityAmountTotal1" resultType="monthClosingVO">
-		select S1BOOK, sum(S1QNTY) as SUM1, sum(S1AMNT) as SUM2, S1GUBN 
-		from ${dbname} 
-		group by S1BOOK,S1GUBN 
-		order by S1BOOK ASC, S1GUBN ASC
+		SELECT s1book, sum(s1qnty) AS sum1, sum(s1amnt) AS sum2, s1gubn 
+		FROM jejak.${dbname} 
+		GROUP BY s1book,s1gubn 
+		ORDER BY s1book ASC, s1gubn ASC
 	</select>
 	
 	<select id="selBookQuantityAmountTotal2" resultType="monthClosingVO">
-		select * 
-		from ${dbname2} 
-		where TBSBOOK=#{s1book}
+		SELECT * 
+		FROM jejak.${dbname2} 
+		WHERE tbsbook = #{s1book}
 	</select>
 	
 	<select id="selBookQuantityAmountTotal3" resultType="monthClosingVO">
-		select * 
-		from ${dbname3} 
-		where TBKBOOK=#{s1book}
+		SELECT * 
+		FROM jejak.${dbname3} 
+		WHERE tbkbook = #{s1book}
 	</select>
 	
 	<select id="selBookQuantityAmountTotal4" resultType="monthClosingVO">
-		select * 
-		from ${dbname3} 
-		where TBKBOOK=#{s1book}
-		AND TBMGUBN=#{tm}
+		SELECT * 
+		FROM jejak.${dbname3} 
+		WHERE tbkbook = #{s1book}
+		AND tbmgubn = #{tm}
 	</select>
 	
 	<select id="selBookQuantityAmountTotal5" resultType="monthClosingVO">
-		select * 
-		from KSCIPDN0 
-		where SGBOOK=#{s1book} 
-		and SGYYYY=#{ty};
+		SELECT * 
+		FROM jejak.kscipdn0 
+		WHERE sgbook = #{s1book} 
+		AND sgyyyy = #{ty};
 	</select>
 	
 	<select id="selBookQuantityAmountTotal6" resultType="monthClosingVO">
-		select * 
-		from ${dbname2} 
-		where TBSBOOK=#{s1book} 
-		and TBMGUBN=#{tm}
+		SELECT * 
+		FROM jejak.${dbname2} 
+		WHERE tbsbook = #{s1book} 
+		AND tbmgubn = #{tm}
 	</select>
 	
 	<insert id="inBookQuantityAmountTotal1" parameterType="monthClosingVO">
-	insert into #{dbname2} (TBSBOOK, TBMGUBN) values (#{s1book}, #{tbmgubn})
+		INSERT INTO jejak.${dbname2} (
+			tbsbook, tbmgubn
+		) VALUES (
+			#{s1book}, #{tbmgubn}
+		)
 	</insert>
 	
 	<insert id="inBookQuantityAmountTotal2" parameterType="monthClosingVO">
-	insert into ${dbname2} (TBSBOOK,TBMGUBN,#{fieldname}) 
-	values (#{s1book}, #{tm}, #{sum1})
+		INSERT INTO jejak.${dbname2} (
+			tbsbook, tbmgubn, ${fieldname}
+		) VALUES (
+			#{s1book}, #{tm}, #{sum1}
+		)
 	</insert>
 	
 	<insert id="inBookQuantityAmountTotal3" parameterType="monthClosingVO">
-	insert into ${dbname3} (TBKBOOK, TBMGUBN) values (#{s1book}, #{tbmgubn})
+		INSERT INTO jejak.${dbname3} (
+			tbkbook, tbmgubn
+		) VALUES (
+			#{s1book}, #{tbmgubn}
+		)
 	</insert>
 	
 	<update id="upBookQuantityAmountTotal1" parameterType="monthClosingVO">
-	UPDATE ${dbname2} 
-	SET TBASR=0, TBBSR=0, TBCSR=0, TBDSR=0, TBESR=0, TBFSR=0
-	where TBMGUBN=#{tm}
+		UPDATE jejak.${dbname2} SET 
+			tbasr = 0, tbbsr = 0, tbcsr = 0, tbdsr = 0, tbesr = 0, tbfsr = 0
+		WHERE tbmgubn = #{tm}
 	</update>
 	
 	<update id="upBookQuantityAmountTotal2" parameterType="monthClosingVO">
-	UPDATE ${dbname3} SET TBAKM=0, TBBKM=0, TBCKM=0, TBDKM=0,TBEKM=0, TBFKM=0
-	where TBMGUBN=#{tm}
+		UPDATE jejak.${dbname3} SET 
+			tbakm = 0, tbbkm = 0, tbckm = 0, tbdkm = 0,tbekm = 0, tbfkm = 0
+		WHERE tbmgubn = #{tm}
 	</update>
 	
 	<update id="upBookQuantityAmountTotal3" parameterType="monthClosingVO">
-	update ${dbname2} set ${fieldname}=#{sum1} where UID=#{uid}
+		UPDATE jejak.${dbname2} SET 
+			${fieldname} = #{sum1} 
+		WHERE uid = #{uid}
 	</update>
 	
 	<update id="upBookQuantityAmountTotal4" parameterType="monthClosingVO">
-	update ${dbname3} set ${fieldname} = #{sum2}
-	where TBKBOOK=#{s1book} and TBMGUBN=#{tm}
+		UPDATE jejak.${dbname3} SET 
+			${fieldname} = #{sum2}
+		WHERE tbkbook = #{s1book} 
+			AND tbmgubn = #{tm}
 	</update>
 	
 	<update id="upBookQuantityAmountTotal5" parameterType="monthClosingVO">
-	update ${dbname3} set ${fieldname} = #{new_val}
-	where TBKBOOK=#{s1book} and TBMGUBN=#{tm}
+		UPDATE jejak.${dbname3} SET 
+			${fieldname} = #{new_val}
+		WHERE tbkbook = #{s1book} 
+			AND tbmgubn = #{tm}
 	</update>
 		
 	<!-- 도서금액집계 -->
 	<select id="selBookAmountTotal1" resultType="monthClosingVO">
-		select S1BOOK, sum(S1QNTY) as SUM1, sum(S1AMNT) as SUM2, S1GUBN 
-		from ${dbname} 
-		where S1GUBN <![CDATA[!=]]> 'A' 
-		group by S1BOOK,S1GUBN 
-		order by S1BOOK ASC, S1GUBN ASC
+		SELECT s1book, sum(s1qnty) AS sum1, sum(s1amnt) AS sum2, s1gubn 
+		FROM jejak.${dbname} 
+		WHERE s1gubn <![CDATA[!=]]> 'A' 
+		GROUP BY s1book,s1gubn 
+		ORDER BY s1book ASC, s1gubn ASC
 	</select>
 	
 	<select id="selBookAmountTotal2" resultType="monthClosingVO">
-		select * 
-		from KSCIPDN0 
-		where SGBOOK=#{s1book} and SGYYYY=#{ty}
+		SELECT * 
+		FROM jejak.KSCIPDN0 
+		WHERE sgbook = #{s1book}
+			AND sgyyyy = #{ty}
 	</select>
 	
 	<select id="selBookAmountTotal3" resultType="monthClosingVO">
-		select * 
-		from KSCIPDN0 
-		where SGBOOK=#{s1book} and SGYYYY=#{tm}
+		SELECT * 
+		FROM jejak.KSCIPDN0 
+		WHERE sgbook = #{s1book} 
+			AND SGYYYY = #{tm}
 	</select>
 	
 	<update id="upBookAmountTotal1" parameterType="monthClosingVO">
-	update #{dbname2} set TBAKM=#{sum2}
-	where TBKBOOK=#{s1book} and TBMGUBN=#{tm}
+		UPDATE jejak.${dbname2} SET 
+			TBAKM = #{sum2}
+		WHERE tbkbook = #{s1book} 
+			AND tbmgubn = #{tm}
 	</update>
 	
 	<update id="upBookAmountTotal2" parameterType="monthClosingVO">
-	update #{dbname2} set #{fieldname}=#{new_val}
-	where TBKBOOK=#{s1book} and TBMGUBN=#{tm}
+		UPDATE jejak.${dbname2} SET 
+			${fieldname} = #{new_val}
+		WHERE tbkbook = #{s1book} 
+			AND tbmgubn = #{tm}
 	</update>
 	 
 	<insert id="inBookAmountTotal1" parameterType="monthClosingVO">
-	insert into #{dbname2} (TBKBOOK, TBMGUBN) values (#{s1book}, #{tm})
+		INSERT INTO jejak.${dbname2} (
+			TBKBOOK, TBMGUBN
+		) VALUES (
+			#{s1book}, #{tm}
+		)
 	</insert>
 	
 	<!-- 주은교육 제작현황 -->
 	<select id="selJueun" resultType="monthClosingVO">
 		SELECT a.uid, a.bdate, a.crnum, a.bucode, b.bname, b.bcode, b.bnum , c.sbuprc, c.sbinse
-		FROM TMPLIST2 AS a, TMPLIST AS b , KSCBOOK0 AS c
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b , jejak.KSCBOOK0 AS c
 		WHERE a.bdate <![CDATA[ >= ]]> #{date1}
 			AND a.bdate <![CDATA[ < ]]> #{date2}
-			AND a.bucode=0 
+			AND a.bucode = 0 
 			AND a.listid=b.uid 
 			AND b.bcode  <![CDATA[ >= ]]>  "125210"
 			AND b.bcode  <![CDATA[ <= ]]>  "125391"
 		    AND c.sbbook LIKE b.bcode
 		ORDER BY a.crnum DESC
 	</select>
-	
 </mapper>
