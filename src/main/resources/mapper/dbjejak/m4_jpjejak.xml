@@ -244,6 +244,24 @@
 			AND a.bcode = b.sbbook LIMIT 1
 	</select>
 	
+	<select id="selJpBalListid" resultType="Integer">
+		SELECT listid
+		FROM jejak.TMPLIST2
+		WHERE uid = #{uid} 
+	</select>
+	
+	<update id="upJpBalPwan" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST2 SET
+			pwan = #{pwan}
+		WHERE listid = #{listid}
+	</update>
+	
+	<update id="upJpBalIwan" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST2 SET
+			iwan = #{iwan}
+		WHERE listid = #{listid}
+	</update>
+	
 	<!-- 표지작업지시서 -->
 	<select id="selJpPyo" resultType="jpJejakVO">
 		SELECT a.bdate, a.m2, a.m3, a.m12, a.m13, a.m5, b.*, c.bname, c.btype, c.bcode, c.bnum, d.sbjlsu, d.sbuprc 
@@ -262,6 +280,31 @@
 		FROM jejak.KSWCUST0 
 		WHERE wccode = #{wccode}
 	</select>
+	
+	<select id="selJpPyoColo1" resultType="jpJejakVO">
+		SELECT *
+		FROM jejak.TMPLIST3
+		WHERE uid = #{uid}
+	</select>
+	
+	<update id="upJpPyoColo2" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST3 SET
+			colo = #{colo}, pcost = #{pcost}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selJpPyoColo3" resultType="jpJejakVO">
+		SELECT *
+		FROM jejak.TMPLIST5
+		WHERE gubn5 LIKE '표지'
+			AND listid5 = #{listid}
+	</select>
+	
+	<update id="upJpPyoColo4" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST5 SET
+			pannum5 = #{pannum5}, sobu5 = #{sobu5}, sum5 = #{sum5}
+		WHERE uid = #{uid}
+	</update>
 	
 	<!-- 본문작업지시서 -->
 	<select id="selJpBon0" resultType="jpJejakVO">
@@ -317,6 +360,68 @@
 			AND gubn LIKE '%본문%'
 	  </select>
     
+    <!-- 본문작업지시서-수정 -->
+    <select id="selJpBonDetail1" resultType="jpJejakVO">
+		SELECT *
+		FROM jejak.TMPLIST3
+		WHERE listid= #{uid}
+			AND gubn LIKE '%본문1%'
+		ORDER BY jm DESC, uid ASC
+	</select>
+	
+	<update id="upJpBonDetail2" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST4 SET
+			jm=#{jm}, yb=#{yb}, colo=#{colo}, t4bigo=#{t4bigo}
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upJpBonDetail3" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST3 SET
+			jm=#{jm}, yb=#{yb}, rnum=#{rnum}, t3bigo=#{t3bigo}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selJpBonDetail4" resultType="jpJejakVO">
+		SELECT crnum
+		FROM jejak.TMPLIST2
+		WHERE uid= #{uid}
+	</select>
+	
+	<select id="selJpBonDetail5" resultType="jpJejakVO">
+		SELECT *
+		FROM jejak.JIINOUT
+		WHERE jicode LIKE #{jicode}
+			AND jeuid= #{jeuid}
+			AND num= #{num}
+		ORDER BY uid ASC
+	</select>
+	
+	<update id="upJpBonDetail6" parameterType="jpJejakVO">
+		UPDATE jejak.JIINOUT SET
+			num=#{num}, curno=#{curno}
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upJpBonDetail7" parameterType="jpJejakVO">
+		UPDATE jejak.JEONPYO${value} SET
+			jnum1=#{jnum1}, jnum2=#{jnum2}, jsum=#{jsum}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selJpBonDetail8" resultType="jpJejakVO">
+		SELECT *
+		FROM jejak.JIINOUT
+		WHERE jicode LIKE #{jicode}
+			AND uid <![CDATA[ > ]]> #{uid}
+		ORDER BY uid ASC
+	</select>
+	
+	<update id="upJpBonDetail9" parameterType="jpJejakVO">
+		UPDATE jejak.JIINOUT SET
+			curno=#{curno}
+		WHERE uid = #{uid}
+	</update>
+	
 	<!-- 입고대장 여기 고쳐야댕 따로 공통으로 빼야해 -->
 	<select id="selWarehousing" resultType="jpJejakVO">
 		SELECT a.*, b.bname, b.bnum, b.btype, c.wcname
@@ -336,12 +441,20 @@
 		ORDER BY signdate DESC LIMIT 1
 	</select>
 	
+	<select id="selYejung2Count" resultType="int">
+		SELECT COUNT(*)
+		FROM jejak.YEJUNG 
+		WHERE signdate = #{signdate} 
+		AND bname NOT LIKE '' 
+	</select>
+	
 	<select id="selYejung2" resultType="jpJejakVO">
 		SELECT *
 		FROM jejak.YEJUNG 
 		WHERE signdate = #{signdate} 
 		AND bname NOT LIKE '' 
 		ORDER BY bcode ASC
+		LIMIT #{lm_s}, #{lm_t}
 	</select>
 	
 	<delete id="delYejung" parameterType="jpJejakVO">

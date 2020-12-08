@@ -47,9 +47,18 @@ public interface JpJejakService {
 	List<JpJejakVO> selJpBal4(JpJejakVO params) throws Exception;
 	List<JpJejakVO> selJpBal5(JpJejakVO params) throws Exception;
 	
+	long selJpBalListid(JpJejakVO params) throws Exception;
+	boolean upJpBalPwan(JpJejakVO params) throws Exception;
+	boolean upJpBalIwan(JpJejakVO params) throws Exception;
+	
 	//TODO 표지작업지시서
 	List<JpJejakVO> selJpPyo(JpJejakVO params) throws Exception;
 	JpJejakVO selYakc(JpJejakVO params) throws Exception;
+	
+	JpJejakVO selJpPyoColo1(JpJejakVO params) throws Exception;
+	boolean upJpPyoColo2(JpJejakVO params) throws Exception;
+	JpJejakVO selJpPyoColo3(JpJejakVO params) throws Exception;
+	boolean upJpPyoColo4(JpJejakVO params) throws Exception;
 	
 	//TODO 본문작업지시서
 	List<JpJejakVO> selJpBon0(JpJejakVO params) throws Exception;
@@ -58,11 +67,22 @@ public interface JpJejakService {
 	List<JpJejakVO> selJpBon3(JpJejakVO params) throws Exception;
 	List<JpJejakVO> selJpBon4(JpJejakVO params) throws Exception;
 	
+	JpJejakVO selJpBonDetail1(JpJejakVO params) throws Exception;
+	boolean upJpBonDetail2(JpJejakVO params) throws Exception;
+	boolean upJpBonDetail3(JpJejakVO params) throws Exception;
+	JpJejakVO selJpBonDetail4(JpJejakVO params) throws Exception;
+	JpJejakVO selJpBonDetail5(JpJejakVO params) throws Exception;
+	boolean upJpBonDetail6(JpJejakVO params) throws Exception;
+	boolean upJpBonDetail7(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJpBonDetail8(JpJejakVO params) throws Exception;
+	boolean upJpBonDetail9(JpJejakVO params) throws Exception;
+	
 	//TODO 입고대장
 	List<JpJejakVO> selWarehousing(JpJejakVO params) throws Exception;
 	
 	//TODO 제작예정리스트 열람
 	String selYejung1() throws Exception;
+	int selYejung2Count(JpJejakVO params) throws Exception;
 	List<JpJejakVO> selYejung2(JpJejakVO params) throws Exception;
 	boolean delYejung(JpJejakVO params) throws Exception;
 	

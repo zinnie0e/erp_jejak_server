@@ -296,4 +296,75 @@ public class JpJejakVO {
 	private long yjdate;
 	private long yjqnty;
 	
+	//TODO JEONPYO(용지전표)
+//	private long uid;
+//	private long bdate;
+	private long jejanum;
+	private String spcom;
+	private String buycom;
+//	private String bname;
+//	private String bcode;
+	private long busu;
+	private String panh;
+	private long myun;
+	private String jiname;
+	private String jicode;
+	private long jnum1;
+	private long jnum2;
+	private long jsum;
+	private String comment;
+	private long pcheck;
+	
+	//TODO JIINOUT(용지입출고)
+//	private long uid;
+	private long juid;
+	private String wjcode;
+//	private String jicode;
+	private long date;
+	private long cdate;
+	private long num;
+	private long comid;
+//	private String comment;
+	private long curno;
+	private long jeon;
+	private long jeuid;
+	private double danga;
+	private long tprice;
+	private String bigo;
+	private double halin;
+	private double n_halin;
+	private long n_fac;
+	
+	//TODO TMPLIST3(용지,인쇄비)
+//	private long uid;
+//	private long listid;
+//	private String jcode;
+//	private String jname;
+//	private long jm;
+//	private long yb;
+//	private String gubn;
+//	private long colo;
+//	private long bucode;
+	private double rnum;
+	private long ycost;
+	private long pcost;
+	private long pdanga;
+	private long jutag;
+//	private String t3bigo;
+	
+	//TODO TMPLIST5(필름,소부비)
+//	private long uid;
+	private long listid5;
+	private String gubn5;
+	private String panst5;
+//	private int pannum5;
+	private int filmnum5;
+	private int filmdan5;
+	private int filmcost5;
+	private int daeji5;
+	private int sobudan5;
+	private long sobu5;
+	private long sum5;
+	private int op51;
+	private int op52;
 }

@@ -1,5 +1,6 @@
 package com.guru.erpserver.web.dbjejak;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -194,7 +195,20 @@ public class JpJejakController {
 	public List<JpJejakVO> selJpBal5(@RequestBody JpJejakVO params) throws Exception {
 		return jpJejakSVC.selJpBal5(params);
 	}
-	
+	//입력 : uid, pwan, iwan
+	@RequestMapping(value="/jpjejak/update_bal_pwan", method=RequestMethod.POST)
+	public boolean upJpBalPwan(@RequestBody JpJejakVO params) throws Exception {
+		long get_listid = jpJejakSVC.selJpBalListid(params);
+		params.setListid(get_listid);
+		return jpJejakSVC.upJpBalPwan(params);
+	}
+	//입력 : uid, pwan, iwan
+	@RequestMapping(value="/jpjejak/update_bal_iwan", method=RequestMethod.POST)
+	public boolean upJpBalIwan(@RequestBody JpJejakVO params) throws Exception {
+		long get_listid = jpJejakSVC.selJpBalListid(params);
+		params.setListid(get_listid);
+		return jpJejakSVC.upJpBalIwan(params);
+	}
 	
 	//TODO 표지작업지시서
 	//입력 : bdate1, bdate2
@@ -206,6 +220,43 @@ public class JpJejakController {
 	@RequestMapping(value="/jpjejak/select_selYakc", method=RequestMethod.POST)
 	public JpJejakVO selYakc(@RequestBody JpJejakVO params) throws Exception {
 		return jpJejakSVC.selYakc(params);
+	}
+	//입력 : uid, colo
+	@RequestMapping(value="/jpjejak/update_jppyo_colo", method=RequestMethod.POST)
+	public boolean upJpPyoColo(@RequestBody JpJejakVO params) throws Exception {
+		boolean result_up1 = false;
+		boolean result_up2 = false;
+		JpJejakVO get_param = jpJejakSVC.selJpPyoColo1(params);
+		if(get_param == null) return false;
+		
+		long new_cost = get_param.getPcost() * (params.getColo()+1) / (get_param.getColo()+1);
+		
+		JpJejakVO set_param = new JpJejakVO();
+		set_param.setUid(params.getUid());
+		set_param.setColo(params.getColo());
+		set_param.setPcost(new_cost);
+		
+		result_up1 = jpJejakSVC.upJpPyoColo2(set_param);
+		
+		JpJejakVO get_param2 = jpJejakSVC.selJpPyoColo3(get_param);
+		if(get_param2 == null) return false;
+		
+		long new_sobu = params.getColo() * get_param2.getSobudan5();
+		
+		BigDecimal decimal1 = BigDecimal.valueOf((new_sobu + (get_param2.getFilmnum5() * get_param2.getFilmdan5()) + get_param2.getDaeji5()));
+		BigDecimal decimal2 = BigDecimal.valueOf(1.1);
+		
+		long new_sum = decimal1.multiply(decimal2).longValue();
+		
+		JpJejakVO set_param2 = new JpJejakVO();
+		set_param2.setUid(get_param2.getUid());
+		set_param2.setPannum5(params.getColo());
+		set_param2.setSobu5(new_sobu);
+		set_param2.setSum5(new_sum);
+		
+		result_up2 = jpJejakSVC.upJpPyoColo4(set_param);
+		
+		return result_up1 && result_up2;
 	}
 	
 	// TODO 본문작업지시서
@@ -234,6 +285,47 @@ public class JpJejakController {
 	public List<JpJejakVO> selJpBon4(@RequestBody JpJejakVO params) throws Exception {
 		return jpJejakSVC.selJpBon4(params);
 	}
+	@RequestMapping(value = "/jpjejak/select_jpbon_detail1", method = RequestMethod.POST)
+	public JpJejakVO selJpBonDetail1(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJpBonDetail1(params);
+	}
+	//입력 : yjqnty, uid
+	@RequestMapping(value="/jpjejak/update_jpbon_detail2", method=RequestMethod.POST)
+	public boolean upJpBonDetail2(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.upJpBonDetail2(params);
+	}
+	//입력 : yjqnty, uid
+	@RequestMapping(value="/jpjejak/update_jpbon_detail3", method=RequestMethod.POST)
+	public boolean upJpBonDetail3(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.upJpBonDetail3(params);
+	}
+	@RequestMapping(value = "/jpjejak/select_jpbon_detail4", method = RequestMethod.POST)
+	public JpJejakVO selJpBonDetail4(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJpBonDetail4(params);
+	}
+	@RequestMapping(value = "/jpjejak/select_jpbon_detail5", method = RequestMethod.POST)
+	public JpJejakVO selJpBonDetail5(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJpBonDetail5(params);
+	}
+	//입력 : yjqnty, uid
+	@RequestMapping(value="/jpjejak/update_jpbon_detail6", method=RequestMethod.POST)
+	public boolean upJpBonDetail6(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.upJpBonDetail6(params);
+	}
+	//입력 : yjqnty, uid
+	@RequestMapping(value="/jpjejak/update_jpbon_detail7", method=RequestMethod.POST)
+	public boolean upJpBonDetail7(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.upJpBonDetail7(params);
+	}
+	@RequestMapping(value = "/jpjejak/select_jpbon_detail8", method = RequestMethod.POST)
+	public List<JpJejakVO> selJpBonDetail8(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJpBonDetail8(params);
+	}
+	//입력 : yjqnty, uid
+	@RequestMapping(value="/jpjejak/update_jpbon_detail9", method=RequestMethod.POST)
+	public boolean upJpBonDetail9(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.upJpBonDetail9(params);
+	}
 	
 	//TODO 입고대장
 	//입력 : bdate1, bdate2
@@ -248,6 +340,11 @@ public class JpJejakController {
 		return jpJejakSVC.selYejung1();
 	}
 	//입력 : signdate
+	@RequestMapping(value="/jpjejak/select_yejung2_count", method=RequestMethod.POST)
+	public int selYejung2Count(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selYejung2Count(params);
+	}
+	//입력 : signdate, lm_s, lm_t
 	@RequestMapping(value="/jpjejak/select_yejung2", method=RequestMethod.POST)
 	public List<JpJejakVO> selYejung2(@RequestBody JpJejakVO params) throws Exception {
 		return jpJejakSVC.selYejung2(params);

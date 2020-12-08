@@ -170,6 +170,23 @@ public class JpJejakServiceImpl implements JpJejakService{
 	public List<JpJejakVO> selJpBal5(JpJejakVO params) throws Exception {
 		return jpJejakDAO.selJpBal5(params);
 	}
+	@Override
+	public long selJpBalListid(JpJejakVO params) throws Exception {	
+		Integer get_param = jpJejakDAO.selJpBalListid(params);
+		long listid = 0;
+		if(get_param != null) {
+			listid = get_param;
+		}
+		return listid;
+	}
+	@Override
+	public boolean upJpBalPwan(JpJejakVO params) throws Exception {
+		return jpJejakDAO.upJpBalPwan(params) == 1 ? true : false;
+	}
+	@Override
+	public boolean upJpBalIwan(JpJejakVO params) throws Exception {
+		return jpJejakDAO.upJpBalIwan(params) == 1 ? true : false;
+	}
 	
 	//TODO 표지작업지시서
 	@Override
@@ -179,6 +196,22 @@ public class JpJejakServiceImpl implements JpJejakService{
 	@Override
 	public JpJejakVO selYakc(JpJejakVO params) throws Exception {		
 		return jpJejakDAO.selYakc(params);
+	}
+	@Override
+	public JpJejakVO selJpPyoColo1(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJpPyoColo1(params);
+	}
+	@Override
+	public boolean upJpPyoColo2(JpJejakVO params) throws Exception {
+		return jpJejakDAO.upJpPyoColo2(params) == 1 ? true : false;
+	}
+	@Override
+	public JpJejakVO selJpPyoColo3(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJpPyoColo3(params);
+	}
+	@Override
+	public boolean upJpPyoColo4(JpJejakVO params) throws Exception {
+		return jpJejakDAO.upJpPyoColo4(params) == 1 ? true : false;
 	}
 	
 	//TODO 본문작업지시서
@@ -203,6 +236,48 @@ public class JpJejakServiceImpl implements JpJejakService{
 		return jpJejakDAO.selJpBon4(params);
 	}
 	
+	@Override
+	public JpJejakVO selJpBonDetail1(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJpBonDetail1(params);
+	}
+	@Override
+	public boolean upJpBonDetail2(JpJejakVO params) throws Exception {
+		int result = jpJejakDAO.upJpBonDetail2(params);
+		return (result == 1) ? true : false;
+	}
+	@Override
+	public boolean upJpBonDetail3(JpJejakVO params) throws Exception {
+		int result = jpJejakDAO.upJpBonDetail3(params);
+		return (result == 1) ? true : false;
+	}
+	@Override
+	public JpJejakVO selJpBonDetail4(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJpBonDetail4(params);
+	}
+	@Override
+	public JpJejakVO selJpBonDetail5(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJpBonDetail5(params);
+	}
+	@Override
+	public boolean upJpBonDetail6(JpJejakVO params) throws Exception {
+		int result = jpJejakDAO.upJpBonDetail6(params);
+		return (result == 1) ? true : false;
+	}
+	@Override
+	public boolean upJpBonDetail7(JpJejakVO params) throws Exception {
+		int result = jpJejakDAO.upJpBonDetail7(params);
+		return (result == 1) ? true : false;
+	}
+	@Override
+	public List<JpJejakVO> selJpBonDetail8(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJpBonDetail8(params);
+	}
+	@Override
+	public boolean upJpBonDetail9(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.upJpBonDetail9(params);
+		return (quert_result == 1) ? true : false;
+	}
+	
 	//TODO 입고대장
 	@Override
 	public List<JpJejakVO> selWarehousing(JpJejakVO params) throws Exception {
@@ -213,6 +288,11 @@ public class JpJejakServiceImpl implements JpJejakService{
 	@Override
 	public String selYejung1() throws Exception {	
 		return jpJejakDAO.selYejung1().getSigndate();
+	}
+	@Override
+	public int selYejung2Count(JpJejakVO params) throws Exception {
+		System.out.println("!--" + jpJejakDAO.selYejung2Count(params));
+		return jpJejakDAO.selYejung2Count(params);
 	}
 	@Override
 	public List<JpJejakVO> selYejung2(JpJejakVO params) throws Exception {

@@ -48,10 +48,19 @@ public interface JpJejakMapper {
 	public List<JpJejakVO> selJpBal4(JpJejakVO params);
 	public List<JpJejakVO> selJpBal5(JpJejakVO params);
 	
+	public Integer selJpBalListid(JpJejakVO params);
+	public int upJpBalPwan(JpJejakVO params);
+	public int upJpBalIwan(JpJejakVO params);
+	
 	//TODO 표지작업지시서
 	public List<JpJejakVO> selJpPyo(JpJejakVO params);
 	public JpJejakVO selYakc(JpJejakVO params);
 
+	public JpJejakVO selJpPyoColo1(JpJejakVO params);
+	public int upJpPyoColo2(JpJejakVO params);
+	public JpJejakVO selJpPyoColo3(JpJejakVO params);
+	public int upJpPyoColo4(JpJejakVO params);
+	
 	//TODO 본문작업지시서
 	public List<JpJejakVO> selJpBon0(JpJejakVO params);
 	public List<JpJejakVO> selJpBon(JpJejakVO params);
@@ -59,11 +68,22 @@ public interface JpJejakMapper {
 	public List<JpJejakVO> selJpBon3(JpJejakVO params);
 	public List<JpJejakVO> selJpBon4(JpJejakVO params);
 	
+	public JpJejakVO selJpBonDetail1(JpJejakVO params);
+	public int upJpBonDetail2(JpJejakVO params);
+	public int upJpBonDetail3(JpJejakVO params);
+	public JpJejakVO selJpBonDetail4(JpJejakVO params);
+	public JpJejakVO selJpBonDetail5(JpJejakVO params);
+	public int upJpBonDetail6(JpJejakVO params);
+	public int upJpBonDetail7(JpJejakVO params);
+	public List<JpJejakVO> selJpBonDetail8(JpJejakVO params);
+	public int upJpBonDetail9(JpJejakVO params);
+	
 	//TODO 입고대장
 	public List<JpJejakVO> selWarehousing(JpJejakVO params);
 	
 	//TODO 제작예정리스트 열람
 	public JpJejakVO selYejung1();
+	public int selYejung2Count(JpJejakVO params);
 	public List<JpJejakVO> selYejung2(JpJejakVO params);
 	public int delYejung(JpJejakVO params);
 	
