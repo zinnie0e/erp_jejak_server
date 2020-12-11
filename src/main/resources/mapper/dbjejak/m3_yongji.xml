@@ -130,12 +130,36 @@
 	<select id="selYjOrderFacdanga" resultType="yongjiVO">
 		SELECT facdanga
 		FROM jejak.KSWJIJL0
-		WHERE wjcode = #{jcode]
+		WHERE wjcode = #{wjcode]
 	</select>
 	
 	<update id="upYjOrderJiinout" parameterType="yongjiVO">
 		UPDATE jejak.JIINOUT SET
 			tprice=#{tprice}, halin=#{halin}, cdate=#{cdate}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjBuyHalin1" resultType="yongjiVO">
+		SELECT *
+		FROM jejak.KSWJIJL0
+		WHERE wjcode = #{wjcode]
+	</select>
+	
+	<update id="upYjBuyHalin2" parameterType="yongjiVO">
+		UPDATE jejak.KSWJIJL0 SET
+			halin=#{halin}
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selYjBuyHalin3" resultType="yongjiVO">
+		SELECT *
+		FROM jejak.JIINOUT
+		WHERE uid LIKE #{uid]
+	</select>
+	
+	<update id="upYjBuyHalin4" parameterType="yongjiVO">
+		UPDATE jejak.JIINOUT SET
+			tprice=#{tprice}, n_halin=#{n_halin}, n_fac=#{n_fac}
 		WHERE uid = #{uid}
 	</update>
 	

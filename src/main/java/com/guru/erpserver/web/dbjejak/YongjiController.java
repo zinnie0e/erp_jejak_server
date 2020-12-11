@@ -228,7 +228,7 @@ public class YongjiController {
 		return result;
 	}
 	
-	//입력 : date1, date2, comid
+	//입력 : date1, date2
 	@RequestMapping(value="/yongji/select_order_list", method=RequestMethod.POST)
 	public List<YongjiVO> selYjOrderList(@RequestBody YongjiVO params) throws Exception {
 		List<YongjiVO> result_params = new ArrayList<YongjiVO>();
@@ -246,7 +246,7 @@ public class YongjiController {
 		return result_params;
 	}
 	
-	//입력 : date1, date2, comid
+	//입력 : date1, date2
 	@RequestMapping(value="/yongji/select_order_list_input", method=RequestMethod.POST)
 	public List<YongjiVO> selYjOrderListInput(@RequestBody YongjiVO params) throws Exception {
 		List<YongjiVO> result_params = new ArrayList<YongjiVO>();
@@ -264,28 +264,57 @@ public class YongjiController {
 		return result_params;
 	}
 	
-	//입력 : list형식 uid, jcode, tprice, num
+	//입력 : uid, wjcode, tprice, num
 	@RequestMapping(value="/yongji/up_order_input", method=RequestMethod.POST)
-	public long upYjOrderInput(@RequestBody List<YongjiVO> params) throws Exception {
-		long result = 0;
+	public boolean upYjOrderInput(@RequestBody YongjiVO params) throws Exception {
+		long get_facdanga = yongjiSVC.selYjOrderFacdanga(params);
 		
-		for(YongjiVO get_param : params) {
-			long get_facdanga = yongjiSVC.selYjOrderFacdanga(get_param);
+		double set_halin = 0d;
+		if(get_facdanga > 0) {
+			long temp_halin = Math.round(get_facdanga * 1.1 * params.getNum() / 500);
+			set_halin = (1 - (Math.round((params.getTprice() / temp_halin)*100)/100)) * 100;
+		}
+		params.setTprice(params.getTprice());
+		params.setHalin(set_halin);
+		params.setCdate((long)(System.currentTimeMillis() / 1000));
+		
+		return yongjiSVC.upYjOrderJiinout(params);
+	}
+	
+	//입력 : uid, wjcode, halin
+	@RequestMapping(value="/yongji/up_buy_halin", method=RequestMethod.POST)
+	public boolean upYjBuyHalin(@RequestBody YongjiVO params) throws Exception {
+		YongjiVO get_param = yongjiSVC.selYjBuyHalin1(params);
+		boolean up1 = false;
+		boolean up2 = false;
+		if(get_param != null) {
+			long fac = get_param.getFacdanga();
+			double danga = Math.round(fac * (100 - params.getHalin()) / 100);
 			
-			double set_halin = 0d;
-			if(get_facdanga > 0) {
-				long temp_halin = Math.round(get_facdanga * 1.1 * get_param.getNum() / 500);
-				set_halin = (1 - (Math.round((get_param.getTprice() / temp_halin)*100)/100)) * 100;
-			}
-			get_param.setTprice(get_param.getTprice());
-			get_param.setHalin(set_halin);
-			get_param.setCdate((long)(System.currentTimeMillis() / 1000));
+			YongjiVO set_param = new YongjiVO();
+			set_param.setHalin(params.getHalin());
+			set_param.setUid(get_param.getUid());
 			
-			if(yongjiSVC.upYjOrderJiinout(get_param)) {
-				result++;
+			up1 = yongjiSVC.upYjBuyHalin2(set_param);
+			
+			YongjiVO get_param2 = yongjiSVC.selYjBuyHalin3(params);
+			
+			if(get_param2 != null) {
+				long cost1 = Math.round(danga * get_param2.getNum() / 500);
+				long tax1 = Math.round(cost1 * 0.1);
+				long sum = cost1 + tax1;
+				
+				YongjiVO set_param2 = new YongjiVO();
+				set_param2.setTprice(sum);
+				set_param2.setN_halin(params.getHalin());
+				set_param2.setN_fac(fac);
+				set_param2.setUid(params.getUid());
+				
+				up2 = yongjiSVC.upYjBuyHalin4(set_param2);
 			}
 		}
-		return result;
+		
+		return up1 && up2;
 	}
 	
 	//입력 : uid

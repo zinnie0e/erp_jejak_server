@@ -35,6 +35,11 @@ public interface YongjiMapper {
 	public YongjiVO selYjOrderFacdanga(YongjiVO params);
 	public int upYjOrderJiinout(YongjiVO params);
 	
+	public YongjiVO selYjBuyHalin1(YongjiVO params);
+	public int upYjBuyHalin2(YongjiVO params);
+	public YongjiVO selYjBuyHalin3(YongjiVO params);
+	public int upYjBuyHalin4(YongjiVO params);
+	
 	public YongjiVO selYjOrderDetailDate(YongjiVO params);
 	public int upYjOrderDetailDate1(YongjiVO params);
 	public YongjiVO selYjOrderDetailDate2(YongjiVO params);

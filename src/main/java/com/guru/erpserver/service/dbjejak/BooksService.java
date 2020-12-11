@@ -20,21 +20,21 @@ public interface BooksService {
 	List<BooksVO> selBooksListNameCheck1(BooksVO params) throws Exception;
 	List<BooksVO> selBooksListNameCheck2(BooksVO params) throws Exception;
 	
-	List<BooksVO> selBooksDetail(BooksVO params) throws Exception;
+	BooksVO selBooksDetail(BooksVO params) throws Exception;
 	
 	List<BooksVO> selBooksDaesu1(BooksVO params) throws Exception;
 	List<BooksVO> selBooksDaesu2(BooksVO params) throws Exception;
 	
-	boolean delBooksDaesu(BooksVO params) throws Exception;
-	long selBooksKswdesu0MaxUid() throws Exception;
-	boolean inBooksDaesu(BooksVO params) throws Exception;
+	boolean delDaesu1(BooksVO params) throws Exception;
+	long selDaesu2() throws Exception;
+	boolean inDaesu3(BooksVO params) throws Exception;
 	
 	List<BooksVO> selBooksYong1(BooksVO params) throws Exception;
 	List<BooksVO> selBooksYong2(BooksVO params) throws Exception;
 	List<BooksVO> selBooksYong3() throws Exception;
 	
-	boolean delBooksYongji(BooksVO params) throws Exception;
-	boolean inBooksYongji(BooksVO params) throws Exception;
+	boolean delYongji1(BooksVO params) throws Exception;
+	boolean inYongji2(BooksVO params) throws Exception;
 	
 	String selBooksMaxSbbook(BooksVO params) throws Exception;
 	
@@ -42,9 +42,20 @@ public interface BooksService {
 	List<BooksVO> selBooksSoldOut2(BooksVO params) throws Exception;
 	List<BooksVO> selBooksSoldOut3(BooksVO params) throws Exception;
 	
-	boolean inBooks(BooksVO params) throws Exception;
+	boolean inBook(BooksVO params) throws Exception;
+	boolean upBook(BooksVO params) throws Exception;
+	boolean delBook(BooksVO params) throws Exception;
 	
-	boolean upBooks(BooksVO params) throws Exception;
+	boolean inBookInsang1(BooksVO params) throws Exception;
+	long selBookInsang2() throws Exception;
+	boolean upBookInsang3(BooksVO params) throws Exception;
+	boolean inBookInsang4(BooksVO params) throws Exception;
 	
-	boolean delBooks(BooksVO params) throws Exception;
+	BooksVO selBookTempSbbook1(BooksVO params) throws Exception;
+	boolean upBookTempSbbook2(BooksVO params) throws Exception;
+	boolean upBookTempSbbook3(BooksVO params) throws Exception;
+	boolean upBookTempSbbook4(BooksVO params) throws Exception;
+	boolean upBookTempSbbook5(BooksVO params) throws Exception;
+	boolean upBookTempSbbook6(BooksVO params) throws Exception;
+	boolean upBookTempSbbook7(BooksVO params) throws Exception;
 }

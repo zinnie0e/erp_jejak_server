@@ -20,21 +20,21 @@ public interface BooksMapper {
 	public List<BooksVO> selBooksListNameCheck1(BooksVO params);
 	public List<BooksVO> selBooksListNameCheck2(BooksVO params);
 	
-	public List<BooksVO> selBooksDetail(BooksVO params);
+	public BooksVO selBooksDetail(BooksVO params);
 
 	public List<BooksVO> selBooksDaesu1(BooksVO params);
 	public List<BooksVO> selBooksDaesu2(BooksVO params);
 	
-	public Integer delBooksDaesu(BooksVO params);
-	public Integer selBooksKswdesu0MaxUid();
-	public Integer inBooksDaesu(BooksVO params);
+	public int delDaesu1(BooksVO params);
+	public Integer selDaesu2();
+	public int inDaesu3(BooksVO params);
 	
 	public List<BooksVO> selBooksYong1(BooksVO params);
 	public List<BooksVO> selBooksYong2(BooksVO params);
 	public List<BooksVO> selBooksYong3();
 	
-	public Integer delBooksYongji(BooksVO params);
-	public Integer inBooksYongji(BooksVO params);
+	public int delYongji1(BooksVO params);
+	public int inYongji2(BooksVO params);
 	
 	public BooksVO selBooksMaxSbbook(BooksVO params);
 	
@@ -42,9 +42,20 @@ public interface BooksMapper {
 	public List<BooksVO> selBooksSoldOut2(BooksVO params);
 	public List<BooksVO> selBooksSoldOut3(BooksVO params);
 	
-	public Integer inBooks(BooksVO params);
+	public int inBook(BooksVO params);
+	public int upBook(BooksVO params);
+	public int delBook(BooksVO params);
 	
-	public Integer upBooks(BooksVO params);
+	public int inBookInsang1(BooksVO params);
+	public Integer selBookInsang2();
+	public int upBookInsang3(BooksVO params);
+	public int inBookInsang4(BooksVO params);
 	
-	public Integer delBooks(BooksVO params);
+	public BooksVO selBookTempSbbook1(BooksVO params);
+	public int upBookTempSbbook2(BooksVO params);
+	public int upBookTempSbbook3(BooksVO params);
+	public int upBookTempSbbook4(BooksVO params);
+	public int upBookTempSbbook5(BooksVO params);
+	public int upBookTempSbbook6(BooksVO params);
+	public int upBookTempSbbook7(BooksVO params);
 }

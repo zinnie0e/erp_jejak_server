@@ -55,7 +55,7 @@ public class BooksServiceImpl implements BooksService{
 	}
 	
 	@Override
-	public List<BooksVO> selBooksDetail(BooksVO params) throws Exception {
+	public BooksVO selBooksDetail(BooksVO params) throws Exception {
 		return booksDAO.selBooksDetail(params);
 	}
 	
@@ -69,20 +69,17 @@ public class BooksServiceImpl implements BooksService{
 	}
 	
 	@Override
-	public boolean delBooksDaesu(BooksVO params) throws Exception {
-		int quert_result = booksDAO.delBooksDaesu(params);
-		return (quert_result == 1) ? true : false;
+	public boolean delDaesu1(BooksVO params) throws Exception {
+		return (booksDAO.delDaesu1(params) == 1) ? true : false;
 	}
 	@Override
-	public long selBooksKswdesu0MaxUid() throws Exception {
-		Integer get_param = booksDAO.selBooksKswdesu0MaxUid();
-		long max = get_param != null ? get_param : 0;
-		return max;
+	public long selDaesu2() throws Exception {
+		Integer get_param = booksDAO.selDaesu2();
+		return get_param != null ? get_param : 0;
 	}
 	@Override
-	public boolean inBooksDaesu(BooksVO params) throws Exception {
-		int quert_result = booksDAO.inBooksDaesu(params);
-		return (quert_result == 1) ? true : false;
+	public boolean inDaesu3(BooksVO params) throws Exception {
+		return (booksDAO.inDaesu3(params) == 1) ? true : false;
 	}
 	
 	@Override
@@ -99,14 +96,12 @@ public class BooksServiceImpl implements BooksService{
 	}
 	
 	@Override
-	public boolean delBooksYongji(BooksVO params) throws Exception {
-		int quert_result = booksDAO.delBooksYongji(params);
-		return (quert_result == 1) ? true : false;
+	public boolean delYongji1(BooksVO params) throws Exception {
+		return (booksDAO.delYongji1(params) == 1) ? true : false;
 	}
 	@Override
-	public boolean inBooksYongji(BooksVO params) throws Exception {
-		int quert_result = booksDAO.inBooksYongji(params);
-		return (quert_result == 1) ? true : false;
+	public boolean inYongji2(BooksVO params) throws Exception {
+		return (booksDAO.inYongji2(params) == 1) ? true : false;
 	}
 	
 	@Override
@@ -129,23 +124,63 @@ public class BooksServiceImpl implements BooksService{
 	}
 	
 	@Override
-	public boolean inBooks(BooksVO params) throws Exception {
-		int quert_result = booksDAO.inBooks(params);
-		return (quert_result == 1) ? true : false;
+	public boolean inBook(BooksVO params) throws Exception {
+		return (booksDAO.inBook(params) == 1) ? true : false;
+	}
+	@Override
+	public boolean upBook(BooksVO params) throws Exception {
+		return (booksDAO.upBook(params) == 1) ? true : false;
+	}
+	@Override
+	public boolean delBook(BooksVO params) throws Exception {
+		return (booksDAO.delBook(params) == 1) ? true : false;
+	}
+	@Override
+	public boolean inBookInsang1(BooksVO params) throws Exception {
+		return (booksDAO.inBookInsang1(params) == 1) ? true : false;
+	}
+	@Override
+	public long selBookInsang2() throws Exception {
+		Integer get_param = booksDAO.selBookInsang2();
+		return get_param != null ? get_param : 0;
+	}
+	@Override
+	public boolean upBookInsang3(BooksVO params) throws Exception {
+		return (booksDAO.upBookInsang3(params) == 1) ? true : false;
+	}
+	@Override
+	public boolean inBookInsang4(BooksVO params) throws Exception {
+		return (booksDAO.inBookInsang4(params) == 1) ? true : false;
 	}
 	
 	@Override
-	public boolean upBooks(BooksVO params) throws Exception {
-		int quert_result = booksDAO.upBooks(params);
-		return (quert_result == 1) ? true : false;
+	public BooksVO selBookTempSbbook1(BooksVO params) throws Exception {
+		return booksDAO.selBookTempSbbook1(params);
 	}
-	
 	@Override
-	public boolean delBooks(BooksVO params) throws Exception {
-		int quert_result = booksDAO.delBooks(params);
-		return (quert_result == 1) ? true : false;
+	public boolean upBookTempSbbook2(BooksVO params) throws Exception {
+		return (booksDAO.upBookTempSbbook2(params) == 1) ? true : false;
 	}
-	
+	@Override
+	public boolean upBookTempSbbook3(BooksVO params) throws Exception {
+		return (booksDAO.upBookTempSbbook3(params) == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookTempSbbook4(BooksVO params) throws Exception {
+		return (booksDAO.upBookTempSbbook4(params) == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookTempSbbook5(BooksVO params) throws Exception {
+		return (booksDAO.upBookTempSbbook5(params) == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookTempSbbook6(BooksVO params) throws Exception {
+		return (booksDAO.upBookTempSbbook6(params) == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookTempSbbook7(BooksVO params) throws Exception {
+		return (booksDAO.upBookTempSbbook7(params) == 1) ? true : false;
+	}
 	private ArrayList<HashMap<String, Object>> mappingSelBooksList(List<BooksVO> list_params) {
 		ArrayList<HashMap<String, Object>> result_list = new ArrayList<HashMap<String, Object>>();
 		for(BooksVO temp_BooksVO : list_params) {

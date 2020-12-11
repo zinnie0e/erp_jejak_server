@@ -82,7 +82,7 @@ public class BooksVO {
 	private String sbhj03;
 	private long sbhj04; //국외일때 인세
 	private String sbpegn;
-	private int uid;
+	private long uid;
 	private String sbname2;
 	private String sbbigo; //기타사항
 	private String sbsbph2; //부록 2 판형
@@ -189,4 +189,13 @@ public class BooksVO {
 	private long count; //리미트 시작값
 	private long lm_s; //리미트 시작값
 	private long lm_t; //리미트 전체값
+	
+	//TODO INSANG(정가인상예정리스트)
+//	private long uid;
+	private String bcode;
+	private long bprice;
+	private int pub;
+	
+	//TODO BITABLE1(필요부분만)
+	private String b1bcode;
 }

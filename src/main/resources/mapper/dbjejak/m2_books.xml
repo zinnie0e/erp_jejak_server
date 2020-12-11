@@ -31,7 +31,7 @@
 	</select>
 	
 	<select id="selBooksListCodeCheck1" resultType="booksVO">
-		SELECT count(*) as count
+		SELECT COUNT(*) as count
 		FROM jejak.KSCBOOK0
 		WHERE SBBOOK LIKE CONCAT('%', #{sbbook}, '%')
 	</select>
@@ -64,39 +64,42 @@
 		WHERE uid = #{uid}
 	</select>
 	
+	<!-- 대수정보 -->
 	<select id="selBooksDaesu1" resultType="booksVO">
 		SELECT count(uid) AS count 
-		FROM jejak.${dbname}
+		FROM jejak.KSWDESU0
 		WHERE wdbook = #{tmpcode}
 	</select>
 	
 	<select id="selBooksDaesu2" resultType="booksVO">
 		SELECT * 
-		FROM jejak.${dbname}
+		FROM jejak.KSWDESU0
 		WHERE wdbook = #{tmpcode}
 		ORDER BY uid ASC
 	</select>
 	
-	<delete id="delBooksDaesu" parameterType="booksVO">
+	<!-- 대수정보-수정하기 -->
+	<delete id="delDaesu1" parameterType="booksVO">
 		DELETE FROM jejak.KSWDESU0
 		WHERE wdbook = #{tmpcode}
 	</delete>
 	
-	<select id="selBooksKswdesu0MaxUid" parameterType="Integer">
+	<select id="selDaesu2" resultType="Integer">
 		SELECT MAX(uid)
 		FROM jejak.KSWDESU0
 	</select>
 	
-	<insert id="inBooksDaesu" parameterType="booksVO">
+	<insert id="inDaesu3" parameterType="booksVO">
 		INSERT INTO jejak.KSWDESU0 (
-			uid, WDBOOK, WDBOO9, WDSUNS, WDSRNO,
-			WDDESU, WDPAGE, WDCOLO, WDQNTY
+			uid, wdbook, wdboo9, wdsuns, wdsrno,
+			wddesu, wdpage, wdcolo, wdqnty
 		) VALUES (
 			#{uid}, #{wdbook}, #{wdboo9}, #{wdsuns}, '1'
 			#{wddesu}, #{wdpage}, #{wdcolo}, #{wdqnty}
 		)
 	</insert>
 	
+	<!-- 용지정보 -->
 	<select id="selBooksYong1" resultType="booksVO">
 		SELECT count(uid) AS count 
 		FROM jejak.${dbname}
@@ -110,18 +113,19 @@
 		ORDER BY uid ASC
 	</select>
 	
-	<delete id="delBooksYongji" parameterType="booksVO">
+	<!-- 용지정보-수정하기 -->
+	<delete id="delYongji1" parameterType="booksVO">
 		DELETE FROM jejak.KSWYONJ0
-		WHERE wybook = #{tmpcode}
+		WHERE wybook = #{wybook}
 	</delete>
 	
-	<insert id="inBooksYongji" parameterType="booksVO">
+	<insert id="inYongji2" parameterType="booksVO">
 		INSERT INTO jejak.KSWYONJ0 (
-			WYBOOK, WYBOO9, WYSUNS, WYGUBN, WYJIJL,
-			WYCOLO, WYPAGE
+			wybook, wyboo9, wysuns, wygubn, wyjijl,
+			wycolo, wypage
 		) VALUES (
-			#{wybook}, #{wdboo9}, #{wdsuns}, #{wdgubn}, #{wyjijl}
-			#{wycolo}, #{wdpage}
+			#{wybook}, #{wyboo9}, #{wysuns}, #{wygubn}, #{wyjijl}
+			#{wycolo}, #{wypage}
 		)
 	</insert>
 	
@@ -169,16 +173,16 @@
 			AND b.sbpegi NOT LIKE 'P'
 		ORDER BY a.s1ilja ASC, a.s1bunh ASC;
 	</select>
-            
-	<insert id="inBooks" parameterType="booksVO">
+	
+	<insert id="inBook" parameterType="booksVO">
 		INSERT INTO jejak.KSCBOOK0 (
-			SBINSE, SBHJ04, SBBIGO, SBJLSU, SBBOOK, SBNAME,
-			SBNAME2, SBUPRC, SBPANH, SBJANH, SBPAGE,
-			SBSBPH1, SBSBJH1, SBSBPG1, SBSBPH2, SBSBJH2,
-			SBSBPG2, SBSBPH3, SBSBJH3, SBSBPG3, SBSBPH4,
-			SBSBJH4, SBSBPG4, SBINJI, SBJNJI, SBSTIC,
-			SBCD, SBCOTI, SBCASE2, SBCOTI2, SBWING2,
-			SBMYUN, SBBYUL, SBHWBO
+			sbinse, sbhj04, sbbigo, sbjlsu, sbbook, sbname,
+			sbname2, sbuprc, sbpanh, sbjanh, sbpage,
+			sbsbph1, sbsbjh1, sbsbpg1, sbsbph2, sbsbjh2,
+			sbsbpg2, sbsbph3, sbsbjh3, sbsbpg3, sbsbph4,
+			sbsbjh4, sbsbpg4, sbinji, sbjnji, sbstic,
+			sbcd, sbcoti, sbcase2, sbcoti2, sbwing2,
+			sbmyun, sbbyul, sbhwbo
 		) VALUES (
 			#{sbinse}, #{sbhj04}, #{sbbigo}, #{sbjlsu}, #{sbbook}, #{sbname},
 			#{sbname2}, #{sbuprc}, #{sbpanh}, #{sbjanh}, #{sbpage},
@@ -190,32 +194,102 @@
 		)
 	</insert>
 	
-	<update id="upBooks" parameterType="booksVO">
+	<update id="upBook" parameterType="booksVO">
 		UPDATE jejak.KSCBOOK0 SET
-			SBBOOK=#{sbbook}, SBNAME=#{sbname}, SBUPRC=#{sbuprc}, SBKC=#{sbkc}, SBJEGO=#{sbjego},
-			SBGUME=#{sbgume}, SBAPDT=#{sbapdt}, SBDUNG=#{sbdung}, SBLOCA=#{sbloca}, SBGUBN=#{sbgubn},
-			SBPEGI=#{sbpegi}, SBPEGA=#{sbpega}, SBCPBH=#{sbcpbh}, SBCPSR=#{sbcpsr}, SBCPDN=#{sbcpdn},
-			SBCJBH=#{sbcjbh}, SBCJPN=#{sbcjpn}, SBBUSE=#{sbbuse}, SBJUJA=#{sbjuja}, SBYKJA=#{sbykja},
-			SBPNJA=#{sbpnja}, SBPJFR=#{sbpjfr}, SBPJTO=#{sbpjto}, SBSOG1=#{sbsog1}, SBSOG2=#{sbsog2},
-			SBIPIL=#{sbipil}, SBCOST=#{sbcost}, SBWEIT=#{sbweit}, SBGEO1=#{sbgeo1}, SBAMT1=#{sbamt1},
-			SBREM1=#{sbrem1}, SBGEO2=#{sbgeo2}, SBAMT2=#{sbamt2}, SBREM2=#{sbrem2}, SBGEO3=#{sbgeo3},
-			SBAMT3=#{sbamt3}, SBREM3=#{sbrem3}, SBPNKN=#{sbpnkn}, SBWONS=#{sbwons}, SBWNNA=#{sbwnna},
-			SBKOMC=#{sbkomc}, SBISBN=#{sbisbn}, SBPANH=#{sbpanh}, SBSBPH1=#{sbsbph1}, SBJANH=#{sbjanh},
-			SBSBJH1=#{sbsbjh1}, SBPAGE=#{sbpage}, SBSBPG1=#{sbsbpg1}, SBTIGI=#{sbtigi}, SBDSPG=#{sbdspg},
-			SBJLSU=#{sbjlsu}, SBINSE=#{sbinse}, SBHJ04=#{sbhj04}, SBBIGO=#{sbbigo}, SBSBPH2=#{sbsbph2},
-			SBSBJH2=#{sbsbjh2}, SBSBPH3=#{sbsbph3}, SBSBJH3=#{sbsbjh3}, SBSBPH4=#{sbsbph4}, SBSBJH4=#{sbsbjh4},
-			SBSBPG2=#{sbsbpg2}, SBSBPG3=#{sbsbpg3}, SBSBPG4=#{sbsbpg4}, SBJNJI=#{sbjnji}, SBINJI=#{sbinji},
-			SBSTIC=#{sbstic}, SBCD=#{sbcd}, SBCOTI=#{sbcoti}, SBCASE2=#{sbcase2}, SBCOTI2=#{sbcoti2},
-			SBWING2=#{sbwing2}, SBMYUN=#{sbmyun}, SBBYUL=#{sbbyul}, SBHWBO=#{sbhwbo}, SBPANH2=#{sbpanh2},
-			SBPAGE2=#{sbpage2}, SBBINB=#{sbbinb}, SBHJGB=#{sbhjgb}, SBIPGO=#{sbipgo}, SBSACH=#{sbsach},
-			SBTPAGE=#{sbtpage}, SBMPAGE=#{sbmpage}, SBSONGN=#{sbsongn}, SBSONGI=#{sbsongi}, SBSONGO=#{sbsongo},
-			SBBOOKP=#{sbbookp}, SBCDP=#{sbcdp}, SBJABJI=#{sbjabji}, MEMO_JB=#{memo_jb}, MEMO_CD=#{memo_cd},
-			MEMO_CS=#{memo_cs}, MEMO_ST=#{memo_st}
+			sbgubn=#{sbgubn}, sbjlsu=#{sbjlsu}, sbdspg=#{sbdspg}, sbbuse=#{sbbuse}, sbjuja=#{sbjuja},
+			sbykja=#{sbykja}, sbpnja=#{sbpnja}, sbpnkn=#{sbpnkn}, sbwons=#{sbwons}, sbwnna=#{sbwnna},
+			sbkomc=#{sbkomc}, sbisbn=#{sbisbn}, sbpanh=#{sbpanh}, sbjanh=#{sbjanh}, sbsbph1=#{sbsbph1},
+			sbsbjh1=#{sbsbjh1}, sbpage=#{sbpage}, sbsbpg1=#{sbsbpg1}, sbsbpg2=#{sbsbpg2}, sbsbpg3=#{sbsbpg3},
+			sbsbpg4=#{sbsbpg4}, sbwing2=#{sbwing2}, sbtigi=#{sbtigi}, sbinse=#{sbinse}, sbhj04=#{sbhj04},
+			sbuprc=#{sbuprc}, sbgume=#{sbgume}, sbapdt=#{sbapdt}, sbloca=#{sbloca}, sbpegi=#{sbpegi},
+			sbpega=#{sbpega}, sbcpbh=#{sbcpbh}, sbcpsr=#{sbcpsr}, sbcpdn=#{sbcpdn}, sbcjbh=#{sbcjbh},
+			sbcjpn=#{sbcjpn}, sbpjfr=#{sbpjfr}, sbpjto=#{sbpjto}, sbsog1=#{sbsog1}, sbsog2=#{sbsog2},
+			sbipil=#{sbipil}, sbcost=#{sbcost}, sbweit=#{sbweit}, sbgeo1=#{sbgeo1}, sbamt1=#{sbamt1},
+			sbrem1=#{sbrem1}, sbgeo2=#{sbgeo2}, sbamt2=#{sbamt2}, sbrem2=#{sbrem2}, sbgeo3=#{sbgeo3},
+			sbamt3=#{sbamt3}, sbrem3=#{sbrem3}, sbjego=#{sbjego}, sbbigo=#{sbbigo}, sbsbph2=#{sbsbph2},
+			sbsbjh2=#{sbsbjh2}, sbsbph3=#{sbsbph3}, sbsbjh3=#{sbsbjh3}, sbsbph4=#{sbsbph4}, sbsbjh4=#{sbsbjh4},
+			sbjnji=#{sbjnji}, sbinji=#{sbinji}, sbstic=#{sbstic}, sbcoti=#{sbcoti}, sbcoti2=#{sbcoti2},
+			sbcd=#{sbcd}, sbmyun=#{sbmyun}, sbbyul=#{sbbyul}, sbhwbo=#{sbhwbo}, sbpanh2=#{sbpanh2}, 
+			sbpage2=#{sbpage2}, sbbinb=#{sbbinb}, sbjjgb=#{sbjjgb}, sbipgo=#{sbipgo}, sbdung=#{sbdung},
+			sbhjgb=#{sbhjgb}, sbsach=#{sbsach}, sbtpage=#{sbtpage}, sbmpage=#{sbmpage}, sbsongn=#{sbsongn},
+			sbsongi=#{sbsongi}, sbsongo=#{sbsongo}, sbbookp=#{sbbookp}, sbcdp=#{sbcdp}, sbjabji=#{sbjabji},
+			memo_jb=#{memo_jb}, memo_cd=#{memo_cd}, memo_cs=#{memo_cs}, memo_st=#{memo_st}, sbkc=#{sbkc}
 		WHERE uid = #{uid}
 	</update>
 	
-	<delete id="delBooks" parameterType="booksVO">
+	<delete id="delBook" parameterType="booksVO">
 		DELETE FROM jejak.KSCBOOK0
 		WHERE uid = #{uid}
 	</delete>
+	
+	<!-- 정가인상 -->
+	<insert id="inBookInsang1" parameterType="booksVO">
+		INSERT INTO jejak.KSCBOOK0
+		SELECT *
+		FROM jejak.KSCBOOK0
+		WHERE SBBOOK = #{sbbook}
+	</insert>
+	
+	<select id="selBookInsang2" resultType="Integer">
+		SELECT MAX(uid)
+		FROM jejak.KSCBOOK0
+	</select>
+	
+	<update id="upBookInsang3" parameterType="booksVO">
+		UPDATE jejak.KSCBOOK0 SET
+			sbbook=#{value}, uid=#{uid}, sbuprc=#{sbuprc}
+		WHERE sbbook = #{sbbook}
+		LIMIT 1
+	</update>
+	
+	<insert id="inBookInsang4" parameterType="booksVO">
+		INSERT INTO jejak.INSANG (
+			bcode, bprice
+		) VALUES (
+			#{bcode}, #{bprice},
+		)
+	</insert>
+	
+	<!-- 임시도서코드변경 -->
+	<select id="selBookTempSbbook1" resultType="booksVO">
+		SELECT *
+		FROM jejak.KSCBOOK0
+		WHERE sbbook = #{sbbook}
+	</select>
+	
+	<update id="upBookTempSbbook2" parameterType="booksVO">
+		UPDATE jejak.KSCBOOK0 SET
+			sbname=#{sbname}, sbbook=#{sbbook}
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upBookTempSbbook3" parameterType="booksVO">
+		UPDATE jejak.KSWDESU0 SET
+			wdbook=#{value}
+		WHERE wdbook = #{wdbook}
+	</update>
+	
+	<update id="upBookTempSbbook4" parameterType="booksVO">
+		UPDATE jejak.KSWDESU0 SET
+			wybook=#{value}
+		WHERE wybook = #{wybook}
+	</update>
+	
+	<update id="upBookTempSbbook5" parameterType="booksVO">
+		UPDATE jejak.BITABLE1 SET
+			b1bcode=#{value}
+		WHERE b1bcode = #{b1bcode}
+	</update>
+	
+	<update id="upBookTempSbbook6" parameterType="booksVO">
+		UPDATE jejak.BITABLE2 SET
+			bcode=#{value}
+		WHERE bcode = #{bcode}
+	</update>
+	
+	<update id="upBookTempSbbook7" parameterType="booksVO">
+		UPDATE jejak.BITABLE2 SET
+			bcode=#{value}
+		WHERE bcode = #{bcode}
+	</update>
 </mapper>
