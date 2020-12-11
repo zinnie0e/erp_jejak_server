@@ -95,12 +95,28 @@ public class YongjiServiceImpl implements YongjiService{
 	@Override
 	public long selYjOrderFacdanga(YongjiVO params) throws Exception {
 		YongjiVO get_param = YongjiDAO.selYjOrderFacdanga(params);
-		
 		return get_param != null ? get_param.getFacdanga() : 0;
 	}
 	@Override
 	public boolean upYjOrderJiinout(YongjiVO params) throws Exception {
 		return (YongjiDAO.upYjOrderJiinout(params) == 1) ? true : false;
+	}
+	
+	@Override
+	public YongjiVO selYjBuyHalin1(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjBuyHalin1(params);
+	}
+	@Override
+	public boolean upYjBuyHalin2(YongjiVO params) throws Exception {
+		return (YongjiDAO.upYjBuyHalin2(params) == 1) ? true : false;
+	}
+	@Override
+	public YongjiVO selYjBuyHalin3(YongjiVO params) throws Exception {
+		return YongjiDAO.selYjBuyHalin3(params);
+	}
+	@Override
+	public boolean upYjBuyHalin4(YongjiVO params) throws Exception {
+		return (YongjiDAO.upYjBuyHalin4(params) == 1) ? true : false;
 	}
 	
 	@Override

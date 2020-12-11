@@ -33,6 +33,11 @@ public interface YongjiService {
 	long selYjOrderFacdanga(YongjiVO params) throws Exception;
 	boolean upYjOrderJiinout(YongjiVO params) throws Exception;
 	
+	YongjiVO selYjBuyHalin1(YongjiVO params) throws Exception;
+	boolean upYjBuyHalin2(YongjiVO params) throws Exception;
+	YongjiVO selYjBuyHalin3(YongjiVO params) throws Exception;
+	boolean upYjBuyHalin4(YongjiVO params) throws Exception;
+	
 	long selYjOrderDetailDate(YongjiVO params) throws Exception;
 	boolean upYjOrderDetailDate1(YongjiVO params) throws Exception;
 	long selYjOrderDetailDate2(YongjiVO params) throws Exception;
