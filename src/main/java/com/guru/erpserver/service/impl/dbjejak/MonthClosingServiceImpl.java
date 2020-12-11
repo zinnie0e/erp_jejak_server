@@ -91,12 +91,14 @@ public class MonthClosingServiceImpl implements MonthClosingService {
 		return monthClosingDAO.selBookCostStatement18(params);
 	}
 	@Override
-	public List<MonthClosingVO> inBookCostStatement19(MonthClosingVO params) throws Exception {
-		return monthClosingDAO.inBookCostStatement19(params);
+	public boolean inBookCostStatement19(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.inBookCostStatement19(params);
+		return (quert_result == 1) ? true : false;
 	}
 	@Override
-	public List<MonthClosingVO> upBookCostStatement20(MonthClosingVO params) throws Exception {
-		return monthClosingDAO.upBookCostStatement20(params);
+	public boolean upBookCostStatement20(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement20(params);
+		return (quert_result == 1) ? true : false;
 	}
 	@Override
 	public List<MonthClosingVO> selBookCostStatement21(MonthClosingVO params) throws Exception {
@@ -155,12 +157,360 @@ public class MonthClosingServiceImpl implements MonthClosingService {
 		return monthClosingDAO.selBookCostStatement34(params);
 	}
 	@Override
-	public List<MonthClosingVO> upBookCostStatement35(MonthClosingVO params) throws Exception {
-		return monthClosingDAO.upBookCostStatement35(params);
+	public boolean upBookCostStatement35(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement35(params);
+		return (quert_result == 1) ? true : false;
 	}
 	@Override
 	public List<MonthClosingVO> selBookCostStatement36(MonthClosingVO params) throws Exception {
 		return monthClosingDAO.selBookCostStatement36(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement37(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement37(params);
+	}
+	@Override
+	public boolean upBookCostStatement38(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement38(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement39(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement39(params);
+	}
+	@Override
+	public boolean upBookCostStatement40(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement40(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement41(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement41(params);
+	}
+	@Override
+	public boolean upBookCostStatement42(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement42(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement43(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement43(params);
+	}
+	@Override
+	public boolean upBookCostStatement44(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement44(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement45(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement45(params);
+	}
+	@Override
+	public boolean upBookCostStatement46(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement46(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean delBookCostStatement47(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.delBookCostStatement47(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement48(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement48(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement49(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement49(params);
+	}
+	@Override
+	public boolean inBookCostStatement50(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.inBookCostStatement50(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement51(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement51(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement52(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement52(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement53(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement53(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement54(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement54(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement55(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement55(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement56(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement56(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement57(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement57(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement58(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement58(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement59(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement59(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement60(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement60(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement61(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement61(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement62(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement62(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement63(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement63(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement64(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement64(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement65(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement65(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement66(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement66(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement67(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement67(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement68(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement68(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement69(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement69(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement70(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement70(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement71(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement71(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement72(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement72(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement73(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement73(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement74(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement74(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement75(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement75(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement76(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement76(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement77(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement77(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement78(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement78(params);
+	}
+	@Override
+	public List<MonthClosingVO> selBookCostStatement79(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selBookCostStatement79(params);
+	}
+	@Override
+	public boolean inBookCostStatement1(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.inBookCostStatement1(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inBookCostStatement2(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.inBookCostStatement2(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement1(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement1(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement2(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement2(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement3(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement3(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement4(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement4(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement5(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement5(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement6(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement6(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement7(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement7(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement8(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement8(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement9(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement9(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement10(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement10(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement11(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement11(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement12(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement12(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement13(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement13(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement14(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement14(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement15(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement15(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement16(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement16(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement17(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement17(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement18(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement18(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement19(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement19(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement21(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement21(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement22(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement22(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement23(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement23(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement24(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement24(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement25(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement25(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement26(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement26(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement27(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement27(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement28(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement28(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement29(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement29(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement30(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement30(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement31(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement31(params);
+		System.out.println(quert_result);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookCostStatement32(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement32(params);
+		return (quert_result == 1) ? true : false;
 	}
 	
 	// TODO 잡물 원가계산서
@@ -229,12 +579,14 @@ public class MonthClosingServiceImpl implements MonthClosingService {
 		return monthClosingDAO.selJMCostStatement16(params);
 	}
 	@Override
-	public List<MonthClosingVO> inJMCostStatement17(MonthClosingVO params) throws Exception {
-		return monthClosingDAO.inJMCostStatement17(params);
+	public boolean inJMCostStatement17(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement17(params);
+		return (quert_result == 1) ? true : false;
 	}
 	@Override
-	public List<MonthClosingVO> upJMCostStatement18(MonthClosingVO params) throws Exception {
-		return monthClosingDAO.upJMCostStatement18(params);
+	public boolean upJMCostStatement18(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upBookCostStatement18(params);
+		return (quert_result == 1) ? true : false;
 	}
 	
 	// TODO 품목별 원재료명세서(월별)
@@ -389,6 +741,14 @@ public class MonthClosingServiceImpl implements MonthClosingService {
 		return monthClosingDAO.selPumPer6(params);
 	}
 	@Override
+	public List<MonthClosingVO> selPumPer7(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPumPer6(params);
+	}
+	@Override
+	public List<MonthClosingVO> selPumPer8(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPumPer8(params);
+	}
+	@Override
 	public boolean inPumPer1(MonthClosingVO params) throws Exception {
 		int quert_result = monthClosingDAO.inPumPer1(params);
 		return (quert_result == 1) ? true : false;
@@ -397,6 +757,404 @@ public class MonthClosingServiceImpl implements MonthClosingService {
 	public boolean delPumPer1(MonthClosingVO params) throws Exception {
 		int quert_result = monthClosingDAO.delPumPer1(params);
 		return (quert_result == 1) ? true : false;
+	}
+	
+	// TODO 제조비명세표
+	@Override
+	public List<MonthClosingVO> selMCSpecification1(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification1(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification2(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification2(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification3(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification3(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification4(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification4(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification5(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification5(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification6(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification6(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification7(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification7(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification8(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification8(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification9(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification9(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification10(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification10(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification11(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification11(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification12(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification12(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification13(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification13(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification14(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification14(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification15(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification15(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification16(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification16(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification17(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification17(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification18(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification18(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification19(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification19(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification20(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification20(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification21(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification21(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification22(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification22(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification23(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification23(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification24(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification24(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification25(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification25(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification26(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification26(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification27(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification27(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification28(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification28(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification29(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification29(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification30(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification30(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification31(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification31(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification32(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification32(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification33(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification33(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification34(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification34(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification35(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification35(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification36(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification36(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification37(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification37(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification38(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification38(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification39(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification39(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification40(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification40(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification41(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification41(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification42(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification42(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification43(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification43(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification44(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification44(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification45(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification45(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification46(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification46(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification47(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification47(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification48(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification48(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification49(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification49(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification50(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification50(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification51(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification51(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification52(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification52(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification53(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification53(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification54(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification54(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification55(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification55(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification56(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification56(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification57(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification57(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification58(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification58(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification59(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification59(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification60(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification60(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification61(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification61(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification62(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification62(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification63(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification63(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification64(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification64(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification65(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification65(params);
+	}
+	@Override
+	public List<MonthClosingVO> selMCSpecification66(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selMCSpecification66(params);
+	}
+	@Override
+	public boolean inMCSpecification1(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.inMCSpecification1(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inMCSpecification2(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.inMCSpecification2(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inMCSpecification3(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.inMCSpecification3(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inMCSpecification4(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.inMCSpecification4(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification1(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification1(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification2(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification2(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification3(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification3(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification4(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification4(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification5(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification5(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification6(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification6(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification7(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification7(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification8(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification8(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification9(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification9(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification10(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification10(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification11(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification11(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upMCSpecification12(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.upMCSpecification12(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean delMCSpecification1(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.delMCSpecification1(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean delMCSpecification2(MonthClosingVO params) throws Exception {
+		int quert_result = monthClosingDAO.delMCSpecification2(params);
+		return (quert_result == 1) ? true : false;
+	}
+	
+	// TODO 거래처별 지불명세서
+	@Override
+	public List<MonthClosingVO> selPaymentAccount1(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPaymentAccount1(params);
+	}
+	@Override
+	public List<MonthClosingVO> selPaymentAccount2(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPaymentAccount2(params);
+	}
+	@Override
+	public List<MonthClosingVO> selPaymentAccount3(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPaymentAccount3(params);
+	}
+	@Override
+	public List<MonthClosingVO> selPaymentAccount4(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPaymentAccount4(params);
+	}
+	@Override
+	public List<MonthClosingVO> selPaymentAccount5(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPaymentAccount5(params);
+	}
+	@Override
+	public List<MonthClosingVO> selPaymentAccount6(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPaymentAccount6(params);
+	}
+	@Override
+	public List<MonthClosingVO> selPaymentAccount7(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPaymentAccount7(params);
+	}
+	@Override
+	public List<MonthClosingVO> selPaymentAccount8(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPaymentAccount8(params);
+	}
+	@Override
+	public List<MonthClosingVO> selPaymentAccount9(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPaymentAccount9(params);
+	}
+	@Override
+	public List<MonthClosingVO> selPaymentAccount10(MonthClosingVO params) throws Exception {
+		return monthClosingDAO.selPaymentAccount10(params);
 	}
 	
 	// TODO 저자료 지급 내역(상/하)

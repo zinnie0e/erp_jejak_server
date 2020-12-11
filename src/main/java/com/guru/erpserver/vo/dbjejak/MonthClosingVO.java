@@ -26,6 +26,7 @@ public class MonthClosingVO {
 	
 	private long bdate;
 	private long crnum;
+	private int bprice;
 	private long bucode;
 	private String bname;
 	private String bcode;
@@ -43,7 +44,6 @@ public class MonthClosingVO {
 	private String sbjuja;
 	
 	private long sbhj04;
-	
 	private long count;
 	private long listid;
 	private long yjtag;
@@ -75,7 +75,7 @@ public class MonthClosingVO {
 	private String wjcode;
 	private String wjname;
 	
-	//도서별 원가계산서 
+	// 도서별 원가계산서 
 	//lwhee
 	private String sbsbph1;
 	private String sbsbph2;
@@ -92,16 +92,25 @@ public class MonthClosingVO {
 	private String m1;
 	private String m2;
 	private String m3;
+	private String m4;
+	private String m5;
+	private String m6;
+	private String m7;
+	private String m8;
+	private String m9;
+	private String m10;
+	private String m11;
 	private String sbpanh;
 	private String sbjanh;
 	private String wcname;
 	private int bmyun;
 	private int btype;
-	
+	private int pnum;
 	private int listid5;
 	private String gubn5;
 	private String panst5;
 	private int pannum5;
+	private int pannum;
 	private int filmnum5;
 	private int filmdan5;
 	private	int filmcost5;
@@ -109,7 +118,7 @@ public class MonthClosingVO {
 	private int sobudan5;
 	private int sobu5;
 	private int sum5;
-	
+	private int i;
 	private String jcode;
 	private String jname;
 	private String gubn;
@@ -118,7 +127,6 @@ public class MonthClosingVO {
 	private int pcost;
 	private int pdanga;
 	private String T3BIGO;
-	
 	private String wccode;
 	
 	private int cnum7;
@@ -129,9 +137,19 @@ public class MonthClosingVO {
 	private int totcost7;
 	private int crnum7;
 	
+	private String ccode;
+	private String ccode8;
+	private String bcode8; 
+	private int cdate8; 
+	private int crnum8;
 	private int cprice8;
 	private float cnum8;
 	private float totcost8;
+	private String bcode9;
+	private int cdate9;
+	private int cnum9; 
+	private int bitag;
+	private int crnum9;
 	private int jenum;
 	private int jabtag;
 	private int w1;
@@ -166,15 +184,11 @@ public class MonthClosingVO {
 	private int row;
 	private float danga;
 	
-	//잡물 원가계산서
+	// 잡물 원가계산서
 	private String jbcode;
 	private int jbpage; 
 	private String jbpanh; 
 	private int jbjanh; 
-	private String m5;
-	private String m7;
-	private String m8;
-	private String m9;
 	private int pans;
 	private int sobus;
 	private int sums;
@@ -185,18 +199,101 @@ public class MonthClosingVO {
 	private int ycosts;
 	private int pcosts;
 	
-	//품목별 원재료명세서(월별)
+	// 품목별 원재료명세서(월별)
 	private int new_q;
 	private int new_a;
 	private String newdate;
 	
-	//품목별 원재료명세서(월별)
+	// 품목별 원재료명세서(기간)
 	private String indate;
 	private int tm;
 	private int ty;
 	private String s1book;
+	private int comid;
 	
-	//저자료 지급 내역 (상/하)
+	// 제조비명세표
+	private String jmfield;
+	private double jp1;
+	private double jp2;
+	private double jp3;
+	private double pr1;
+	private double pr2;
+	private double pr3;
+	private double ct1;
+	private double ct2;
+	private double ct3;
+	private double jb1;
+	private double jb2;
+	private double jb3;
+	private double jb4;
+	private double jb5;
+	private double jb6;
+	private double jb7;
+	private double jb8;
+	private double jb9;
+	private double jb10;
+	private double jb11;
+	private double jb12;
+	private double jb13;
+	private double jb14;
+	private double jb15;
+	private double jb16;
+	private double jb17;
+	private double jb18;
+	private double jb19;
+	private double jb20;
+	private double jb21;
+	private double jb22;
+	private double jb23;
+	private double jb24;
+	private double jb25;
+	private double jb26;
+	private double vn1;
+	private double vn2;
+	private double vn3;
+	private double cs1;
+	private double cs2;
+	private double cs3;
+	private double cs4;
+	private double st1;
+	private double st2;
+	private double st3;
+	private double st4;
+	private double st5;
+	private double st6;
+	private double st7;
+	private double st8;
+	private double st9;
+	private double cd1;
+	private double cd2;
+	private double cd3;
+	private double cd4;
+	private double et1;
+	private double et2;
+	private double et3;
+	private double et4;
+	private double et5;
+	private int s1;
+	private int s2;
+	private int s3;
+	private int s4;
+	private int s5;
+	private int s21;
+	private int yj1;
+	private String wcyakc;
+	private String bolist;
+	private int jejonum;
+	private String bookname;
+	private int jejoamnt;
+	private String jejodate;
+	private float jejodang;
+	private String custcode;
+	private int jana;
+	private int jejosuns;
+	private int boryu;
+	private String ccode7;
+
+	// 저자료 지급 내역 (상/하)
 	private String name1;
 	private String name2;
 	private String num1;
@@ -205,7 +302,7 @@ public class MonthClosingVO {
 	private String addr2;
 	private String addr3;
 	
-	//도서 수량/금액 집계
+	// 도서 수량/금액 집계
 	private int tbmgubn;
 	private String fieldname;
 	private float new_val;
@@ -230,7 +327,7 @@ public class MonthClosingVO {
 	private float sgdn11;
 	private float sgdn12;
 	
-	//구매단가입력
+	// 구매단가입력
 	private String jejotbl;
 	private long juid;
 	private int b1;

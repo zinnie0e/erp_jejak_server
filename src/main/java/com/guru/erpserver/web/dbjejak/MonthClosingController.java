@@ -119,13 +119,13 @@ public class MonthClosingController {
 		return monthClosingSVC.selBookCostStatement18(params);
 	}
 	// 입력 uid
-	@RequestMapping(value = "/monthclosing/insert_bookcost_statement19", method = RequestMethod.POST)
-	public List<MonthClosingVO> inBookCostStatement19(@RequestBody MonthClosingVO params) throws Exception {
+	@RequestMapping(value="/monthclosing/insert_bookcost_statement19", method=RequestMethod.POST)
+	public boolean inBookCostStatement19(@RequestBody MonthClosingVO params) throws Exception {
 		return monthClosingSVC.inBookCostStatement19(params);
 	}
 	// 입력 uid
-	@RequestMapping(value = "/monthclosing/up_bookcost_statement20", method = RequestMethod.POST)
-	public List<MonthClosingVO> upBookCostStatement20(@RequestBody MonthClosingVO params) throws Exception {
+	@RequestMapping(value = "/monthclosing/update_bookcost_statement20", method = RequestMethod.POST)
+	public boolean upBookCostStatement20(@RequestBody MonthClosingVO params) throws Exception {
 		return monthClosingSVC.upBookCostStatement20(params);
 	}
 	// 입력 bookcode
@@ -199,15 +199,395 @@ public class MonthClosingController {
 	public List<MonthClosingVO> selBookCostStatement34(@RequestBody MonthClosingVO params) throws Exception {
 		return monthClosingSVC.selBookCostStatement34(params);
 	}
-	// 입력 new_cost, row
-	@RequestMapping(value = "/monthclosing/update_bookcost_statement35", method = RequestMethod.POST)
-	public List<MonthClosingVO> upBookCostStatement35(@RequestBody MonthClosingVO params) throws Exception {
+	// 입력 uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement35", method=RequestMethod.POST)
+	public boolean upBookCostStatement35(@RequestBody MonthClosingVO params) throws Exception {
 		return monthClosingSVC.upBookCostStatement35(params);
 	}
 	// 입력 uid
 	@RequestMapping(value = "/monthclosing/select_bookcost_statement36", method = RequestMethod.POST)
 	public List<MonthClosingVO> selBookCostStatement36(@RequestBody MonthClosingVO params) throws Exception {
 		return monthClosingSVC.selBookCostStatement36(params);
+	}
+	// 입력 bur_uid, i
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement37", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement37(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement37(params);
+	}
+	// 입력 pannum5, daeji5, sobu5, sum5, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement38", method=RequestMethod.POST)
+	public boolean upBookCostStatement38(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement38(params);
+	}
+	// 입력 daeid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement39", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement39(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement39(params);
+	}
+	// 입력 pannum5, filmnum5, filmcost5, sobu5, sum5, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement40", method=RequestMethod.POST)
+	public boolean upBookCostStatement40(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement40(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement41", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement41(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement41(params);
+	}
+	// 입력 rnum, pdanga, new_cost, uids
+	@RequestMapping(value="/monthclosing/update_bookcost_statement42", method=RequestMethod.POST)
+	public boolean upBookCostStatement42(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement42(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement43", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement43(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement43(params);
+	}
+	// 입력 rnum, pdanga, new_cost, uids
+	@RequestMapping(value="/monthclosing/update_bookcost_statement44", method=RequestMethod.POST)
+	public boolean upBookCostStatement44(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement44(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement45", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement45(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement45(params);
+	}
+	// 입력 ccode8, bcode8, cdate8, cnum8, cprice8, totcost8, crnum8
+	@RequestMapping(value="/monthclosing/update_bookcost_statement46", method=RequestMethod.POST)
+	public boolean upBookCostStatement46(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement46(params);
+	}
+	// 입력 uid
+	@RequestMapping(value="/monthclosing/delete_bookcost_statement47", method=RequestMethod.POST)
+	public boolean delBookCostStatement47(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.delBookCostStatement47(params);
+	}
+	// 입력 cnum8, cprice8, totcost8, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement48", method=RequestMethod.POST)
+	public boolean upBookCostStatement48(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement48(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement49", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement49(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement49(params);
+	}
+	// 입력 ccode9, bcode9, cdate9, cnum9, cprice9, bitag, crnum9
+	@RequestMapping(value="/monthclosing/insert_bookcost_statement50", method=RequestMethod.POST)
+	public boolean inBookCostStatement50(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.inBookCostStatement50(params);
+	}
+	// 입력 w1, w2, w3, w4, w5, w6, w7, w8, w9, w11, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement51", method=RequestMethod.POST)
+	public boolean upBookCostStatement51(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement51(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement52", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement52(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement52(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement53", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement53(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement53(params);
+	}
+	// 입력 listid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement54", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement54(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement54(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement55", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement55(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement55(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement56", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement56(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement56(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement57", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement57(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement57(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement58", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement58(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement58(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement59", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement59(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement59(params);
+	}
+	// 입력 
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement60", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement60(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement60(params);
+	}
+	// 입력 
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement61", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement61(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement61(params);
+	}
+	// 입력 
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement62", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement62(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement62(params);
+	}
+	// 입력 
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement63", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement63(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement63(params);
+	}
+	// 입력 
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement64", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement64(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement64(params);
+	}
+	// 입력 
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement65", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement65(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement65(params);
+	}
+	// 입력 
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement66", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement66(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement66(params);
+	}
+	// 입력 
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement67", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement67(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement67(params);
+	}
+	// 입력 
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement68", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement68(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement68(params);
+	}
+	// 입력 
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement69", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement69(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement69(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement70", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement70(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement70(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement71", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement71(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement71(params);
+	}
+	// 입력 uid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement72", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement72(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement72(params);
+	}
+	// 입력 listid
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement73", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement73(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement73(params);
+	}
+	// 입력 sbbook
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement74", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement74(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement74(params);
+	}
+	// 입력 sbbook
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement75", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement75(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement75(params);
+	}
+	// 입력 bcode
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement76", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement76(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement76(params);
+	}
+	// 입력 sbbook
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement77", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement77(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement77(params);
+	}
+	// 입력 name1
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement78", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement78(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement78(params);
+	}
+	// 입력 name1
+	@RequestMapping(value = "/monthclosing/select_bookcost_statement79", method = RequestMethod.POST)
+	public List<MonthClosingVO> selBookCostStatement79(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selBookCostStatement79(params);
+	}
+	// 입력 w6, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement1", method=RequestMethod.POST)
+	public boolean upBookCostStatement1(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement1(params);
+	}
+	// 입력 cprice9, crnum9, ccode9
+	@RequestMapping(value="/monthclosing/update_bookcost_statement2", method=RequestMethod.POST)
+	public boolean upBookCostStatement2(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement2(params);
+	}
+	// 입력 cprice9, crnum9, ccode
+	@RequestMapping(value="/monthclosing/update_bookcost_statement3", method=RequestMethod.POST)
+	public boolean upBookCostStatement3(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement3(params);
+	}
+	// 입력 cprice9, crnum9, ccode9
+	@RequestMapping(value="/monthclosing/update_bookcost_statement4", method=RequestMethod.POST)
+	public boolean upBookCostStatement4(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement4(params);
+	}
+	// 입력 m1, listid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement5", method=RequestMethod.POST)
+	public boolean upBookCostStatement5(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement5(params);
+	}
+	// 입력 ccode8, crnum8
+	@RequestMapping(value="/monthclosing/update_bookcost_statement6", method=RequestMethod.POST)
+	public boolean upBookCostStatement6(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement6(params);
+	}
+	// 입력 m2, listid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement7", method=RequestMethod.POST)
+	public boolean upBookCostStatement7(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement7(params);
+	}
+	// 입력 ccode7, crnum7
+	@RequestMapping(value="/monthclosing/update_bookcost_statement8", method=RequestMethod.POST)
+	public boolean upBookCostStatement8(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement8(params);
+	}
+	// 입력 m3, ccode, juid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement9", method=RequestMethod.POST)
+	public boolean upBookCostStatement9(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement9(params);
+	}
+	// 입력 m3, listid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement10", method=RequestMethod.POST)
+	public boolean upBookCostStatement10(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement10(params);
+	}
+	// 입력 ccode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement11", method=RequestMethod.POST)
+	public boolean upBookCostStatement11(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement11(params);
+	}
+	// 입력 ccode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement12", method=RequestMethod.POST)
+	public boolean upBookCostStatement12(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement12(params);
+	}
+	// 입력 ccode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement13", method=RequestMethod.POST)
+	public boolean upBookCostStatement13(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement13(params);
+	}
+	// 입력 m6, listid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement14", method=RequestMethod.POST)
+	public boolean upBookCostStatement14(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement14(params);
+	}
+	// 입력 ccode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement15", method=RequestMethod.POST)
+	public boolean upBookCostStatement15(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement15(params);
+	}
+	// 입력 m7, listid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement16", method=RequestMethod.POST)
+	public boolean upBookCostStatement16(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement16(params);
+	}
+	// 입력 ccode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement17", method=RequestMethod.POST)
+	public boolean upBookCostStatement17(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement17(params);
+	}
+	// 입력 m8, listid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement18", method=RequestMethod.POST)
+	public boolean upBookCostStatement18(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement18(params);
+	}
+	// 입력 ccode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement19", method=RequestMethod.POST)
+	public boolean upBookCostStatement19(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement19(params);
+	}
+	// 입력 m9, listid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement21", method=RequestMethod.POST)
+	public boolean upBookCostStatement21(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement21(params);
+	}
+	// 입력 ccode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement22", method=RequestMethod.POST)
+	public boolean upBookCostStatement22(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement22(params);
+	}
+	// 입력 m10, listid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement23", method=RequestMethod.POST)
+	public boolean upBookCostStatement23(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement23(params);
+	}
+	// 입력 ccode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement24", method=RequestMethod.POST)
+	public boolean upBookCostStatement24(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement24(params);
+	}
+	// 입력 m11, listid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement25", method=RequestMethod.POST)
+	public boolean upBookCostStatement25(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement25(params);
+	}
+	// 입력 bcode, bprice
+	@RequestMapping(value="/monthclosing/update_bookcost_statement26", method=RequestMethod.POST)
+	public boolean upBookCostStatement26(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement26(params);
+	}
+	// 입력 bcode, bprice
+	@RequestMapping(value="/monthclosing/update_bookcost_statement27", method=RequestMethod.POST)
+	public boolean upBookCostStatement27(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement27(params);
+	}
+	// 입력 bcode, crnum
+	@RequestMapping(value="/monthclosing/update_bookcost_statement28", method=RequestMethod.POST)
+	public boolean upBookCostStatement28(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement28(params);
+	}
+	// 입력 bcode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement29", method=RequestMethod.POST)
+	public boolean upBookCostStatement29(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement29(params);
+	}
+	// 입력 bcode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement30", method=RequestMethod.POST)
+	public boolean upBookCostStatement30(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement30(params);
+	}
+	// 입력 bcode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement31", method=RequestMethod.POST)
+	public boolean upBookCostStatement31(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement31(params);
+	}
+	// 입력 bcode, uid
+	@RequestMapping(value="/monthclosing/update_bookcost_statement32", method=RequestMethod.POST)
+	public boolean upBookCostStatement32(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upBookCostStatement32(params);
+	}
+	// 입력 ccode9, bcode9, cdate9, cnum9, cprice9, bitag, crnum9
+	@RequestMapping(value="/monthclosing/insert_bookcost_statement1", method=RequestMethod.POST)
+	public boolean inBookCostStatement1(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.inBookCostStatement1(params);
+	}
+	// 입력 bcode, dbname2, dbname3
+	@RequestMapping(value="/monthclosing/insert_bookcost_statement2", method=RequestMethod.POST)
+	public boolean inBookCostStatement2(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.inBookCostStatement2(params);
 	}
 	
 	// TODO 잡물 원가계산서
@@ -292,13 +672,13 @@ public class MonthClosingController {
 		return monthClosingSVC.selJMCostStatement16(params);
 	}
 	// 입력 : uid
-	@RequestMapping(value = "/monthclosing/insert_jmcost_statement17", method = RequestMethod.POST)
-	public List<MonthClosingVO> inJMCostStatement17(@RequestBody MonthClosingVO params) throws Exception {
+	@RequestMapping(value="/monthclosing/insert_jmcost_statement17", method=RequestMethod.POST)
+	public boolean inJMCostStatement17(@RequestBody MonthClosingVO params) throws Exception {
 		return monthClosingSVC.inJMCostStatement17(params);
 	}
 	// 입력 : total_cost, total_danga, uid
-	@RequestMapping(value = "/monthclosing/update_jmcost_statement18", method = RequestMethod.POST)
-	public List<MonthClosingVO> upJMCostStatement18(@RequestBody MonthClosingVO params) throws Exception {
+	@RequestMapping(value="/monthclosing/update_jmcost_statement18", method=RequestMethod.POST)
+	public boolean upJMCostStatement18(@RequestBody MonthClosingVO params) throws Exception {
 		return monthClosingSVC.upJMCostStatement18(params);
 	}
 	
@@ -469,16 +849,453 @@ public class MonthClosingController {
 	public List<MonthClosingVO> selPumPer5(@RequestBody MonthClosingVO params) throws Exception {
 		return monthClosingSVC.selPumPer5(params);
 	}
+	// 입력 : yjcode, msdate
+	@RequestMapping(value = "/monthclosing/select_pum_per6", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPumPer6(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPumPer6(params);
+	}
+	// 입력 : yjcode, date1,date2
+	@RequestMapping(value = "/monthclosing/select_pum_per7", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPumPer7(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPumPer7(params);
+	}
+	// 입력 : wccode
+	@RequestMapping(value = "/monthclosing/select_pum_per8", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPumPer8(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPumPer8(params);
+	}
 	// 입력 : yjcode, bdate, qnty1, amnt1, qnty2, amnt2, qnty3, amnt3, qnty4, amnt4
 	@RequestMapping(value="/monthclosing/insert_pum_per1", method=RequestMethod.POST)
 	public boolean inPumPer1(@RequestBody MonthClosingVO params) throws Exception {
 		return monthClosingSVC.inPumPer1(params);
 	}
 	// 입력 : yjcode, tmon1, tmon2
-		@RequestMapping(value="/monthclosing/delete_pum_per1", method=RequestMethod.POST)
+	@RequestMapping(value="/monthclosing/delete_pum_per1", method=RequestMethod.POST)
 		public boolean delPumPer1(@RequestBody MonthClosingVO params) throws Exception {
-			return monthClosingSVC.delPumPer1(params);
-		}
+		return monthClosingSVC.delPumPer1(params);
+	}
+	
+	// TODO 제조비명세표
+	// 입력 : 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification1", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification1(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification1(params);
+	}
+	// 입력 : dbattr, dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification2", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification2(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification2(params);
+	}
+	// 입력 : dbattr, dbattr, dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification3", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification3(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification3(params);
+	}
+	// 입력 : dbattr, dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification4", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification4(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification4(params);
+	}
+	// 입력 : dbattr, dbattr, dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification5", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification5(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification5(params);
+	}
+	// 입력 : jmfield
+	@RequestMapping(value = "/monthclosing/select_MC_Specification6", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification6(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification6(params);
+	}
+	// 입력 : dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification7", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification7(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification7(params);
+	}
+	// 입력 : sbbook
+	@RequestMapping(value = "/monthclosing/select_MC_Specification8", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification8(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification8(params);
+	}
+	// 입력 : jenum
+	@RequestMapping(value = "/monthclosing/select_MC_Specification9", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification9(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification9(params);
+	}
+	// 입력 : fdname, dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification10", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification10(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification10(params);
+	}
+	// 입력 : dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification11", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification11(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification11(params);
+	}
+	// 입력 : dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification12", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification12(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification12(params);
+	}
+	// 입력 : dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification13", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification13(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification13(params);
+	}
+	// 입력 : 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification14", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification14(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification14(params);
+	}
+	// 입력 : custcode, bdate 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification15", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification15(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification15(params);
+	}
+	// 입력 : dbname, bdate 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification16", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification16(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification16(params);
+	}
+	// 입력 : jenum 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification17", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification17(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification17(params);
+	}
+	// 입력 : dbattr, dbattr, dbname ,bdate 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification18", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification18(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification18(params);
+	}
+	// 입력 : dbname, bdate 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification19", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification19(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification19(params);
+	}
+	// 입력 : date1, date2 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification20", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification20(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification20(params);
+	}
+	// 입력 : jenum 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification21", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification21(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification21(params);
+	}
+	// 입력 : dbname 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification22", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification22(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification22(params);
+	}
+	// 입력 : uid 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification23", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification23(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification23(params);
+	}
+	// 입력 : uid 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification24", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification24(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification24(params);
+	}
+	// 입력 : uid 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification25", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification25(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification25(params);
+	}
+	// 입력 : wccode 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification26", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification26(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification26(params);
+	}
+	// 입력 : uid 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification27", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification27(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification27(params);
+	}
+	// 입력 : uid 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification28", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification28(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification28(params);
+	}
+	// 입력 : crnum7 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification29", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification29(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification29(params);
+	}
+	// 입력 : wccode 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification30", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification30(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification30(params);
+	}
+	// 입력 : dbname, new_uid 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification31", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification31(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification31(params);
+	}
+	// 입력 : dbattr, dbname, uid 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification32", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification32(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification32(params);
+	}
+	// 입력 : crnum8 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification33", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification33(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification33(params);
+	}
+	// 입력 : wccode 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification34", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification34(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification34(params);
+	}
+	// 입력 : crnum9 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification35", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification35(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification35(params);
+	}
+	// 입력 : wccode 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification36", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification36(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification36(params);
+	}
+	// 입력 : crnum9 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification37", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification37(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification37(params);
+	}
+	// 입력 : wccode 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification38", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification38(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification38(params);
+	}
+	// 입력 : crnum9 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification39", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification39(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification39(params);
+	}
+	// 입력 : crnum9 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification40", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification40(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification40(params);
+	}
+	// 입력 : crnum9 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification41", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification41(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification41(params);
+	}
+	// 입력 : jenum 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification42", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification42(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification42(params);
+	}
+	// 입력 : bdate 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification43", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification43(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification43(params);
+	}
+	// 입력 : wccode 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification44", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification44(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification44(params);
+	}
+	// 입력 : date1, date2 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification45", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification45(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification45(params);
+	}
+	// 입력 : jenum 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification46", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification46(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification46(params);
+	}
+	// 입력 : uid 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification47", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification47(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification47(params);
+	}
+	// 입력 : listid 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification48", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification48(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification48(params);
+	}
+	// 입력 : crnum7 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification49", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification49(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification49(params);
+	}
+	// 입력 : uid
+	@RequestMapping(value = "/monthclosing/select_MC_Specification50", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification50(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification50(params);
+	}
+	// 입력 : crnum8
+	@RequestMapping(value = "/monthclosing/select_MC_Specification51", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification51(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification51(params);
+	}
+	// 입력 : crnum9
+	@RequestMapping(value = "/monthclosing/select_MC_Specification52", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification52(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification52(params);
+	}
+	// 입력 : crnum9
+	@RequestMapping(value = "/monthclosing/select_MC_Specification53", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification53(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification53(params);
+	}
+	// 입력 : crnum9
+	@RequestMapping(value = "/monthclosing/select_MC_Specification54", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification54(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification54(params);
+	}
+	// 입력 : crnum9
+	@RequestMapping(value = "/monthclosing/select_MC_Specification55", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification55(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification55(params);
+	}
+	// 입력 : 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification56", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification56(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification56(params);
+	}
+	// 입력 : dbattr, dbattr, dbname, bdate 
+	@RequestMapping(value = "/monthclosing/select_MC_Specification57", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification57(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification57(params);
+	}
+	// 입력 : dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification58", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification58(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification58(params);
+	}
+	// 입력 : jmfield
+	@RequestMapping(value = "/monthclosing/select_MC_Specification59", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification59(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification59(params);
+	}
+	// 입력 : dbname, dbattr, uid, ccode
+	@RequestMapping(value = "/monthclosing/select_MC_Specification60", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification60(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification60(params);
+	}
+	// 입력 : bdate, custcode
+	@RequestMapping(value = "/monthclosing/select_MC_Specification61", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification61(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification61(params);
+	}
+	// 입력 : dbname, jejonum
+	@RequestMapping(value = "/monthclosing/select_MC_Specification62", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification62(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification62(params);
+	}
+	// 입력 : dbname, dbattr, uid
+	@RequestMapping(value = "/monthclosing/select_MC_Specification63", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification63(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification63(params);
+	}
+	// 입력 : dbname, dbattr, uid, bitag
+	@RequestMapping(value = "/monthclosing/select_MC_Specification64", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification64(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification64(params);
+	}
+	// 입력 : dbname, jejonum
+	@RequestMapping(value = "/monthclosing/select_MC_Specification65", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification65(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification65(params);
+	}
+	// 입력 : dbattr, dbattr, dbname, bdate
+	@RequestMapping(value = "/monthclosing/select_MC_Specification66", method = RequestMethod.POST)
+	public List<MonthClosingVO> selMCSpecification66(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selMCSpecification66(params);
+	}
+	// 입력 : dbname, uid, jejonum, jejodate, jejosuns, bookname, bookcode, jejoamnt, jejodang, s1, s2, s21, s3, s4, s5
+	@RequestMapping(value="/monthclosing/insert_MC_Specification1", method=RequestMethod.POST)
+	public boolean inMCSpecification1(@RequestBody MonthClosingVO params) throws Exception {
+	return monthClosingSVC.inMCSpecification1(params);
+	}
+	// 입력 : dbname, uid, jejodate
+	@RequestMapping(value="/monthclosing/insert_MC_Specification2", method=RequestMethod.POST)
+	public boolean inMCSpecification2(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.inMCSpecification2(params);
+	}
+	// 입력 : uid, jejonum, jejodate, jejosuns, bookname, bookcode, jejoamnt, jejodang, s1, s2, s3, s4, s5
+	@RequestMapping(value="/monthclosing/insert_MC_Specification3", method=RequestMethod.POST)
+	public boolean inMCSpecification3(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.inMCSpecification3(params);
+	}
+	// 입력 : custcode, bdate, jana
+	@RequestMapping(value="/monthclosing/insert_MC_Specification4", method=RequestMethod.POST)
+	public boolean inMCSpecification4(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.inMCSpecification4(params);
+	}
+	// 입력 : dbnmae, t_yongji, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification1", method=RequestMethod.POST)
+	public boolean upMCSpecification1(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification1(params);
+	}
+	// 입력 : dbname, dbattr, sum1, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification2", method=RequestMethod.POST)
+	public boolean upMCSpecification2(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification2(params);
+	}
+	// 입력 : dbname, dbattr, name1, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification3", method=RequestMethod.POST)
+	public boolean upMCSpecification3(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification3(params);
+	}
+	// 입력 : dbname, dbattr, name1, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification4", method=RequestMethod.POST)
+	public boolean upMCSpecification4(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification4(params);
+	}
+	// 입력 : dbname, dbattr, name1, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification5", method=RequestMethod.POST)
+	public boolean upMCSpecification5(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification5(params);
+	}
+	// 입력 : dbname, dbattr, name1, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification6", method=RequestMethod.POST)
+	public boolean upMCSpecification6(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification6(params);
+	}
+	// 입력 : dbname, dbattr, name1, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification7", method=RequestMethod.POST)
+	public boolean upMCSpecification7(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification7(params);
+	}
+	// 입력 : dbname, dbattr, name1, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification8", method=RequestMethod.POST)
+	public boolean upMCSpecification8(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification8(params);
+	}
+	// 입력 : dbname, sum1, bolist, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification9", method=RequestMethod.POST)
+	public boolean upMCSpecification9(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification9(params);
+	}
+	// 입력 : dbname, dbattr, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification10", method=RequestMethod.POST)
+	public boolean upMCSpecification10(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification10(params);
+	}
+	// 입력 : jana, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification11", method=RequestMethod.POST)
+	public boolean upMCSpecification11(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification11(params);
+	}
+	// 입력 : dbname, bolist, uid
+	@RequestMapping(value="/monthclosing/update_MC_Specification12", method=RequestMethod.POST)
+	public boolean upMCSpecification12(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.upMCSpecification12(params);
+	}
+	// 입력 : dbname, jejodate
+	@RequestMapping(value="/monthclosing/delete_MC_Specification1", method=RequestMethod.POST)
+		public boolean delMCSpecification1(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.delMCSpecification1(params);
+	}
+	// 입력 : uid
+	@RequestMapping(value="/monthclosing/delete_MC_Specification2", method=RequestMethod.POST)
+	public boolean delMCSpecification2(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.delMCSpecification2(params);
+	}
 	
 	// TODO 저자료 지급 내역(상/하)
 	// 입력 : dbattr
@@ -536,9 +1353,58 @@ public class MonthClosingController {
 	public List<MonthClosingVO> selRoyaltyUD11(@RequestBody MonthClosingVO params) throws Exception {
 		return monthClosingSVC.selRoyaltyUD11(params);
 	}
-
 	
-
+	// TODO 거래처별 지불명세서
+	// 입력 : 
+	@RequestMapping(value = "/monthclosing/select_Payment_Account1", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPaymentAccount1(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPaymentAccount1(params);
+	}
+	// 입력 : ccode, date1, date2 
+	@RequestMapping(value = "/monthclosing/select_Payment_Account2", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPaymentAccount2(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPaymentAccount2(params);
+	}
+	// 입력 : jmfield, dbname, jejodate, dbattr
+	@RequestMapping(value = "/monthclosing/select_Payment_Account3", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPaymentAccount3(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPaymentAccount3(params);
+	}
+	// 입력 : bdate, custcode
+	@RequestMapping(value = "/monthclosing/select_Payment_Account4", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPaymentAccount4(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPaymentAccount4(params);
+	}
+	// 입력 : comid, date1, date2
+	@RequestMapping(value = "/monthclosing/select_Payment_Account5", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPaymentAccount5(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPaymentAccount5(params);
+	}
+	// 입력 : m1, date1, date2
+	@RequestMapping(value = "/monthclosing/select_Payment_Account6", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPaymentAccount6(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPaymentAccount6(params);
+	}
+	// 입력 : listid5
+	@RequestMapping(value = "/monthclosing/select_Payment_Account7", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPaymentAccount7(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPaymentAccount7(params);
+	}
+	// 입력 : listid
+	@RequestMapping(value = "/monthclosing/select_Payment_Account8", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPaymentAccount8(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPaymentAccount8(params);
+	}
+	// 입력 : m1, date1, date2
+	@RequestMapping(value = "/monthclosing/select_Payment_Account9", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPaymentAccount9(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPaymentAccount9(params);
+	}
+	// 입력 : dbname, dbattr
+	@RequestMapping(value = "/monthclosing/select_Payment_Account10", method = RequestMethod.POST)
+	public List<MonthClosingVO> selPaymentAccount10(@RequestBody MonthClosingVO params) throws Exception {
+		return monthClosingSVC.selPaymentAccount10(params);
+	}
 	
 	// TODO 월별 저자료 지출결의서
 	// 입력 : bdate

@@ -277,6 +277,502 @@
 			AND bucode = #{i}
 	</select>
 	
+	<update id="upBookCostStatement38" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST5 SET 
+			pannum5 = #{pannum5}, filmnum5 = 0, filmcost5 = 0, daeji5 = #{daeji5}, sobu5 = #{sobu5}, sum5 = #{sum5} 
+		WHERE uid = #{uid}
+	</update>
+
+	<select id="selBookCostStatement39" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE uid = #{uid}
+	</select>
+	
+	<update id="upBookCostStatement40" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST5 SET 
+			pannum5 = #{pannum5}, filmnum5 = #{filmnum5}, filmcost5 = #{filmcost5}, sobu5 = #{sobu5}, sum5 = #{sum5}, daeji5 = 0 
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selBookCostStatement41" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE uid = #{uid}
+	</select>
+	
+	<update id="upBookCostStatement42" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST3 SET 
+			rnum = #{rnum}, pdanga = #{pdanga}, pcost = #{pcost} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selBookCostStatement43" resultType="monthClosingVO">
+		SELECT cnum7 
+		FROM jejak.BITABLE7 
+		WHERE uid = #{uid}
+	</select>
+	
+	<update id="upBookCostStatement44" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE7 SET 
+			cpage7 = #{cpage7}, cprice17 = #{cprice17}, cprice27 = #{cprice27}, pdanga7 = #{pdanga7}, totcost7 = #{totcost7} 
+		WHERE uid = #{uid} 
+	</update>
+	
+	<select id="selBookCostStatement45" resultType="monthClosingVO">
+		SELECT A.listid, A.bdate, A.m2, B.bcode 
+		FROM jejak.TMPLIST2 AS A, 
+			jejak.TMPLIST AS B 
+		WHERE A.uid = #{uid} 
+			AND A.listid=B.uid
+	</select>
+	
+	<update id="upBookCostStatement46" parameterType="monthClosingVO">
+		INSERT INTO jejak.BITABLE8 (
+			ccode8, bcode8, cdate8, cnum8, cprice8, totcost8, crnum8
+		) VALUES (
+			#{ccode8}, #{bcode8}, #{cdate8}, #{cnum8}, #{cprice8}, #{totcost8}, #{crnum8}
+		) 
+	</update>
+	
+	<delete id="delBookCostStatement47" parameterType="monthClosingVO">
+		DELETE 
+		FROM jejak.BITABLE8 
+		WHERE uid=#{uid} 
+	</delete>
+	
+	<update id="upBookCostStatement48" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE8 SET 
+			cnum8 = #{cnum8}, cprice8 = #{cprice8}, totcost8 = #{totcost8} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<select id="selBookCostStatement49" resultType="monthClosingVO">
+		SELECT A.listid, A.bdate, A.m8, B.bcode, B.bnum 
+		FROM jejak.TMPLIST2 AS A, 
+			jejak.TMPLIST AS B 
+		WHERE A.uid = #{uid} 
+			AND A.listid = B.uid
+	</select>
+	
+	<insert id="inBookCostStatement50" parameterType="monthClosingVO">
+		INSERT INTO jejak.BITABLE9 (
+			ccode9, bcode9, cdate9, cnum9, cprice9, bitag, crnum9
+		) VALUES (
+			#{ccode9}, #{bcode9}, #{cdate9}, #{cnum9}, #{cprice9}, 1, #{crnum9}
+		)
+	</insert>
+	
+	<update id="upBookCostStatement51" parameterType="monthClosingVO">
+		UPDATE jejak.TWONGA SET 
+			w1 = #{w1}, w2 = #{w2}, w3 = #{w3}, w4 = #{w4}, w5 = #{w5}, w6 = #{w6}, w7 = #{w7}, w8 = #{w8}, w9 = #{w9}, w11 = #{w11} 
+		WHERE jenum=#{uid} 
+			AND jabtag=0
+	</update>
+	
+	<select id="selBookCostStatement52" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BITABLE9 
+		WHERE crnum9 = #{uid} 
+			AND bitag = 2
+	</select>
+	<select id="selBookCostStatement53" resultType="monthClosingVO">
+		SELECT listid, m7, bdate 
+		FROM jejak.TMPLIST2 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selBookCostStatement54" resultType="monthClosingVO">
+		SELECT bcode, bnum 
+		FROM jejak.TMPLIST 
+		WHERE uid = #{listid}
+	</select>
+	
+	<select id="selBookCostStatement55" resultType="monthClosingVO">
+		SELECT m5 
+		FROM jejak.TMPLIST2 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selBookCostStatement56" resultType="monthClosingVO">
+		SELECT m6 
+		FROM jejak.TMPLIST2 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selBookCostStatement57" resultType="monthClosingVO">
+		SELECT m11 
+		FROM jejak.TMPLIST2 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selBookCostStatement58" resultType="monthClosingVO">
+		SELECT a.uid, a.crnum, a.bdate, a.m1, a.m2, a.m3, b.bnum, b.bname, b.bcode, b.bmyun, b.btype, c.sbpanh, c.sbjanh, c.sbsbjh1, c.sbsbjh2, 
+			c.sbsbjh3, c.sbsbjh4, c.sbsbph1, c.sbsbph2, c.sbsbph3, c.sbsbph4, c.sbsbpg1, c.sbsbpg2, c.sbsbpg3, c.sbsbpg4, c.sbuprc, d.wcname 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c, jejak.KSWCUST0 AS d 
+		WHERE a.uid = #{uid} 
+			AND a.listid = b.uid 
+			AND b.bcode = c.sbbook 
+			AND a.m1 = d.wccode
+	</select>
+	
+	<select id="selBookCostStatement59" resultType="monthClosingVO">
+		SELECT A.listid, B.bname 
+		FROM jejak.TMPLIST2 AS A, jejak.TMPLIST AS B 
+		WHERE A.uid = #{uid} 
+		AND A.listid = B.uid
+	</select>
+	
+	<select id="selBookCostStatement60" resultType="monthClosingVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob LIKE '인쇄' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selBookCostStatement61" resultType="monthClosingVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob LIKE '코팅' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selBookCostStatement62" resultType="monthClosingVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob LIKE '제본' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selBookCostStatement63" resultType="monthClosingVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob	LIKE '스티커' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selBookCostStatement64" resultType="monthClosingVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob LIKE 'CD' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selBookCostStatement65" resultType="monthClosingVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob LIKE '케이스' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selBookCostStatement66" resultType="monthClosingVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob LIKE '비닐' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selBookCostStatement67" resultType="monthClosingVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob LIKE '기타' 
+			or wcjob LIKE '목형' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selBookCostStatement68" resultType="monthClosingVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob LIKE '목형' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selBookCostStatement69" resultType="monthClosingVO">
+		SELECT wccode, wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob LIKE '증지' 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selBookCostStatement70" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPLIST2 
+		WHERE uid=#{uid}
+	</select>
+	
+	<select id="selBookCostStatement71" resultType="monthClosingVO">
+		SELECT listid 
+		FROM jejak.TMPLIST2 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selBookCostStatement72" resultType="monthClosingVO">
+		SELECT listid 
+		FROM jejak.TMPLIST2 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selBookCostStatement73" resultType="monthClosingVO">
+		SELECT uid, bcode 
+		FROM jejak.TMPLIST 
+		WHERE uid = #{listid}
+	</select>
+	
+	<select id="selBookCostStatement74" resultType="monthClosingVO">
+		SELECT sbbook, sbuprc 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook LIKE #{sbbook} 
+		ORDER BY sbbook DESC 
+		LIMIT 1
+	</select>
+	
+	<select id="selBookCostStatement75" resultType="monthClosingVO">
+		SELECT A.*, B.bcode, B.bnum 
+		FROM jejak.TMPLIST2 AS A, jejak.TMPLIST AS B 
+		WHERE A.uid = #{uid} 
+			AND A.listid = B.uid
+	</select>
+	
+	<select id="selBookCostStatement76" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.PRINTNUM 
+		WHERE bcode LIKE #{bcode} 
+		ORDER BY pnum DESC 
+		LIMIT 1
+	</select>
+	
+	<select id="selBookCostStatement77" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook LIKE #{sbbook}
+	</select>
+	
+	<select id="selBookCostStatement78" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.JEOJA 
+		WHERE name1 LIKE #{name1}
+	</select>
+	
+	<select id="selBookCostStatement79" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.JEOJA 
+		WHERE name1 LIKE #{name1}
+	</select>
+		
+	<insert id="inBookCostStatement1" parameterType="monthClosingVO">
+		INSERT INTO jejak.BITABLE9 (
+			ccode9, bcode9, cdate9, cnum9, cprice9, bitag, crnum9
+		) VALUES (
+			#{ccode9}, #{bcode9}, #{cdate9}, #{cnum9}, #{cprice9}, #{bitag}, #{crnum9}
+		)
+	</insert>
+		
+	<insert id="inBookCostStatement2" parameterType="monthClosingVO">
+		INSERT INTO jejak.PRINTNUM (
+			bcode, pnum, jnum
+		) VALUES (
+			#{bcode}, #{dbname2}, #{dbname3}
+		)
+	</insert>	
+		
+	<update id="upBookCostStatement1" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 
+		SET cprice9 = #{w6}
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upBookCostStatement2" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			cprice9 = #{cprice9}
+		WHERE crnum9 = #{crnum9} 
+			AND ccode9 LIKE #{ccode9} 
+			AND bitag = 4
+	</update>
+	
+	<update id="upBookCostStatement3" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			cprice9 = #{cprice9}
+		WHERE crnum9 = #{crnum9}
+			AND ccode9 LIKE #{ccode9} 
+			AND bitag = 3
+	</update>
+	
+	<update id="upBookCostStatement4" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			cprice9 = #{cprice9} 
+		WHERE crnum9 = #{crnum9}
+			AND ccode9 LIKE #{ccode9} 
+			AND bitag = 4
+	</update>
+	
+	<update id="upBookCostStatement5" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST2 SET 
+			m1 = #{m1}
+		WHERE listid = #{listid}
+	</update>
+	
+	<update id="upBookCostStatement6" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE8 SET 
+			ccode8 = #{ccode8} 
+		WHERE crnum8 = #{crnum8}
+	</update>
+	
+	<update id="upBookCostStatement7" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST2 SET 
+			m2=#{m2} 
+		WHERE listid = #{listid}		
+	</update>
+					
+	<update id="upBookCostStatement8" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE7 SET 
+			ccode7 = #{ccode} 
+		WHERE crnum7 = #{crnum}
+	</update>
+					
+	<update id="upBookCostStatement9" parameterType="monthClosingVO">
+		UPDATE jejak.IBTABLE SET 
+			m3 = #{m3}, ccode = #{ccode} 
+		WHERE juid = #{juid}
+	</update>
+					
+	<update id="upBookCostStatement10" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST2 SET
+			m3 = #{m3}
+		WHERE listid = #{listid}
+	</update>
+					
+	<update id="upBookCostStatement11" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			ccode9 = #{ccode} 
+		WHERE crnum9 = #{uid} 
+			AND bitag = 4
+	</update>
+					
+	<update id="upBookCostStatement12" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST2 SET 
+			m5 = #{m5} 
+		WHERE listid = #{listid}
+	</update>
+					
+	<update id="upBookCostStatement13" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			ccode9 = #{ccode} 
+		WHERE crnum9 = #{uid} 
+			AND bitag = 3
+	</update>
+					
+	<update id="upBookCostStatement14" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST2 SET 
+			m6 = #{m6} 
+		WHERE listid = #{listid}
+	</update>
+					
+	<update id="upBookCostStatement15" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			ccode9 = #{ccode} 
+		WHERE crnum9 = #{uid} 
+			AND bitag = 2
+	</update>				
+	
+	<update id="upBookCostStatement16" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST2 SET 
+			m7 = #{m7} 
+		WHERE listid = #{listid}
+	</update>
+					
+	<update id="upBookCostStatement17" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			ccode9 = #{ccode} 
+		WHERE crnum9 = #{uid} 
+			AND bitag = 1
+	</update>
+					
+	<update id="upBookCostStatement18" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST2 SET 
+			m8 = #{m8} 
+		WHERE listid = #{listid}
+	</update>
+					
+	<update id="upBookCostStatement19" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			ccode9 = #{ccode} 
+		WHERE crnum9 = #{uid} 
+			AND bitag = 5
+	</update>
+	
+	<update id="upBookCostStatement21" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST2 SET 
+			m9=#{m9} 
+		WHERE listid = #{listid}
+	</update>				
+					
+	<update id="upBookCostStatement22" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE5 SET 
+			ccode5 = #{ccode} 
+		WHERE crnum5 = #{uid}
+	</update>
+					
+	<update id="upBookCostStatement23" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST2 
+			SET m10 = #{m10} 
+		WHERE listid = #{listid}
+	</update>
+					
+	<update id="upBookCostStatement24" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			ccode9 = #{ccode} 
+		WHERE crnum9 = #{uid} 
+			AND bitag = 4
+	</update>
+					
+	<update id="upBookCostStatement25" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST2 SET 
+			m11 = #{m11} 
+		WHERE listid = #{listid}
+	</update>
+					
+	<update id="upBookCostStatement26" parameterType="monthClosingVO">
+		UPDATE jejak.TMPLIST SET 
+			bcode = #{bcode}, bprice = #{bprice} 
+		WHERE uid = #{uid}
+	</update>
+					
+	<update id="upBookCostStatement27" parameterType="monthClosingVO">
+		UPDATE jejak.IBTABLE SET 
+			bookcode = #{bookcode} 
+		WHERE juid = #{juid}
+	</update>
+					
+	<update id="upBookCostStatement28" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE5 SET 
+			bcode5 = #{bcode} 
+		WHERE crnum5 = #{uid}
+	</update>
+					
+	<update id="upBookCostStatement29" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE7 SET 
+			bcode7 = #{bcode}
+		WHERE crnum7 = #{uid}
+	</update>
+					
+	<update id="upBookCostStatement30" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE8 SET 
+			bcode8 = #{bcode} 
+		WHERE crnum8 = #{uid}
+	</update>				
+	
+	<update id="upBookCostStatement31" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			bcode9 = #{bcode}
+		WHERE crnum9 = #{uid}
+	</update>				
+	
+	<update id="upBookCostStatement32" parameterType="monthClosingVO">
+		UPDATE jejak.BITABLE9 SET 
+			bcode9 = #{bcode}
+		WHERE crnum9 = #{uid}
+	</update>				
+	
 	<!-- 잡물 원가계산서 -->
 	<select id="selJMCostStatement1" resultType="monthClosingVO">
 		SELECT count(uid) AS count 
@@ -402,7 +898,7 @@
 		)
 	</insert>
 	
-	<update id="updateJMCostStatement18" parameterType="monthClosingVO">
+	<update id="upJMCostStatement18" parameterType="monthClosingVO">
 		UPDATE jejak.TWONGA SET 
 			wtotal = #{total_cost}, wdanga = #{total_danga} 
 		WHERE jenum = #{uid} 
@@ -539,7 +1035,7 @@
 	</update>
 	
 	<update id="upPumMon2" parameterType="monthClosingVO">
-		UPDATE YONGJIMS SET 
+		UPDATE jejak.YONGJIMS SET 
 			qnty1 = #{qnty1}, amnt1 = #{amnt1} 
 		WHERE yjcode = #{yjcode} 
 			AND msdate = #{bdate}
@@ -641,6 +1137,30 @@
 			AND msdate <![CDATA[<=]]> #{tmon2}
 	</select>
 	
+	<select id="selPumPer6" resultType="monthClosingVO">
+		SELECT sum(qnty2) AS qnty2, sum(amnt2) AS amnt2, sum(qnty3) AS qnty3 , sum(amnt3) AS amnt3
+		FROM jejak.YONGJIMS 
+		WHERE yjcode LIKE #{yjcode}
+			AND msdate <![CDATA[>=]]> #{tmon1}
+			AND msdate <![CDATA[<=]]> #{tmon2}
+	</select>
+
+	<select id="selPumPer7" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.JIINOUT 
+		WHERE jicode like #{yjcode} 
+			and date <![CDATA[ >= ]]>  #{date1} 
+			AND date <![CDATA[ <= ]]> #{date2}
+			AND comment LIKE '入' 
+		ORDER BY cdate ASC
+	</select>
+	
+	<select id="selPumPer8" resultType="monthClosingVO">
+		SELECT wcname 
+		FROM jejak.KSWCUST0 
+		WHERE wccode like #{wccode}
+	</select>
+	
 	<insert id="inPumPer1" parameterType="monthClosingVO">
 		INSERT INTO jejak.YONGJIMS2 (
 			yjcode, msdate, qnty1, amnt1, qnty2, amnt2, qnty3, amnt3, qnty4, amnt4
@@ -654,6 +1174,651 @@
 		FROM jejak.YONGJIMS2 
 		WHERE msdate LIKE #{bdate}
 	</delete>
+	
+	<!-- 제조비명세표 -->
+	<select id="selMCSpecification1" resultType="monthClosingVO">
+		SELECT COUNT(uid) AS uid, substring(jmfield,1,2) AS jmfield 
+		FROM jejak.KSWCUST0 
+		WHERE jmfield NOT LIKE 'N' 
+		GROUP BY substring(jmfield,1,2)
+	</select>
+	
+	<select id="selMCSpecification2" resultType="monthClosingVO">
+		SELECT ${dbattr} 
+		FROM jejak.${dbname}
+		WHERE jejodate LIKE #{bdate}
+	</select>
+	
+	<select id="selMCSpecification3" resultType="monthClosingVO">
+		SELECT SUM(CASE WHEN jabtag=0 THEN ${dbattr} ELSE 0 END) AS sum1, 
+		 	SUM(CASE WHEN jabtag=1 THEN ${dbattr} ELSE 0 END) AS sum2 
+	 	FROM jejak.${dbname}
+	 	WHERE jejodate LIKE #{bdate}
+	</select>
+	
+	<select id="selMCSpecification4" resultType="monthClosingVO">
+		SELECT ${dbattr} 
+		FROM jejak.${dbname} 
+		WHERE jejodate LIKE #{bdate}
+	</select>
+	
+	<select id="selMCSpecification5" resultType="monthClosingVO">
+		SELECT ${dbattr} 
+		FROM jejak.${dbname} 
+		WHERE jejodate LIKE #{bdate}
+	</select>
+	
+	<select id="selMCSpecification6" resultType="monthClosingVO">
+		SELECT wcyakc 
+		FROM jejak.KSWCUST0
+		WHERE jmfield LIKE #{jmfield}
+	</select>
+	
+	<select id="selMCSpecification7" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.${dbname} 
+		WHERE jejodate LIKE #{bdate} 
+			AND jabtag = 0 
+		ORDER BY jejosuns ASC
+	</select>
+	
+	<select id="selMCSpecification8" resultType="monthClosingVO">
+		SELECT sbinse 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook LIKE #{sbbook}
+	</select>
+	
+	<select id="selMCSpecification9" resultType="monthClosingVO">
+		SELECT w9 
+		FROM jejak.TWONGA 
+		WHERE jenum = #{jenum}
+	</select>
+	
+	<select id="selMCSpecification10" resultType="monthClosingVO">
+		SELECT SUM(${dbattr}) AS ${dbattr}
+		FROM jejak.${dbname} 
+		WHERE JEJODATE LIKE #{bdate} 
+			AND JABTAG = 0
+	</select>
+	
+	<select id="selMCSpecification11" resultType="monthClosingVO">
+		SELECT SUM(s21) AS s21 
+		FROM jejak.${dbname} 
+		WHERE JEJODATE LIKE #{bdate} 
+			AND JABTAG = 0
+	</select>
+	
+	<select id="selMCSpecification12" resultType="monthClosingVO">
+		SELECT SUM(yj1) AS yj1
+		FROM jejak.${dbname} 
+		WHERE jejodate LIKE #{bdate} 
+			AND jabtag = 0
+	</select>
+	
+	<select id="selMCSpecification13" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.${dbname} 
+		WHERE jejodate LIKE #{bdate}
+			AND jabtag = 2
+	</select>
+	
+	<select id="selMCSpecification14" resultType="monthClosingVO">
+		SELECT wccode 
+		FROM jejak.KSWCUST0 
+		WHERE jmfield LIKE 'ET%'
+	</select>
+	
+	<select id="selMCSpecification15" resultType="monthClosingVO">
+		SELECT jana 
+		FROM jejak.CUSTJAN 
+		WHERE custcode LIKE #{custcode} 
+		AND mdate LIKE #{bdate}
+		AND deduct = 0
+	</select>
+	
+	<select id="selMCSpecification16" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.${dbname}
+		WHERE jejodate LIKE #{bdate} 
+			AND jabtag = 1 
+		ORDER BY jejosuns ASC
+	</select>
+	
+	<select id="selMCSpecification17" resultType="monthClosingVO">
+		SELECT w9 
+		FROM jejak.TWONGA 
+		WHERE jenum = #{jenum} 
+			AND jabtag = 1
+	</select>
+	
+	<select id="selMCSpecification18" resultType="monthClosingVO">
+		SELECT SUM(${dbattr}) AS ${dbattr} 
+		FROM jejak.${dbname} 
+		WHERE jejodate LIKE #{bdate} 
+			AND jabtag = 1
+	</select>
+	
+	<select id="selMCSpecification19" resultType="monthClosingVO">
+		SELECT SUM(YJ1) AS yj1 
+		FROM jejak.${dbname} 
+		WHERE jejodate LIKE #{bdate} 
+			AND jabtag = 1
+	</select>
+	
+	<select id="selMCSpecification20" resultType="monthClosingVO">
+		SELECT a.*, b.bname, b.bcode, b.bnum, c.sbsbph1, c.sbsbph2, c.sbsbph3, c.sbsbph4 
+		FROM jejak.TMPLIST2 AS a, jejak.TMPLIST AS b, jejak.KSCBOOK0 AS c 
+		WHERE a.bucode=0 
+			AND a.bdate <![CDATA[ >= ]]> #{date1} 
+			AND a.bdate <![CDATA[ <= ]]> #{date2} 
+			AND a.listid = b.uid 
+			AND b.bcode = c.sbbook 
+		ORDER BY a.uid ASC
+	</select>
+	
+	<select id="selMCSpecification21" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TWONGA 
+		WHERE jenum = #{jenum} 
+			AND jabtag = 0 
+		LIMIT 1
+	</select>
+	
+	<select id="selMCSpecification22" resultType="monthClosingVO">
+		SELECT MAX(uid) AS uid
+		FROM jejak.${dbname}
+	</select>
+	
+	<select id="selMCSpecification23" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPJAB3 
+		WHERE jbid = #{uid}
+	</select>
+	
+	<select id="selMCSpecification24" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE listid = #{uid}
+	</select>
+	
+	<select id="selMCSpecification25" resultType="monthClosingVO">
+		SELECT m1 
+		FROM jejak.TMPLIST2 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selMCSpecification26" resultType="monthClosingVO">
+		SELECT jmfield 
+		FROM jejak.KSWCUST0 
+		WHERE wccode LIKE #{wccode}
+	</select>
+	
+	<select id="selMCSpecification27" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE listid5 = #{uid}
+	</select>
+	
+	<select id="selMCSpecification28" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE listid5 = #{uid}
+	</select>
+	
+	<select id="selMCSpecification29" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BITABLE7 
+		WHERE crnum7 = #{crnum7}
+	</select>
+	
+	<select id="selMCSpecification30" resultType="monthClosingVO">
+		SELECT jmfield 
+		FROM jejak.KSWCUST0 
+		WHERE wccode LIKE #{wccode}
+	</select>
+	
+	<select id="selMCSpecification31" resultType="monthClosingVO">
+		SELECT bolist 
+		FROM jejak.${dbname} 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selMCSpecification32" resultType="monthClosingVO">
+		SELECT ${jbname} 
+		FROM jejak.${dbname} 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selMCSpecification33" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BITABLE8 
+		WHERE crnum8 = #{crnum8} 
+			AND ccode8 NOT LIKE 'N'
+	</select>
+	
+	<select id="selMCSpecification34" resultType="monthClosingVO">
+		SELECT jmfield 
+		FROM jejak.KSWCUST0 
+		WHERE wccode LIKE #{wccode}
+	</select>
+	
+	<select id="selMCSpecification35" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BITABLE9 
+		WHERE crnum9 = #{crnum9} 
+			AND bitag = 1
+	</select>
+	
+	<select id="selMCSpecification36" resultType="monthClosingVO">
+		SELECT jmfield 
+		FROM jejak.KSWCUST0 
+		WHERE wccode LIKE #{wccode9}
+	</select>
+	
+	<select id="selMCSpecification37" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BITABLE9 
+		WHERE crnum9 = #{crnum9} 
+			AND bitag = 2
+	</select>
+	
+	<select id="selMCSpecification38" resultType="monthClosingVO">
+		SELECT jmfield 
+		FROM jejak.KSWCUST0 
+		WHERE wccode LIKE #{wccode}
+	</select>
+	
+	<select id="selMCSpecification39" resultType="monthClosingVO">
+		SELECT jmfield 
+		FROM jejak.KSWCUST0 
+		WHERE wccode LIKE #{wccode}
+	</select>
+	
+	<select id="selMCSpecification40" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BITABLE9 
+		WHERE crnum9 = #{crnum9} 
+			AND bitag = 3 
+			AND cprice9 != 0
+	</select>
+	
+	<select id="selMCSpecification41" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BITABLE9 
+		WHERE crnum9 = #{crnum9} 
+			AND bitag = 5
+	</select>
+	
+	<select id="selMCSpecification42" resultType="monthClosingVO">
+		SELECT w9 
+		FROM jejak.TWONGA 
+		WHERE jenum = #{jenum}
+	</select>
+	
+	<select id="selMCSpecification43" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.CUSTJAN 
+		WHERE mdate LIKE #{bdate} 
+			AND jana <![CDATA[ > ]]> 0 
+			AND deduct = 0
+	</select>
+	
+	<select id="selMCSpecification44" resultType="monthClosingVO">
+		SELECT jmfield 
+		FROM jejak.KSWCUST0 
+		WHERE wccode LIKE #{wccode}
+	</select>
+	
+	<select id="selMCSpecification45" resultType="monthClosingVO">
+		SELECT a.*, c.sbsbph1, c.sbsbph2, c.sbsbph3, c.sbsbph4 
+		FROM jejak.TMPJAB AS a, jejak.KSCBOOK0 AS c 
+		WHERE a.jbdate <![CDATA[ >= ]]> #{date1} 
+			AND a.jbdate <![CDATA[ <= ]]> #{date2} 
+			AND a.jbcode LIKE c.sbbook 
+		ORDER BY a.uid ASC
+	</select>
+	
+	<select id="selMCSpecification46" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TWONGA 
+		WHERE jenum = #{jenum} 
+			AND jabtag = 1 
+		LIMIT 1
+	</select>
+	
+	<select id="selMCSpecification47" resultType="monthClosingVO">
+		select m1 
+		FROM jejak.TMPJAB 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selMCSpecification48" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPJAB5 
+		WHERE LISTID = #{listid}
+	</select>
+	
+	<select id="selMCSpecification49" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BIJAB7 
+		WHERE crnum7 = #{crnum7} 
+			AND ccode7 NOT LIKE 'N'
+	</select>
+	
+	<select id="selMCSpecification50" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BIJAB8 
+		WHERE crnum8 = #{crnum8} 
+			AND ccode8 NOT LIKE 'N'
+	</select>
+	
+	<select id="selMCSpecification51" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BIJAB9 
+		WHERE crnum9 = #{crnum9} 
+			AND bitag = 1 
+			AND ccode9 NOT LIKE 'N'
+	</select>
+	
+	<select id="selMCSpecification52" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BIJAB9 
+		WHERE crnum9 = #{crnum9} 
+			AND bitag = 2 
+			AND ccode9 NOT LIKE 'N'
+	</select>
+	
+	<select id="selMCSpecification53" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BIJAB9 
+		WHERE crnum9 = #{crnum9}
+			AND bitag = 4 
+			AND cprice9 != 0 
+			AND ccode9 NOT LIKE 'N'
+	</select>
+	
+	<select id="selMCSpecification54" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BIJAB9 
+		WHERE crnum9 = #{crnum9} 
+			AND bitag = 3 
+			AND cprice9 != 0 
+			AND ccode9 NOT LIKE 'N'
+	</select>
+	
+	<select id="selMCSpecification55" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.BIJAB9 
+		WHERE crnum9 = #{crnum9} 
+			AND bitag = 5 
+			AND ccode9 NOT LIKE 'N'
+	</select>
+	
+	<select id="selMCSpecification56" resultType="monthClosingVO">
+		SELECT COUNT(uid), substring(jmfield,1,2) 
+		FROM jejak.KSWCUST0 
+		WHERE jmfield NOT LIKE 'N' 
+		GROUP BY substring(jmfield,1,2)
+	</select>
+	
+	<select id="selMCSpecification57" resultType="monthClosingVO">
+		SELECT SUM(${dbattr}) AS ${dbattr} 
+		FROM jejak.${dbname} 
+		WHERE jejodate LIKE #{bdate} 
+		AND jabtag = 1
+	</select>
+	
+	<select id="selMCSpecification58" resultType="monthClosingVO">
+		SELECT COUNT(uid) AS uid 
+		FROM jejak.${dbname} 
+		WHERE jejodate LIKE #{bdate}
+	</select>
+	
+	<select id="selMCSpecification59" resultType="monthClosingVO">
+		SELECT wccode 
+		FROM jejak.KSWCUST0 
+		WHERE jmfield LIKE #{jmfield}
+	</select>
+	
+	<select id="selMCSpecification60" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.${dbname} 
+		WHERE ${dbattr} = #{uid} 
+			AND ccode7 LIKE #{ccode}
+	</select>
+	
+	<select id="selMCSpecification61" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.CUSTJAN 
+		WHERE mdate = #{bdate} 
+			AND custcode = #{custcode}
+	</select>
+	
+	<select id="selMCSpecification62" resultType="monthClosingVO">
+		SELECT uid, bolist 
+		FROM jejak.${dbname} 
+		WHERE jejonum = #{uid} 
+			AND jabtag = 0
+	</select>
+	
+	<select id="selMCSpecification63" resultType="monthClosingVO">
+		SELECT * 
+		FROM ${dbname} 
+		WHERE ${dbattr} = #{uid} 
+	</select>
+	
+	<select id="selMCSpecification64" resultType="monthClosingVO">
+		SELECT * 
+		FROM ${dbname} 
+		WHERE ${dbattr} = #{uid} 
+			AND bitag = #{bitag}
+	</select>
+	
+	<select id="selMCSpecification65" resultType="monthClosingVO">
+		SELECT uid, bolist 
+		FROM jejak.${dbname}
+		WHERE jejonum = #{jejonum} 
+			AND jabtag = 1
+	</select>
+	
+	<select id="selMCSpecification66" resultType="monthClosingVO">
+		SELECT SUM(${dbname2}) AS #{dbname3} 
+		FROM ${dbname} 
+		WHERE jejodate LIKE #{bdate} 
+		AND jabtag=1
+	</select>
+		
+	<insert id="inMCSpecification1" parameterType="monthClosingVO">
+		INSERT INTO jejak.${dbname} (
+			uid, jejonum, jejodate, jejosuns, bookname, bookcode, jejoamnt, jejodang, s1, s2, s21, s3, s4, s5
+		) VALUES (
+			#{uid}, #{jejonum}, #{jejodate}, #{jejosuns}, #{bookname}, #{bookcode}, #{jejoamnt}, 
+			#{jejodang}, #{s1}, #{s2}, #{s21}, #{s3}, #{s4}, #{s5}
+		)
+	</insert>
+	
+	<insert id="inMCSpecification2" parameterType="monthClosingVO">
+		INSERT INTO jejak.${dbname} (
+			uid, jejodate, bookcode, jejosuns, jabtag
+		) VALUES (
+		#{uid}, #{jejodate}, 'ZZZZZZ', 999, 2
+		)
+	</insert>
+	
+	<insert id="inMCSpecification3" parameterType="monthClosingVO">
+		INSERT INTO jejak.${dbname} (
+			uid, jejonum, jejodate, jejosuns, bookname, bookcode, jejoamnt, jejodang, s1, s2, s3, s4, s5, jabtag
+		) VALUES (
+			#{uid}, #{jejonum}, #{jejodate}, #{jejosuns}, #{bookname}, #{bookcode}, #{jejoamnt}, #{jejodang}, #{s1}, #{s2}, #{s3}, #{s4}, #{s5}, 1
+		) 
+	</insert>
+	
+	<insert id="inMCSpecification4" parameterType="monthClosingVO">
+		INSERT jejak.CUSTJAN (
+			custcode, mdate, jana
+		) VALUES (
+			#{custcode}, #{bdate}, #{jana}
+		)
+	</insert>
+	
+	<update id="upMCSpecification1" parameterType="monthClosingVO">
+		UPDATE jejak.${dbname} SET 
+			yj1 = #{yj1} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upMCSpecification2" parameterType="monthClosingVO">
+		UPDATE jejak.${dbname} SET 
+			${dbattr} = #{sum1} 
+		WHERE uid = #{uid}
+	</update>
+	 
+	<update id="upMCSpecification3" parameterType="monthClosingVO">
+		UPDATE ${dbname} SET 
+			#{dbattr} = #{name1}, bolist = #{bolist} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upMCSpecification4" parameterType="monthClosingVO">
+		UPDATE jejak.${dbname} SET 
+			${dbattr} = #{name1} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upMCSpecification5" parameterType="monthClosingVO">
+		UPDATE jejak.${dbname} SET 
+			${dbattr} = #{sum1} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upMCSpecification6" parameterType="monthClosingVO">
+		UPDATE jejak.${dbname} SET 
+			${dbattr} = #{name1} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upMCSpecification7" parameterType="monthClosingVO">
+		UPDATE jejak.${dbname} SET 
+			${dbattr} = #{name1} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upMCSpecification8" parameterType="monthClosingVO">
+		UPDATE jejak.${dbname} SET 
+			${dbattr} = #{name1} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upMCSpecification9" parameterType="monthClosingVO">
+		UPDATE jejak.${dbname} SET 
+			sum1 = #{sum1}, bolist = #{bolist} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upMCSpecification10" parameterType="monthClosingVO">
+		UPDATE jejak.${dbname} SET 
+			boryu = #{dbattr} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upMCSpecification11" parameterType="monthClosingVO">
+		UPDATE jejak.CUSTJAN SET 
+			jana=#{jana} 
+		WHERE uid=#{uid}
+	</update>
+	
+	<update id="upMCSpecification12" parameterType="monthClosingVO">
+		UPDATE jejak.${dbname} SET 
+			bolist = #{bolist} 
+		WHERE uid = #{uid}
+	</update>
+		
+	<delete id="delMCSpecification1" parameterType="monthClosingVO">
+		DELETE FROM jejak.${dbname}
+		WHERE jejodate = #{jejodate}
+	</delete>
+	
+	<delete id="delMCSpecification2" parameterType="monthClosingVO">
+		DELETE 
+		FROM jejak.CUSTJAN 
+		WHERE uid = #{uid}
+	</delete>
+	
+	<!-- 거래처별 지불명세서 -->
+	<select id="selPaymentAccount1" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob LIKE #{dbattr} 
+		ORDER BY wccode ASC
+	</select>
+	
+	<select id="selPaymentAccount2" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.${dbname}
+		WHERE ccode = #{ccode} 
+			AND cdate <![CDATA[ > ]]> #{date1} 
+			AND cdate <![CDATA[ < ]]> #{date2} 
+		ORDER BY uid ASC
+	</select>
+	
+	<select id="selPaymentAccount3" resultType="monthClosingVO">
+		SELECT SUM(${jmfield}) AS jmfield 
+		FROM jejak.${dbname} 
+		WHERE jejodate = #{jejodate} 
+			AND jabtag = #{dbattr}
+	</select>
+	
+	<select id="selPaymentAccount4" resultType="monthClosingVO">
+		SELECT jana 
+		FROM jejak.CUSTJAN 
+		WHERE mdate = #{bdate} 
+		AND custcode = #{custcode} 
+		AND deduct = #{dbattr}
+	</select>
+	
+	<select id="selPaymentAccount5" resultType="monthClosingVO">
+		SELECT SUM(tprice) AS sum1
+		FROM jejak.JIINOUT 
+		WHERE comid = #{comid} 
+			AND date <![CDATA[ >= ]]> #{date1} 
+			AND date <![CDATA[ <= ]]> #{date2}
+	</select>
+	
+	<select id="selPaymentAccount6" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPLIST2 
+		WHERE m1 = #{m1} 
+			AND bdate <![CDATA[ > ]]> #{date1} 
+			AND bdate <![CDATA[ < ]]> #{date2} 
+		ORDER BY uid ASC
+	</select>
+	
+	<select id="selPaymentAccount7" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE listid5 = #{listid5}
+	</select>
+	
+	<select id="selPaymentAccount8" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE listid5 = #{listid5}
+	</select>
+	
+	<select id="selPaymentAccount9" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPJAB 
+		WHERE m1 = #{m1} 
+			AND jbdate <![CDATA[ > ]]> #{date1} 
+			AND jbdate <![CDATA[ < ]]> #{date2} 
+		ORDER BY uid ASC
+	</select>
+	
+	<select id="selPaymentAccount10" resultType="monthClosingVO">
+		SELECT * 
+		FROM jejak.TMPJAB5 
+		WHERE listid = #{dbattr}
+	</select>
 	
 	<!-- 저자료 지급 내역(상/하) -->
 	<select id="selRoyaltyUD1" resultType="monthClosingVO">
