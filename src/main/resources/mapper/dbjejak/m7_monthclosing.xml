@@ -1756,8 +1756,8 @@
 		SELECT * 
 		FROM jejak.${dbname}
 		WHERE ccode = #{ccode} 
-			AND cdate <![CDATA[ > ]]> #{date1} 
-			AND cdate <![CDATA[ < ]]> #{date2} 
+			AND cdate <![CDATA[ >= ]]> #{date1} 
+			AND cdate <![CDATA[ <= ]]> #{date2} 
 		ORDER BY uid ASC
 	</select>
 	

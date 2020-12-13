@@ -131,6 +131,7 @@ public class MonthClosingVO {
 	
 	private int cnum7;
 	private int cpage7;
+	private int cprice;
 	private float cprice17;
 	private float cprice27;
 	private float pdanga7;
