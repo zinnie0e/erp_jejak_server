@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.guru.erpserver.service.dbjejak.JpJejakService;
 import com.guru.erpserver.mapper.dbjejak.JpJejakMapper;
+import com.guru.erpserver.vo.dbjejak.CustomerVO;
 import com.guru.erpserver.vo.dbjejak.JpJejakVO;
 
 @Service
@@ -107,6 +108,90 @@ public class JpJejakServiceImpl implements JpJejakService{
 	@Override
 	public JpJejakVO selBjlistBalju4131(JpJejakVO params) throws Exception {		
 		return jpJejakDAO.selBjlistBalju4131(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak1(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak1(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak2(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak2(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak3(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak3(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak4(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak4(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak5(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak5(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak6(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak6(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak7(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak7(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak8(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak8(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak9(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak9(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak10(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak10(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak11(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak11(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak12(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak12(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak13(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak13(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak14(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak14(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak15(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak15(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak16(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak16(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak17(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak17(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak18(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak18(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak19(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak19(params);
+	}
+	@Override
+	public List<JpJejakVO> selBjYjJejak20(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selBjYjJejak20(params);
+	}
+	@Override
+	public boolean upBjYjJejak1(JpJejakVO params) throws Exception {
+		return jpJejakDAO.upBjYjJejak1(params) == 1 ? true : false;
 	}
 	
 	//TODO 제작계획표
@@ -312,6 +397,91 @@ public class JpJejakServiceImpl implements JpJejakService{
 	@Override
 	public List<JpJejakVO> selYejungRegi2(JpJejakVO params) throws Exception {
 		return jpJejakDAO.selYejungRegi2(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd1(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd1(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd2(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd2(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd3(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd3(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd4(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd4(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd5(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd5(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd6(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd6(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd7(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd7(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd8(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd8(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd9(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd9(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd10(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd10(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd11(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd11(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd12(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd12(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd13(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd13(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd14(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd14(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd15(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd15(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd16(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd16(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd17(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd17(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd18(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd18(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd19(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd19(params);
+	}
+	@Override
+	public List<JpJejakVO> selJejakYjListAdd20(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selJejakYjListAdd20(params);
+	}
+	@Override
+	public boolean inJejakYjListAdd1(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inJejakYjListAdd1(params);
+		return (quert_result == 1) ? true : false;
 	}
 	
 	//TODO 제품정가인상리스트

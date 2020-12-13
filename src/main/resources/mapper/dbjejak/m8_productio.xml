@@ -331,4 +331,93 @@
 		ORDER BY a.s1book ASC
 	</select>
 	
+	<!-- 구분별도서수부재고현황 -->
+	<select id="selBookPaymentStockStatusByCate1" resultType="productIOVO">
+		SELECT sbbook,sbname,sbuprc 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook <![CDATA[ >= ]]> '110000' 
+			AND sbbook <![CDATA[ <= ]]> '999999' 
+		ORDER BY sbbook ASC
+	</select>
+	
+	<select id="selBookPaymentStockStatusByCate2" resultType="productIOVO">
+		SELECT * 
+		FROM jejak.KSCIPDN0 
+		WHERE sgbook = #{sgbook} 
+			AND sgyyyy = #{sgyyyy} 
+	</select>
+	
+	<select id="selBookPaymentStockStatusByCate3" resultType="productIOVO">
+		SELECT tbasr 
+		FROM jejak.${dbname} 
+		WHERE tbmgubn = 0 
+			AND tbsbook = #{tbsbook}
+	</select>
+	
+	<select id="selBookPaymentStockStatusByCate4" resultType="productIOVO">
+		SELECT sum(tbasr) AS sum_tbasr, sum(tbcsr)AS sum_tbcsr, sum(tbdsr)AS sum_tbdsr, sum(tbesr)AS sum_tbesr, sum(tbfsr) AS sum_tbfsr
+		FROM jejak.${dbname}
+		WHERE tbsbook LIKE #{tbsbook} 
+			AND tbmgubn <![CDATA[ < ]]> #{tbmgubn} 
+			AND tbmgubn <![CDATA[ > ]]> 0
+	</select>
+	
+	<select id="selBookPaymentStockStatusByCate5" resultType="productIOVO">
+		SELECT tbasr, tbcsr, tbdsr, tbesr, tbfsr 
+		FROM jejak.${dbname}  
+		WHERE tbsbook LIKE #{tbsbook} 
+			AND tbmgubn = #{tbmgubn} 
+	</select>
+	
+	<select id="selBookPaymentStockStatusByCate6" resultType="productIOVO">
+		SELECT tbakm 
+		FROM jejak.${dbname} 
+		WHERE tbmgubn = 0 
+			AND tbkbook = #{tbkbook} 
+	</select>
+	
+	<select id="selBookPaymentStockStatusByCate7" resultType="productIOVO">
+		SELECT sum(tbakm) AS sum_tbakm, sum(tbckm) AS sum_tbckm, sum(tbdkm) AS sum_tbdkm, sum(tbekm) AS sum_tbekm, sum(tbfkm) AS sum_tbfkm 
+		FROM jejak.${dbname} 
+		WHERE tbkbook LIKE #{tbkbook}  
+			AND tbmgubn <![CDATA[ < ]]> #{tbmgubn} 
+			AND tbmgubn <![CDATA[ > ]]> 0
+	</select>
+	
+	<select id="selBookPaymentStockStatusByCate8" resultType="productIOVO">
+		SELECT tbakm, tbckm, tbdkm, tbekm, tbfkm 
+		FROM jejak.${dbname} 
+		WHERE tbkbook LIKE #{tbkbook}  
+			AND tbmgubn = #{tbmgubn}
+	</select>
+	
+	<update id="upBookPaymentStockStatusByCate1" parameterType="productIOVO">
+		UPDATE jejak.${dbname} SET 
+			tbckm = #{tbckm} 
+		WHERE tbkbook LIKE #{tbkbook} 
+			AND tbmgubn = #{tbmgubn} 
+	</update>
+	
+	<update id="upBookPaymentStockStatusByCate2" parameterType="productIOVO">
+		UPDATE jejak.${dbname} SET 
+			tbfkm = #{tbfkm} 
+		WHERE tbkbook LIKE #{tbkbook}
+			AND tbmgubn = #{tbmgubn}
+	</update>
+	
+	<select id="selBookPaymentStockStatusByCate9" resultType="productIOVO"> <!-- s1gubn : 1번 'F', 2번 'E' -->
+		SELECT * 
+		FROM jejak.${dbname} 
+		WHERE s1book LIKE #{s1book} 
+			AND s1gubn LIKE #{s1gubn} 
+		ORDER BY s1ilja ASC, s1bunh ASC 
+		LIMIT 1
+	</select>
+	
+	<update id="upBookPaymentStockStatusByCate3" parameterType="productIOVO">
+		UPDATE jejak.${dbname} SET 
+			s1amnt = #{s1book} 
+		WHERE uid = #{uid} 
+	</update>
+	
 </mapper>

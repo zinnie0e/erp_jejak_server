@@ -28,6 +28,7 @@ public class ProductIOVO {
 	private String sbname;
 	private String bname;
 	
+	private String sgyyyy;
 	private String s1cust;
 	private String s1book;
 	private String s1bunh;
@@ -64,7 +65,24 @@ public class ProductIOVO {
 	private String wcjuso;
 	private String wctae;
 	private String wcjong;
+	private String sgbook;
+	private String tbkbook;
 	
+	private long tbckm;
+	private long tbdkm;
+	private long tbekm;
+	private long tbfkm;
+	private long sum_tbakm;
+	private long sum_tbckm;
+	private long sum_tbdkm;
+	private long sum_tbekm;
+	private long sum_tbfkm;
+	private long tbakm;
+	private long sum_tbasr;
+	private long sum_tbcsr;
+	private long sum_tbdsr;
+	private long sum_tbesr;
+	private long sum_tbfsr;
 	private long s1qnty;
 	private long s1uprc;
 	private long s1amnt;
@@ -103,11 +121,23 @@ public class ProductIOVO {
 	private long s3kssh;
 	private long s3kikn;
 	
-	
 
 	private float s1dang;
 	private float wdanga;
 	private float idanga;
+	private float sgdn00;
+	private float sgdn01;
+	private float sgdn02;
+	private float sgdn03;
+	private float sgdn04;
+	private float sgdn05;
+	private float sgdn06;
+	private float sgdn07;
+	private float sgdn08;
+	private float sgdn09;
+	private float sgdn10;
+	private float sgdn11;
+	private float sgdn12;
 	
 	private int lm_s; 
 	private int lm_t;

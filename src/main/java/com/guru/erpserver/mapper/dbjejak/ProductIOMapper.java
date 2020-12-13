@@ -67,4 +67,17 @@ public interface ProductIOMapper {
 	// TODO 폐기리스트
 	public List<ProductIOVO> selDisposalList(ProductIOVO params);
 	
+	// TODO 구분별도서수불재고현황
+	public List<ProductIOVO> selBookPaymentStockStatusByCate1();
+	public List<ProductIOVO> selBookPaymentStockStatusByCate2(ProductIOVO params);
+	public List<ProductIOVO> selBookPaymentStockStatusByCate3(ProductIOVO params);
+	public List<ProductIOVO> selBookPaymentStockStatusByCate4(ProductIOVO params);
+	public List<ProductIOVO> selBookPaymentStockStatusByCate5(ProductIOVO params);
+	public List<ProductIOVO> selBookPaymentStockStatusByCate6(ProductIOVO params);
+	public List<ProductIOVO> selBookPaymentStockStatusByCate7(ProductIOVO params);
+	public List<ProductIOVO> selBookPaymentStockStatusByCate8(ProductIOVO params);
+	public List<ProductIOVO> selBookPaymentStockStatusByCate9(ProductIOVO params);
+	public int upBookPaymentStockStatusByCate1(ProductIOVO params);
+	public int upBookPaymentStockStatusByCate2(ProductIOVO params);
+	public int upBookPaymentStockStatusByCate3(ProductIOVO params);
 }

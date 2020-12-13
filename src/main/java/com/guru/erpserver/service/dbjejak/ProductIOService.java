@@ -65,4 +65,18 @@ public interface ProductIOService {
 	
 	// TODO 폐기리스트
 	List<ProductIOVO> selDisposalList(ProductIOVO params) throws Exception;
+	
+	// TODO 구분별도서수불재고현황
+	List<ProductIOVO> selBookPaymentStockStatusByCate1() throws Exception;
+	List<ProductIOVO> selBookPaymentStockStatusByCate2(ProductIOVO params) throws Exception;
+	List<ProductIOVO> selBookPaymentStockStatusByCate3(ProductIOVO params) throws Exception;
+	List<ProductIOVO> selBookPaymentStockStatusByCate4(ProductIOVO params) throws Exception;
+	List<ProductIOVO> selBookPaymentStockStatusByCate5(ProductIOVO params) throws Exception;
+	List<ProductIOVO> selBookPaymentStockStatusByCate6(ProductIOVO params) throws Exception;
+	List<ProductIOVO> selBookPaymentStockStatusByCate7(ProductIOVO params) throws Exception;
+	List<ProductIOVO> selBookPaymentStockStatusByCate8(ProductIOVO params) throws Exception;
+	List<ProductIOVO> selBookPaymentStockStatusByCate9(ProductIOVO params) throws Exception;
+	boolean upBookPaymentStockStatusByCate1(ProductIOVO params) throws Exception;
+	boolean upBookPaymentStockStatusByCate2(ProductIOVO params) throws Exception;
+	boolean upBookPaymentStockStatusByCate3(ProductIOVO params) throws Exception;
 }

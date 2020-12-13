@@ -118,6 +118,125 @@
 		ORDER BY WDDESU ASC
 	</select>
 	
+	<select id="selBjYjJejak1" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.TMPLIST 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selBjYjJejak2" resultType="jpJejakVO">
+		SELECT sbbook 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook LIKE #{sbbook}
+		ORDER BY sbbook DESC 
+		LIMIT 1
+	</select>
+	
+	<select id="selBjYjJejak3" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook = #{sbbook}
+	</select>
+	
+	<select id="selBjYjJejak4" resultType="jpJejakVO">
+		SELECT count(uid) as count_uid
+		FROM jejak.KSWYONJ0 
+		WHERE wybook = #{wybook}
+	</select>
+	
+	<select id="selBjYjJejak5" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.KSWYONJ0 
+		WHERE wybook = #{wybook}
+		ORDER BY wyboo9 ASC, wysuns ASC, wygubn ASC
+	</select>
+	
+	<select id="selBjYjJejak6" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.KSWJIJL0
+		WHERE wjcode = #{wjcode}
+	</select>
+	
+	<select id="selBjYjJejak7" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.YEO 
+		WHERE ty = 1 
+			AND bu <![CDATA[ <= ]]> #{bu}
+		ORDER BY bu DESC 
+		LIMIT 1
+	</select>
+	
+	<select id="selBjYjJejak8" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.YEO 
+		WHERE bu <![CDATA[ <= ]]> #{bu} 
+			AND ty = 0 
+			AND do = #{do_} 
+		ORDER BY bu DESC
+	</select>
+	
+	<select id="selBjYjJejak9" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.YEO 
+		WHERE bu <![CDATA[ <= ]]> #{bu}  
+			AND ty = 1 
+		ORDER BY bu DESC
+	</select>
+	
+	<select id="selBjYjJejak10" resultType="jpJejakVO">
+		SELECT count(uid) AS count_uid 
+		FROM jejak.KSWDESU0 
+		WHERE wdbook = #{wdbook} 
+			AND wdboo9 = #{wdboo9}
+	</select>
+	
+	<select id="selBjYjJejak11" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.KSWDESU0 
+		WHERE wdbook = #{wdbook}  
+			AND wdboo9 = #{wdboo9} 
+		ORDER BY wddesu ASC
+	</select>
+	
+	<select id="selBjYjJejak12" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.KSWCUST0 
+		WHERE wcjob = #{wcjob}
+	</select>
+	
+	<select id="selBjYjJejak13" resultType="jpJejakVO">
+		SELECT sbinji 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook LIKE #{sbbook}
+	</select>
+	
+	<select id="selBjYjJejak14" resultType="jpJejakVO">
+	</select>
+	
+	<select id="selBjYjJejak15" resultType="jpJejakVO">
+	</select>
+	
+	<select id="selBjYjJejak16" resultType="jpJejakVO">
+	</select>
+	
+	<select id="selBjYjJejak17" resultType="jpJejakVO">
+	</select>
+	
+	<select id="selBjYjJejak18" resultType="jpJejakVO">
+	</select>
+	
+	<select id="selBjYjJejak19" resultType="jpJejakVO">
+	</select>
+	
+	<select id="selBjYjJejak20" resultType="jpJejakVO">
+	</select>
+	
+	<update id="upBjYjJejak1" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST SET 
+			bnum = #{bnum}, btype = #{btype} 
+		WHERE uid = #{uid}
+	</update>
+	
 	<!-- 제작계획표 -->
 	<select id="selJpjejakplan0" resultType="jpJejakVO">
 		SELECT COUNT(*) as count
@@ -476,6 +595,133 @@
 		ORDER BY uid DESC
 		LIMIT #{lm_s}, #{lm_t}
 	</select>
+	
+	<select id="selJejakYjListAdd1" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.KSCBOOK0 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selJejakYjListAdd2" resultType="jpJejakVO">
+		SELECT max(wdcolo) AS max_wdcolo
+		FROM jejak.KSWDESU0 
+		WHERE wdbook = #{wdbook}
+	</select>
+	
+	<select id="selJejakYjListAdd3" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.YEJUNG2 
+		WHERE yjdate <![CDATA[ >= ]]> #{yjdate} 
+			AND yjbook LIKE #{yjbook} 
+		ORDER BY yjdate DESC
+	</select>
+	
+	<select id="selJejakYjListAdd4" resultType="jpJejakVO">
+		SELECT sqcrnm0 
+		FROM sky.KSCQNTY0 
+		WHERE sqbook = #{sqbook}
+	</select>
+	
+	<select id="selJejakYjListAdd5" resultType="jpJejakVO">
+		SELECT sqcrnm 
+		FROM ${database}.KSCQNTY0 
+		WHERE sqbook = #{sqbook}
+	</select>
+	
+	<select id="selJejakYjListAdd6" resultType="jpJejakVO">
+		SELECT xnum 
+		FROM ${database}.IBTABLE 
+		WHERE bookcode = #{bookcode}
+	</select>
+	
+	<select id="selJejakYjListAdd7" resultType="jpJejakVO">
+		SELECT tbcsr, tbdsr 
+		FROM sky.${dbname} 
+		WHERE tbsbook = #{tbsbook} 
+			AND tbmgubn <![CDATA[ >= ]]> #{tbmgubn} 
+		ORDER BY tbmgubn ASC
+	</select>
+	
+	<select id="selJejakYjListAdd8" resultType="jpJejakVO">
+		SELECT tbcsr, tbdsr 
+		FROM sky.${dbname}
+		WHERE tbsbook = #{tbsbook} 
+			AND tbmgubn <![CDATA[ > ]]> 0 
+			AND tbmgubn <![CDATA[ < ]]> #{tbmgubn} 
+		ORDER BY tbmgubn ASC
+	</select>
+	
+	<select id="selJejakYjListAdd9" resultType="jpJejakVO">
+		
+	</select>
+	
+	<select id="selJejakYjListAdd10" resultType="jpJejakVO">
+	
+	</select>
+	
+	<select id="selJejakYjListAdd11" resultType="jpJejakVO">
+	
+	</select>
+	
+	<select id="selJejakYjListAdd12" resultType="jpJejakVO">
+	
+	</select>
+	
+	<select id="selJejakYjListAdd13" resultType="jpJejakVO">
+	
+	</select>
+	
+	<select id="selJejakYjListAdd14" resultType="jpJejakVO">
+	
+	</select>
+	
+	<select id="selJejakYjListAdd15" resultType="jpJejakVO">
+	
+	</select>
+	
+	<select id="selJejakYjListAdd16" resultType="jpJejakVO">
+	
+	</select>
+	
+	<select id="selJejakYjListAdd17" resultType="jpJejakVO">
+		SELECT sum(s1qnty) AS psum 
+		FROM sky.${dbname}
+		WHERE s1ilja <![CDATA[ >= ]]> #{s1ilja} 
+			AND s1gubn = #{s1gubn} 
+			AND s1book = #{s1book} 
+	</select>
+	
+	<select id="selJejakYjListAdd18" resultType="jpJejakVO">
+		SELECT sum(s1qnty) AS psum 
+		FROM sky.${dbname} 
+		WHERE s1gubn = #{s1gubn} 
+			AND s1book = #{tbsbook}
+	</select>
+	
+	<select id="selJejakYjListAdd19" resultType="jpJejakVO">
+		SELECT sum(s1qnty) AS psum 
+		FROM sky.${dbname} 
+		WHERE s1ilja <![CDATA[ <= ]]> #{s1ilja} 
+			AND s1gubn = #{s1gubn} 
+			AND s1book = '#{s1book}
+	</select>
+	
+	<select id="selJejakYjListAdd20" resultType="jpJejakVO">
+		SELECT xnum 
+		FROM ${database}.IBTABLE 
+		WHERE bookcode = #{bookcode} 
+			AND fchk = 0
+	</select>
+	
+	<insert id="inJejakYjListAdd1" parameterType="jpJejakVO">
+		INSERT INTO jejak.TMPLIST (
+			signdate, bname, bcode, bpanh, bprice, bmyun, pnum1, pnum2, ppan, pfirst, pdate, bcolor, 
+			yinc, bnum, bjulsu, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, ypan, yban, tbigo
+		) values (
+			#{signdate}, #{bname}, #{bcode}, #{bpanh}, #{bprice}, #{bmyun}, #{pnum1}, #{pnum2}, #{ppan}, #{pfirst}, #{pdate}, #{bcolor}, 
+		    #{yinc}, #{bnum}, #{bjulsu}, #{p1}, #{p2}, #{p3}, #{p4}, #{p5}, #{p6}, #{p7}, #{p8}, #{p9}, #{p10}, #{p11}, #{p12}, #{ypan}, #{yban}, #{tbigo}
+		)
+	</insert>
 	
 	<!-- 제품정가인상리스트 -->
 	<select id="selJpPriceUpList" resultType="jpJejakVO">

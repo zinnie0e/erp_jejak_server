@@ -3,6 +3,7 @@ package com.guru.erpserver.mapper.dbjejak;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
+import com.guru.erpserver.vo.dbjejak.CustomerVO;
 import com.guru.erpserver.vo.dbjejak.JpJejakVO;
 
 @Mapper
@@ -27,6 +28,27 @@ public interface JpJejakMapper {
 	public JpJejakVO selBjlistBalju412(JpJejakVO params);
 	public long selBjlistBalju413(JpJejakVO params);
 	public JpJejakVO selBjlistBalju4131(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak1(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak2(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak3(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak4(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak5(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak6(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak7(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak8(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak9(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak10(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak11(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak12(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak13(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak14(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak15(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak16(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak17(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak18(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak19(JpJejakVO params);
+	public List<JpJejakVO> selBjYjJejak20(JpJejakVO params);
+	public int upBjYjJejak1(JpJejakVO params);
 	
 	//TODO 제작계획표
 	public List<JpJejakVO> selJpjejakplan0(JpJejakVO params);
@@ -89,7 +111,28 @@ public interface JpJejakMapper {
 	
 	//TODO 제작예정리스트 등록
 	public List<JpJejakVO> selYejungRegi1(JpJejakVO params);	
-	public List<JpJejakVO> selYejungRegi2(JpJejakVO params);	
+	public List<JpJejakVO> selYejungRegi2(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd1(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd2(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd3(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd4(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd5(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd6(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd7(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd8(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd9(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd10(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd11(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd12(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd13(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd14(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd15(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd16(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd17(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd18(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd19(JpJejakVO params);
+	public List<JpJejakVO> selJejakYjListAdd20(JpJejakVO params);
+	public int inJejakYjListAdd1(JpJejakVO params);
 	
 	//TODO 제품정가인상리스트
 	public List<JpJejakVO> selJpPriceUpList();

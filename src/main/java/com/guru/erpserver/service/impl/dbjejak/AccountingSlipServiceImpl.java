@@ -209,8 +209,9 @@ public class AccountingSlipServiceImpl implements AccountingSlipService {
 	}
 	@Override
 	public boolean turnBooksNotIn1() throws Exception {
-		int quert_result = accountingSlipDAO.turnBooksNotIn1();
-		return (quert_result == 1) ? true : false;
+		try { accountingSlipDAO.turnBooksNotIn1(); } 
+		catch (Exception e) { e.printStackTrace(); return false; }
+		return true;
 	}
 	@Override
 	public List<AccountingSlipVO> selBooksNotIn3(AccountingSlipVO params) throws Exception {

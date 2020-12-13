@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.guru.erpserver.service.dbjejak.JpJejakService;
+import com.guru.erpserver.vo.dbjejak.CustomerVO;
 import com.guru.erpserver.vo.dbjejak.JpJejakVO;
 
 @CrossOrigin(origins = "http://localhost:8080")
@@ -119,6 +120,111 @@ public class JpJejakController {
 	@RequestMapping(value="/jpjejak/select_bjlist_balju4131", method=RequestMethod.POST)
 	public JpJejakVO selBjlistBalju4131(@RequestBody JpJejakVO params) throws Exception {
 		return jpJejakSVC.selBjlistBalju4131(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak1", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak1(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak1(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak2", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak2(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak2(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak3", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak3(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak3(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak4", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak4(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak4(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak5", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak5(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak5(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak6", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak6(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak6(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak7", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak7(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak7(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak8", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak8(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak8(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak9", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak9(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak9(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak10", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak10(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak10(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak11", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak11(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak11(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak12", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak12(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak12(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak13", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak13(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak13(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak14", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak14(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak14(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak15", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak15(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak15(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak16", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak16(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak16(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak17", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak17(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak17(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak18", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak18(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak18(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak19", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak19(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak19(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_bjyj_jejak20", method=RequestMethod.POST)
+	public List<JpJejakVO> selBjYjJejak20(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selBjYjJejak20(params);
+	}
+	//입력 :
+	@RequestMapping(value="/jpjejak/update_jp_bjyjjejak1", method=RequestMethod.POST)
+	public boolean upBjYjJejak1(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.upBjYjJejak1(params);
 	}
 	
 	//TODO 제작계획표
@@ -349,6 +455,11 @@ public class JpJejakController {
 	public List<JpJejakVO> selYejung2(@RequestBody JpJejakVO params) throws Exception {
 		return jpJejakSVC.selYejung2(params);
 	}
+	//입력 : uid
+	@RequestMapping(value="/jpjejak/delete_jp_yejung", method=RequestMethod.POST)
+	public boolean delYejung(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.delYejung(params);
+	}
 	
 	//TODO 제작예정리스트 등록
 	//입력 : keyfield, key
@@ -361,10 +472,110 @@ public class JpJejakController {
 	public List<JpJejakVO> selYejungRegi2(@RequestBody JpJejakVO params) throws Exception {
 		return jpJejakSVC.selYejungRegi2(params);
 	}
-	//입력 : uid
-	@RequestMapping(value="/jpjejak/delete_jp_yejung", method=RequestMethod.POST)
-	public boolean delYejung(@RequestBody JpJejakVO params) throws Exception {
-		return jpJejakSVC.delYejung(params);
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add1", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd1(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd1(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add2", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd2(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd2(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add3", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd3(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd3(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add4", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd4(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd4(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add5", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd5(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd5(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add6", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd6(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd6(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add7", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd7(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd7(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add8", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd8(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd8(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add9", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd9(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd9(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add10", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd10(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd10(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add11", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd11(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd11(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add12", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd12(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd12(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add13", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd13(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd13(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add14", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd14(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd14(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add15", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd15(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd15(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add16", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd16(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd16(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add17", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd17(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd17(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add18", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd18(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd18(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add19", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd19(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd19(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/select_jp_jejak_yjlist_add20", method=RequestMethod.POST)
+	public List<JpJejakVO> selJejakYjListAdd20(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selJejakYjListAdd20(params);
+	}
+	//입력 : 
+	@RequestMapping(value="/jpjejak/insert_jp_jejak_yjlist_add1", method=RequestMethod.POST)
+	public boolean inJejakYjListAdd1(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inJejakYjListAdd1(params);
 	}
 	
 	//TODO 제품정가인상리스트

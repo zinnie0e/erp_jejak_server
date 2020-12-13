@@ -238,4 +238,67 @@ public class ProductIOController {
 	public List<ProductIOVO> selDisposalList(@RequestBody ProductIOVO params) throws Exception {
 		return productIOSVC.selDisposalList(params);
 	}
+	
+	// TODO 구분별도서수불재고현황
+	// 입력 : 
+	@RequestMapping(value = "/productio/select_bookpayment_stockstatus_bycate1", method = RequestMethod.POST)
+	public List<ProductIOVO> selBookPaymentStockStatusByCate1() throws Exception {
+		return productIOSVC.selBookPaymentStockStatusByCate1();
+	}
+	// 입력 : 
+	@RequestMapping(value = "/productio/select_bookpayment_stockstatus_bycate2", method = RequestMethod.POST)
+	public List<ProductIOVO> selBookPaymentStockStatusByCate2(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.selBookPaymentStockStatusByCate2(params);
+	}
+	// 입력 :
+	@RequestMapping(value = "/productio/select_bookpayment_stockstatus_bycate3", method = RequestMethod.POST)
+	public List<ProductIOVO> selBookPaymentStockStatusByCate3(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.selBookPaymentStockStatusByCate3(params);
+	}
+	// 입력 : 
+	@RequestMapping(value = "/productio/select_bookpayment_stockstatus_bycate4", method = RequestMethod.POST)
+	public List<ProductIOVO> selBookPaymentStockStatusByCate4(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.selBookPaymentStockStatusByCate4(params);
+	}
+	// 입력 : 
+	@RequestMapping(value = "/productio/select_bookpayment_stockstatus_bycate5", method = RequestMethod.POST)
+	public List<ProductIOVO> selBookPaymentStockStatusByCate5(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.selBookPaymentStockStatusByCate5(params);
+	}
+	// 입력 :
+	@RequestMapping(value = "/productio/select_bookpayment_stockstatus_bycate6", method = RequestMethod.POST)
+	public List<ProductIOVO> selBookPaymentStockStatusByCate6(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.selBookPaymentStockStatusByCate6(params);
+	}
+	// 입력 : 
+	@RequestMapping(value = "/productio/select_bookpayment_stockstatus_bycate7", method = RequestMethod.POST)
+	public List<ProductIOVO> selBookPaymentStockStatusByCate7(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.selBookPaymentStockStatusByCate7(params);
+	}
+	// 입력 : 
+	@RequestMapping(value = "/productio/select_bookpayment_stockstatus_bycate8", method = RequestMethod.POST)
+	public List<ProductIOVO> selBookPaymentStockStatusByCate8(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.selBookPaymentStockStatusByCate8(params);
+	}
+	// 입력 :
+	@RequestMapping(value = "/productio/select_bookpayment_stockstatus_bycate9", method = RequestMethod.POST)
+	public List<ProductIOVO> selBookPaymentStockStatusByCate9(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.selBookPaymentStockStatusByCate9(params);
+	}
+	// 입력 : 
+	@RequestMapping(value="/productio/update_bookpayment_stockstatus_bycate1", method=RequestMethod.POST)
+	public boolean upBookPaymentStockStatusByCate1(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.upBookPaymentStockStatusByCate1(params);
+	}
+	// 입력 : 
+	@RequestMapping(value="/productio/update_bookpayment_stockstatus_bycate2", method=RequestMethod.POST)
+	public boolean upBookPaymentStockStatusByCate2(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.upBookPaymentStockStatusByCate2(params);
+	}
+	// 입력 : 
+	@RequestMapping(value="/productio/update_bookpayment_stockstatus_bycate3", method=RequestMethod.POST)
+	public boolean upBookPaymentStockStatusByCate3(@RequestBody ProductIOVO params) throws Exception {
+		return productIOSVC.upBookPaymentStockStatusByCate3(params);
+	}
+
 }

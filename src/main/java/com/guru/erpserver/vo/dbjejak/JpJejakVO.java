@@ -59,6 +59,7 @@ public class JpJejakVO {
 	private long p13;
 	private String tbigo;
 	private long bcheck;
+	private long count_uid;
 	
 	//TODO kscbook0(도서 마스터)
 	private String sbbook;
@@ -74,6 +75,7 @@ public class JpJejakVO {
 	private String sbdung2;
 	private String sbloca;
 	private long sbpack;
+	private long wdboo9;
 	private String sbgubn;
 	private String sbgdat;
 	private String sbpegi;
@@ -94,6 +96,8 @@ public class JpJejakVO {
 	private String sbipil;
 	private long sbcost;
 	private long sbweit;
+	private long wddesu;
+	private long wdpage;
 	private String sbgeo1;
 	private long sbamt1;
 	private String sbrem1;
@@ -184,6 +188,7 @@ public class JpJejakVO {
 	//TODO kswyonj0(도서별 사용용지정보)
 //	private long uid;
 	private String wybook;
+	private String wjname;
 	private long wyboo9;
 	private long wysuns;
 	private String wygubn;
@@ -287,6 +292,19 @@ public class JpJejakVO {
 	private int lm_t; //리미트 전체값
 	private String keyfield;
 	private String key;
+	private String wdbook;
+	private int max_wdcolo;
+	private int wdcolo;
+	private int wdqnty;
+	private long sqcrnm0;
+	private long sqcrnm;
+	private String database;
+	private String sqbook;
+	private String bookcode;
+	private long xnum;
+	private String dbname;
+	private String tbsbook;
+	private long tbmgubn;
 	
 	//TODO 제품정가인상리스트
 	private long pub;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.guru.erpserver.vo.dbjejak.CustomerVO;
 import com.guru.erpserver.vo.dbjejak.JpJejakVO;
 
 public interface JpJejakService {
@@ -26,6 +27,27 @@ public interface JpJejakService {
 	JpJejakVO selBjlistBalju412(JpJejakVO params) throws Exception;
 	long selBjlistBalju413(JpJejakVO params) throws Exception;
 	JpJejakVO selBjlistBalju4131(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak1(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak2(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak3(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak4(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak5(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak6(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak7(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak8(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak9(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak10(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak11(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak12(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak13(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak14(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak15(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak16(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak17(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak18(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak19(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selBjYjJejak20(JpJejakVO params) throws Exception;
+	boolean upBjYjJejak1(JpJejakVO params) throws Exception;
 	
 	//TODO 제작계획표
 	List<JpJejakVO> selJpjejakplan0(JpJejakVO params) throws Exception;
@@ -89,6 +111,27 @@ public interface JpJejakService {
 	//TODO 제작예정리스트 등록
 	List<JpJejakVO> selYejungRegi1(JpJejakVO params) throws Exception;
 	List<JpJejakVO> selYejungRegi2(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd1(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd2(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd3(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd4(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd5(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd6(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd7(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd8(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd9(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd10(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd11(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd12(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd13(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd14(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd15(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd16(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd17(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd18(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd19(JpJejakVO params) throws Exception;
+	List<JpJejakVO> selJejakYjListAdd20(JpJejakVO params) throws Exception;
+	boolean inJejakYjListAdd1(JpJejakVO params) throws Exception;
 	
 	//TODO 제품정가인상리스트
 	List<JpJejakVO> selJpPriceUpList() throws Exception;

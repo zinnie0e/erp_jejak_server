@@ -196,4 +196,57 @@ public class ProductIOServiceImpl implements ProductIOService {
 		return productIODAO.selDisposalList(params);
 	}
 	
+	// TODO 구분별도서수불재고현황
+	@Override
+	public List<ProductIOVO> selBookPaymentStockStatusByCate1() throws Exception {
+		return productIODAO.selBookPaymentStockStatusByCate1();
+	}	
+	@Override
+	public List<ProductIOVO> selBookPaymentStockStatusByCate2(ProductIOVO params) throws Exception {
+		return productIODAO.selBookPaymentStockStatusByCate2(params);
+	}
+	@Override
+	public List<ProductIOVO> selBookPaymentStockStatusByCate3(ProductIOVO params) throws Exception {
+		return productIODAO.selBookPaymentStockStatusByCate3(params);
+	}
+	@Override
+	public List<ProductIOVO> selBookPaymentStockStatusByCate4(ProductIOVO params) throws Exception {
+		return productIODAO.selBookPaymentStockStatusByCate4(params);
+	}	
+	@Override
+	public List<ProductIOVO> selBookPaymentStockStatusByCate5(ProductIOVO params) throws Exception {
+		return productIODAO.selBookPaymentStockStatusByCate5(params);
+	}
+	@Override
+	public List<ProductIOVO> selBookPaymentStockStatusByCate6(ProductIOVO params) throws Exception {
+		return productIODAO.selBookPaymentStockStatusByCate6(params);
+	}
+	@Override
+	public List<ProductIOVO> selBookPaymentStockStatusByCate7(ProductIOVO params) throws Exception {
+		return productIODAO.selBookPaymentStockStatusByCate7(params);
+	}	
+	@Override
+	public List<ProductIOVO> selBookPaymentStockStatusByCate8(ProductIOVO params) throws Exception {
+		return productIODAO.selBookPaymentStockStatusByCate8(params);
+	}
+	@Override
+	public List<ProductIOVO> selBookPaymentStockStatusByCate9(ProductIOVO params) throws Exception {
+		return productIODAO.selBookPaymentStockStatusByCate9(params);
+	}
+	@Override
+	public boolean upBookPaymentStockStatusByCate1(ProductIOVO params) throws Exception {
+		int quert_result = productIODAO.upBookPaymentStockStatusByCate1(params);
+		return (quert_result == 1) ? true : false;
+	}	
+	@Override
+	public boolean upBookPaymentStockStatusByCate2(ProductIOVO params) throws Exception {
+		int quert_result = productIODAO.upBookPaymentStockStatusByCate2(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean upBookPaymentStockStatusByCate3(ProductIOVO params) throws Exception {
+		int quert_result = productIODAO.upBookPaymentStockStatusByCate3(params);
+		return (quert_result == 1) ? true : false;
+	}
+	
 }
