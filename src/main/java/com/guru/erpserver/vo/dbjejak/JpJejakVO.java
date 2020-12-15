@@ -250,7 +250,7 @@ public class JpJejakVO {
 	private int tbdsr;
 	private int s1qnty;
 	private int tbcsr;
-	
+
 	private String pgubn;
 	private String ccode7;
 	private String bcode7;
