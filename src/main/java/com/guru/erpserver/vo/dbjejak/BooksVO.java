@@ -80,7 +80,7 @@ public class BooksVO {
 	private String sbhj01;
 	private String sbhj02;
 	private String sbhj03;
-	private long sbhj04; //국외일때 인세
+	private float sbhj04; //국외일때 인세
 	private String sbpegn;
 	private long uid;
 	private String sbname2;

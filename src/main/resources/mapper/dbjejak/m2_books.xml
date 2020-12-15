@@ -81,7 +81,7 @@
 	<!-- 대수정보-수정하기 -->
 	<delete id="delDaesu1" parameterType="booksVO">
 		DELETE FROM jejak.KSWDESU0
-		WHERE wdbook = #{tmpcode}
+		WHERE wdbook = #{wdbook}
 	</delete>
 	
 	<select id="selDaesu2" resultType="Integer">
@@ -94,7 +94,7 @@
 			uid, wdbook, wdboo9, wdsuns, wdsrno,
 			wddesu, wdpage, wdcolo, wdqnty
 		) VALUES (
-			#{uid}, #{wdbook}, #{wdboo9}, #{wdsuns}, '1'
+			#{uid}, #{wdbook}, #{wdboo9}, #{wdsuns}, '1',
 			#{wddesu}, #{wdpage}, #{wdcolo}, #{wdqnty}
 		)
 	</insert>
@@ -124,7 +124,7 @@
 			wybook, wyboo9, wysuns, wygubn, wyjijl,
 			wycolo, wypage
 		) VALUES (
-			#{wybook}, #{wyboo9}, #{wysuns}, #{wygubn}, #{wyjijl}
+			#{wybook}, #{wyboo9}, #{wysuns}, #{wygubn}, #{wyjijl},
 			#{wycolo}, #{wypage}
 		)
 	</insert>
