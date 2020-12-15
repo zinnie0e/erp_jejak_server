@@ -210,7 +210,166 @@
 		WHERE sbbook LIKE #{sbbook}
 	</select>
 	
-	<select id="selBjYjJejak14" resultType="jpJejakVO">
+	<update id="upBjYjJejak1" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST SET 
+			bnum = #{bnum}, btype = #{btype} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<!-- ready -> start 발주버튼 --> 
+	
+	<select id="selStartBj1" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook = #{sbbook}
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj2" resultType="jpJejakVO">
+		SELECT pdate, signdate 
+		FROM jejak.TMPLIST 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selStartBj3" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid 
+		FROM jejak.TMPLIST2
+	</select>
+	
+	<select id="selStartBj4" resultType="jpJejakVO">
+		SELECT max(crnum) AS max_crnum 
+		FROM jejak.TMPLIST2 
+		WHERE bdate <![CDATA[ >= ]]> #{bdate}
+	</select>
+	
+	<select id="selStartBj5" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid 
+		FROM jejak.IBTABLE
+	</select>
+	
+	<select id="selStartBj6" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.TMPLIST 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selStartBj7" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid  
+		FROM jejak.TMPLIST3
+	</select>
+	
+	<select id="selStartBj8" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid  
+		FROM jejak.TMPLIST5
+	</select>
+	
+	<select id="selStartBj9" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.PDANGA 
+		WHERE pbu >= #{pbu} 
+			AND ppan = #{ppan} 
+			AND pcolo = #{pcolo} 
+		ORDER BY pbu ASC ${option} limit 1
+	</select>
+	
+	<select id="selStartBj10" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE uid = #{uid} 
+	</select>
+	
+	<select id="selStartBj11" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.FDANGA 
+		WHERE fpanh = #{fpanh} 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj12" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.CDANGA 
+		WHERE cgub = 4 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj13" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid  
+		FROM jejak.BITABLE8
+	</select>
+	
+	<select id="selStartBj14" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE gubn5 LIKE '면지%' 
+			AND listid5 = #{listid5} 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj15" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid  
+		FROM jejak.TMPLIST4
+	</select>
+	
+	<select id="selStartBj16" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.JDANGA 
+		WHERE jgubn = 7 
+			AND addi = #{addi} 
+			AND pnum <![CDATA[ <= ]]> #{pnum} 
+		ORDER BY pnum DESC 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj17" resultType="jpJejakVO">
+		SELECT sum(wdqnty) AS sum_wdqnty 
+		FROM jejak.KSWDESU0 
+		WHERE wdbook LIKE #{wdbook} 
+	</select>
+	
+	<select id="selStartBj18" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.JDANGA 
+		WHERE pgubn = #{pgubn} 
+			AND jgubn = #{jgubn} 
+	</select>
+	
+	<select id="selStartBj19" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.JDANGA 
+		WHERE tcode = #{tcode} 
+			AND jgubn = #{jgubn} 
+	</select>
+	
+	<select id="selStartBj20" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid 
+		FROM jejak.BITABLE7
+	</select>
+	
+	<select id="selStartBj21" resultType="jpJejakVO">
+		SELECT wdboo9 
+		FROM jejak.KSWDESU0 
+		WHERE wdbook = #{wdbook} 
+		ORDER BY wdboo9 DESC
+	</select>
+	
+	<select id="selStartBj22" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.CDANGA 
+		WHERE cgub = 3 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj23" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.CDANGA 
+		WHERE cpanh = #{cpanh}  
+			AND cgub = #{cgub} 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj24" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid 
+		FROM jejak.TWONGA
 	</select>
 	
 	<select id="selBjYjJejak15" resultType="jpJejakVO">
@@ -652,23 +811,44 @@
 	</select>
 	
 	<select id="selJejakYjListAdd9" resultType="jpJejakVO">
-		
+		SELECT SUM(S1QNTY) AS s1qnty
+		FROM sky.${dbname}
+		WHERE s1book LIKE #{s1book} 
+			AND s1gubn LIKE 'C' 
+			AND s1ilja <![CDATA[ <= ]]> #{s1ilja}
 	</select>
 	
 	<select id="selJejakYjListAdd10" resultType="jpJejakVO">
-	
+		SELECT SUM(s1qnty) AS s1qnty 
+		FROM sky.${dbname} 
+		WHERE s1book LIKE #{s1book} 
+			AND s1gubn = #{tmp} 
+			AND s1ilja <![CDATA[ <= ]]> #{s1ilja}
 	</select>
 	
 	<select id="selJejakYjListAdd11" resultType="jpJejakVO">
-	
+		SELECT SUM(s1qnty) AS s1qnty 
+		FROM sky.${dbname} 
+		WHERE s1book LIKE #{s1book} 
+			AND s1gubn = #{tmp}
+			AND s1ilja <![CDATA[ >= ]]> #{bdate}
 	</select>
 	
 	<select id="selJejakYjListAdd12" resultType="jpJejakVO">
-	
+		SELECT tbcsr, tbdsr 
+		FROM sky.${dbname} 
+		WHERE tbsbook = #{tbsbook} 
+			AND tbmgubn <![CDATA[ >= ]]> #{tmp} 
+		ORDER BY tbmgubn ASC
 	</select>
 	
 	<select id="selJejakYjListAdd13" resultType="jpJejakVO">
-	
+		SELECT tbcsr, tbdsr 
+		FROM ${dbname} 
+		WHERE tbsbook = #{tbsbook} 
+			AND tbmgubn <![CDATA[ > ]]> 0 
+			AND tbmgubn <![CDATA[ < ]]> #{tbmgubn} 
+		ORDER BY tbmgubn ASC
 	</select>
 	
 	<select id="selJejakYjListAdd14" resultType="jpJejakVO">
@@ -703,7 +883,7 @@
 		FROM sky.${dbname} 
 		WHERE s1ilja <![CDATA[ <= ]]> #{s1ilja} 
 			AND s1gubn = #{s1gubn} 
-			AND s1book = '#{s1book}
+			AND s1book = #{s1book}
 	</select>
 	
 	<select id="selJejakYjListAdd20" resultType="jpJejakVO">
