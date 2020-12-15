@@ -162,36 +162,221 @@ public class JpJejakServiceImpl implements JpJejakService{
 		return jpJejakDAO.selBjYjJejak13(params);
 	}
 	@Override
-	public List<JpJejakVO> selBjYjJejak14(JpJejakVO params) throws Exception {
-		return jpJejakDAO.selBjYjJejak14(params);
-	}
-	@Override
-	public List<JpJejakVO> selBjYjJejak15(JpJejakVO params) throws Exception {
-		return jpJejakDAO.selBjYjJejak15(params);
-	}
-	@Override
-	public List<JpJejakVO> selBjYjJejak16(JpJejakVO params) throws Exception {
-		return jpJejakDAO.selBjYjJejak16(params);
-	}
-	@Override
-	public List<JpJejakVO> selBjYjJejak17(JpJejakVO params) throws Exception {
-		return jpJejakDAO.selBjYjJejak17(params);
-	}
-	@Override
-	public List<JpJejakVO> selBjYjJejak18(JpJejakVO params) throws Exception {
-		return jpJejakDAO.selBjYjJejak18(params);
-	}
-	@Override
-	public List<JpJejakVO> selBjYjJejak19(JpJejakVO params) throws Exception {
-		return jpJejakDAO.selBjYjJejak19(params);
-	}
-	@Override
-	public List<JpJejakVO> selBjYjJejak20(JpJejakVO params) throws Exception {
-		return jpJejakDAO.selBjYjJejak20(params);
-	}
-	@Override
 	public boolean upBjYjJejak1(JpJejakVO params) throws Exception {
 		return jpJejakDAO.upBjYjJejak1(params) == 1 ? true : false;
+	}
+	
+	@Override
+	public List<JpJejakVO> selStartBj1(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj1(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj2(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj2(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj3() throws Exception {
+		return jpJejakDAO.selStartBj3();
+	}
+	@Override
+	public List<JpJejakVO> selStartBj4(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj4(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj5() throws Exception {
+		return jpJejakDAO.selStartBj5();
+	}
+	@Override
+	public List<JpJejakVO> selStartBj6(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj6(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj7() throws Exception {
+		return jpJejakDAO.selStartBj7();
+	}
+	@Override
+	public List<JpJejakVO> selStartBj8() throws Exception {
+		return jpJejakDAO.selStartBj8();
+	}
+	@Override
+	public List<JpJejakVO> selStartBj9(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj9(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj10(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj10(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj11(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj11(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj12() throws Exception {
+		return jpJejakDAO.selStartBj12();
+	}
+	@Override
+	public List<JpJejakVO> selStartBj13() throws Exception {
+		return jpJejakDAO.selStartBj13();
+	}
+	@Override
+	public List<JpJejakVO> selStartBj14(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj14(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj15() throws Exception {
+		return jpJejakDAO.selStartBj15();
+	}
+	@Override
+	public List<JpJejakVO> selStartBj16(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj16(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj17(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj17(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj18(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj18(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj19(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj19(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj20() throws Exception {
+		return jpJejakDAO.selStartBj20();
+	}
+	@Override
+	public List<JpJejakVO> selStartBj21(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj21(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj22() throws Exception {
+		return jpJejakDAO.selStartBj22();
+	}
+	@Override
+	public List<JpJejakVO> selStartBj23(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj23(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj24() throws Exception {
+		return jpJejakDAO.selStartBj24();
+	}
+	@Override
+	public List<JpJejakVO> selStartBj25(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj25(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj26(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj26(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj27(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj27(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj28(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj28(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj29(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj29(params);
+	}
+	@Override
+	public List<JpJejakVO> selStartBj30(JpJejakVO params) throws Exception {
+		return jpJejakDAO.selStartBj30(params);
+	}
+	
+	@Override
+	public boolean upStartBj1(JpJejakVO params) throws Exception {
+		return jpJejakDAO.upStartBj1(params) == 1 ? true : false;
+	}
+	@Override
+	public boolean upStartBj2(JpJejakVO params) throws Exception {
+		return jpJejakDAO.upStartBj2(params) == 1 ? true : false;
+	}
+	@Override
+	public boolean upStartBj3(JpJejakVO params) throws Exception {
+		return jpJejakDAO.upStartBj3(params) == 1 ? true : false;
+	}
+	@Override
+	public boolean upStartBj4(JpJejakVO params) throws Exception {
+		return jpJejakDAO.upStartBj4(params) == 1 ? true : false;
+	}
+	@Override
+	public boolean inStartBj1(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj1(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj2(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj2(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj3(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj3(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj4(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj4(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj5(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj5(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj6(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj6(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj7(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj7(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj8(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj8(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj9(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj9(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj10(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj10(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj11(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj11(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj12(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj12(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj13(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj13(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj14(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj14(params);
+		return (quert_result == 1) ? true : false;
+	}
+	@Override
+	public boolean inStartBj15(JpJejakVO params) throws Exception {
+		int quert_result = jpJejakDAO.inStartBj15(params);
+		return (quert_result == 1) ? true : false;
 	}
 	
 	//TODO 제작계획표

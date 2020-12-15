@@ -210,32 +210,327 @@
 		WHERE sbbook LIKE #{sbbook}
 	</select>
 	
-	<select id="selBjYjJejak14" resultType="jpJejakVO">
-	</select>
-	
-	<select id="selBjYjJejak15" resultType="jpJejakVO">
-	</select>
-	
-	<select id="selBjYjJejak16" resultType="jpJejakVO">
-	</select>
-	
-	<select id="selBjYjJejak17" resultType="jpJejakVO">
-	</select>
-	
-	<select id="selBjYjJejak18" resultType="jpJejakVO">
-	</select>
-	
-	<select id="selBjYjJejak19" resultType="jpJejakVO">
-	</select>
-	
-	<select id="selBjYjJejak20" resultType="jpJejakVO">
-	</select>
-	
 	<update id="upBjYjJejak1" parameterType="jpJejakVO">
 		UPDATE jejak.TMPLIST SET 
 			bnum = #{bnum}, btype = #{btype} 
 		WHERE uid = #{uid}
 	</update>
+	
+	<!-- ready -> start 발주버튼 --> 
+	
+	<select id="selStartBj1" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.KSCBOOK0 
+		WHERE sbbook = #{sbbook}
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj2" resultType="jpJejakVO">
+		SELECT pdate, signdate 
+		FROM jejak.TMPLIST 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selStartBj3" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid 
+		FROM jejak.TMPLIST2
+	</select>
+	
+	<select id="selStartBj4" resultType="jpJejakVO">
+		SELECT max(crnum) AS max_crnum 
+		FROM jejak.TMPLIST2 
+		WHERE bdate <![CDATA[ >= ]]> #{bdate}
+	</select>
+	
+	<select id="selStartBj5" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid 
+		FROM jejak.IBTABLE
+	</select>
+	
+	<select id="selStartBj6" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.TMPLIST 
+		WHERE uid = #{uid}
+	</select>
+	
+	<select id="selStartBj7" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid  
+		FROM jejak.TMPLIST3
+	</select>
+	
+	<select id="selStartBj8" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid  
+		FROM jejak.TMPLIST5
+	</select>
+	
+	<select id="selStartBj9" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.PDANGA 
+		WHERE pbu >= #{pbu} 
+			AND ppan = #{ppan} 
+			AND pcolo = #{pcolo} 
+		ORDER BY pbu ASC ${option} limit 1
+	</select>
+	
+	<select id="selStartBj10" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.TMPLIST3 
+		WHERE uid = #{uid} 
+	</select>
+	
+	<select id="selStartBj11" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.FDANGA 
+		WHERE fpanh = #{fpanh} 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj12" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.CDANGA 
+		WHERE cgub = 4 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj13" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid  
+		FROM jejak.BITABLE8
+	</select>
+	
+	<select id="selStartBj14" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.TMPLIST5 
+		WHERE gubn5 LIKE '면지%' 
+			AND listid5 = #{listid5} 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj15" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid  
+		FROM jejak.TMPLIST4
+	</select>
+	
+	<select id="selStartBj16" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.JDANGA 
+		WHERE jgubn = 7 
+			AND addi = #{addi} 
+			AND pnum <![CDATA[ <= ]]> #{pnum} 
+		ORDER BY pnum DESC 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj17" resultType="jpJejakVO">
+		SELECT sum(wdqnty) AS sum_wdqnty 
+		FROM jejak.KSWDESU0 
+		WHERE wdbook LIKE #{wdbook} 
+	</select>
+	
+	<select id="selStartBj18" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.JDANGA 
+		WHERE pgubn = #{pgubn} 
+			AND jgubn = #{jgubn} 
+	</select>
+	
+	<select id="selStartBj19" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.JDANGA 
+		WHERE tcode = #{tcode} 
+			AND jgubn = #{jgubn} 
+	</select>
+	
+	<select id="selStartBj20" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid 
+		FROM jejak.BITABLE7
+	</select>
+	
+	<select id="selStartBj21" resultType="jpJejakVO">
+		SELECT wdboo9 
+		FROM jejak.KSWDESU0 
+		WHERE wdbook = #{wdbook} 
+		ORDER BY wdboo9 DESC
+	</select>
+	
+	<select id="selStartBj22" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.CDANGA 
+		WHERE cgub = 3 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj23" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.CDANGA 
+		WHERE cpanh = #{cpanh}  
+			AND cgub = #{cgub} 
+		LIMIT 1
+	</select>
+	
+	<select id="selStartBj24" resultType="jpJejakVO">
+		SELECT max(uid) AS max_uid 
+		FROM jejak.TWONGA
+	</select>
+	
+	<select id="selStartBj25" resultType="jpJejakVO">
+		SELECT * 
+		FROM jejak.INSANG 
+		WHERE bcode LIKE #{bcode}  
+			AND pub = 0
+	</select>
+	
+	<select id="selStartBj26" resultType="jpJejakVO">
+	</select>
+	
+	<select id="selStartBj27" resultType="jpJejakVO">
+	</select>
+	
+	<select id="selStartBj28" resultType="jpJejakVO">
+	</select>
+	
+	<select id="selStartBj29" resultType="jpJejakVO">
+	</select>
+	
+	<select id="selStartBj30" resultType="jpJejakVO">
+	</select>
+	
+	<update id="upStartBj1" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST SET 
+			bcheck = 1 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upStartBj2" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST3 SET 
+			jm = #{jm}, yb = #{yb} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upStartBj3" parameterType="jpJejakVO">
+		UPDATE jejak.TMPLIST5 SET 
+			pannum5 = #{pannum5}, sobu5 = #{sobu5}, sum5 = #{sum5} 
+		WHERE uid = #{uid}
+	</update>
+	
+	<update id="upStartBj4" parameterType="jpJejakVO">
+		UPDATE jejak.INSANG SET 
+			pub = 1 
+		WHERE uid = #{uid}
+	</update>
+	
+	<insert id="inStartBj1" parameterType="jpJejakVO">
+		INSERT INTO YEJUNG2 (
+			yjbook, yjdate
+		) VALUES (
+			#{yjbook}, #{yjdate}
+		)
+	</insert>
+	
+	<insert id="inStartBj2" parameterType="jpJejakVO">
+		INSERT INTO jejak.TMPLIST2 (
+			uid, listid, bdate, m1, m2, m3, m4, m5, m6, m7, m8, m9, 
+		    m10, m11, m12, m13, crnum, ipdate, pwan, iwan
+		) VALUES (
+			#{uid}, #{listid}, #{bdate}, #{m1}, #{m2}, #{m3}, #{m4}, #{m5}, #{m6}, #{m7}, #{m8}, #{m9}, 
+		    #{m10}, #{m11}, #{m12}, #{m13}, #{crnum}, #{ipdate}, #{pwan}, #{iwan}
+		)
+	</insert>
+	
+	<insert id="inStartBj3" parameterType="jpJejakVO">
+		INSERT INTO jejak.IBTABLE (
+			uid, bookname, bookcode, jdate, juid, 
+		    ccode, jnum, jgubn, m3, xnum
+		) VALUES (
+			#{uid}, #{bookname}, #{bookcode}, #{jdate}, #{juid}, 
+		    #{ccode}, #{jnum}, #{jgubn}, #{m3}, #{xnum}
+		)
+	</insert>
+	
+	<insert id="inStartBj4" parameterType="jpJejakVO">
+		INSERT INTO jejak.TMPLIST2 (
+			uid, listid, bdate, m1, m2, m3, m4, bucode, crnum, ipdate, pwan, iwan
+		) values (
+			#{uid}, #{listid}, #{bdate}, #{m1}, #{m2}, #{m3}, #{m4}, #{bucode}, #{crnum}, #{ipdate}, #{pwan}, #{iwan}
+		)
+	</insert>
+	
+	<insert id="inStartBj5" parameterType="jpJejakVO">
+		INSERT INTO jejak.TMPLIST3 (
+			uid, listid, jcode, jname, jm, yb, gubn, colo, bucode, pcost, pdanga, rnum
+		) values (
+			#{uid}, #{listid}, #{jcode}, #{jname}, #{jm}, #{yb}, #{gubn}, #{colo}, #{bucode}, #{pcost}, #{pdanga}, #{rnum}
+		)
+	</insert>
+	
+	<insert id="inStartBj6" parameterType="jpJejakVO">
+		INSERT INTO jejak.BITABLE8 (
+			uid, ccode8, bcode8, cdate8, cnum8, cprice8, totcost8, crnum8
+		) values (
+			#{uid}, #{ccode8}, #{bcode8}, #{cdate8}, #{cnum8}, #{cprice8}, #{totcost8}, #{crnum8}
+		)
+	</insert>
+	
+	<insert id="inStartBj7" parameterType="jpJejakVO">
+		INSERT INTO jejak.TMPLIST5 (
+			uid, listid5, gubn5, panst5, pannum5, filmnum5, filmdan5, filmcost5, daeji5, sobudan5, sobu5, sum5
+		) values (
+			#{uid}, #{listid5}, #{gubn5}, #{panst5}, #{pannum5}, #{filmnum5}, #{filmdan5}, #{filmcost5}, #{daeji5}, #{sobudan5}, #{sobu5}, #{sum5}
+		)
+	</insert>
+	
+	<insert id="inStartBj8" parameterType="jpJejakVO">
+		INSERT INTO jejak.TMPLIST4 (
+			uid, listid, gb, bu, dae, pg, colo, jm, yb, jc, jn, t4bigo
+		) values (
+			#{uid}, #{listid}, #{gb}, #{bu}, #{dae}, #{pg}, #{colo}, #{jm}, #{yb}, #{jc}, #{jn}, #{t4bigo}
+		)
+	</insert>
+	
+	<insert id="inStartBj9" parameterType="jpJejakVO">
+		INSERT INTO jejak.BITABLE7 (
+			uid, ccode7, bcode7, cdate7, cgubn7, cnum7, cpage7, cprice17, cprice27, crnum7, totcost7, pdanga7
+		) values (
+			#{uid}, #{ccode7}, #{bcode7}, #{cdate7}, #{cgubn7}, #{cnum7}, #{cpage7}, #{cprice17}, #{cprice27}, #{crnum7}, #{totcost7}, #{pdanga7}
+		)
+	</insert>
+	
+	<insert id="inStartBj10" parameterType="jpJejakVO">
+		INSERT INTO jejak.BITABLE7 (
+			ccode7, bcode7, cdate7, cgubn7, cnum7, cpage7, cprice17, cprice27, crnum7, totcost7, pdanga7
+		) values (
+			#{ccode7}, #{bcode7}, #{cdate7}, #{cgubn7}, #{cnum7}, #{cpage7}, #{cprice17}, #{cprice27}, #{crnum7}, #{totcost7}, #{pdanga7}
+		)
+	</insert>
+	
+	<insert id="inStartBj11" parameterType="jpJejakVO">
+		INSERT INTO jejak.BITABLE5 (
+			ccode5, bcode5, cdate5, cnum5, crnum5
+		) values(
+			#{ccode5}, #{bcode5}, #{cdate5}, #{cnum5}, #{crnum5}
+		)
+	</insert>
+	
+	<insert id="inStartBj12" parameterType="jpJejakVO">
+		INSERT INTO jejak.BITABLE9 (
+			ccode9, bcode9, cdate9, cnum9, cprice9, bitag, crnum9
+		) values (
+			#{ccode9}, #{bcode9}, #{cdate9}, #{cnum9}, #{cprice9}, #{bitag}, #{crnum9}
+		)
+	</insert>
+	
+	<insert id="inStartBj13" parameterType="jpJejakVO">
+		INSERT INTO jejak.TWONGA (
+			uid, jenum, w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11
+		) values (
+			#{uid}, #{jenum}, #{w1}, #{w2}, #{w3}, #{w4}, #{w5}, #{w6}, #{w7}, #{w8}, #{w9}, #{w10}, #{w11}
+		)
+	</insert>
+	
+	<insert id="inStartBj14" parameterType="jpJejakVO">
+	</insert>
+	
+	<insert id="inStartBj15" parameterType="jpJejakVO">
+	</insert>
 	
 	<!-- 제작계획표 -->
 	<select id="selJpjejakplan0" resultType="jpJejakVO">
