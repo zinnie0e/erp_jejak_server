@@ -243,6 +243,7 @@ public class JpJejakVO {
 	private float cprice27;
 	private float pdanga7;
 	
+<<<<<<< HEAD
 
 	private String s1ilja;
 	private String s1gubn;
@@ -253,6 +254,8 @@ public class JpJejakVO {
 	private int tbcsr;
 	
 	
+=======
+>>>>>>> refs/remotes/origin/master
 	private String pgubn;
 	private String ccode7;
 	private String bcode7;
@@ -413,4 +416,9 @@ public class JpJejakVO {
 	private String pwan;
 	private String gb;
 	private String cpanh;
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> refs/remotes/origin/master
 }

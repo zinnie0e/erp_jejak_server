@@ -186,45 +186,207 @@ public class JpJejakController {
 	public List<JpJejakVO> selBjYjJejak13(@RequestBody JpJejakVO params) throws Exception {
 		return jpJejakSVC.selBjYjJejak13(params);
 	}
-	//입력 : 
-	@RequestMapping(value="/jpjejak/select_bjyj_jejak14", method=RequestMethod.POST)
-	public List<JpJejakVO> selBjYjJejak14(@RequestBody JpJejakVO params) throws Exception {
-		return jpJejakSVC.selBjYjJejak14(params);
-	}
-	//입력 : 
-	@RequestMapping(value="/jpjejak/select_bjyj_jejak15", method=RequestMethod.POST)
-	public List<JpJejakVO> selBjYjJejak15(@RequestBody JpJejakVO params) throws Exception {
-		return jpJejakSVC.selBjYjJejak15(params);
-	}
-	//입력 : 
-	@RequestMapping(value="/jpjejak/select_bjyj_jejak16", method=RequestMethod.POST)
-	public List<JpJejakVO> selBjYjJejak16(@RequestBody JpJejakVO params) throws Exception {
-		return jpJejakSVC.selBjYjJejak16(params);
-	}
-	//입력 : 
-	@RequestMapping(value="/jpjejak/select_bjyj_jejak17", method=RequestMethod.POST)
-	public List<JpJejakVO> selBjYjJejak17(@RequestBody JpJejakVO params) throws Exception {
-		return jpJejakSVC.selBjYjJejak17(params);
-	}
-	//입력 : 
-	@RequestMapping(value="/jpjejak/select_bjyj_jejak18", method=RequestMethod.POST)
-	public List<JpJejakVO> selBjYjJejak18(@RequestBody JpJejakVO params) throws Exception {
-		return jpJejakSVC.selBjYjJejak18(params);
-	}
-	//입력 : 
-	@RequestMapping(value="/jpjejak/select_bjyj_jejak19", method=RequestMethod.POST)
-	public List<JpJejakVO> selBjYjJejak19(@RequestBody JpJejakVO params) throws Exception {
-		return jpJejakSVC.selBjYjJejak19(params);
-	}
-	//입력 : 
-	@RequestMapping(value="/jpjejak/select_bjyj_jejak20", method=RequestMethod.POST)
-	public List<JpJejakVO> selBjYjJejak20(@RequestBody JpJejakVO params) throws Exception {
-		return jpJejakSVC.selBjYjJejak20(params);
-	}
 	//입력 :
 	@RequestMapping(value="/jpjejak/update_jp_bjyjjejak1", method=RequestMethod.POST)
 	public boolean upBjYjJejak1(@RequestBody JpJejakVO params) throws Exception {
 		return jpJejakSVC.upBjYjJejak1(params);
+	}
+	
+	@RequestMapping(value="/jpjejak/select_startbj1", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj1(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj1(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj2", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj2(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj2(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj3", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj3() throws Exception {
+		return jpJejakSVC.selStartBj3();
+	}
+	@RequestMapping(value="/jpjejak/select_startbj4", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj4(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj4(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj5", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj5() throws Exception {
+		return jpJejakSVC.selStartBj5();
+	}
+	@RequestMapping(value="/jpjejak/select_startbj6", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj6(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj6(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj7", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj7() throws Exception {
+		return jpJejakSVC.selStartBj7();
+	}
+	@RequestMapping(value="/jpjejak/select_startbj8", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj8() throws Exception {
+		return jpJejakSVC.selStartBj8();
+	}
+	@RequestMapping(value="/jpjejak/select_startbj9", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj9(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj9(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj10", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj10(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj10(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj11", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj11(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj11(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj12", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj12() throws Exception {
+		return jpJejakSVC.selStartBj12();
+	}
+	@RequestMapping(value="/jpjejak/select_startbj13", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj13() throws Exception {
+		return jpJejakSVC.selStartBj13();
+	}
+	@RequestMapping(value="/jpjejak/select_startbj14", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj14(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj14(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj15", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj15() throws Exception {
+		return jpJejakSVC.selStartBj15();
+	}
+	@RequestMapping(value="/jpjejak/select_startbj16", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj16(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj16(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj17", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj17(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj17(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj18", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj18(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj18(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj19", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj19(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj19(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj20", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj20() throws Exception {
+		return jpJejakSVC.selStartBj20();
+	}
+	@RequestMapping(value="/jpjejak/select_startbj21", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj21(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj21(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj22", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj22() throws Exception {
+		return jpJejakSVC.selStartBj22();
+	}
+	@RequestMapping(value="/jpjejak/select_startbj23", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj23(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj23(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj24", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj24() throws Exception {
+		return jpJejakSVC.selStartBj24();
+	}
+	@RequestMapping(value="/jpjejak/select_startbj25", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj25(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj25(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj26", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj26(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj26(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj27", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj27(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj27(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj28", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj28(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj28(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj29", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj29(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj29(params);
+	}
+	@RequestMapping(value="/jpjejak/select_startbj30", method=RequestMethod.POST)
+	public List<JpJejakVO> selStartBj30(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.selStartBj30(params);
+	}
+	@RequestMapping(value="/jpjejak/update_startbj1", method=RequestMethod.POST)
+	public boolean upStartBj1(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.upStartBj1(params);
+	}
+	@RequestMapping(value="/jpjejak/update_startbj2", method=RequestMethod.POST)
+	public boolean upStartBj2(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.upStartBj2(params);
+	}
+	@RequestMapping(value="/jpjejak/update_startbj3", method=RequestMethod.POST)
+	public boolean upStartBj3(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.upStartBj3(params);
+	}
+	@RequestMapping(value="/jpjejak/update_startbj4", method=RequestMethod.POST)
+	public boolean upStartBj4(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.upStartBj4(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj1", method=RequestMethod.POST)
+	public boolean inStartBj1(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj1(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj2", method=RequestMethod.POST)
+	public boolean inStartBj2(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj2(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj3", method=RequestMethod.POST)
+	public boolean inStartBj3(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj3(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj4", method=RequestMethod.POST)
+	public boolean inStartBj4(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj4(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj5", method=RequestMethod.POST)
+	public boolean inStartBj5(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj5(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj6", method=RequestMethod.POST)
+	public boolean inStartBj6(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj6(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj7", method=RequestMethod.POST)
+	public boolean inStartBj7(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj7(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj8", method=RequestMethod.POST)
+	public boolean inStartBj8(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj8(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj9", method=RequestMethod.POST)
+	public boolean inStartBj9(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj9(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj10", method=RequestMethod.POST)
+	public boolean inStartBj10(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj10(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj11", method=RequestMethod.POST)
+	public boolean inStartBj11(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj11(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj12", method=RequestMethod.POST)
+	public boolean inStartBj12(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj12(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj13", method=RequestMethod.POST)
+	public boolean inStartBj13(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj13(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj14", method=RequestMethod.POST)
+	public boolean inStartBj14(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj14(params);
+	}
+	@RequestMapping(value="/jpjejak/insert_startbj15", method=RequestMethod.POST)
+	public boolean inStartBj15(@RequestBody JpJejakVO params) throws Exception {
+		return jpJejakSVC.inStartBj15(params);
 	}
 	
 	//TODO 제작계획표
